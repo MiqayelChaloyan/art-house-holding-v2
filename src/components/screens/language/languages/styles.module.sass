@@ -1,0 +1,63 @@
+.languages
+    display: grid
+    justify-content: center
+    align-items: flex-start 
+    grid-template-columns: auto auto auto auto
+    width: 100%
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        grid-template-columns: auto auto auto auto
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        grid-template-columns: auto auto auto auto
+    /* @md */
+    @media screen and (max-width: 1024px)
+        grid-template-columns: auto auto auto
+    @media screen and (max-width: 950px)
+        grid-template-columns: auto auto auto
+    /* @sm */
+    @media screen and (max-width: 768px)
+        grid-template-columns: auto auto
+        width: 90%
+    @media screen and (max-width: 600px)
+        grid-template-columns: auto auto
+    @media screen and (max-width: 550px)
+        grid-template-columns: auto auto
+        
+
+.language
+    width: 100%
+    height: 456px
+    object-fit: contain
+    margin: 15px
+    transition: transform .7s
+    &:hover
+        transform: scale(0.9)
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        height: 456px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        height: 456px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        height: 380px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: 350px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: 300px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 250px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: 340px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: 220px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: 200px
+

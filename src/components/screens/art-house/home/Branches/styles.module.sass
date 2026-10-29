@@ -1,0 +1,68 @@
+$assetPath: "../../../../../../public/assets/images/art-house/background.png"
+
+.section
+    background-image: url($assetPath) 
+    background-repeat: round
+    background-size: cover
+    background-position: top
+    height: 700px
+    display: flex
+    align-items: center
+    position: relative
+    bottom: 35px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        background-repeat: round
+        background-size: cover
+        background-position: top
+        height: 700px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        height: 580px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        height: 400px  
+    /* md */
+    @media screen and ( max-width: 768px )
+        background-color: rgb(95, 95, 95)
+        background-image: none    
+        top: 0
+        height: 519px
+    /* sm */
+    @media screen and ( max-width: 640px )
+        background-color: rgb(95, 95, 95)
+        background-image: none
+        height: 476px
+
+.cards
+    display: flex
+    justify-content: space-between
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        margin: 20% auto  
+        justify-content: space-evenly
+    @media screen and ( max-width: 768px )
+        display: none
+
+.slider
+    display: none
+    justify-content: center
+    align-items: center
+    width: 95%
+    margin: 29px auto
+    @media screen and ( max-width: 768px )
+       display: block
+
+.swiper
+    width: 100%
+    padding-top: 50px
+    padding-bottom: 50px
+
+.swiper-slide
+    background-position: center
+    background-size: cover
+    width: 300px
+    height: 0 !important
+
+.swiper-pagination
+    bottom: 44px !important

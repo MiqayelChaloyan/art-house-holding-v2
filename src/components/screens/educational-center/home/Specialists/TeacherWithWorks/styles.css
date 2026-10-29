@@ -1,0 +1,19 @@
+.swiper {
+  padding: 40px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .swiper {
+    padding: 10px
+  }
+}

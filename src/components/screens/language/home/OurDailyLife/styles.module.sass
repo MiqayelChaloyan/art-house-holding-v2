@@ -1,0 +1,472 @@
+.section
+    margin-bottom: 40px
+    /* @xs */
+    @media screen and (max-width: 768px)
+        margin-bottom: 0
+        
+.ourDaily
+    height: max-content
+
+.title
+    color: #006ED2
+    font-size: 70px
+    font-weight: 400
+    display: flex
+    align-items: flex-end
+    margin-bottom: 40px
+    justify-content: flex-end
+    &:after 
+        content: ''
+        flex: 0.8 1
+        margin-left: 1rem
+        height: 5px
+        background-color: #006ED2
+        border-radius: 5px
+    &:before 
+        content: ''
+        flex: 0.8 1
+        margin-left: 0
+        height: 5px
+        background-color: #006ED2
+        border-radius: 5px
+        /* @xs */
+        @media screen and (max-width: 600px)
+            margin-left: 1rem
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 70px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 60px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 50px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 40px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 40px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 40px
+        &:after 
+            content: ''
+            flex: 1
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 40px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 30px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 30px
+
+.images
+    width: 100%
+    height: 100%
+    object-fit: cover
+    border-radius: 17px
+    /* @xs */
+    @media screen and (max-width: 768px)
+        border-radius: 10px
+
+.image
+    width: 370px
+    height: 465px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        height: 465px
+        width: 370px
+        margin-bottom: 20px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        height: 386px
+        width: 370px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        height: 385px
+        width: 350px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: 300px
+        width: 300px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: 300px
+        width: 240px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 257px
+        width: 90%
+        margin: 0 auto
+        margin-bottom: 20px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: 257px
+        width: 90%
+        margin: 0 auto
+        margin-bottom: 20px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: 257px
+        width: 90%
+        margin: 0 auto
+        margin-bottom: 20px    
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: 257px
+        width: 90%
+        margin: 0 auto
+        margin-bottom: 20px
+
+.video
+    width: 370px
+    height: 470px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        height: 361px
+        width: 370px
+        margin-bottom: 20px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        height: 361px
+        width: 370px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        height: 257px
+        width: 350px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: 257px
+        width: 300px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: 257px
+        width: 240px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 250px
+        width: 90%
+        position: relative
+        margin: 0 auto
+        margin-bottom: 27px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: 250px
+        width: 90%
+        position: relative
+        margin: 0 auto
+        margin-bottom: 27px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: 250px
+        width: 90%
+        position: relative
+        margin: 0 auto
+        margin-bottom: 27px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: 250px
+        width: 90%
+        position: relative
+        margin: 0 auto
+        margin-bottom: 27px
+
+.navigate
+    background-color: #fff
+    height: 84px
+    width: 370px
+    border-radius: 17px
+    display: grid
+    justify-content: center
+    box-shadow: 0 2px 5px 1px #a1a1a1
+    padding: 10px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        height: 84px
+        width: 350px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: 84px
+        width: 300px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: 84px
+        width: 240px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 84px
+        width: 100%
+        position: absolute
+        bottom: -10px
+        background-color: transparent
+        box-shadow: none
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: 84px
+        width: 100%
+        position: absolute
+        bottom: -10px
+        background-color: transparent
+        box-shadow: none
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: 90px
+        width: 100%
+        position: absolute
+        bottom: -10px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: 90px
+        width: 100%
+        position: absolute
+        bottom: -10px
+
+.text
+    font-size: 16px
+    line-height: 18.4px
+    font-weight: 700
+    color: #656565
+    padding: 0 17px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 16px
+        line-height: 18.4px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 16px
+        line-height: 18.4px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 16px
+        line-height: 18.4px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 13px
+        line-height: 17px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 12px
+        line-height: 12px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 13px
+        line-height: 15px
+        padding: 0
+        color: #fff
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 13px
+        line-height: 15px
+        padding: 0
+        color: #fff
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 13px
+        line-height: 15px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 13px
+        line-height: 15px
+
+.btn
+    display: flex
+    justify-content: flex-end
+    /* @xs */
+    @media screen and (max-width: 768px)
+        justify-content: flex-start
+
+.view
+    background-color: #006ED2
+    border-radius: 20px
+    width: 110px
+    height: 30px
+    color: #fff
+    font-size: 17px
+    font-weight: 700
+    transition: .2s all
+    &:hover
+        background-color: #F9CC48
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 16px
+        line-height: 18.4px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 16px
+        line-height: 18.4px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 16px
+        line-height: 18.4px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: 25px
+        color: #fff
+        font-size: 14px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: 25px
+        color: #fff
+        font-size: 14px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 25px
+        color: #fff
+        font-size: 14px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: 30px
+        color: #fff
+        font-size: 13px
+        border-radius: 10px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: 30px
+        color: #fff
+        font-size: 13px
+        border-radius: 10px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: 30px
+        color: #fff
+        font-size: 13px
+        border-radius: 10px
+
+.column
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    margin-bottom: 50px    
+    /* @xs */
+    @media screen and (max-width: 768px)
+        margin-bottom: 0  
+        justify-content: initial
+        width: 100%
+        display: grid
+
+/* Player UI Styles */
+.playing
+    height: 361px
+    width: 370px
+    margin-bottom: 20px
+    position: relative
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        height: 361px
+        width: 370px
+        margin-bottom: 20px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        height: 280px
+        width: 370px
+        margin-bottom: 20px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        height: 280px
+        width: 350px
+        margin-bottom: 20px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: 194px
+        width: 300px
+        margin-bottom: 20px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: 194px
+        width: 240px
+        margin-bottom: 20px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 257px
+        width: 100%
+        margin-bottom: 0
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: 257px
+        width: 100%
+        margin-bottom: 0
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: 257px
+        width: 100%
+        margin-bottom: 0
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: 257px
+        width: 100%
+        margin-bottom: 0
+
+.video_play
+    width: 100%
+    height: 100%
+    object-fit: cover
+    border-radius: 20px
+    filter: brightness(0.5)
+    /* @xs */
+    @media screen and (max-width: 768px)
+        border-radius: 10px
+
+.icon
+    position: absolute
+    left: 42%
+    top: 40%
+    /* @xs */
+    @media screen and (max-width: 600px)
+        left: 45%
+        top: 40%
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        left: 44%
+        top: 40%
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        left: 44%
+        top: 40%
+    svg
+        width: 75px
+        height: 75px
+        /* @3xl */
+        @media screen and (max-width: 1920px)
+            height: 75px
+            width: 75px
+        /* @2xl */
+        @media screen and (max-width: 1600px)
+            height: 75px
+            width: 75px
+        /* @xl */
+        @media screen and (max-width: 1440px)
+            height: 70px
+            width: 70px
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            height: 50px
+            width: 50px
+        /* @md */
+        @media screen and (max-width: 1024px)
+            height: 45px
+            width: 45px
+        /* @sm */
+        @media screen and (max-width: 768px)
+            height: 50px
+            width: 50px
+        /* @xs */
+        @media screen and (max-width: 600px)
+            height: 45px
+            width: 45px
+            left: 50%
+            top: 50%
+        /* @2xs */
+        @media screen and (max-width: 480px)
+            height: 45px
+            width: 45px
+            left: 50%
+            top: 50%
+        /* @3xs */
+        @media screen and (max-width: 360px)
+            height: 45px
+            width: 45px
+            left: 50%
+            top: 50%

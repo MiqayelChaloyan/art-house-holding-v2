@@ -1,0 +1,445 @@
+.container
+    background: var(--color-bg-gray)
+    height: max-content
+    position: relative
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+      height: max-content
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+      height: max-content
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+      height: max-content
+    /* @xl */
+    @media screen and (max-width: 1440px)
+      height: max-content
+    /* @lg */
+    @media screen and (max-width: 1280px)
+      height: max-content
+    /* @md */
+    @media screen and (max-width: 1024px)
+      height: max-content
+    /* @sm */
+    @media screen and (max-width: 768px)
+      height: max-content
+    /* @xs */
+    @media screen and (max-width: 600px)
+      height: max-content
+    /* @2xs */
+    @media screen and (max-width: 480px)
+      height: max-content
+    /* @3xs */
+    @media screen and (max-width: 360px)
+      height: max-content
+
+.triangle
+    display: block
+    height: 59px
+    width: 50%
+    position: relative
+    transform: skew(44deg)
+    bottom: 50px
+    &:after 
+      height: 59px
+      width: 110%
+      background-color: var(--color-bg-gray)
+      margin: 0 auto
+      position: absolute
+      content: ''
+      right: 0
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+      bottom: 50px
+      &:after 
+        height: 59px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+      bottom: 50px
+      &:after 
+        height: 59px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+      bottom: 50px
+      &:after 
+        height: 59px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+      bottom: 43px
+      &:after 
+        height: 45px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+      bottom: 42px
+      &:after 
+        height: 45px
+    /* @md */
+    @media screen and (max-width: 1024px)
+      bottom: 41px
+      width: 60%
+      &:after 
+        height: 45px
+    /* @sm */
+    @media screen and (max-width: 768px)
+      bottom: 35px
+      width: 70%
+      &:after 
+        height: 37px
+    /* @xs */
+    @media screen and (max-width: 600px)
+      display: none
+
+.title
+    position: absolute
+    margin: 0 auto
+    width: 100%
+    color: #313131
+    top: -40px
+    font-size: 32px
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      font-size: 33px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      font-size: 30px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      font-size: 27px
+      top: -37px
+    /* md */
+    @media screen and ( max-width: 768px )
+      font-size: 24px
+      top: -30px
+    /* sm */
+    @media screen and ( max-width: 600px )
+      top: 15px
+      text-align: center
+      width: 100%
+      position: relative
+      margin-bottom: 20px
+    /* xs */
+    @media screen and ( max-width: 475px )
+      top: 15px
+      text-align: center
+      width: 100%
+      position: relative
+      margin-bottom: 20px
+
+.student_work
+    display: flex
+    flex-wrap: wrap
+    justify-content: flex-start
+    margin-left: 20px
+    margin-bottom: 20px
+    @media screen and (max-device-width: 1400px) 
+       margin-left: 0
+    @media screen and (max-device-width: 1200px) 
+       margin-left: 0
+       justify-content: flex-start
+    /* @xs */
+    @media screen and (max-width: 600px)
+       justify-content: center
+
+.work_img
+    width: 270px
+    height: 360px
+    margin: 10px
+    border-radius: 40px
+    transform: scale(1)
+    transition: .3s ease-in-out
+    &:hover 
+       img 
+       transform: scale(1.07) 
+       cursor: pointer
+       filter: brightness(0.5)
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+        width: 270px
+        height: 360px
+        margin: 10px
+        border-radius: 40px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        width: 270px
+        height: 360px
+        margin: 10px
+        border-radius: 40px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        width: 270px
+        height: 360px
+        margin: 10px
+        border-radius: 40px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        width: 230px
+        height: 300px
+        margin: 10px
+        border-radius: 40px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        width: 200px
+        height: 280px
+        margin: 10px
+        border-radius: 40px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @md */
+    @media screen and (max-width: 1024px)
+        width: 170px
+        height: 220px
+        margin: 10px
+        border-radius: 40px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    @media screen and (max-width: 980px)
+        width: 140px
+        height: 192px
+        margin: 10px
+        border-radius: 20px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @sm */
+    @media screen and (max-width: 768px)
+        width: 130px
+        height: 171px
+        margin: 10px
+        border-radius: 20px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @xs */
+    @media screen and (max-width: 600px)
+        width: 170px
+        height: 217px
+        margin: 10px
+        border-radius: 20px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @xs */
+    @media screen and (max-width: 600px)
+        width: 170px
+        height: 217px
+        margin: 10px
+        border-radius: 20px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        width: 140px
+        height: 190px
+        margin: 10px
+        border-radius: 20px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        width: 100px
+        height: 120px
+        margin: 10px
+        border-radius: 10px
+        transform: scale(1)
+        transition: .3s ease-in-out
+        &:hover 
+            img 
+                transform: scale(1.07) 
+                cursor: pointer
+                filter: brightness(0.5)
+
+.block_buttons
+    display: flex
+    justify-content: space-around
+    align-items: center
+    width: 40%
+    margin: 0 auto
+    height: 100px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        width: 100%
+        justify-content: space-evenly
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        width: 100%
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        width: 100%
+
+.contact_button
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    height: 50px
+    color: #fff
+    font-weight: 500
+    text-align: center
+    border-radius: 50px
+    padding: 12px 20px
+    background: #C62020
+    margin: 10px auto
+    transition: 0.4s
+    border: 3px solid #C62020
+    &:hover
+      transition: 0.4s
+      background-color: #E3E1E1
+      border: 3px solid #C62020
+      color: #C62020
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+    /* @xl */
+    @media screen and (max-width: 1440px)
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        width: 100%
+        height: 40px
+        font-size: 14px
+        border: 2px solid #C62020
+        &:hover
+          border: 2px solid #C62020
+    /* @md */
+    @media screen and (max-width: 1024px)
+        width: 100%
+        height: 30px
+        font-size: 12px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        width: 100%
+        height: 40px
+        font-size: 14px
+        border: 2px solid #C62020
+        &:hover
+          border: 2px solid #C62020
+    /* @xs */
+    @media screen and (max-width: 600px)
+        width: 100%
+        height: 30px
+        font-size: 11px
+        border: 2px solid #C62020
+        border-radius: 10px
+        &:hover
+           border: 2px solid #C62020
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        width: 100%
+        height: 30px
+        font-size: 10px
+        border: 2px solid #C62020
+        border-radius: 10px
+        &:hover
+          border: 2px solid #C62020
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        width: 100%
+        height: 30px
+        font-size: 10px
+        border: 2px solid #C62020
+        border-radius: 10px
+        &:hover
+          border: 2px solid #C62020
+
+.view-more-btn
+    color: #313131
+    &:after 
+        content: "" 
+        display: block 
+        width: 100% 
+        padding-top: 10px 
+        border-bottom: 1px solid black 
+        transition: 0.5s 
+    &:hover
+        color: #C62020
+        &:after
+            width: 15%
+            border-bottom: 1px solid #C62020 
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 14px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 12px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 14px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 11px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 10px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 10px
+
+
+
+
+
+

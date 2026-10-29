@@ -1,0 +1,411 @@
+$imagePathLeft: '../../../../../public/assets/images/language/right-arrow.png'
+$imagePathRight: '../../../../../public/assets/images/language/left-arrow.png'
+$imagePathMesseges: '../../../../../public/assets/images/language/messeges.png'
+
+.submit
+   position: relative
+   z-index: 4
+   display: flex
+   align-items: center
+   justify-content: center
+   height: 58px
+   width: 260px
+   color: #fff
+   font-weight: 500
+   text-align: center
+   border-radius: 20px
+   padding: 12px 30px
+   background-color: #006ED2
+   margin: 10px auto
+   box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+   span 
+         cursor: pointer 
+         display: inline-block 
+         position: relative 
+         transition: 0.5s 
+         font-size: 20px
+         z-index: 0
+         &:after 
+            content: '\00bb' 
+            position: absolute 
+            opacity: 0 
+            top: 0 
+            right: -20px 
+            transition: 0.5s 
+         /* @2xl */
+         @media screen and (max-width: 1600px)
+            font-size: 20px
+         /* @xl */
+         @media screen and (max-width: 1440px)
+            font-size: 20px
+         /* @lg */
+         @media screen and (max-width: 1280px)
+            font-size: 15px
+         /* @md */
+         @media screen and (max-width: 1024px)
+            font-size: 15px
+         /* @sm */
+         @media screen and (max-width: 768px)
+            cursor: pointer 
+            display: inline-block 
+            position: relative 
+            transition: 0.5s 
+            &:after 
+               content: '\00bb' 
+               position: absolute 
+               opacity: 0 
+               top: 0 
+               right: -20px 
+               transition: 0.5s  
+   &:hover 
+      span 
+         padding-right: 25px 
+         &:after 
+            opacity: 1 
+            right: 0 
+   /* @3xl */
+   @media screen and (max-width: 1920px)
+      font-size: 16px
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      font-size: 16px
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      font-size: 16px
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      font-size: 15px
+      width: 30% !important
+      height: 50px
+      border-radius: 15px
+   /* @md */
+   @media screen and (max-width: 1024px)
+      font-size: 14px
+      height: 30px
+      margin-bottom: 16px 
+      border-radius: 9px
+   /* @sm */
+   @media screen and (max-width: 768px)
+      font-size: 16px
+      border-radius: 9px
+   /* @xs */
+   @media screen and (max-width: 600px)
+      font-size: 14px
+      padding: 7px 72px
+      width: 32% !important
+      border-radius: 9px
+   /* @2xs */
+   @media screen and (max-width: 480px)  
+      font-size: 14px
+      padding: 7px 72px
+      width: 32% !important 
+      border-radius: 9px
+   /* @3xs */  
+   @media screen and (max-width: 360px)
+      font-size: 14px
+      padding: 7px 72px
+      width: 32% !important
+      border-radius: 9px
+
+.fields
+   margin-bottom: 50px
+   /* @sm */
+   @media screen and (max-width: 768px)
+      margin-bottom: 33px
+
+.input
+   width: 400px
+   max-width: 100%
+   height: 58px
+   font-weight: 300
+   font-size: 18px
+   box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+   padding: 0.675em 1em 
+   transition: .3s
+   margin: 15px 0
+   background: #fff
+   border-radius: 20px
+   &:focus
+      border-color: var(--color-primary)
+   &::placeholder
+      color: #D4C7BA
+   /* @4xl */
+   @media screen and (max-width: 2560px)
+      font-size: 16px
+   /* @3xl */
+   @media screen and (max-width: 1920px)   
+      font-size: 16px
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      font-size: 16px
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      font-size: 16px
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      font-size: 15px
+      height: 50px
+      width: 350px
+      margin: 10px
+      border-radius: 15px
+   /* @md */
+   @media screen and (max-width: 1024px)
+      font-size: 14px
+      height: 30px
+      border-radius: 9px
+   /* @sm */
+   @media screen and (max-width: 768px)
+      font-size: 14px
+      width: 100%
+      border-radius: 9px
+   /* @xs */
+   @media screen and (max-width: 600px)
+      font-size: 16px
+      width: 100%
+      border-radius: 9px
+      height: 40px
+   /* @2xs */
+   @media screen and (max-width: 480px)
+      font-size: 16px
+      width: 100%
+      border-radius: 9px
+      height: 40px
+   /* @3xs */
+   @media screen and (max-width: 360px)
+      font-size: 16px
+      width: 100%
+      border-radius: 9px
+      height: 40px
+
+.row
+   display: flex
+   justify-content: space-evenly
+   position: relative
+   z-index: 10
+   /* @4xl */
+   @media screen and (max-width: 2560px)
+      justify-content: space-evenly
+   /* @3xl */
+   @media screen and (max-width: 1920px)
+      justify-content: space-evenly
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      justify-content: space-evenly
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      justify-content: space-evenly
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      justify-content: space-between
+   /* @md */
+   @media screen and (max-width: 1024px)
+      justify-content: space-between
+   /* @sm */
+   @media screen and (max-width: 768px)
+      justify-content: normal
+      display: grid
+      width: 93%
+   /* @xs */
+   @media screen and (max-width: 600px)
+      justify-content: normal
+      display: grid
+      width: 93%
+   /* @2xs */
+   @media screen and (max-width: 480px)
+      justify-content: normal
+      display: grid
+      width: 93%
+   /* @3xs */
+   @media screen and (max-width: 360px)
+      justify-content: normal
+      display: grid
+      width: 93%
+
+.form
+   width: 868px
+   height: 550px
+   background-color: #F9CC48
+   border-radius: 20px
+   margin: 0 auto
+   padding: 10px 0
+   position: relative
+   bottom: 74px
+   box-shadow: 1px 6px 8px 5px #0000003d
+   /* @4xl */
+   @media screen and (max-width: 2560px)
+      width: 868px
+      height: 550px
+   /* @3xl */
+   @media screen and (max-width: 1920px)
+      width: 868px
+      height: 550px   
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      width: 868px
+      height: 550px
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      width: 860px
+      height: 550px
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      width: 760px
+      height: 460px
+   /* @md */
+   @media screen and (max-width: 1024px)
+      width: 590px
+      height: 400px
+   /* @sm */
+   @media screen and (max-width: 768px)
+      margin: 0 auto
+      height: max-content
+      width: 311px
+   /* @xs */
+   @media screen and (max-width: 600px)
+      margin: 0 auto
+      height: max-content
+      width: 100%
+      margin-top: 100px
+   /* @2xs */
+   @media screen and (max-width: 480px)
+      margin: 0 auto
+      height: max-content
+      width: 100%
+      margin-top: 100px
+   /* @3xs */
+   @media screen and (max-width: 360px)
+      margin: 0 auto
+      height: max-content
+      width: 100%
+      margin-top: 100px
+
+.title
+   text-align: center
+   color: #fff
+   font-size: 30px
+   font-weight: 400
+   margin: 40px
+   /* @4xl */
+   @media screen and (max-width: 2560px)
+      font-size: 30px
+   /* @3xl */
+   @media screen and (max-width: 1920px)
+      font-size: 30px
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      font-size: 30px
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      font-size: 30px
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      font-size: 30px
+   /* @md */
+   @media screen and (max-width: 1024px)
+      font-size: 30px
+   /* @sm */
+   @media screen and (max-width: 768px)
+      font-size: 20px
+   /* @xs */
+   @media screen and (max-width: 600px)
+      font-size: 20px
+      margin-bottom: 0
+      margin: 0
+   /* @2xs */
+   @media screen and (max-width: 480px)  
+      font-size: 20px  
+      margin: 0
+   /* @3xs */  
+   @media screen and (max-width: 360px)
+      font-size: 20px
+      margin: 0
+
+.arrow_left
+   background-image: url($imagePathLeft) 
+   background-repeat: no-repeat
+   background-size: contain
+   background-position: left  
+   height: 192px
+   z-index: 1
+   position: relative
+   /* @4xl */
+   @media screen and (max-width: 2560px)
+      height: 192px
+   /* @3xl */
+   @media screen and (max-width: 1920px)
+      height: 192px
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      height: 192px
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      height: 192px
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      height: 98px
+   /* @md */
+   @media screen and (max-width: 1024px)
+      display: none
+   /* @sm */
+   @media screen and (max-width: 768px)
+      display: none
+   /* @xs */
+   @media screen and (max-width: 600px)
+      display: none
+   /* @2xs */
+   @media screen and (max-width: 480px)
+      display: none
+   /* @3xs */
+   @media screen and (max-width: 360px)
+      display: none
+
+.arrow_right
+   background-image: url($imagePathRight) 
+   background-repeat: no-repeat
+   background-size: contain
+   background-position: right  
+   height: 125px
+   z-index: 1
+   position: relative
+   bottom: 250px
+   /* @4xl */
+   @media screen and (max-width: 2560px)
+      height: 125px
+   /* @3xl */
+   @media screen and (max-width: 1920px)
+      height: 108px
+   /* @2xl */
+   @media screen and (max-width: 1600px)
+      height: 87px
+   /* @xl */
+   @media screen and (max-width: 1440px)
+      height: 58px
+   /* @lg */
+   @media screen and (max-width: 1280px)
+      height: 39px
+      bottom: 147px
+   /* @md */
+   @media screen and (max-width: 1024px)
+      display: none
+   /* @sm */
+   @media screen and (max-width: 768px)
+      display: none
+   /* @xs */
+   @media screen and (max-width: 600px)
+      display: none
+   /* @2xs */
+   @media screen and (max-width: 480px)
+      display: none
+   /* @3xs */
+   @media screen and (max-width: 360px)
+      display: none
+
+.container
+   background-image: url($imagePathMesseges) 
+   background-repeat: no-repeat
+   background-size: 80%
+   background-position: top
+   height: max-content
+   /* @sm */
+   @media screen and (max-width: 1024px)
+      background-image: none

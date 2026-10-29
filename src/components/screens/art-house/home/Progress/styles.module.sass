@@ -1,0 +1,93 @@
+.section
+    position: relative
+    height: 470px
+    background: var(--color-white)
+    /* xl */
+    @media screen and ( max-width: 1280px )
+       height: 330px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+       height: 280px
+       background-color: transparent
+    /* md */
+    @media screen and ( max-width: 768px )
+       height: 850px
+    /* sm */
+    @media screen and ( max-width: 640px )
+       height: 850px
+
+.row
+    display: flex
+    justify-content: space-between
+    padding-top: 120px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        padding-top: 60px
+        justify-content: space-evenly
+    /* md */
+    @media screen and ( max-width: 768px )
+        background-color: transparent
+        display: grid
+        padding-top: 10px
+        padding: 29px 0 0 0
+        justify-content: center
+    /* sm */
+    @media screen and ( max-width: 640px )
+        padding-top: 10px
+        padding: 29px 0 0 0
+
+.column
+    width: 222px
+    height: 222px
+    background: #B21B1B
+    border-radius: 50% 
+    padding: 50px 0 0 0
+    box-shadow: 10px 12px 12px -6px #00000052
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        width: 190px
+        height: 190px
+        padding: 40px 0 0 0
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        width: 130px
+        height: 130px
+        padding: 35px 0 0 0
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        width: 100px
+        height: 100px
+        padding: 28px 0 0 0
+    /* md */
+    @media screen and ( max-width: 768px )
+        width: 150px
+        height: 145px
+        padding: 30px 10px 10px
+        margin: 30px auto
+    /* sm */
+    @media screen and ( max-width: 640px )
+        width: 150px
+        height: 145px
+        padding: 30px 10px 10px
+        margin: 30px auto
+
+.title
+    color: var(--color-white)
+    font-size: 19px
+    text-align: center
+    font-weight: var(--font-weight-medium)
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        font-size: 19px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        font-size: 12px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        font-size: 12px      
+    /* md */
+    @media screen and ( max-width: 768px )
+        font-size: 13px      
+    /* sm */
+    @media screen and ( max-width: 640px )
+        font-size: 13px

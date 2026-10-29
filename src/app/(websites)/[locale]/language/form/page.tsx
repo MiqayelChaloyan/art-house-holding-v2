@@ -1,0 +1,45 @@
+'use server'
+
+import { notFound } from 'next/navigation';
+import { type Metadata } from 'next';
+
+import Form from '@/src/components/screens/language/form';
+
+import { Locale } from '@/src/locales';
+import { Pages } from '@/src/constants/pages';
+import { SITE_META_QUERY } from '@/sanity/services/language-service';
+import { buildSectionPageMetadata } from '@/src/utils/page-metadata';
+import { getSelectOptions, getSelectOptionsFiltered } from '@/src/utils/data/language';
+
+
+interface Props {
+    params: {
+        locale: string;
+    }
+};
+
+export default async function Page({
+    params: { locale },
+}: Readonly<Props>) {
+    const data = await getSelectOptions(locale);
+    const courses = await getSelectOptionsFiltered(locale);
+
+    if (!data || !courses) {
+        notFound()
+    }
+
+    return (<Form data={data} courses={courses} />);
+};
+
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: Locale };
+}): Promise<Metadata> {
+    return buildSectionPageMetadata({
+        query: SITE_META_QUERY,
+        locale,
+        path: `/${locale}${Pages.LANGUAGE_SEND_REQUEST}`,
+        navigationKey: 'send-request',
+    });
+};

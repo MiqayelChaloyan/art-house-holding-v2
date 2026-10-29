@@ -1,0 +1,441 @@
+.about
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    margin: 0 auto
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        margin: 30px auto
+        align-items: center
+    /* @lg */
+    @media screen and (max-width: 768px)
+        display: grid
+    /* @xs */
+    @media screen and (max-width: 600px)
+        margin: 0 auto
+
+.column
+    width: 45%
+    margin-bottom: 40px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+       width: 45%
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+       width: 45%
+    /* @xl */
+    @media screen and (max-width: 1440px)
+       width: 45%
+    /* @lg */
+    @media screen and (max-width: 1280px)
+       width: 45%
+    /* @md */
+    @media screen and (max-width: 1024px)
+       width: 45%
+    /* @sm */
+    @media screen and (max-width: 768px)
+       width: 100%
+    /* @xs */
+    @media screen and (max-width: 600px)
+       width: 100%
+    /* @2xs */
+    @media screen and (max-width: 480px)
+       width: 100%
+    /* @3xs */
+    @media screen and (max-width: 360px)
+       width: 100%
+
+.title
+    color: #006ED2
+    font-size: 70px
+    font-weight: bold
+    text-transform: uppercase
+    line-height: 80.49px
+    margin-bottom: 40px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 70px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 60px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 50px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 40px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 40px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 40px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 40px
+        margin-bottom: 10px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 30px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 30px
+
+.text
+    margin-bottom: 30px
+    font-size: 16px
+    color: #828282
+    font-weight: 400
+    line-height: 29.53px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        margin-bottom: 30px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        margin-bottom: 30px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+         margin-bottom: 30px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        margin-bottom: 30px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        margin-bottom: 30px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        margin-bottom: 30px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        margin-bottom: 30px
+        font-size: 14px
+        line-height: 27px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        margin-bottom: 30px
+        font-size: 13px
+        line-height: 20px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        margin-bottom: 30px
+        font-size: 12px
+        line-height: 20px
+
+.gallery
+    display: inline
+    /* @lg */
+    @media screen and (max-width: 1280px)
+       display: inline
+    /* @sm */
+    @media screen and (max-width: 768px)
+        display: flex
+        justify-content: space-between
+        width: 100%
+    /* @xs */
+    @media screen and (max-width: 600px)
+        display: none
+
+.image
+    width: 100%
+    height: 100%
+    object-fit: cover
+    /* @xs */
+    @media screen and (max-width: 600px)
+        --grayscale: 1 
+        transition: flex 0.5s, filter 0.5s  
+        height: 100% 
+        filter: grayscale(var(--grayscale)) brightness(var(--brightness)) 
+        object-fit: cover 
+        overflow: hidden 
+        flex: 1 
+        &:hover 
+            --brightness: 1.15 
+            --grayscale: 0 
+            flex: 6
+
+.expanding 
+    width: 80vw 
+    height: 50vmin 
+    display: flex 
+    align-items: center 
+    justify-content: center 
+    gap: 1vmin 
+    margin-bottom: 20px
+
+.gallery_one
+    width: 300px
+    height: 250px
+    position: relative
+    top: 172px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+       top: 172px
+       width: 300px
+       height: 250px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+       top: 172px
+       width: 300px
+       height: 250px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+       top: 172px
+       width: 300px
+       height: 250px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+       top: 50px
+       width: 250px
+       height: 200px
+    /* @md */
+    @media screen and (max-width: 1024px)
+       top: 50px
+       width: 250px
+       height: 200px
+    @media screen and (max-width: 980px)
+       top: 50px
+       width: 250px
+       height: 200px
+    /* @sm */
+    @media screen and (max-width: 768px)
+       top: 0
+       width: 220px
+       height: 150px
+    @media screen and (max-width: 720px)
+       top: 0
+       width: 200px
+       height: 150px
+    @media screen and (max-width: 670px)
+       top: 0
+       width: 170px
+       height: 150px
+    /* @xs */
+    @media screen and (max-width: 600px)
+      display: none
+
+.gallery_two
+    width: 300px
+    height: 250px
+    position: relative
+    right: 243px
+    top: 30px
+    z-index: 1
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+       right: 243px
+       top: 30px      
+       width: 300px
+       height: 250px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+       right: 243px
+       top: 30px         
+       width: 300px
+       height: 250px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+       right: 243px
+       top: 30px  
+       width: 300px
+       height: 250px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+       right: 168px
+       top: 0
+       width: 250px
+       height: 200px
+    /* @md */
+    @media screen and (max-width: 1024px)
+       right: 168px
+       top: 0
+       width: 250px
+       height: 200px
+    @media screen and (max-width: 980px)
+       right: 130px
+       top: 0
+       width: 250px
+       height: 200px
+    /* @sm */
+    @media screen and (max-width: 768px)
+       right: 0
+       width: 220px
+       height: 150px
+    @media screen and (max-width: 720px)
+       right: 0
+       width: 200px
+       height: 150px
+    @media screen and (max-width: 670px)
+       right: 0
+       width: 170px
+       height: 150px
+    /* @xs */
+    @media screen and (max-width: 600px)
+       display: none
+
+.gallery_three
+    width: 300px
+    height: 250px
+    position: relative
+    bottom: 20px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        bottom: 20px
+        width: 300px
+        height: 250px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        bottom: 20px
+        width: 300px
+        height: 250px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        bottom: 20px
+        width: 300px
+        height: 250px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        bottom: 107px
+        width: 250px
+        height: 200px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        bottom: 107px
+        width: 250px
+        height: 200px
+    @media screen and (max-width: 980px)
+        bottom: 107px
+        width: 250px
+        height: 200px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        bottom: 0
+        width: 220px
+        height: 150px
+    @media screen and (max-width: 720px)
+        bottom: 0
+        width: 200px
+        height: 150px
+    @media screen and (max-width: 670px)
+        bottom: 0
+        width: 170px
+        height: 150px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        display: none
+
+.buttons
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+
+.button
+    width: 185px
+    height: 50px
+    font-size: 17px
+    font-weight: 700
+    border-radius: 50px
+    display: flex
+    justify-content: center
+    align-items: center
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        width: 185px
+        height: 50px
+        font-size: 17px
+        font-weight: 700
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        width: 185px
+        height: 50px
+        font-size: 17px
+        font-weight: 700
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        width: 185px
+        height: 50px
+        font-size: 17px
+        font-weight: 700
+        border-radius: 20px  
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 16px
+        padding: 0
+        text-align: center
+        width: 172px !important
+        height: 45px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 12px
+        padding: 0
+        text-align: center
+        width: 35% !important
+        height: 40px
+        border-radius: 15px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 12px
+        padding: 0
+        text-align: center
+        width: 30% !important
+        height: 40px
+        border-radius: 15px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 12px
+        padding: 0
+        text-align: center
+        width: 40% !important
+        height: 40px
+        border-radius: 10px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 12px
+        padding: 0
+        text-align: center
+        width: 40% !important
+        height: 40px
+        border-radius: 10px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 12px
+        padding: 0
+        text-align: center
+        width: 40% !important
+        height: 35px
+        border-radius: 10px
+
+.send-btn
+    background-color: #F9CC48
+    color: #fff
+    border: 2px solid #F9CC48
+    transition: .5s
+    box-shadow: 0 5px 3px 0 rgba(0, 0, 0, 0.3490196078)
+    &:hover
+        background-color: #006ED2
+        color: #fff
+        border: 1px solid #006ED2
+
+.more-btn
+    background-color: #fff
+    color: #F9CC48
+    border: 2px solid #F9CC48
+    transition: .5s
+    &:hover
+        background-color: #006ED2
+        color: #fff
+        border: 1px solid #006ED2
+
+.expanding_gallery
+    display: none
+    /* @xs */
+    @media screen and (max-width: 600px)
+        display: inline
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        display: inline
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        display: inline
+
+
+   

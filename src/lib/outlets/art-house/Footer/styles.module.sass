@@ -1,0 +1,240 @@
+$assetPath: "../../../../../public/assets/images/art-house/footerBackground.png"
+
+.footer
+    background-image: url($assetPath) 
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: top
+    height: 400px
+    display: flex
+    justify-content: center
+    align-items: center
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        height: max-content
+        padding: 50px 0
+    /* md */
+    @media screen and ( max-width: 768px )
+       display: grid
+       padding-top: 50px
+       background-image: none    
+       background-color: rgb(95, 95, 95)
+       height: max-content
+    /* xs */
+    @media screen and ( max-width: 475px )
+       background-image: none    
+       background-color: rgb(95, 95, 95)
+
+.section
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    padding-top: 50px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+       padding: 0
+    /* xl */
+    @media screen and ( max-width: 1280px )
+       padding: 0
+    /* lg */
+    @media screen and ( max-width: 1024px )
+       display: flex
+       flex-wrap: wrap
+       justify-content: space-evenly
+    /* md */
+    @media screen and ( max-width: 768px )
+       display: grid
+       padding: 0
+    /* sm */
+    @media screen and ( max-width: 640px )
+       display: grid
+       padding: 0
+    /* xs */
+    @media screen and ( max-width: 475px )
+       display: grid
+       padding: 0
+
+.phone_numbers
+    display: grid
+    flex-wrap: wrap
+    grid-template-columns: auto auto auto
+    border-bottom: 2px solid var(--color-white)
+    /* md */
+    @media screen and ( max-width: 768px )
+       display: grid
+       grid-template-columns: auto
+
+.addres
+    font-weight: var(--font-weight-normal)
+    font-size: 16px
+    line-height: 41px
+    color: var(--color-white)
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        font-size: 16px
+        line-height: 41px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        font-size: 12px
+        line-height: 20px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        font-size: 12px
+        line-height: 20px
+    /* md */
+    @media screen and ( max-width: 768px )
+        text-align: center
+        font-size: 15px
+    /* sm */
+    @media screen and ( max-width: 640px )
+        text-align: center
+    /* xs */
+    @media screen and ( max-width: 475px )
+        text-align: center
+
+.info_web
+    font-weight: var(--font-weight-normal)
+    font-size: 16px
+    line-height: 41px
+    color: var(--color-white)
+    &:hover
+        transition: var(--tr-time)
+        color: #B21B1B
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        font-size: 16px
+        line-height: 41px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        font-size: 12px
+        line-height: 20px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        font-size: 12px
+        line-height: 20px
+    /* md */
+    @media screen and ( max-width: 768px )
+        text-align: center
+        font-size: 15px
+        line-height: 30px
+        &:hover
+            transition: 0
+            color: var(--color-white)
+    /* sm */
+    @media screen and ( max-width: 640px )
+        text-align: center
+    /* xs */
+    @media screen and ( max-width: 475px )
+        text-align: center
+
+.hosts_title
+    font-weight: var(--font-weight-normal)
+    font-size: 16px
+    line-height: 41px
+    color: var(--color-white)
+    /* md */
+    @media screen and ( max-width: 768px )
+        text-align: center
+        font-size: 15px
+
+.hosts
+    display: flex
+    justify-content: flex-start
+    align-items: flex-start
+    width: 43%
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+       padding: 0
+    /* xl */
+    @media screen and ( max-width: 1280px )
+       width: 46%
+    /* lg */
+    @media screen and ( max-width: 1024px )
+       width: 32%
+    /* md */
+    @media screen and ( max-width: 768px )
+        width: 50%
+        margin: 0 auto
+        justify-content: center
+    /* sm */
+    @media screen and ( max-width: 640px )
+        width: 50%
+        margin: 0 auto
+        justify-content: center
+    /* xs */
+    @media screen and ( max-width: 475px )
+        width: 50%
+        margin: 0 auto
+        justify-content: center
+
+.reserved
+    text-align: end
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        font-size: 16px
+        line-height: 41px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        font-size: 12px
+        line-height: 20px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        font-size: 12px
+        line-height: 20px
+    /* md */
+    @media screen and ( max-width: 768px )
+        text-align: center
+        font-size: 12px
+        line-height: 20px
+    /* sm */
+    @media screen and ( max-width: 640px )
+        text-align: center
+    /* xs */
+    @media screen and ( max-width: 475px )
+        text-align: center
+
+.logo_footer
+    margin-left: 120px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        margin-left: 120px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        width: 70%
+    /* md */
+    @media screen and ( max-width: 768px )
+        margin: 0 auto
+        display: flex
+        justify-content: center
+        width: 100%
+    /* sm */
+    @media screen and ( max-width: 640px )
+        margin-left: 0
+    /* xs */
+    @media screen and ( max-width: 475px )
+        margin-left: 0
+
+.phone
+    padding-left: 10px
+
+.social_network
+    margin: 3px
+
+.box
+    /* md */
+    @media screen and ( max-width: 768px )
+        margin-bottom: 20px
+
+.social_network
+    transition: var(--tr-time)
+    svg 
+        transition: var(--tr-time)
+        border-radius: 50px
+        fill: #FFFFFF
+    &:hover
+        svg
+            fill: #B21B1B 
+
+.linkActive
+    color: #B21B1B
+    transition: var(--tr-time)

@@ -1,0 +1,111 @@
+.float 
+	display: flex 
+	justify-content: center 
+	align-items: center 
+
+.navigation 
+	position: fixed 
+	bottom: 60px 
+	right: 25px 
+	width: 50px 
+	height: 50px 
+	display: flex 
+	justify-content: space-between 
+	border-radius: 5px 
+	box-shadow: 0 4px 20px 0 #24252654 
+	overflow: hidden 
+	transition: height 0.5s, width 0.5s 
+	transition-delay: 0s, 0.7s 
+	z-index: 20 
+	.menu-toggle 
+		position: relative 
+		width: 50px 
+		height: 50px 
+		display: flex 
+		justify-content: center 
+		align-items: center 
+		cursor: pointer 
+		&::before 
+			content: "" 
+			position: absolute 
+			width: 22px 
+			height: 2px 
+			background: #fff 
+			transform: translateY(-10px) 
+			box-shadow: 0 10px  #fff 
+			transition: 0.5s 
+		&::after 
+			content: "" 
+			position: absolute 
+			width: 22px 
+			height: 2px 
+			background: #fff 
+			transform: translateY(10px) 
+			transition: 0.5s 
+	&.active 
+		width: 300px 
+		height: 330px 
+		transition: width 0.5s, height 0.5s 
+		transition-delay: 0s, 0.7s 
+		.menu-toggle 
+			&::before 
+				transform: translateY(0px) rotate(45deg) 
+				box-shadow: none 
+			&::after 
+				transform: translateY(0px) rotate(-45deg) 
+		.user-box 
+			width: calc(100% - 60px) 
+			transition-delay: 0s 
+		/* @2xs */
+		@media screen and (max-width: 480px)
+			width: 250px 
+			height: 330px 
+
+.menu 
+	position: absolute 
+	width: 100% 
+	height: calc(100% - 60px) 
+	margin-top: 50px 
+	border-top: 1px solid rgba(0, 0, 0, 0.1) 
+	li 
+		padding: 10px 
+		transition: background 0.2s
+		list-style: none 
+		a 
+			display: flex 
+			align-items: center 
+			color: #fff 
+
+.link 
+	display: flex 
+	justify-content: center
+	align-items: center 
+	width: 100% 
+	height: 50px 
+	padding: 0 20px 
+	margin: 0 auto
+
+.logo-contain
+	width: 70px
+
+.logo 
+	width: 50px 
+	height: max-content 
+	object-fit: cover 
+	padding: 2px 
+
+.word 
+	font-size: 15px 
+	text-align: left 
+	line-height: 15px 
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 10px 
+
+.column 
+	margin-left: 10px
+	width: 100% 
+
+.icon
+	margin-left: 20px 
+	width: 10% 

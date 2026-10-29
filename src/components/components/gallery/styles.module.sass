@@ -1,0 +1,29 @@
+.projects
+    display: grid
+    flex-wrap: wrap
+    justify-content: center
+    align-items: flex-start 
+    align-self: center
+    margin: 10px auto
+    grid-template-columns: auto auto auto auto
+    width: 100%
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        margin: 20px auto
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        margin: 50px auto
+    /* @md */
+    @media screen and (max-width: 1024px)
+        grid-template-columns: auto auto auto
+    @media screen and (max-width: 950px)
+        margin: 50px auto
+    /* @sm */
+    @media screen and (max-width: 768px)
+        margin: 50px auto
+        grid-template-columns: auto auto
+    @media screen and (max-width: 600px)
+        margin: 50px auto
+    @media screen and (max-width: 550px)
+        margin: 50px auto
+

@@ -1,0 +1,104 @@
+.switcher
+    border: 2px
+    display: flex
+    justify-content: center
+
+.active
+    color: red
+
+.language
+    border-right: none
+    font-weight: 600
+    padding: 1px 7px
+    cursor: pointer
+    /* @xs */
+    @media screen and (max-width: 600px)
+        border-right: none !important
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        border-right: none !important
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        border-right: none !important
+
+.option
+    font-size: 20px
+    cursor: pointer
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 17px    
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 17px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 17px
+
+.option-image
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        width: 20px
+
+.button 
+    margin: 0 10px 0 0
+    /* xl */
+    @media screen and (max-width: 1280px)
+        margin: 0 20px 0 0
+
+.menu-toggle
+    position: absolute 
+    top: 100% 
+    border: 1px solid #ccc 
+    border-radius: 4px 
+    padding: 0 
+    margin: 2px 0 0 0 
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1) 
+    background-color: #ffffff 
+    list-style-type: none 
+    opacity: 0 
+    visibility: hidden 
+    transform: translateY(-10px) 
+    transition: var(--tr-time)
+    &.open 
+        opacity: 1 
+        visibility: visible 
+        transform: translateY(0) 
+        transition: var(--tr-time)
+    li 
+        padding: 10px 20px 
+        cursor: pointer 
+        white-space: nowrap 
+        color: #706F73 
+        font-size: 17px 
+        font-weight: 400 
+        &:hover 
+            background-color: #B2D01B 
+            color: white 
+            .value 
+                color: white 
+        &.divider 
+            padding: 0 
+            border-bottom: 1px solid #cccccc 
+
+.value 
+    font-size: 17px 
+    font-weight: 400 
+
+.mobile-switcher
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+
+.mobile-locales
+    display: flex
+    justify-content: space-around
+    align-items: center
+    width: 100px
+
+.mobile-value
+    font-size: 16px 
+    font-weight: 400 
+    background-color: #0F1620
+    padding: 10px 20px
+    margin: 0 10px
+    cursor: pointer

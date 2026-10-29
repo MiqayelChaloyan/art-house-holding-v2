@@ -1,0 +1,230 @@
+.container
+    position: relative
+    background: #E3E1E1
+    height: max-content
+    @media screen and ( max-width: 991px )
+       bottom: 0
+       height: max-content
+    @media screen and ( max-width: 767px )
+       bottom: 0
+       height: max-content
+
+.about_us
+    display: flex
+    justify-content: space-around
+    align-items: baseline
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+        height: max-content
+    /* xl */
+    @media screen and ( max-width: 1280px )
+        width: 92%
+    /* lg */
+    @media screen and ( max-width: 1024px )
+        width: 100%
+        height: max-content
+    @media screen and ( max-width: 991px )
+        width: 100%
+    /* md */
+    @media screen and ( max-width: 768px )
+        width: 100%
+        display: grid
+        justify-content: center
+        align-items: center
+        height: max-content
+        margin-bottom: 40px
+
+.about_box
+    width: 50%
+    @media screen and (max-device-width: 1200px) 
+        width: 100%
+    @media screen and (max-device-width: 1600px) 
+        width: 100%
+    @media screen and ( max-width: 991px )
+        width: 70%
+    @media screen and ( max-width: 767px )
+        width: 100%
+
+.form_box
+    width: 50%
+    @media screen and (max-device-width: 1200px) 
+      width: 70%
+    @media screen and (max-device-width: 1600px) 
+      width: 70%
+    @media screen and ( max-width: 991px )
+      width: 100%
+    @media screen and ( max-width: 767px )
+      width: 100%
+      padding-bottom: 12px
+
+.view-more-btn
+    color: #313131
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    margin-bottom: 50px
+    font-size: 18px
+    &:after 
+        content: "" 
+        display: block 
+        width: 100% 
+        padding-top: 10px 
+        border-bottom: 1px solid black 
+        transition: 0.5s 
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            padding-top: 10px 
+    &:hover
+        color: #C62020
+        &:after
+            width: 15%
+            border-bottom: 1px solid #C62020 
+            /* @lg */
+            @media screen and (max-width: 1280px)
+                width: 10%
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 14px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 11px
+        padding-left: 0
+
+.content
+    width: 100%
+    color: #313131
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    height: max-content
+    text-align: left
+    margin-bottom: 20px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        margin-bottom: 20px
+        padding-right: 0
+    /* @md */
+    @media screen and (max-width: 1024px)
+        margin-bottom: 10px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        margin-bottom: 10px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        padding-left: 0
+        margin-bottom: 15px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        padding-left: 0
+        margin-bottom: 15px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        padding-left: 0
+        margin-bottom: 15px
+
+/* Shapes */
+.shapes 
+    display: flex 
+    position: relative
+    bottom: 50px
+    background: linear-gradient(90deg, var(--color-bg-gray) 24%, transparent 33%, transparent 100%)
+    /* sm */
+    @media screen and ( max-width: 640px )
+        background: var(--color-bg-gray) 
+
+.rounds
+    width: 100%
+    display: flex
+    max-width: var(--container)
+    margin-left: auto
+    margin-right: auto
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    @media screen and ( max-width: 1280px )
+      max-width: 991px
+    @media screen and ( max-width: 991px )
+      max-width: 100%
+    @media screen and ( max-width: 767px )
+      max-width: 100%
+
+.shape-1 
+    position: relative 
+    width: 60% 
+    height: auto 
+    min-height: 59px 
+    z-index: 10 
+    display: flex 
+    align-items: center 
+    justify-content: flex-start 
+    overflow: hidden 
+    &::before 
+        content: "" 
+        position: absolute 
+        top: 0 
+        left: 0 
+        bottom: -2px
+        right: 0 
+        background: var(--color-bg-gray) 
+        transform: skewX(40deg) 
+        transform-origin: bottom 
+        z-index: -1 
+    /* sm */
+    @media screen and ( max-width: 640px )
+        width: 100%
+        &::before
+          transform: skewX(0) 
+
+.shape 
+    position: relative 
+    z-index: 1 
+
+.title
+    width: 90%
+    word-wrap: break-word 
+    line-height: 1.2
+    padding: 5px 0 5px 0
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    color: #313131
+    /* sm */
+    @media screen and ( max-width: 640px )
+        margin: 20px auto
+
+
+.title-small
+    font-size: 35px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      font-size: 33px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      font-size: 30px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      font-size: 27px
+    /* md */
+    @media screen and ( max-width: 768px )
+      font-size: 24px
+    /* sm */
+    @media screen and ( max-width: 640px )
+      text-align: center
+      width: 100%
+      position: relative
+
+.title-large
+    font-size: 25px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      font-size: 25px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      font-size: 25px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      font-size: 25px
+    /* md */
+    @media screen and ( max-width: 768px )
+      font-size: 24px
+    /* sm */
+    @media screen and ( max-width: 640px )
+      text-align: center
+      width: 100%
+      position: relative

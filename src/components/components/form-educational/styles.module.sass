@@ -1,0 +1,194 @@
+.submit
+   display: flex
+   align-items: center
+   justify-content: center
+   height: 40px
+   width: 40%
+   color: #fff
+   font-weight: 500
+   text-align: center
+   border-radius: 50px
+   background: #C62020
+   margin: 0 auto
+   margin-bottom: 20px
+   box-shadow: 1px 13px 11px -4px #0000003d
+   span 
+         cursor: pointer 
+         display: inline-block 
+         position: relative 
+         transition: 0.5s 
+         &:after 
+            content: '\00bb' 
+            position: absolute 
+            opacity: 0 
+            top: 0 
+            right: -20px 
+            transition: 0.5s 
+   @media screen and ( max-width: 776px )
+      font-size: 16px
+      position: relative
+      z-index: 0
+      transition: all 0.5s
+      span 
+         cursor: pointer 
+         display: inline-block 
+         position: relative 
+         transition: 0.5s 
+         &:after 
+            content: '\00bb' 
+            position: absolute 
+            opacity: 0 
+            top: 0 
+            right: -20px 
+            transition: 0.5s 
+   &:hover 
+      span 
+         padding-right: 25px 
+         &:after 
+            opacity: 1 
+            right: 0 
+   /* 2xl */
+   @media screen and ( max-width: 1536px )
+      font-size: 16px
+   /* xl */
+   @media screen and ( max-width: 1280px )
+      font-size: 15px
+      width: 50% !important
+   /* lg */
+   @media screen and ( max-width: 1024px )
+      font-size: 14px
+      height: 30px
+      margin-bottom: 0
+      margin-top: 10px
+   /* md */
+   @media screen and ( max-width: 768px )
+      font-size: 14px
+      width: 32% !important
+   /* sm */
+   @media screen and ( max-width: 640px )
+      font-size: 14px
+      padding: 7px 72px
+      width: 32% !important
+      border-radius: 10px
+   /* xs */
+   @media screen and ( max-width: 475px )
+      font-size: 14px
+      padding: 7px 72px
+      width: 32% !important
+      border-radius: 10px
+
+.input
+   width: 100%
+   max-width: 100%
+   height: 40px
+   font-weight: 300
+   font-size: 18px
+   box-shadow: 1px 13px 11px -4px #0000003d
+   border-radius: 4px
+   padding: 6px
+   transition: .3s
+   margin: 10px 0
+   background: #fff
+   &::placeholder
+      color: #313131
+   @media screen and ( max-width: 991px )
+      font-size: 18px
+   @media screen and ( max-width: 767px )
+      &:focus
+         border-color: var(--color-primary)
+   /* 2xl */
+   @media screen and ( max-width: 1536px )
+      font-size: 16px
+   /* xl */
+   @media screen and ( max-width: 1280px )
+      font-size: 15px
+   /* lg */
+   @media screen and ( max-width: 1024px )
+      font-size: 14px
+      height: 30px
+   /* md */
+   @media screen and ( max-width: 768px )
+      font-size: 14px
+      width: 100%
+   /* sm */
+   @media screen and ( max-width: 640px )
+      font-size: 14px
+   /* xs */
+   @media screen and ( max-width: 475px )
+      font-size: 14px
+
+.fields
+   display: flex
+   flex-direction: column
+   align-items: normal
+   justify-content: flex-start
+   width: 65%
+   margin: 0 auto
+   margin-bottom: 10px
+   @media screen and ( max-width: 991px )
+      width: 50%
+      margin: 0 auto
+   @media screen and ( max-width: 767px )
+     width: 100%
+     display: flex
+     flex-direction: column
+     align-items: normal
+     margin: 0 auto
+     margin-bottom: 10px
+   /* sm */
+   @media screen and ( max-width: 640px )
+      width: 100%
+
+.contact_us_header
+   margin-top: 20px
+   @media screen and ( max-width: 991px )
+      margin-top: 0
+
+
+.title
+     font-size: 22px
+     /* 2xl */
+     @media screen and ( max-width: 1536px )
+        font-size: 22px !important
+     /* xl */
+     @media screen and ( max-width: 1280px )
+        font-size: 17px !important
+     /* lg */
+     @media screen and ( max-width: 1024px )
+        font-size: 15px !important
+     /* md */
+     @media screen and ( max-width: 768px )
+        font-size: 15px !important
+     /* sm */
+     @media screen and ( max-width: 640px )
+        font-size: 15px !important
+     /* xs */
+     @media screen and ( max-width: 475px )
+        font-size: 14px !important
+
+.hosts
+   justify-content: space-between
+   display: flex
+   align-items: center
+   padding: 16px 0 12px
+
+.social_network
+     margin: 0 5px
+     /* 2xl */
+     @media screen and ( max-width: 1536px )
+        margin: 0 5px
+     /* xl */
+     @media screen and ( max-width: 1280px )
+        margin: 0 5px
+     /* lg */
+     @media screen and ( max-width: 1024px )
+        margin: 0 5px
+     /* md */
+     @media screen and ( max-width: 768px )
+        margin: 0 5px
+     /* sm */
+     @media screen and ( max-width: 640px )
+        margin: 0 5px
+     /* xs */
+     @media screen and ( max-width: 475px )
+        margin: 0 5px

@@ -1,0 +1,70 @@
+.gallery
+    margin: 32px 0
+    @media screen and (max-width: 768px)
+        margin: 24px 0
+
+.gridLarge
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 16px
+    @media screen and (max-width: 768px)
+        grid-template-columns: 1fr
+
+.gridSmall
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 16px
+    @media screen and (min-width: 769px)
+        grid-template-columns: 1fr
+
+.gridSimple
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 16px
+    @media screen and (max-width: 768px)
+        grid-template-columns: 1fr
+
+.gridSingle
+    grid-template-columns: 1fr
+
+.gridRest
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 16px
+    margin-top: 16px
+    @media screen and (max-width: 1024px)
+        grid-template-columns: repeat(2, 1fr)
+    @media screen and (max-width: 640px)
+        grid-template-columns: 1fr
+
+.figure
+    position: relative
+    width: 100%
+    overflow: hidden
+    border-radius: 20px
+    border: 2px solid var(--blog-accent)
+    margin: 0
+
+.smallItem
+    aspect-ratio: 4 / 3
+
+.largeItem
+    aspect-ratio: 3 / 4
+    @media screen and (max-width: 768px)
+        aspect-ratio: 16 / 10
+
+.simpleItem,
+.restItem
+    aspect-ratio: 16 / 10
+
+.image
+    width: 100%
+    height: 100%
+    object-fit: cover
+    display: block
+
+.caption
+    margin-top: 12px
+    text-align: center
+    font-size: 14px
+    color: var(--color-gray)

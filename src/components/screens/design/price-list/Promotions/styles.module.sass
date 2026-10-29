@@ -1,0 +1,672 @@
+.container
+    height: max-content
+
+.informatie
+    background-color: #D4C6B9
+    text-align: center
+    padding: 50px
+    margin: 50px auto
+    p
+        color: #4B352B
+        font-size: 24px
+        font-weight: 700
+        line-height: 50.6px
+        /* @3xl */
+        @media screen and (max-width: 1920px)
+            font-size: 24px
+        /* @2xl */
+        @media screen and (max-width: 1600px)
+            font-size: 24px
+        /* @xl */
+        @media screen and (max-width: 1440px)
+            font-size: 18px
+            line-height: 40px
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            font-size: 15px
+            line-height: 30px
+        /* @md */
+        @media screen and (max-width: 1024px)
+            font-size: 14px
+            line-height: 30px
+        /* @sm */
+        @media screen and (max-width: 768px)
+            font-size: 14px
+            line-height: 19px
+        /* @xs */
+        @media screen and (max-width: 600px)
+            font-size: 14px
+        /* @2xs */
+        @media screen and (max-width: 480px)
+            font-size: 13px
+            line-height: 17px
+        /* @3xs */
+        @media screen and (max-width: 360px)
+            font-size: 11px
+            line-height: 17px
+    h5
+        color: #4B352B
+        font-size: 24px
+        font-weight: 700
+        line-height: 50.6px
+        /* @3xl */
+        @media screen and (max-width: 1920px)
+            font-size: 24px
+        /* @2xl */
+        @media screen and (max-width: 1600px)
+            font-size: 24px
+        /* @xl */
+        @media screen and (max-width: 1440px)
+            font-size: 18px
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            font-size: 15px
+        /* @md */
+        @media screen and (max-width: 1024px)
+            font-size: 14px
+        /* @sm */
+        @media screen and (max-width: 768px)
+            font-size: 14px
+        /* @xs */
+        @media screen and (max-width: 600px)
+            font-size: 14px
+        /* @2xs */
+        @media screen and (max-width: 480px)
+            font-size: 13px
+        /* @3xs */
+        @media screen and (max-width: 360px)
+            font-size: 11px
+    a
+        color: #4B352B
+        font-size: 24px
+        font-weight: 700
+        line-height: 50.6px
+        /* @3xl */
+        @media screen and (max-width: 1920px)
+            font-size: 24px
+        /* @2xl */
+        @media screen and (max-width: 1600px)
+            font-size: 24px
+        /* @xl */
+        @media screen and (max-width: 1440px)
+            font-size: 18px
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            font-size: 15px
+        /* @md */
+        @media screen and (max-width: 1024px)
+            font-size: 14px
+        /* @sm */
+        @media screen and (max-width: 768px)
+            font-size: 14px
+        /* @xs */
+        @media screen and (max-width: 600px)
+            font-size: 14px
+        /* @2xs */
+        @media screen and (max-width: 480px)
+            font-size: 13px
+        /* @3xs */
+        @media screen and (max-width: 360px)
+            font-size: 11px
+    del
+        color: #4B352B
+        font-size: 24px
+        font-weight: 700
+        line-height: 50.6px
+        /* @3xl */
+        @media screen and (max-width: 1920px)
+            font-size: 24px
+        /* @2xl */
+        @media screen and (max-width: 1600px)
+            font-size: 24px
+        /* @xl */
+        @media screen and (max-width: 1440px)
+            font-size: 18px
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            font-size: 15px
+        /* @md */
+        @media screen and (max-width: 1024px)
+            font-size: 14px
+        /* @sm */
+        @media screen and (max-width: 768px)
+            font-size: 14px
+        /* @xs */
+        @media screen and (max-width: 600px)
+            font-size: 14px
+        /* @2xs */
+        @media screen and (max-width: 480px)
+            font-size: 13px
+        /* @3xs */
+        @media screen and (max-width: 360px)
+            font-size: 11px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        width: 100%
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        padding: 15px
+        margin: 10px auto
+        text-align: center    
+
+.hex 
+    position: relative 
+    float: left 
+    height: 127px 
+    min-width: 100px 
+    padding: 12px 
+    margin: 4px 
+    font-weight: bold 
+    text-align: center 
+    background-color: #4B352B 
+    -webkit-clip-path: polygon(70px 0px, calc(100% - 70px) 0px, 100% 50%, calc(100% - 70px) 100%, 70px 100%, 0px 50%) 
+    &.gradient-bg 
+        color: white 
+        display: flex 
+        justify-content: space-evenly 
+        align-items: center 
+        width: 50% 
+        height: auto
+        min-height: 127px 
+        margin: 20px auto 
+        &:before 
+            background: #4B352B 
+    &:before 
+        position: absolute 
+        content: '' 
+        height: calc(100% - 14px) 
+        width: calc(100% - 14px) 
+        left: 7px 
+        top: 7px 
+        z-index: -1 
+    &.gradient-border 
+        &:before 
+            background-color: rgb(245, 246, 248) 
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 50% 
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 50% 
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 50% 
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 50% 
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 70% 
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @md */
+    @media screen and (max-width: 1024px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 70%
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    @media screen and (max-width: 980px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 80% 
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 90%
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @xs */
+    @media screen and (max-width: 600px)
+        height: auto
+        min-height: 127px  
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        -webkit-clip-path: polygon(70px 0px, calc(100% - 70px) 0px, 100% 50%, calc(100% - 70px) 100%, 70px 100%, 0px 50%) 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 95%
+            height: auto
+            min-height: 127px 
+            margin: 20px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        -webkit-clip-path: polygon(0 0px, calc(100%) 0px, 100% 50%, calc(100%) 100%, 0 100%, 0px 50%) 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 90% 
+            height: auto
+            min-height: 127px  
+            margin: 7px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        height: auto
+        min-height: 127px 
+        min-width: 100px 
+        padding: 12px 
+        margin: 4px 
+        -webkit-clip-path: polygon(0 0px, calc(100%) 0px, 100% 50%, calc(100%) 100%, 0 100%, 0px 50%) 
+        &.gradient-bg 
+            color: white 
+            display: flex 
+            justify-content: space-evenly 
+            align-items: center 
+            width: 90% 
+            height: auto
+            min-height: 127px 
+            margin: 7px auto 
+        &:before 
+            position: absolute 
+            content: '' 
+            height: calc(100% - 14px) 
+            width: calc(100% - 14px) 
+            left: 7px 
+            top: 7px 
+            z-index: -1 
+
+.our-advantages 
+    width: 70% 
+    text-align: left 
+    font-size: 16px 
+    line-height: 18.4px 
+    font-weight: 700 
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+        font-size: 16px 
+        line-height: 18.4px 
+        font-weight: 700
+        width: 70% 
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 16px 
+        line-height: 18.4px 
+        font-weight: 700
+        width: 70% 
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 16px 
+        line-height: 18.4px 
+        font-weight: 700
+        width: 70% 
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 16px 
+        line-height: 18.4px 
+        font-weight: 700
+        width: 70% 
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 16px 
+        line-height: 18.4px 
+        font-weight: 700
+        width: 70% 
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 16px 
+        line-height: 18.4px 
+        font-weight: 700
+        width: 70% 
+    @media screen and (max-width: 980px)
+        font-size: 14px
+        line-height: 16px
+        font-weight: 700
+        width: 70% 
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 14px
+        line-height: 16px
+        font-weight: 700
+        width: 70% 
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 12px
+        line-height: 14px
+        font-weight: 700
+        width: 70% 
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 12px
+        line-height: 14px
+        font-weight: 700
+        width: 70% 
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 10px
+        line-height: 14px
+        font-weight: 700
+        width: 80% 
+
+.advantages 
+    display: grid 
+    justify-content: center 
+
+
+/*Titles*/
+.titles
+    margin-top: 60px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        margin-top: 100px
+
+.title-line
+    width: 39%
+    height: 4px
+    position: absolute
+    background-color: #5F401B
+    /* @sm */
+    @media screen and (max-width: 768px)
+        height: 3px
+
+.bottom-line
+    left: 0
+
+.back-line
+    right: 0
+
+.bottom-title
+    position: relative
+    bottom: 65px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        bottom: 75px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        bottom: 65px
+    @media screen and (max-width: 980px)
+        bottom: 46px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        bottom: 60px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        bottom: 20px
+
+.title
+    font-size: 90px
+    font-weight: 700
+    color: #362906
+    text-align: center
+    line-height: 130px
+    text-transform: uppercase
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+        font-size: 90px
+        line-height: 130px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 90px
+        line-height: 130px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 90px
+        line-height: 130px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 70px
+        line-height: 130px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 70px
+        line-height: 100px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 70px
+        line-height: 100px
+    @media screen and (max-width: 980px)
+        font-size: 60px
+        line-height: 90px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 50px
+        line-height: 90px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 30px
+        line-height: 60px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 27px
+        line-height: 50px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 25px
+        line-height: 50px
+
+.title-back
+    font-size: 100px
+    font-weight: 700
+    color: #D7D3CE
+    text-align: center
+    line-height: 130px
+    padding-right: 400px
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+        font-size: 100px
+        line-height: 130px
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+        font-size: 100px
+        line-height: 130px
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+        font-size: 100px
+        line-height: 130px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        font-size: 80px
+        line-height: 130px
+        padding-right: 350px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 80px
+        line-height: 130px
+        padding-right: 300px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 80px
+        line-height: 130px
+        padding-right: 0
+    @media screen and (max-width: 980px)
+        font-size: 60px
+        line-height: 90px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 50px
+        line-height: 100px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 35px
+        line-height: 60px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 28px
+        line-height: 50px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 25px
+        line-height: 50px

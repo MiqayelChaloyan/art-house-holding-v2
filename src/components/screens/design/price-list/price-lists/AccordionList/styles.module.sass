@@ -1,0 +1,94 @@
+.cards
+	letter-spacing: 0.3px 
+	overflow: hidden 
+	width: 90% 
+	margin: 15px auto 
+
+.accordion-card 
+	border: 1px solid #9E7653 
+	border-radius: 0 
+	margin-bottom: 5px 
+	overflow: hidden 
+
+.accordion-card
+	&.active
+		border: 1px solid #9E7653 
+
+.accordion-toggle 
+	display: flex 
+	align-items: center 
+	cursor: pointer 
+	height: 35px
+	justify-content: space-between 
+	background-color: #9E7653 
+	transition: 0.3s 
+	&.active 
+		background-color: #4B352B 
+		.accordion-icon 
+			transform: rotate(180deg) 
+			color: #fff 
+
+.accordion-title 
+	font-weight: 500 
+	font-size: 14px 
+	position: relative 
+	padding-left: 10px 
+	color: #fff  
+	transition: 0.3s 
+
+.accordion-icon 
+	position: relative 
+	top: 2px 
+	color: #475F7B 
+	transition: 0.35s 
+
+.collapse 
+	position: relative 
+	height: 0 
+	overflow: hidden 
+	transition: height 0.35s ease 
+	&.show 
+		height: auto 
+
+.accordion-body 
+	flex: 1 1 auto 
+	min-height: 1px 
+	padding: 5px 
+
+.table
+	table
+		display: flex
+		align-items: center
+		justify-content: center
+		tr
+			display: grid
+			border-bottom: 1px solid #9E7653
+			border-top: 1px solid #9E7653
+			align-items: center
+		th
+			display: flex
+			align-items: center
+			color: #4B352B 
+			font-weight: 700 
+			font-size: 12px
+			padding: 5px 3px
+			height: 50px
+			text-align: left 
+			border-bottom: 1px solid #9E7653
+			width: 150px
+			&:last-child
+				border-bottom: 0
+		td
+			display: flex
+			align-items: center
+			color: #9E7653 
+			font-weight: 500 
+			font-size: 12px
+			padding: 5px 3px
+			height: 50px
+			text-align: left 
+			border-left: 1px solid #9E7653
+			border-bottom: 1px solid #9E7653
+			width: 90px
+			&:last-child
+				border-bottom: 0

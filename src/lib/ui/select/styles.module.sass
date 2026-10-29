@@ -1,0 +1,1308 @@
+.large-select
+	position: relative 
+	width: 380px 
+	max-width: 100% 
+	font-weight: var(--font-weight-light)
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 20px 
+	color: var(--color-white) 
+	margin: 15px 0 
+	z-index: 10
+	&.active 
+		.large-arrow 
+			transform: rotate(180deg) 
+		.large-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		margin: 10px auto
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		width: 100%
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+		width: 100%
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+		width: 100%
+
+.small-select
+	position: relative 
+	width: 260px
+	height: 55px
+	max-width: 100% 
+	font-weight: var(--font-weight-light)
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 20px 
+	color: var(--color-white) 
+	margin: 15px 0 
+	z-index: -1
+	&.active 
+		.small-arrow 
+			transform: rotate(180deg) 
+		.small-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		height: 45px
+		margin: 10px
+		font-size: 15px
+		width: 29.7%
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+		position: relative
+		z-index: revert-layer
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 18px
+		width: 100%
+		border-radius: 10px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 18px
+		width: 100%
+		margin-bottom: 20px
+		box-shadow: 1px 13px 11px -4px #0000003d
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 18px
+		width: 100%
+
+.large-select-button
+	width: 100% 
+	font-size: 20px 
+	height: 40px 
+	border-radius: 20px 
+	background-color: var(--color-primary-blue) 
+	padding: 0.675em 1em 
+	border: 1px solid var(--color-primary-blue) 
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 18px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 18px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		border-radius: 10px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+
+.small-select-button
+	width: 100% 
+	font-size: 20px 
+	height: 55px 
+	border-radius: 20px 
+	background-color: var(--color-white) 
+	padding: 0.675em 1em 
+	border: 1px solid var(--color-white) 
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	font-weight: 300
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 18px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 18px
+		border-radius: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		border-radius: 9px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		border-radius: 9px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 18px
+		border-radius: 10px
+		height: 40px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 18px
+		border-radius: 9px
+		height: 40px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 18px
+		border-radius: 9px
+		height: 40px
+
+.large-selected-value 
+	text-align: left 
+	color: white
+
+.small-selected-value 
+	text-align: left 
+	color: #D4C7BA 
+	font-size: 16px
+	padding-top: 3px
+	font-weight: 300
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 16px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 16px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 16px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 16px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 14px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		padding-top: 3px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 16px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 16px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 16px
+
+.large-arrow 
+	border-left: 5px solid transparent 
+	border-right: 5px solid transparent 
+	border-top: 6px solid white 
+	transition: transform ease-in-out 0.3s 
+
+.large-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100% 
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) 
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 9 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: 0 10px 25px rgba(94, 108, 233, 0.6) 
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 4px
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: black 
+			font-size: 18px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+.large-select-dropdown li:hover,
+.large-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+
+.small-arrow 
+	border-left: 5px solid transparent 
+	border-right: 5px solid transparent 
+	border-top: 6px solid #006ED2
+	transition: transform ease-in-out 0.3s 
+
+.small-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100% 
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) 
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 100 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: 0 10px 25px rgba(94, 108, 233, 0.6) 
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 10px 
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: black 
+			font-size: 20px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+.small-select-dropdown li:hover,
+.small-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+
+/* Educational Center */
+.large-educational-select
+	position: relative 
+	width: 100% 
+	max-width: 100% 
+	font-weight: 300
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 4px 
+	color: red
+	margin: 15px 0 
+	z-index: 10
+	&.active 
+		.large-educational-arrow 
+			transform: rotate(180deg) 
+		.large-educational-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		margin: 10px auto
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		width: 100%
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+		width: 100%
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+		width: 100%
+
+.large-educational-select-button
+	width: 100% 
+	font-size: 19px 
+	height: 40px 
+	border-radius: 4px 
+	background-color: #fff
+	padding: 0.675em 0.4em 
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border: #fff
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 19px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 19px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 16px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 14px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 14px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		border-radius: 4px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+
+
+.large-educational-selected-value 
+	text-align: left 
+	color: #313131 !important
+	font-weight: 300
+
+.large-educational-arrow 
+	border-left: 5px solid transparent 
+	border-right: 5px solid transparent 
+	border-top: 6px solid gray 
+	transition: transform ease-in-out 0.3s 
+
+
+.large-educational-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100% 
+	box-shadow: 1px 13px 11px -4px #0000003d
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 9 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: none
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 0
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: black
+			font-size: 18px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+
+.large-educational-select-dropdown li:hover,
+.large-educational-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+
+
+
+/* Design large Select UI */
+.large-design-select
+	position: relative 
+	width: 100% 
+	max-width: 100% 
+	font-weight: 300
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 4px 
+	margin: 15px 0 
+	z-index: 10
+	&.active 
+		.large-design-arrow 
+			transform: rotate(180deg) 
+		.large-design-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		margin: 10px auto
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		width: 100%
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+		width: 100%
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+		width: 100%
+
+
+.large-design-select-button
+	width: 100% 
+	font-size: 19px 
+	height: 40px 
+	border-radius: 6px 
+	background-color: #FFFFFF
+	padding: 0.675em 0.8em 
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border: #fff
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 19px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 19px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 16px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 14px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 14px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		border-radius: 4px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+
+
+.large-design-selected-value 
+	text-align: left 
+	color: #4B352B !important
+	font-weight: 300
+
+.large-design-arrow 
+	border-left: 5px solid transparent 
+	border-right: 5px solid transparent 
+	border-top: 6px solid #D9D9D9 
+	transition: transform ease-in-out 0.3s 
+
+
+.large-design-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100% 
+	box-shadow: 1px 13px 11px -4px #0000003d
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 9 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: none
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 0
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: black
+			font-size: 18px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+.large-design-select-dropdown li:hover,
+.large-design-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+
+/* Design small Select UI */
+.small-design-select
+	position: relative 
+	width: 100% 
+	max-width: 100% 
+	font-weight: 300
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 4px 
+	margin: 15px 0 
+	z-index: 10
+	&.active 
+		.small-design-arrow 
+			transform: rotate(180deg) 
+		.small-design-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		margin: 10px auto
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		width: 100%
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+		width: 100%
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+		width: 100%
+
+.small-design-select-button
+	width: 100% 
+	font-size: 19px 
+	height: 40px 
+	border-radius: 6px 
+	background-color: #4B352B
+	padding: 0.675em 0.8em 
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border: #fff
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 19px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 19px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 16px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 14px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 14px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		border-radius: 4px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+
+.small-design-selected-value 
+	text-align: left 
+	color: #fff !important
+	font-weight: 300
+
+.small-design-arrow 
+	border-left: 5px solid transparent 
+	border-right: 5px solid transparent 
+	border-top: 6px solid #fff 
+	transition: transform ease-in-out 0.3s 
+
+.small-design-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100% 
+	box-shadow: 1px 13px 11px -4px #0000003d
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 9 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: none
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 0
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: black
+			font-size: 18px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+.small-design-select-dropdown li:hover,
+.small-design-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+
+
+/* IT-M small Select UI */
+.small-itm-select
+	position: relative 
+	width: 100% 
+	max-width: 100% 
+	font-weight: 300
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 30px 
+	margin: 15px 0 
+	z-index: 10
+	&.active 
+		.small-itm-arrow 
+			transform: rotate(180deg) 
+		.small-itm-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		margin: 10px auto
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		width: 100%
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+		width: 100%
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+		width: 100%
+
+
+.small-itm-select-button
+	width: 100%
+	max-width: 100%
+	font-size: 19px 
+	height: 40px 
+	border-radius: 30px 
+	background-color: #FFFFFF
+	border: 2px solid #B2D01B
+	padding: 0.675em 0.8em 
+	margin: 15px 0
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 19px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 19px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 16px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 14px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 14px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		border-radius: 24.62px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+
+
+.small-itm-selected-value 
+	text-align: left 
+	color: #B2D01B !important
+	font-weight: 300
+
+.small-itm-arrow 
+	border-left: 5px solid transparent 
+	border-right: 5px solid transparent 
+	border-top: 6px solid #B2D01B 
+	transition: transform ease-in-out 0.3s 
+
+
+.small-itm-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100%
+	box-shadow: 1px 13px 11px -4px #0000003d
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 9 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: none
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 0
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: #888B8F
+			font-size: 18px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+.small-itm-select-dropdown li:hover,
+.small-itm-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+
+
+/* IT-M large Select UI */
+.large-itm-select
+	position: relative 
+	width: 100% 
+	max-width: 100% 
+	font-weight: 300
+	font-size: 18px
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	border-radius: 30px 
+	margin: 15px 0 
+	z-index: 10
+	&.active 
+		.large-itm-arrow 
+			transform: rotate(180deg) 
+		.large-itm-select-dropdown 
+			opacity: 1 
+			visibility: visible 
+			transform: scaleY(1) 
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 18px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 18px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 18px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 15px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 15px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+		margin: 10px auto
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		width: 100%
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+		width: 100%
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+		width: 100%
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+		width: 100%
+
+
+.large-itm-select-button
+	width: 100%
+	max-width: 100%
+	font-size: 19px 
+	height: 52.07px 
+	border-radius: 30px 
+	background-color: #FFFFFF
+	border: 2px solid #B2D01B
+	padding: 0.675em 0.8em 
+	margin: 15px 0
+	box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
+	cursor: pointer 
+	display: flex 
+	justify-content: space-between 
+	align-items: center 
+	outline: none
+	&:focus
+		outline: none !important
+	/* @4xl */
+	@media screen and (max-width: 2560px)
+		font-size: 19px
+	/* @3xl */
+	@media screen and (max-width: 1920px)
+		font-size: 19px
+	/* @2xl */
+	@media screen and (max-width: 1600px)
+		font-size: 16px
+	/* @xl */
+	@media screen and (max-width: 1440px)
+		font-size: 14px
+	/* @lg */
+	@media screen and (max-width: 1280px)
+		font-size: 14px
+	/* @md */
+	@media screen and (max-width: 1024px)
+		font-size: 14px
+		height: 30px
+	/* @sm */
+	@media screen and (max-width: 768px)
+		font-size: 14px
+		border-radius: 24.62px
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 14px
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 14px
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 14px
+
+
+.large-itm-selected-value 
+	text-align: left 
+	color: #B2D01B !important
+	font-weight: 300
+
+.large-itm-arrow 
+	border-left: 8px solid transparent 
+	border-right: 8px solid transparent 
+	border-top: 9px solid #B2D01B 
+	transition: transform ease-in-out 0.3s 
+
+
+.large-itm-select-dropdown 
+	position: absolute 
+	list-style: none 
+	width: 100%
+	box-shadow: 1px 13px 11px -4px #0000003d
+	background-color: var(--color-white) 
+	border: 1px solid var(--color-light-gray) 
+	border-radius: 4px 
+	padding: 0.675em 1em 
+	margin-top: 8px 
+	max-height: 150px 
+	overflow-y: auto 
+	transition: 0.5s ease 
+	transform: scaleY(0) 
+	opacity: 0 
+	z-index: 9 
+	visibility: hidden
+	&:focus-within 
+		box-shadow: none
+	/* @sm */
+	@media screen and (max-width: 768px)
+		max-height: 96px
+	li 
+		position: relative 
+		cursor: pointer 
+		display: flex 
+		gap: 1rem 
+		align-items: center 
+		label 
+			width: 100% 
+			padding: 8px 0
+			cursor: pointer 
+			display: flex 
+			gap: 1rem 
+			align-items: center 
+			color: #888B8F
+			font-size: 18px
+			/* @sm */
+			@media screen and (max-width: 768px)
+				padding: 0 0
+				font-size: 14px
+	&::-webkit-scrollbar 
+		width: 7px 
+	&::-webkit-scrollbar-track 
+		background: #f1f1f1 
+		border-radius: 25px 
+	&::-webkit-scrollbar-thumb 
+		background: #ccc 
+		border-radius: 25px 
+	input 
+		&:focus 
+			& ~ label 
+				background-color: var(--color-double-gray) 
+	input[type="radio"] 
+		position: absolute 
+		left: 0 
+		opacity: 0 
+
+.large-itm-select-dropdown li:hover,
+.large-itm-select-dropdown input:checked~label 
+	background-color: #f2f2f2 
+

@@ -1,0 +1,191 @@
+.vertical-linear-stepper
+	display: none
+	/* @xs */
+	@media screen and (max-width: 600px)
+		display: block
+		
+/* Form Style */
+.questions 
+	display: grid 
+
+
+.answers 
+	position: relative 
+	right: 20px 
+	height: 150px 
+
+
+.answers 
+	li 
+		color: #828282 
+		position: relative 
+		float: left 
+		width: 100% 
+		height: 50px 
+		font-size: 20px 
+		display: block
+		align-items: center
+		&:hover 
+			label 
+				color: #006ED2 
+			.checked 
+				border: 5px solid #F9CC48 
+		/* @xs */
+		@media screen and (max-width: 600px)
+			font-size: 14px
+			height: 45px
+		/* @2xs */
+		@media screen and (max-width: 480px)
+			font-size: 14px
+			height: 45px
+		/* @3xs */
+		@media screen and (max-width: 360px)
+			font-size: 14px
+			height: 45px
+		input[type=radio] 
+			position: absolute 
+			visibility: hidden 
+		input[type=radio]:focus
+			outline: 0
+		label 
+			display: block 
+			position: relative 
+			font-weight: 300 
+			font-size: 20px 
+			padding: 10px 0 0 50px 
+			margin: 2px auto 
+			z-index: 9 
+			cursor: pointer 
+			height: 40px
+			transition: all 0.25s linear 
+			/* @xs */
+			@media screen and (max-width: 600px)
+				font-size: 14px
+				margin: 0 auto 
+			/* @2xs */
+			@media screen and (max-width: 480px)
+				font-size: 14px
+				margin: 0 auto 
+			/* @3xs */
+			@media screen and (max-width: 360px)
+				font-size: 14px
+				margin: 0 auto 
+		.check 
+			display: block 
+			position: absolute 
+			border: 5px solid #006ED2 
+			background-color: #006ED2 
+			border-radius: 100% 
+			height: 20px 
+			width: 20px 
+			top: 12px 
+			left: 20px 
+			z-index: 5 
+			transition: border .25s linear 
+			transition: border .25s linear 
+			&::before 
+				display: block 
+				position: absolute 
+				content: '' 
+				border-radius: 100% 
+				height: 10px 
+				width: 10px 
+				top: 0
+				left: 0 
+				margin: auto 
+				transition: background 0.25s linear 
+				-webkit-transition: background 0.25s linear 
+			/* @xs */
+			@media screen and (max-width: 600px)
+				height: 20px 
+				width: 20px 
+			/* @2xs */
+			@media screen and (max-width: 480px)
+				height: 20px 
+				width: 20px 
+			/* @3xs */
+			@media screen and (max-width: 360px)
+				height: 20px 
+				width: 20px 
+
+
+input[type=radio]:checked 
+	& ~ .check 
+		border: 5px solid #F9CC48 
+		&::before 
+			background: #fff 
+	& ~ .text_primary 
+		color: #F9CC48 
+
+
+/* Result Viewer Styles */
+.viewer_title
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 20px
+		font-weight: 500
+		text-align: center
+		color: #006ED2 
+
+.progress
+	display: flex
+	align-items: center
+	justify-content: center
+	margin: 20px auto
+
+
+.procent
+	font-size: 60px
+	text-align: left
+	font-weight: 700
+
+
+.row
+	display: flex
+	align-items: flex-start
+	justify-content: space-between
+	p
+		font-size: 15px
+		padding: 0 10px
+
+
+.btn_view
+	width: 130px
+	border: none
+	margin-bottom: 10px
+	height: 55px
+	font-size: 20px
+	display: flex
+	justify-content: center
+	align-items: center
+	color: #fff
+	border-radius: 30px
+	background-color: #006ED2
+	/* @xs */
+	@media screen and (max-width: 600px)
+		font-size: 18px
+		height: 35px
+		margin: 40px auto
+	/* @2xs */
+	@media screen and (max-width: 480px)
+		font-size: 18px
+		height: 35px
+		margin: 40px auto
+	/* @3xs */
+	@media screen and (max-width: 360px)
+		font-size: 18px
+		height: 35px
+		margin: 40px auto
+
+
+/* Loader UI Styles */
+.loader
+	margin: 180px auto
+	float: right
+	width: 300px
+
+
+.result
+	display: flex
+	justify-content: center
+	align-items: center

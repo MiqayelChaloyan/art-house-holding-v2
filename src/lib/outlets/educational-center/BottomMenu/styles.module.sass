@@ -1,0 +1,51 @@
+.nav_menu
+    @media screen and ( max-width: 640px )	
+        position: fixed
+        bottom: 0
+        left: 0
+        background-color: #821616
+        box-shadow: 0 -1px 12px black
+        width: 100%
+        height: 3rem
+        padding: 0 1rem
+        display: grid
+        align-content: center
+        transition: .3s
+        z-index: 15
+
+.nav_list
+    @media screen and ( max-width: 640px )	
+        justify-content: center
+        column-gap: 2rem
+        display: flex
+
+.linkActive
+    @media screen and ( max-width: 640px )	
+        position: relative
+        background-color: blue
+        transition: .3s
+        height: 100px
+        border-radius: 40px
+        &:before
+            content: ''
+            position: absolute
+            bottom: -0.5rem
+            width: 64px
+            height: 75px
+            background-color: #821616
+            border-radius: 35px 35px 0 0
+            z-index: -1
+
+.nav__link
+    display: none
+    @media screen and ( max-width: 640px )	
+        display: flex
+        flex-direction: column
+        align-items: center
+        row-gap: 4px
+        color: var(--title-color)
+        font-weight: 600
+        width: 47px
+        height: 47px
+        background: #821616
+        justify-content: center

@@ -1,0 +1,221 @@
+.right
+    display: flex
+    position: relative
+    bottom: 60px
+    z-index: 2
+    /* @md */
+    @media screen and (max-width: 1024px)
+        bottom: 0
+    /* @sm */
+    @media screen and (max-width: 768px)
+        position: relative
+
+.left
+    display: grid
+    width: 80%
+    margin-bottom: 70px
+    margin-top: 70px
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        margin-top: 0
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        margin-bottom: 40px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        margin-bottom: 20px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        width: 100%
+        margin-bottom: 20px
+
+.image
+    margin: 10px
+    width: 265px
+    height: 400px
+    border-radius: 50px
+    object-fit: cover
+    /* @xl */
+    @media screen and (max-width: 1440px)
+        width: 210px
+        height: 280px
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        width: 210px
+        height: 280px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        width: 180px
+        height: 210px
+        border-radius: 30px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        width: 46%
+        height: 300px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        width: 46%
+        height: 250px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        width: 40%
+        height: 200px
+        border-radius: 20px
+        margin: 0 auto
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        width: 40%
+        height: 150px
+        border-radius: 20px
+        margin: 0 auto
+
+.subtitle
+    font-size: 26px
+    color: #313131
+    line-height: 31.47px
+    font-weight: 600
+    margin-bottom: 15px
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+    /* @xl */
+    @media screen and (max-width: 1440px)
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 21px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        font-size: 19px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        font-size: 18px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 18px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        font-size: 18px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        font-size: 18px
+
+.content
+    font-size: 14px
+    color: #313131
+    line-height: 30.73px
+    font-weight: 600
+    text-align: left
+    width: 100%
+    margin-bottom: 40px
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+    /* @xl */
+    @media screen and (max-width: 1440px)
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        line-height: 24.73px
+        margin-bottom: 20px
+        font-size: 13px
+    /* @md */
+    @media screen and (max-width: 1024px)
+        line-height: 17.73px
+        margin-bottom: 10px
+        font-size: 12px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        line-height: 16.73px
+        margin-bottom: 10px
+        font-size: 12px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        line-height: 17.73px
+        margin-bottom: 10px
+        font-size: 11px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        line-height: 15.73px
+        margin-bottom: 7px
+        font-size: 10px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        line-height: 14.73px
+        margin-bottom: 5px
+        font-size: 10px
+
+.btn-group
+    display: flex
+    justify-content: space-between
+    align-items: stretch
+    margin-bottom: 15px
+    width: 100%
+    /* @4xl */
+    @media screen and (max-width: 2560px)
+    /* @3xl */
+    @media screen and (max-width: 1920px)
+    /* @2xl */
+    @media screen and (max-width: 1600px)
+    /* @xl */
+    @media screen and (max-width: 1440px)
+    /* @lg */
+    @media screen and (max-width: 1280px)
+    /* @md */
+    @media screen and (max-width: 1024px)
+        margin-bottom: 3px
+    /* @sm */
+    @media screen and (max-width: 768px)
+        margin-bottom: 3px
+        width: 80%
+    /* @xs */
+    @media screen and (max-width: 600px)
+        margin-bottom: 3px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+        margin-bottom: 3px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+        margin-bottom: 3px
+
+.view-more-btn
+    color: #313131
+    &:after 
+        content: "" 
+        display: block 
+        width: 100% 
+        padding-top: 10px 
+        border-bottom: 1px solid black 
+        transition: 0.5s 
+        /* @lg */
+        @media screen and (max-width: 1280px)
+            padding-top: 10px 
+    &:hover
+        color: #C62020
+        &:after
+            width: 15%
+            border-bottom: 1px solid #C62020 
+            /* @lg */
+            @media screen and (max-width: 1280px)
+                width: 10%
+    /* @lg */
+    @media screen and (max-width: 1280px)
+        font-size: 14px
+    /* @xs */
+    @media screen and (max-width: 600px)
+        font-size: 11px
+
+.card
+    display: grid
+    margin: 0 auto
+
+.group
+    /* @sm */
+    @media screen and (max-width: 768px)
+        display: flex
+        justify-content: flex-start
+        align-items: center

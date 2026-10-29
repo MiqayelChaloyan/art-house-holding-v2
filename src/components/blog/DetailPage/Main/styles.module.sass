@@ -1,0 +1,339 @@
+$languageHeroBg: '../../../../../public/assets/images/language/background.png'
+
+.section
+    padding-top: 160px
+    padding-bottom: 80px
+    min-height: 60vh
+    width: 100%
+    max-width: 100%
+    overflow-x: clip
+    @media screen and (max-width: 768px)
+        padding-top: 120px
+        padding-bottom: 60px
+
+.layout
+    display: grid
+    grid-template-columns: minmax(0, 1fr) 320px
+    gap: 48px
+    align-items: stretch
+    @media screen and (max-width: 768px)
+        grid-template-columns: 1fr
+        gap: 32px
+
+.content
+    min-width: 0
+
+.sidebar
+    min-width: 0
+    height: 100%
+
+.sidebarInner
+    display: flex
+    flex-direction: column
+    width: 100%
+    max-height: calc(100vh - 120px)
+    padding: 0
+    overflow: hidden
+    border: 1px solid color-mix(in srgb, var(--blog-accent) 28%, rgba(255, 255, 255, 0.12))
+    border-radius: 20px
+    background: linear-gradient(180deg, #181818 0%, #0a0a0a 100%)
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06)
+    @media screen and (max-width: 768px)
+        max-height: calc(100vh - 108px)
+    ::selection
+        background: rgba(255, 255, 255, 0.95)
+        color: var(--blog-accent)
+    ::-moz-selection
+        background: rgba(255, 255, 255, 0.95)
+        color: var(--blog-accent)
+
+.sidebarTitle
+    flex-shrink: 0
+    margin: 0
+    padding: 20px 20px 16px 17px
+    font-size: 20px
+    font-weight: 700
+    line-height: 1.3
+    color: #FFFFFF
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+    border-left: 3px solid var(--blog-accent)
+    @media screen and (max-width: 768px)
+        font-size: 18px
+        padding: 16px 16px 14px 14px
+    ::selection
+        background: rgba(255, 255, 255, 0.95)
+        color: var(--blog-accent)
+    ::-moz-selection
+        background: rgba(255, 255, 255, 0.95)
+        color: var(--blog-accent)
+
+.category
+    display: inline-block
+    padding: 6px 16px
+    margin-bottom: 16px
+    background-color: var(--blog-accent)
+    color: var(--color-white)
+    font-size: 14px
+    font-weight: 700
+    border-radius: 20px
+
+.title
+    font-size: 42px
+    font-weight: 700
+    line-height: 1.25
+    color: #313131
+    margin-bottom: 12px
+    @media screen and (max-width: 1024px)
+        font-size: 34px
+    @media screen and (max-width: 768px)
+        font-size: 28px
+
+[data-variant='design'] .title
+    font-family: Arial, sans-serif
+
+.date
+    display: block
+    font-size: 16px
+    color: var(--color-gray)
+    margin-bottom: 32px
+    @media screen and (max-width: 768px)
+        margin-bottom: 24px
+
+.imageWrapper
+    width: 100%
+    margin-bottom: 32px
+    border-radius: 20px
+    overflow: hidden
+    border: 2px solid var(--blog-accent)
+    @media screen and (max-width: 768px)
+        margin-bottom: 24px
+
+[data-variant='design'] .imageWrapper
+    border-radius: 10px
+
+.image
+    width: 100%
+    height: auto
+    object-fit: cover
+    display: block
+
+.excerpt
+    font-size: 20px
+    line-height: 1.6
+    color: var(--color-gray)
+    margin-bottom: 32px
+    font-weight: 500
+    @media screen and (max-width: 768px)
+        font-size: 18px
+        margin-bottom: 24px
+
+.body
+    font-size: 18px
+    line-height: 1.75
+    color: #313131
+    @media screen and (max-width: 768px)
+        font-size: 16px
+
+.heroEyebrow
+    display: none
+
+.heroTop
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 12px
+    margin-bottom: 20px
+    padding: 0 8px
+    @media screen and (max-width: 768px)
+        gap: 10px
+        margin-bottom: 16px
+        padding: 0 4px
+
+.heroMeta
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 16px
+    padding: 0 8px
+    @media screen and (max-width: 768px)
+        gap: 12px
+        padding: 0 4px
+
+.section.section[data-variant='educational'],
+.section.section[data-variant='design'],
+.section.section[data-variant='language']
+    padding-top: 0
+
+.section.section[data-variant='educational'],
+.section.section[data-variant='design']
+    background: var(--color-bg-gray)
+
+.section.section[data-variant='language']
+    background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 24%)
+
+.section[data-variant='educational'] .hero,
+.section[data-variant='design'] .hero
+    position: relative
+    padding: 120px 0 64px
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 42%, color-mix(in srgb, var(--blog-accent) 55%, #000000) 100%)
+    overflow: hidden
+    @media screen and (max-width: 768px)
+        padding: 100px 0 48px
+
+.section[data-variant='educational'] .hero::before,
+.section[data-variant='design'] .hero::before
+    content: ''
+    position: absolute
+    inset: 0
+    background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--blog-accent) 35%, transparent) 0%, transparent 45%), radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 35%)
+    pointer-events: none
+
+.section[data-variant='educational'] .hero::after,
+.section[data-variant='design'] .hero::after
+    content: ''
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    height: 4px
+    background: linear-gradient(90deg, transparent 0%, var(--blog-accent) 20%, color-mix(in srgb, var(--blog-accent) 75%, #ffffff) 50%, var(--blog-accent) 80%, transparent 100%)
+    pointer-events: none
+
+.section[data-variant='educational'] .hero > :global(.container),
+.section[data-variant='design'] .hero > :global(.container)
+    position: relative
+    z-index: 1
+
+.section[data-variant='educational'] .heroEyebrow,
+.section[data-variant='design'] .heroEyebrow
+    display: block
+    margin: 0
+    font-size: 14px
+    font-weight: 700
+    letter-spacing: 0.18em
+    text-transform: uppercase
+    color: rgba(255, 255, 255, 0.72)
+    @media screen and (max-width: 768px)
+        font-size: 12px
+        letter-spacing: 0.14em
+        line-height: 1.5
+
+.section[data-variant='educational'] .hero .category,
+.section[data-variant='design'] .hero .category
+    display: inline-block
+    padding: 10px 20px
+    margin-bottom: 0
+    background-color: var(--blog-accent)
+    color: #FFFFFF
+    @media screen and (max-width: 768px)
+        padding: 8px 16px
+        font-size: 13px
+
+.section[data-variant='educational'] .hero .title,
+.section[data-variant='design'] .hero .title
+    color: #FFFFFF
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35)
+    margin-bottom: 0
+
+.section[data-variant='educational'] .hero .date,
+.section[data-variant='design'] .hero .date
+    color: rgba(255, 255, 255, 0.78)
+    margin-bottom: 0
+
+.section[data-variant='educational'] .layout,
+.section[data-variant='design'] .layout,
+.section[data-variant='language'] .layout
+    padding-top: 48px
+    align-items: start
+    @media screen and (max-width: 768px)
+        padding-top: 32px
+
+.section[data-variant='language'] .hero
+    position: relative
+    padding: 120px 0 64px
+    background: linear-gradient(135deg, #006ED2 0%, #0056a8 52%, #004080 100%)
+    overflow: hidden
+    @media screen and (max-width: 768px)
+        padding: 100px 0 48px
+
+.section[data-variant='language'] .hero::before
+    content: ''
+    position: absolute
+    inset: 0
+    background-image: url($languageHeroBg)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    opacity: 0.22
+    pointer-events: none
+
+.section[data-variant='language'] .hero::after
+    content: ''
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    height: 5px
+    background: linear-gradient(90deg, transparent 0%, #F9CC48 18%, #ffe082 50%, #F9CC48 82%, transparent 100%)
+    pointer-events: none
+
+.section[data-variant='language'] .hero > :global(.container)
+    position: relative
+    z-index: 1
+
+.section[data-variant='language'] .heroEyebrow
+    display: block
+    margin: 0
+    font-size: 14px
+    font-weight: 700
+    letter-spacing: 0.2em
+    text-transform: uppercase
+    color: #F9CC48
+    @media screen and (max-width: 768px)
+        font-size: 12px
+        letter-spacing: 0.16em
+        line-height: 1.5
+
+.section[data-variant='language'] .hero .category
+    display: inline-block
+    padding: 10px 20px
+    margin-bottom: 0
+    background-color: #F9CC48
+    color: #006ED2
+    @media screen and (max-width: 768px)
+        padding: 8px 16px
+        font-size: 13px
+
+.section[data-variant='language'] .hero .title
+    color: #FFFFFF
+    text-transform: uppercase
+    font-weight: 700
+    text-shadow: 0 3px 20px rgba(0, 0, 0, 0.22)
+    margin-bottom: 0
+
+.section[data-variant='language'] .hero .date
+    color: rgba(255, 255, 255, 0.86)
+    margin-bottom: 0
+
+[data-variant='design'] .sidebarInner
+    border-radius: 10px
+    background: #5F401B
+    border-color: rgba(255, 255, 255, 0.22)
+    box-shadow: 0 12px 40px rgba(95, 64, 27, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12)
+
+[data-variant='language'] .sidebarInner
+    background: #006ED2
+    border-color: rgba(255, 255, 255, 0.22)
+    box-shadow: 0 12px 40px rgba(0, 110, 210, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12)
+
+[data-variant='language'] .sidebarInner,
+[data-variant='language'] .sidebarTitle
+    ::selection
+        background: #F9CC48
+        color: #006ED2
+    ::-moz-selection
+        background: #F9CC48
+        color: #006ED2
+
+[data-variant='design'] .sidebarTitle
+    font-family: Arial, sans-serif

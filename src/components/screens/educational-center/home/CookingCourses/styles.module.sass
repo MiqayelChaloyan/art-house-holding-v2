@@ -1,0 +1,102 @@
+.section
+    background: var(--color-black)
+    position: relative
+    height: max-content
+    min-height: 200px
+    padding-bottom: 70px
+
+.title
+    margin: 20px auto
+    width: 100%
+    color: white
+    text-transform: lowercase
+    font-size: 32px
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    &::first-letter
+      text-transform: capitalize
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      font-size: 33px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      font-size: 30px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      font-size: 27px
+    /* md */
+    @media screen and ( max-width: 768px )
+      font-size: 24px
+    /* sm */
+    @media screen and ( max-width: 640px )
+      text-align: center
+      width: 100%
+    /* xs */
+    @media screen and ( max-width: 475px )
+      text-align: center
+      width: 100%
+      position: relative
+      margin-bottom: 30px
+      padding-right: 0
+      padding-left: 0
+
+/* Shapes */
+.shapes 
+    display: flex 
+    background: var(--color-bg-gray)
+    /* sm */
+    @media screen and ( max-width: 640px )
+        display: none
+        
+.shape-1 
+    position: relative 
+    width: 55% 
+    height: auto 
+    min-height: 55px 
+    z-index: 10 
+    color: red 
+    display: flex 
+    align-items: center 
+    justify-content: flex-start 
+    overflow: hidden 
+    &::before 
+        content: "" 
+        position: absolute 
+        top: 0 
+        left: 0 
+        bottom: -2px
+        right: 0 
+        background: var(--color-black) 
+        transform: skewX(40deg) 
+        transform-origin: bottom 
+        z-index: -1 
+    /* sm */
+    @media screen and ( max-width: 640px )
+        width: 100%
+        &::before
+          transform: skewX(0) 
+
+.shape-2 
+    position: relative 
+    width: 45% 
+    z-index: 10 
+    overflow: hidden 
+    &::before 
+        content: "" 
+        position: absolute 
+        top: 0 
+        left: 0 
+        bottom: -2px
+        right: 0 
+        background: var(--color-bg-gray) 
+        transform: skewX(-20deg) 
+        transform-origin: bottom 
+        z-index: 100000 
+    /* sm */
+    @media screen and ( max-width: 640px )
+        display: none
+
+.shape 
+    position: relative 
+    z-index: 1 
+

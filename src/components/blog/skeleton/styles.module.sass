@@ -1,0 +1,184 @@
+@keyframes shimmer
+    0%
+        background-position: -200% 0
+    100%
+        background-position: 200% 0
+
+@keyframes fadeIn
+    from
+        opacity: 0
+    to
+        opacity: 1
+
+.block
+    display: block
+    border-radius: 6px
+    flex-shrink: 0
+    animation: shimmer 1.4s ease-in-out infinite, fadeIn 0.2s ease-out
+
+.blockLight
+    background: linear-gradient(90deg, #ececec 25%, #f5f5f5 37%, #ececec 63%)
+    background-size: 200% 100%
+
+.blockHero
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.14) 25%, rgba(255, 255, 255, 0.26) 37%, rgba(255, 255, 255, 0.14) 63%)
+    background-size: 200% 100%
+
+.blockSidebar
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.12) 25%, rgba(255, 255, 255, 0.22) 37%, rgba(255, 255, 255, 0.12) 63%)
+    background-size: 200% 100%
+
+.blockAccent
+    background: linear-gradient(90deg, color-mix(in srgb, var(--blog-accent) 18%, #ececec) 25%, color-mix(in srgb, var(--blog-accent) 28%, #f5f5f5) 37%, color-mix(in srgb, var(--blog-accent) 18%, #ececec) 63%)
+    background-size: 200% 100%
+
+.imageFill
+    width: 100%
+    height: 100%
+    border-radius: 0
+
+.cardShell
+    display: flex
+    flex-direction: column
+    height: 100%
+    background: var(--color-white)
+    border: 1px solid color-mix(in srgb, var(--blog-accent) 26%, #ffffff)
+    border-radius: 20px
+    overflow: hidden
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08)
+
+.cardShell[data-variant='design']
+    border-radius: 10px
+    box-shadow: none
+
+.cardShell[data-variant='language']
+    box-shadow: 0 5px 3px rgba(0, 0, 0, 0.12)
+
+.cardImage
+    position: relative
+    width: 100%
+    aspect-ratio: 16 / 10
+    overflow: hidden
+
+.cardCategory
+    position: absolute
+    top: 16px
+    left: 16px
+    border-radius: 20px
+
+.cardBody
+    display: flex
+    flex-direction: column
+    flex: 1
+    gap: 12px
+    padding: 24px
+    @media screen and (max-width: 768px)
+        padding: 20px
+
+.readMoreBtn
+    border-radius: 10px
+
+.readMoreBtnLanguage
+    border-radius: 20px
+
+.excerptLines
+    display: grid
+    gap: 10px
+
+.bodyLines
+    display: grid
+    gap: 12px
+
+.articleContent
+    display: grid
+    gap: 32px
+    @media screen and (max-width: 768px)
+        gap: 24px
+
+.heroHeader
+    display: grid
+    gap: 16px
+    justify-items: center
+    text-align: center
+
+.detailHeroTop
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 12px
+    margin-bottom: 20px
+
+.detailHeroMeta
+    display: grid
+    gap: 16px
+    width: 100%
+
+.backPill
+    display: inline-flex
+    align-items: center
+    gap: 10px
+    padding: 8px 18px 8px 10px
+    border-radius: 999px
+
+.backPillLight
+    border: 1px solid rgba(255, 255, 255, 0.28)
+    background: rgba(255, 255, 255, 0.1)
+
+.backPillDefault
+    border: 1px solid color-mix(in srgb, var(--blog-accent) 30%, #ffffff)
+    background: color-mix(in srgb, var(--blog-accent) 8%, #ffffff)
+
+.backIcon
+    width: 30px
+    height: 30px
+    border-radius: 50%
+
+.featuredImageInner
+    width: 100%
+    aspect-ratio: 16 / 9
+
+.shareRow
+    display: flex
+    gap: 12px
+    flex-wrap: wrap
+    margin-top: 8px
+
+.similarItem
+    display: flex
+    gap: 14px
+    padding: 14px
+    margin-bottom: 10px
+    border: 1px solid rgba(255, 255, 255, 0.2)
+    border-radius: 14px
+    background: rgba(255, 255, 255, 0.12)
+
+.similarThumb
+    flex-shrink: 0
+    width: 72px
+    height: 72px
+    border-radius: 12px
+    overflow: hidden
+    border: 2px solid rgba(255, 255, 255, 0.45)
+
+.similarContent
+    flex: 1
+    display: grid
+    gap: 8px
+    align-content: center
+
+.similarList
+    padding: 12px 16px 16px
+
+@media (prefers-reduced-motion: reduce)
+    .block
+        animation: fadeIn 0.2s ease-out
+
+    .blockLight
+        background: #ececec
+
+    .blockHero,
+    .blockSidebar
+        background: rgba(255, 255, 255, 0.18)
+
+    .blockAccent
+        background: #ececec

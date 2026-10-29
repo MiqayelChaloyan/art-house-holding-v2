@@ -1,0 +1,216 @@
+$imagePAth: '../../../../../public/assets/images/educational-center/BlueBackground.png'
+
+.footer
+  background-color: black 
+
+.title
+  color: white
+  text-align: center
+  
+.copyright
+   color: white
+   text-align: left
+   font-size: calc(16px + 2 * (30vw - 477px) / 200)
+   transition: .5s
+   &:hover
+      color: #B21B1B
+   @media screen and ( max-width: 991px )
+      font-size: 12px
+   @media screen and ( max-width: 767px )
+      font-size: 16px
+
+.info_web
+  text-align: right
+  color: white
+  padding-left: 10px
+  font-size: calc(16px + 2 * (30vw - 477px) / 200)
+  @media screen and ( max-width: 991px )
+    font-size: 12px
+
+.contact
+    width: 50%
+    margin: 0 auto
+    @media screen and ( max-width: 991px )
+      width: 70%
+    @media screen and ( max-width: 767px )
+      width: 100%
+
+.box
+    background-image: url($imagePAth) 
+    background-repeat: no-repeat
+    background-size: 50%
+    background-position: center  
+    margin: 0 auto
+    margin-bottom: 70px
+    height: 470px
+    padding: 0 100px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      width: 100%
+      padding: 0 var(--container-gap-mobile)
+      margin-bottom: 0
+      height: 470px
+      background-size: 100%
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      width: 100%
+      padding: 0 var(--container-gap-mobile)
+      margin-bottom: 0
+      height: 470px
+      background-size: 100%
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      width: 100%
+      padding: 0 var(--container-gap-mobile)
+      margin-bottom: 0
+      height: 470px
+      background-size: 100%
+    /* md */
+    @media screen and ( max-width: 768px )
+      width: 100%
+      padding: 0 var(--container-gap-mobile)
+      height: 470px
+      background-size: 94%
+      background-position: bottom      
+    /* sm */
+    @media screen and ( max-width: 640px )
+      width: 100%
+      padding: 0 var(--container-gap-mobile)
+      height: 385px
+      background-size: 94%
+      background-position: bottom  
+    /* xs */
+    @media screen and ( max-width: 475px )
+      width: 100%
+      padding: 0 var(--container-gap-mobile)
+      height: 385px
+      background-size: 94%
+      background-position: bottom    
+
+.formTitle
+   font-size: 24px
+   color: red
+   @media screen and ( max-width: 991px )
+      text-align: center
+      padding: 35px 0 35px 0
+   @media screen and ( max-width: 767px )
+      text-align: center
+      padding: 20px 0 10px 0
+
+.links
+   display: flex
+   justify-content: center
+   padding-bottom: 88px
+   align-items: flex-end
+   width: 97%
+   flex: 1 1 20px
+   @media screen and ( max-width: 991px )
+      display: flex
+      flex-wrap: wrap
+      width: 95%
+      margin: 0 auto
+      padding-bottom: 20px
+   @media screen and ( max-width: 767px )
+      display: grid
+      width: 85%
+
+.contain
+   width: 20%
+   @media screen and ( max-width: 991px )
+      margin: 5px
+      width: 30%
+   @media screen and ( max-width: 600px )
+      p
+         text-align: center
+         @media screen and ( max-width: 767px )
+            font-size: 16px
+      img
+         margin: 16px auto !important
+   @media screen and ( max-width: 767px )
+      width: 100%
+      margin-bottom: 100px
+
+.logo
+    width: 100px
+    margin: 30px auto
+
+.google_map
+    height: 600px
+    width: 82%
+    margin: 0 auto
+    margin-bottom: 190px
+    @media screen and ( max-width: 991px )
+       height: 300px
+       width: 90%
+       margin-bottom: 50px
+    @media screen and ( max-width: 767px )
+       width: 100%
+       margin-bottom: 100px
+
+.address
+    text-align: right
+    color: white
+    font-size: calc(25px + 10 * (30vw - 477px) / 200)
+    padding-top: 15px
+    font-weight: bold
+    @media screen and ( max-width: 991px )
+       font-size: 12px
+    @media screen and ( max-width: 767px )
+       text-align: right
+       width: 98%
+       font-size: 16px
+
+.icon
+   display: flex
+   justify-content: right
+   align-items: center
+   margin-bottom: 10px
+   @media screen and ( max-width: 991px )
+      justify-content: flex-end
+   @media screen and ( max-width: 767px )
+      justify-content: center
+
+.link
+   display: flex
+   justify-content: flex-start
+   align-items: center
+   @media screen and ( max-width: 991px )
+      justify-content: flex-start
+   @media screen and ( max-width: 767px )
+      justify-content: center
+
+.art_center_logo
+    width: 100%
+    display: flex
+    justify-content: flex-end
+    margin-bottom: 10px
+    @media screen and ( max-width: 991px )
+      width: 100%
+    @media screen and ( max-width: 767px )
+      width: 55% 
+      margin: 0 auto
+
+.row
+   margin: 20px
+   @media screen and ( max-width: 767px )
+      margin: 0
+
+.courses_links
+   width: 64%
+   display: grid
+   grid-template-columns: repeat(4, 1fr)
+   @media screen and ( max-width: 1350px )
+      width: 73%
+   @media screen and ( max-width: 991px )
+      width: 64%
+      grid-template-columns: repeat(2, 1fr)
+   @media screen and ( max-width: 767px )
+      grid-template-columns: repeat(1, 1fr)
+      margin: 0 auto
+      width: 100%
+
+.reserved
+   margin-top: 16px
+   text-align: right
+   @media screen and ( max-width: 767px )
+      text-align: center

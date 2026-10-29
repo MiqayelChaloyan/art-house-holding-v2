@@ -1,0 +1,139 @@
+.container
+    position: relative
+    background-color: var(--color-bg-gray)
+    height: 570px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      height: 570px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      height: 420px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      height: 320px
+    /* md */
+    @media screen and ( max-width: 768px )
+      height: 740px
+    /* sm */
+    @media screen and ( max-width: 640px )
+      height: 740px
+    /* xs */
+    @media screen and ( max-width: 475px )
+      height: auto
+      padding-bottom: 50px
+
+.specialists
+    height: auto
+    position: relative
+    bottom: 160px
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      padding: 0
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      padding: 0
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      padding: 0
+      bottom: 180px
+    /* md */
+    @media screen and ( max-width: 768px )
+       padding-top: 0
+       height: 297px
+       position: relative
+       bottom: 118px
+    /* sm */
+    @media screen and ( max-width: 640px )
+       display: block
+       height: 600px
+       bottom: 70px    
+    /* xs */
+    @media screen and ( max-width: 475px )
+       display: block
+       height: 600px
+       bottom: 0
+
+.triangle
+    display: block
+    height: 94px
+    width: 103%
+    position: relative
+    bottom: 58px
+    &:after 
+      height: 94px
+      width: 36%
+      background: #E3E1E1
+      margin: 0 auto
+      position: absolute
+      content: ''
+      right: 0
+      transform: skew(-40deg)
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      bottom: 43px
+      &:after 
+        height: 45px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      bottom: 42px
+      &:after 
+        height: 45px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      bottom: 41px
+      &:after 
+        height: 45px
+    /* md */
+    @media screen and ( max-width: 768px )
+      bottom: 35px
+      &:after 
+        height: 37px
+    /* sm */
+    @media screen and ( max-width: 640px )
+      display: none
+
+.title
+    font-family: sans-serif
+    position: absolute
+    margin: 0 auto
+    width: 100%
+    color: #313131
+    top: -55px
+    left: 68%
+    font-size: 32px
+    padding-right: var(--container-gap)
+    padding-left: var(--container-gap)
+    /* 2xl */
+    @media screen and ( max-width: 1536px )
+      font-size: 33px
+      top: -40px
+    /* xl */
+    @media screen and ( max-width: 1280px )
+      font-size: 30px
+      left: 67%
+      top: -40px
+    /* lg */
+    @media screen and ( max-width: 1024px )
+      font-size: 27px
+      top: -37px
+    /* md */
+    @media screen and ( max-width: 768px )
+      font-size: 24px
+      top: -30px
+      left: 65%
+    /* sm */
+    @media screen and ( max-width: 640px )
+      top: 15px
+      text-align: center
+      width: 100%
+      position: relative
+      margin-bottom: 75px
+      left: 0
+    /* xs */
+    @media screen and ( max-width: 475px )
+      top: 20px
+      text-align: center
+      width: 100%
+      position: relative
+      margin-bottom: 30px
+      left: 0

@@ -1,0 +1,92 @@
+.container 
+   position: relative
+   height: max-content
+   background-color: var(--color-dark-black)
+   padding: 185px
+   padding-top: 180px
+   @media screen and ( max-width: 991px )
+      padding: 20px
+      margin-bottom: 50px
+   @media screen and ( max-width: 767px )
+      padding: 20px
+      margin-top: 113px
+      margin-bottom: 50px
+
+.content
+   position: absolute
+   top: 250px
+   width: 100%
+   display: grid
+   align-items: center
+   justify-content: center
+   text-align: center
+   @media screen and ( max-width: 1280px )
+     top: 200px
+   @media screen and ( max-width: 991px )
+     top: 150px
+
+.title
+   font-size: 60px
+   color: white
+   height: 100%
+   text-align: center
+   margin-bottom: 30px
+   @media screen and ( max-width: 991px )
+     font-size: 40px
+   @media screen and ( max-width: 767px )
+     font-size: 27px
+
+.partners
+    display: flex
+    flex-wrap: wrap
+
+.partner
+    width: 25%
+    display: flex
+    flex-direction: column
+    align-items: center
+    @media screen and ( max-width: 1280px )
+       width: 30%
+       margin: 0 auto
+    @media screen and ( max-width: 991px )
+       width: 50%
+       display: flex
+    @media screen and ( max-width: 767px )
+       width: 50%
+
+.image_container 
+    margin: 20px
+
+.image
+    width: 100%
+    height: auto
+    object-fit: cover
+    @media screen and ( max-width: 991px )
+       width: 100%
+       height: auto
+    /* @sm */
+    @media screen and (max-width: 768px)
+       width: 120px
+       height: 120px
+    /* @xs */
+    @media screen and (max-width: 600px)
+       width: 110px
+       height: 110px
+    /* @2xs */
+    @media screen and (max-width: 480px)
+       width: 110px
+       height: 110px
+    /* @3xs */
+    @media screen and (max-width: 360px)
+       width: 110px
+       height: 110px
+       
+.text
+    width: 100%
+    color: white
+    font-size: 14px
+    text-align: center
+    @media screen and ( max-width: 767px )
+       font-size: 12px
+       width: 100%
+
