@@ -96,13 +96,37 @@ interface COURSES_DESIGN_QUERYResult {
     ogImage?: Asset;
 };
 
+interface COURSES_SECTION {
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+};
+
+interface WHY_ITEM {
+    _key: string;
+    number: string;
+    title: string;
+    description: string;
+};
+
+interface WHY_SECTION {
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+    items: WHY_ITEM[];
+};
+
 interface HOME_COURSES {
     _key: string;
     name: string;
-    title: string;
     course_name: string;
     about_course: string;
+    card_description?: string;
+    duration?: string;
+    level?: string;
+    slug?: string;
     gallery_of_course: GALLERY[];
+    card_image?: Asset;
     categories: AssetRef;
 };
 
@@ -115,10 +139,62 @@ interface OUR_DAY {
     }
 };
 
+interface PROJECT_ITEM {
+    _key: string;
+    title: string;
+    category: string;
+    year?: string;
+    href?: string;
+    image: Asset;
+};
+
+interface PROJECTS_SECTION {
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+    description: string;
+    projects: PROJECT_ITEM[];
+};
+
+interface STAFF_SECTION {
+    line_1: string;
+    line_2: string;
+    line_3: string;
+};
+
+interface VOICE_ITEM {
+    _key: string;
+    name: string;
+    role: string;
+    quote: string;
+    rating?: number;
+    image: Asset;
+};
+
+interface VOICES_SECTION {
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+    items: VOICE_ITEM[];
+};
+
+interface CERTIFICATES_SECTION {
+    line_1: string;
+    line_2: string;
+    line_3: string;
+    certificate?: Asset;
+    diploma?: Asset;
+};
+
 interface WORKER {
     _key: string;
     worker: string;
     profession: string;
+    experience?: string;
+    bio?: string;
+    programs?: string[];
+    skills?: string[];
+    behance_url?: string;
     worker_image: Asset;
 };
 
@@ -139,13 +215,49 @@ interface ORDER_Result {
     order_name: string;
 };
 
+interface STUDIO_STAT {
+    _key: string;
+    value: string;
+    title: string;
+};
+
+interface STUDIO_SLIDE {
+    _key: string;
+    image: Asset;
+};
+
+interface STUDIO_SECTION {
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+    line_3: string;
+    line_4: string;
+    description: string;
+    stats: STUDIO_STAT[];
+    slides: STUDIO_SLIDE[];
+};
+
+interface CLIENT_ITEM {
+    _key: string;
+    name?: string;
+    logo: Asset;
+};
+
 interface HOME_DETALIS_DESIGN_QUERYResult {
     _id: string;
     main_section: MAIN_SLIDE[];
+    studio_section?: STUDIO_SECTION;
+    courses_section?: COURSES_SECTION;
+    why_section?: WHY_SECTION;
+    projects_section?: PROJECTS_SECTION;
+    staff_section?: STAFF_SECTION;
+    certificates_section?: CERTIFICATES_SECTION;
+    voices_section?: VOICES_SECTION;
     courses: HOME_COURSES[];
     progress_section: PROGRESS[];
     our_day: OUR_DAY;
     workers: WORKER[];
+    clients?: CLIENT_ITEM[];
     blog_section?: BLOG_SECTION;
 };
 
@@ -153,6 +265,7 @@ interface CONTACT_US_DESIGN_QUERYResult {
     name: string;
     address: string;
     email: string;
+    hours?: string;
     phone_numbers: string[];
     social_links: SOCIAL_LINK[];
 };
@@ -174,4 +287,39 @@ interface COURSE {
     personal_lessons: number;
     course: string;
     duration: string;
+};
+
+type LEGAL_PAGE_SLUG = 'privacy' | 'terms' | 'imprint';
+
+interface LEGAL_SECTION {
+    _key: string;
+    heading: string;
+    body: string;
+};
+
+interface ABOUT_PAGE_SECTION {
+    _key: string;
+    heading: string;
+    body: string;
+};
+
+interface ABOUT_PAGE_DESIGN_QUERYResult {
+    _id: string;
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+    intro: string;
+    image?: Asset;
+    sections: ABOUT_PAGE_SECTION[];
+};
+
+interface LEGAL_PAGE_DESIGN_QUERYResult {
+    _id: string;
+    page: LEGAL_PAGE_SLUG;
+    eyebrow: string;
+    line_1: string;
+    line_2: string;
+    lead: string;
+    updated_at?: string;
+    sections: LEGAL_SECTION[];
 };

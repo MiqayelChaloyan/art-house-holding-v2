@@ -9,7 +9,7 @@ export const sendEmail = async (data) => {
 
     try {
         // Validate required fields - check for common required fields
-        const hasRequiredFields = (data.full_name || data.first_name) && data.email && data.phone;
+        const hasRequiredFields = (data.full_name || data.first_name) && data.phone;
         if (!hasRequiredFields) {
             throw new Error('Missing required fields');
         }
@@ -60,7 +60,7 @@ export const sendEmail = async (data) => {
         const mailOptions = {
             from: `"Art House Contact Form" <${process.env.NEXT_NODEMAILER_EMAIL}>`,
             to: process.env.NEXT_NODEMAILER_EMAIL,
-            replyTo: data.email,
+            replyTo: data.email || process.env.NEXT_NODEMAILER_EMAIL,
             subject: `Contact form submission from ${data.full_name || data.first_name || 'Unknown'}`,
             html: `
                 <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">

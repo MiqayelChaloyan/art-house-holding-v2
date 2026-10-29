@@ -38,6 +38,11 @@ const contactUsSchemaDesign = {
             validation: (Rule: RuleType) => Rule.required(),
         },
         {
+            title: 'Working hours',
+            name: 'hours',
+            type: 'localeString',
+        },
+        {
             title: 'Phone Numbers',
             name: 'phone_numbers',
             type: 'array',

@@ -3,26 +3,31 @@
 import React from 'react';
 
 import Main from './Main';
+import Studio from './Studio';
 import Courses from './Courses';
-import OurDay from './OurDay';
-import OurTeam from './OurTeam';
+import Why from './Why';
+import Projects from './Projects';
+import Staff from './Staff';
+import Certificates from './Certificates';
+import Voices from './Voices';
 import Partners from './Partners';
-import Progress from './Progress';
 
 
 interface Props {
     data: HOME_DETALIS_DESIGN_QUERYResult;
-    partners: PARTNER_Result[];
 };
 
-const Home = ({ data, partners }: Readonly<Props>) => (
+const Home = ({ data }: Readonly<Props>) => (
     <>
         <Main data={data.main_section} />
-        <Courses courses={data.courses} />
-        <OurDay our_day={data.our_day} />
-        <Progress data={data.progress_section} />
-        <OurTeam data={data.workers}/>
-        <Partners data={partners}/>
+        <Studio section={data.studio_section} fallbackSlides={data.main_section} />
+        <Courses courses={data.courses} section={data.courses_section} />
+        <Why section={data.why_section} />
+        <Staff workers={data.workers} section={data.staff_section} />
+        <Certificates section={data.certificates_section} />
+        <Projects section={data.projects_section} />
+        <Voices section={data.voices_section} />
+        <Partners clients={data.clients} />
     </>
 );
 

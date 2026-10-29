@@ -5,6 +5,12 @@ import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
 import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
 
+const localizedString = (title: string, name: string, type: 'string' | 'text' = 'string') => ({
+    title,
+    name,
+    type: type === 'text' ? 'localeText' : 'localeString',
+});
+
 export const aboutUsSchemaDesign = {
     name: 'about-us-design',
     type: 'document',
@@ -144,12 +150,131 @@ export const aboutUsSchemaDesign = {
             ],
         },
         {
+            name: 'studio_section',
+            title: 'Studio Section',
+            type: 'object',
+            description: 'The section after the hero. Headline, buttons, stats, and a sliding gallery.',
+            fields: [
+                localizedString('Eyebrow', 'eyebrow'),
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2', 'line_2'),
+                localizedString('Headline line 3 (italic)', 'line_3'),
+                localizedString('Headline line 4', 'line_4'),
+                localizedString('Description', 'description', 'text'),
+                {
+                    name: 'stats',
+                    title: 'Stats',
+                    type: 'array',
+                    description: 'Exactly three stats.',
+                    components: { input: ArrayMaxItems },
+                    validation: (Rule: RuleType) => Rule.required().min(3).max(3),
+                    of: [
+                        {
+                            name: 'stat',
+                            type: 'object',
+                            fields: [
+                                {
+                                    name: 'value',
+                                    title: 'Value',
+                                    type: 'string',
+                                    description: 'Shown as-is, for example 07, 1.2k, 180+.',
+                                },
+                                localizedString('Label', 'title'),
+                            ],
+                            preview: {
+                                select: { title: 'value', subtitle: 'title.en' },
+                            },
+                        },
+                    ],
+                },
+                {
+                    name: 'slides',
+                    title: 'Sliding images',
+                    type: 'array',
+                    description: 'At least two images. They crossfade inside the card.',
+                    validation: (Rule: RuleType) => Rule.min(2),
+                    of: [
+                        {
+                            name: 'slide',
+                            type: 'object',
+                            fields: [
+                                {
+                                    name: 'image',
+                                    title: 'Image',
+                                    type: 'image',
+                                    options: { hotspot: true },
+                                    fields: [
+                                        { name: 'alt', title: 'Alternative text', type: 'string' },
+                                    ],
+                                },
+                            ],
+                            preview: {
+                                select: { media: 'image', title: 'image.alt' },
+                                prepare(selection: { title?: string; media?: unknown }) {
+                                    return { title: selection.title || 'Slide', media: selection.media };
+                                },
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            name: 'courses_section',
+            title: 'Courses Section',
+            type: 'object',
+            description: 'Heading above the course cards on the home page.',
+            fields: [
+                localizedString('Eyebrow', 'eyebrow'),
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2 (italic)', 'line_2'),
+            ],
+        },
+        {
+            name: 'why_section',
+            title: 'Why Art House Section',
+            type: 'object',
+            description: 'Six reasons grid after the courses block.',
+            fields: [
+                localizedString('Eyebrow', 'eyebrow'),
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2 (italic)', 'line_2'),
+                {
+                    name: 'items',
+                    title: 'Reasons',
+                    type: 'array',
+                    description: 'Exactly six items, shown in a 3×2 grid.',
+                    components: { input: ArrayMaxItems },
+                    validation: (Rule: RuleType) => Rule.required().min(6).max(6),
+                    of: [
+                        {
+                            name: 'reason',
+                            type: 'object',
+                            fields: [
+                                {
+                                    name: 'number',
+                                    title: 'Number',
+                                    type: 'string',
+                                    description: 'For example 01, 02, 03.',
+                                },
+                                localizedString('Title', 'title'),
+                                localizedString('Description', 'description', 'text'),
+                            ],
+                            preview: {
+                                select: { title: 'number', subtitle: 'title.en' },
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             name: 'courses',
             type: 'array',
             title: 'Courses',
-            description: 'You can add to five courses',
+            description: 'You can add up to six courses',
             components: { input: ArrayMaxItems },
-            validation: (Rule: RuleType) => Rule.max(5),
+            validation: (Rule: RuleType) => Rule.max(6),
             of: [
                 {
                     name: 'Object',
@@ -209,6 +334,19 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 }
                             ]
+                        },
+                        localizedString('Card description', 'card_description', 'text'),
+                        localizedString('Duration', 'duration'),
+                        localizedString('Level', 'level'),
+                        {
+                            name: 'card_image',
+                            title: 'Card image',
+                            type: 'image',
+                            description: 'Optional cover for the home grid. Falls back to the first gallery image.',
+                            options: { hotspot: true },
+                            fields: [
+                                { name: 'alt', title: 'Alternative text', type: 'string' },
+                            ],
                         },
                         {
                             name: 'gallery_of_course',
@@ -370,10 +508,97 @@ export const aboutUsSchemaDesign = {
             ]
         },
         {
+            name: 'projects_section',
+            title: 'Selected Work',
+            type: 'object',
+            description: 'Bento grid of featured projects on the home page.',
+            fields: [
+                localizedString('Eyebrow', 'eyebrow'),
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2 (italic)', 'line_2'),
+                localizedString('Description', 'description', 'text'),
+                {
+                    name: 'projects',
+                    title: 'Projects',
+                    type: 'array',
+                    description: 'Four projects: large, two small, then a wide one.',
+                    components: { input: ArrayMaxItems },
+                    validation: (Rule: RuleType) => Rule.required().min(4).max(4),
+                    of: [
+                        {
+                            name: 'project',
+                            type: 'object',
+                            fields: [
+                                localizedString('Title', 'title'),
+                                localizedString('Category', 'category'),
+                                {
+                                    name: 'year',
+                                    title: 'Year',
+                                    type: 'string',
+                                },
+                                {
+                                    name: 'image',
+                                    title: 'Image',
+                                    type: 'image',
+                                    options: { hotspot: true },
+                                    fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                                },
+                                {
+                                    name: 'href',
+                                    title: 'Link',
+                                    type: 'string',
+                                    description: 'Optional path, for example /design/portfolios',
+                                },
+                            ],
+                            preview: {
+                                select: { title: 'title.en', subtitle: 'category.en', media: 'image' },
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            name: 'staff_section',
+            title: 'Staff Section',
+            type: 'object',
+            description: 'Heading above the staff slider.',
+            fields: [
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2 (italic)', 'line_2'),
+                localizedString('Headline line 3', 'line_3'),
+            ],
+        },
+        {
+            name: 'certificates_section',
+            title: 'Certificate and Diploma',
+            type: 'object',
+            description: 'Two documents shown after the staff slider.',
+            fields: [
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2 (italic)', 'line_2'),
+                localizedString('Headline line 3', 'line_3'),
+                {
+                    name: 'certificate',
+                    title: 'Certificate image',
+                    type: 'image',
+                    options: { hotspot: true },
+                    fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                },
+                {
+                    name: 'diploma',
+                    title: 'Diploma image',
+                    type: 'image',
+                    options: { hotspot: true },
+                    fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                },
+            ],
+        },
+        {
             name: 'workers',
             type: 'array',
-            title: 'Workers',
-            description: 'You can add any number of employees.',
+            title: 'Staff',
+            description: 'Team members shown in the staff slider.',
             validation: (Rule: RuleType) => Rule.required(),
             of: [
                 {
@@ -442,6 +667,39 @@ export const aboutUsSchemaDesign = {
                                 }
                             ]
                         },
+                        localizedString('Experience', 'experience'),
+                        localizedString('Bio', 'bio', 'text'),
+                        {
+                            name: 'programs',
+                            title: 'Programs',
+                            type: 'array',
+                            of: [
+                                {
+                                    name: 'program',
+                                    type: 'object',
+                                    fields: [localizedString('Label', 'label')],
+                                    preview: { select: { title: 'label.en' } },
+                                },
+                            ],
+                        },
+                        {
+                            name: 'skills',
+                            title: 'Skills',
+                            type: 'array',
+                            of: [
+                                {
+                                    name: 'skill',
+                                    type: 'object',
+                                    fields: [localizedString('Label', 'label')],
+                                    preview: { select: { title: 'label.en' } },
+                                },
+                            ],
+                        },
+                        {
+                            name: 'behance_url',
+                            title: 'Behance URL',
+                            type: 'url',
+                        },
                     ],
                     preview: {
                         select: {
@@ -454,6 +712,83 @@ export const aboutUsSchemaDesign = {
                         },
                     },
                 }
+            ],
+        },
+        {
+            name: 'voices_section',
+            title: 'Student Voices',
+            type: 'object',
+            description: 'Testimonial slider on the home page.',
+            fields: [
+                localizedString('Eyebrow', 'eyebrow'),
+                localizedString('Headline line 1', 'line_1'),
+                localizedString('Headline line 2 (italic)', 'line_2'),
+                {
+                    name: 'items',
+                    title: 'Testimonials',
+                    type: 'array',
+                    description: 'Student quotes. Three to six slides.',
+                    components: { input: ArrayMaxItems },
+                    validation: (Rule: RuleType) => Rule.required().min(3).max(6),
+                    of: [
+                        {
+                            name: 'voice',
+                            type: 'object',
+                            fields: [
+                                localizedString('Name', 'name'),
+                                localizedString('Role', 'role'),
+                                localizedString('Quote', 'quote', 'text'),
+                                {
+                                    name: 'rating',
+                                    title: 'Rating',
+                                    type: 'number',
+                                    initialValue: 5,
+                                    validation: (Rule: RuleType) => Rule.min(1).max(5).integer(),
+                                },
+                                {
+                                    name: 'image',
+                                    title: 'Portrait',
+                                    type: 'image',
+                                    options: { hotspot: true },
+                                    fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                                },
+                            ],
+                            preview: {
+                                select: { title: 'name.en', subtitle: 'role.en', media: 'image' },
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            name: 'clients',
+            title: 'Clients marquee',
+            type: 'array',
+            description: 'Client logos scrolling above the footer.',
+            of: [
+                {
+                    name: 'client',
+                    type: 'object',
+                    fields: [
+                        {
+                            name: 'name',
+                            title: 'Name',
+                            type: 'string',
+                        },
+                        {
+                            name: 'logo',
+                            title: 'Logo',
+                            type: 'image',
+                            options: { hotspot: true },
+                            fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                            validation: (Rule: RuleType) => Rule.required(),
+                        },
+                    ],
+                    preview: {
+                        select: { title: 'name', media: 'logo' },
+                    },
+                },
             ],
         },
         blogSectionFields,

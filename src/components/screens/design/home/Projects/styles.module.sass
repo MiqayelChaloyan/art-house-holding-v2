@@ -1,0 +1,191 @@
+.section
+	background: #070707
+	color: #ffffff
+	padding: 88px 0 104px
+	border-top: 1px solid rgba(255, 255, 255, 0.12)
+	scroll-margin-top: 100px
+
+.wrap
+	width: 100%
+	max-width: 1320px
+	margin: 0 auto
+	padding: 0 24px
+	@media screen and (max-width: 980px)
+		padding: 0 20px
+
+.header
+	display: grid
+	grid-template-columns: minmax(0, 1fr) 300px
+	align-items: end
+	gap: 48px
+	margin-bottom: 40px
+	@media screen and (max-width: 860px)
+		grid-template-columns: 1fr
+		align-items: start
+		gap: 16px
+
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin: 0 0 22px
+	font-size: 12px
+	font-weight: 500
+	line-height: 16px
+	letter-spacing: 0.18em
+	text-transform: uppercase
+	color: rgba(255, 255, 255, 0.72)
+
+.mark
+	width: 28px
+	height: 2px
+	border-radius: 2px
+	background: #e11d2e
+	flex-shrink: 0
+
+.headline
+	margin: 0
+	max-width: 760px
+	font-size: 72px
+	font-weight: 400
+	line-height: 0.94
+	letter-spacing: -0.03em
+	color: #f4f4f4
+	span
+		display: block
+		white-space: nowrap
+
+.headlineAm
+	font-size: 56px
+	max-width: 920px
+	line-height: 0.98
+
+.headlineRu
+	font-size: 64px
+	max-width: 860px
+
+.emphasis
+	font-style: italic
+	font-weight: 400
+	color: rgba(255, 255, 255, 0.82)
+
+.lede
+	margin: 0 0 12px
+	max-width: 280px
+	justify-self: end
+	font-size: 14px
+	line-height: 22px
+	color: rgba(255, 255, 255, 0.55)
+	@media screen and (max-width: 860px)
+		max-width: 480px
+		justify-self: start
+
+.grid
+	display: grid
+	grid-template-columns: 1.08fr 1fr
+	grid-template-rows: 292px 292px 268px
+	gap: 16px
+	margin: 0
+	padding: 0
+	list-style: none
+	@media screen and (max-width: 860px)
+		grid-template-columns: 1fr
+		grid-template-rows: none
+
+.cell
+	min-width: 0
+
+.featured
+	grid-column: 1
+	grid-row: 1 / 3
+	@media screen and (max-width: 860px)
+		grid-column: auto
+		grid-row: auto
+		min-height: 420px
+
+.small
+	min-height: 210px
+
+.wide
+	grid-column: 1 / -1
+	@media screen and (max-width: 860px)
+		min-height: 240px
+
+.card
+	position: relative
+	display: block
+	height: 100%
+	min-height: inherit
+	overflow: hidden
+	border: 1px solid rgba(255, 255, 255, 0.08)
+	border-radius: 22px
+	background: #101010
+	text-decoration: none
+	color: inherit
+
+.image
+	position: absolute
+	inset: 0
+	width: 100% !important
+	height: 100% !important
+	object-fit: cover
+	transition: transform 0.55s ease
+	.card:hover &
+		transform: scale(1.04)
+
+.shade
+	position: absolute
+	inset: 0
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.08) 46%, rgba(0, 0, 0, 0.12) 100%)
+	pointer-events: none
+
+.chip
+	position: absolute
+	top: 16px
+	left: 16px
+	z-index: 2
+	padding: 5px 10px
+	border: 1px solid rgba(255, 255, 255, 0.16)
+	border-radius: 999px
+	font-size: 11px
+	line-height: 14px
+	letter-spacing: 0.02em
+	color: rgba(255, 255, 255, 0.86)
+	background: rgba(0, 0, 0, 0.38)
+	backdrop-filter: blur(8px)
+
+.meta
+	position: absolute
+	right: 18px
+	bottom: 16px
+	left: 18px
+	z-index: 2
+	display: flex
+	flex-direction: column
+	gap: 4px
+
+.year
+	font-size: 12px
+	line-height: 16px
+	color: rgba(255, 255, 255, 0.62)
+
+.title
+	font-size: 22px
+	font-weight: 500
+	line-height: 28px
+	letter-spacing: -0.02em
+
+@media screen and (max-width: 640px)
+	.section
+		padding: 56px 0 64px
+	.headline
+		font-size: 42px
+	.headlineAm, .headlineRu
+		font-size: 36px
+	.headline span
+		white-space: normal
+	.title
+		font-size: 18px
+		line-height: 24px
+	.featured
+		min-height: 320px

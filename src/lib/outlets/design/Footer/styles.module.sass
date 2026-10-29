@@ -1,172 +1,152 @@
 .footer
-   background-color: #2F231D
-   height: max-content
-   display: grid
+	background: #070707
+	color: rgba(255, 255, 255, 0.78)
+	padding: 72px 0 28px
+	border-top: 1px solid rgba(255, 255, 255, 0.12)
 
-.column
-   display: flex
-   justify-content: space-between
-   align-items: center
-   margin: 50px auto
-   /* @xs */
-   @media screen and (max-width: 600px)
-      display: grid
-      justify-content: center
+.wrap
+	width: 100%
+	max-width: 1320px
+	margin: 0 auto
+	padding: 0 24px
+	@media screen and (max-width: 980px)
+		padding: 0 20px
 
-.reserved
-   margin-top: 8px
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      font-size: 17px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      font-size: 17px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      font-size: 14px
-   /* @md */
-   @media screen and (max-width: 1024px)
-      font-size: 13px
-   /* @sm */
-   @media screen and (max-width: 768px)
-      font-size: 13px
-      text-align: center
-   /* @xs */
-   @media screen and (max-width: 600px)
-      font-size: 14px
-      text-align: center
-   /* @2xs */
-   @media screen and (max-width: 480px)
-      font-size: 14px
-      text-align: center
-   /* @3xs */
-   @media screen and (max-width: 360px)
-      font-size: 14px
-      text-align: center
+.grid
+	display: grid
+	grid-template-columns: minmax(240px, 1.35fr) repeat(3, minmax(140px, 1fr))
+	gap: 40px 32px
+	padding-bottom: 56px
+	@media screen and (max-width: 980px)
+		grid-template-columns: 1fr 1fr
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
 
-.address
-   display: grid
-   align-items: center
-   span
-      color: white
-      font-weight: var(--font-weight-normal)
-      font-size: 17px
-      line-height: 25.5px
-      /* @2xl */
-      @media screen and (max-width: 1600px)
-         font-size: 15px
-      /* @xl */
-      @media screen and (max-width: 1440px)
-         font-size: 15px
-      /* @lg */
-      @media screen and (max-width: 1280px)
-         font-size: 14px
-      /* @md */
-      @media screen and (max-width: 1024px)
-         font-size: 13px
-      /* @sm */
-      @media screen and (max-width: 768px)
-         font-size: 13px
-         text-align: center
-      /* @xs */
-      @media screen and (max-width: 600px)
-         font-size: 13px
-         text-align: center
-      /* @2xs */
-      @media screen and (max-width: 480px)
-         font-size: 13px
-         text-align: center
-      /* @3xs */
-      @media screen and (max-width: 360px)
-         font-size: 13px
-         text-align: center
-   /* @sm */
-   @media screen and (max-width: 768px)
-      display: grid
-   /* @xs */
-   @media screen and (max-width: 600px)
-      display: grid
-
-.phone_numbers
-    display: grid
-    /* md */
-    @media screen and ( max-width: 768px )
-       display: grid
-
-.info_web
-    font-weight: var(--font-weight-normal)
-    font-size: 16px
-    line-height: 30px
-    color: var(--color-white)
-    &:hover
-        transition: var(--tr-time)
-        color: #B21B1B
-    /* 2xl */
-    @media screen and ( max-width: 1536px )
-        font-size: 16px
-        line-height: 30px
-    /* xl */
-    @media screen and ( max-width: 1280px )
-        font-size: 12px
-        line-height: 30px
-    /* lg */
-    @media screen and ( max-width: 1024px )
-        font-size: 12px
-        line-height: 20px
-    /* md */
-    @media screen and ( max-width: 768px )
-        text-align: center
-        font-size: 15px
-        line-height: 30px
-        &:hover
-            transition: 0
-            color: var(--color-white)
-    /* sm */
-    @media screen and ( max-width: 640px )
-        text-align: center
-    /* xs */
-    @media screen and ( max-width: 475px )
-        text-align: center
-
-.hosts
-   display: flex
-   align-items: center
-   justify-content: center
+.brand
+	max-width: 320px
 
 .logo
-    width: 10%
-    /* @xs */
-    @media screen and ( max-width: 600px )
-      display: flex
-      justify-content: center
-      width: 100% 
+	display: inline-flex
+	margin-bottom: 18px
 
-.social_network
-   margin: 5px
-   background-color: #C72C23
-   padding: 10px 10px 0 10px
-   border-radius: 50px
-   transition: background-color 0.5s ease
-   border: 1px solid #C72C23 
-   svg 
-      transition: background-color 0.5s ease
-      fill: white
-   &:hover
-      background-color: #2F231D
-      border: 1px solid #FFFFFF 
-      svg
-         fill: #FFFFFF 
-   /* lg */
-   @media screen and ( max-width: 1024px )
-      padding: 4px 10px 0 10px
-      margin: 2px
+.logoImage
+	width: 72px !important
+	height: 44px !important
+	object-fit: contain
+	object-position: left center
 
+.tagline
+	margin: 0 0 28px
+	font-size: 14px
+	line-height: 22px
+	color: rgba(255, 255, 255, 0.62)
 
+.cta
+	display: inline-flex
+	align-items: center
+	gap: 8px
+	height: 44px
+	padding: 0 22px
+	border: 0
+	border-radius: 999px
+	background: #e11d2e
+	color: #ffffff
+	font-size: 14px
+	line-height: 20px
+	cursor: pointer
+	transition: background-color 0.2s ease, box-shadow 0.2s ease
+	svg
+		width: 16px
+		height: 16px
+	&:hover
+		background: #ff2d3f
+		box-shadow: 0 8px 18px rgba(225, 29, 46, 0.35)
 
+.col
+	min-width: 0
 
+.label
+	margin: 0 0 18px
+	font-size: 11px
+	font-weight: 500
+	letter-spacing: 0.16em
+	text-transform: uppercase
+	color: rgba(255, 255, 255, 0.42)
 
+.links
+	margin: 0
+	padding: 0
+	list-style: none
+	display: flex
+	flex-direction: column
+	gap: 10px
+	a, span
+		color: rgba(255, 255, 255, 0.82)
+		text-decoration: none
+		font-size: 14px
+		line-height: 20px
+	a:hover
+		color: #ffffff
 
+.address
+	color: rgba(255, 255, 255, 0.62)
+	font-size: 14px
+	line-height: 22px
+	white-space: pre-line
 
+.maps
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	gap: 14px
+	margin-top: 22px
+	a
+		display: inline-flex
+		align-items: center
+		gap: 6px
+		color: rgba(255, 255, 255, 0.78)
+		text-decoration: none
+		font-size: 13px
+		line-height: 18px
+		&:hover
+			color: #ffffff
 
+.mapMark
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	width: 16px
+	height: 16px
+	border-radius: 4px
+	background: rgba(255, 255, 255, 0.12)
+	font-size: 10px
+	font-weight: 600
+
+.langs
+	margin-top: 22px
+
+.bottom
+	display: flex
+	align-items: center
+	justify-content: space-between
+	gap: 16px
+	padding-top: 22px
+	border-top: 1px solid rgba(255, 255, 255, 0.08)
+	font-size: 12px
+	line-height: 18px
+	color: rgba(255, 255, 255, 0.42)
+	p
+		margin: 0
+	@media screen and (max-width: 640px)
+		flex-direction: column
+		align-items: flex-start
+
+.legal
+	display: flex
+	gap: 18px
+	a
+		color: rgba(255, 255, 255, 0.42)
+		text-decoration: none
+		transition: color 0.2s ease
+		&:hover
+			color: #ffffff

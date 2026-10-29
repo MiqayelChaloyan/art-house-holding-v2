@@ -37,6 +37,8 @@ export default (S: any) =>
                     'design-lessons-select-option',
                     'partners',
                     'portfolio-design',
+                    'legal-page-design',
+                    'about-page-design',
                 ].includes(listItem.getId() as string)
             ),
 
@@ -107,6 +109,10 @@ export default (S: any) =>
                                 .icon(IoFolderOpen)
                                 .child(S.document().schemaType('about-us-design').documentId('about-us-design')),
                             S.listItem()
+                                .title('About')
+                                .icon(IoFolderOpen)
+                                .child(S.document().schemaType('about-page-design').documentId('about-page-design')),
+                            S.listItem()
                                 .title('Courses')
                                 .icon(IoFolderOpen)
                                 .child(
@@ -129,6 +135,27 @@ export default (S: any) =>
                                 .title('Contact Us')
                                 .icon(MdContactSupport)
                                 .child(S.document().schemaType('design-contact-us').documentId('contact-us-design')),
+                            S.listItem()
+                                .title('Legal')
+                                .icon(IoFolderOpen)
+                                .child(
+                                    S.list()
+                                        .title('Legal')
+                                        .items([
+                                            S.listItem()
+                                                .title('Privacy')
+                                                .icon(IoFolderOpen)
+                                                .child(S.document().schemaType('legal-page-design').documentId('legal-privacy-design')),
+                                            S.listItem()
+                                                .title('Terms')
+                                                .icon(IoFolderOpen)
+                                                .child(S.document().schemaType('legal-page-design').documentId('legal-terms-design')),
+                                            S.listItem()
+                                                .title('Imprint')
+                                                .icon(IoFolderOpen)
+                                                .child(S.document().schemaType('legal-page-design').documentId('legal-imprint-design')),
+                                        ]),
+                                ),
                             S.listItem()
                                 .title('Blog')
                                 .icon(IoFolderOpen)

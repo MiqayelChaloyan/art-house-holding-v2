@@ -1,0 +1,254 @@
+.section
+	background: #070707
+	color: #ffffff
+	padding: 88px 0 120px
+	border-top: 1px solid rgba(255, 255, 255, 0.12)
+	min-height: calc(100vh - 100px)
+
+.wrap
+	width: 100%
+	max-width: 1320px
+	margin: 0 auto
+	padding: 0 24px
+	@media screen and (max-width: 980px)
+		padding: 0 20px
+
+.hero
+	display: grid
+	grid-template-columns: minmax(0, 1fr) 320px
+	gap: 48px 56px
+	align-items: start
+	margin-bottom: 56px
+	@media screen and (max-width: 980px)
+		grid-template-columns: 1fr
+		gap: 32px
+		margin-bottom: 40px
+
+.copy
+	min-width: 0
+	container-type: inline-size
+
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin: 0 0 24px
+	font-size: 12px
+	font-weight: 500
+	line-height: 16px
+	letter-spacing: 0.18em
+	text-transform: uppercase
+	color: rgba(255, 255, 255, 0.72)
+
+.mark
+	width: 28px
+	height: 2px
+	border-radius: 2px
+	background: #e11d2e
+	flex-shrink: 0
+
+.headline
+	width: 100%
+	max-width: 860px
+	margin: 0
+	font-size: 88px
+	font-weight: 400
+	line-height: 0.94
+	letter-spacing: -0.03em
+	color: #f7f7f7
+	span
+		display: block
+
+.headlineAm
+	font-size: 8cqi
+	line-height: 1
+
+.headlineRu
+	font-size: 7.2cqi
+	line-height: 0.98
+
+.emphasis
+	font-style: italic
+	color: rgba(255, 255, 255, 0.72)
+
+.headline .dot
+	display: inline
+	color: #e11d2e
+
+.lead
+	max-width: 520px
+	margin: 28px 0 0
+	font-size: 15px
+	line-height: 24px
+	color: rgba(255, 255, 255, 0.68)
+
+.actions
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	gap: 14px
+	margin-top: 32px
+
+.primary, .secondary
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	gap: 8px
+	height: 46px
+	padding: 0 20px
+	border: 0
+	border-radius: 999px
+	font-size: 15px
+	font-weight: 500
+	line-height: 20px
+	text-decoration: none
+	white-space: nowrap
+	cursor: pointer
+	transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease
+	svg
+		width: 18px
+		height: 18px
+		transition: transform 0.2s ease
+
+.primary
+	background: #e11d2e
+	color: #ffffff
+	&:hover
+		background: #ff2d3f
+		box-shadow: 0 8px 18px rgba(225, 29, 46, 0.35)
+		svg
+			transform: translate(3px, -3px)
+
+.secondary
+	border: 1px solid rgba(255, 255, 255, 0.28)
+	background: transparent
+	color: #ffffff
+	&:hover
+		border-color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
+		svg
+			transform: translateX(3px)
+
+.aside
+	padding: 28px 28px 32px
+	border: 1px solid rgba(255, 255, 255, 0.1)
+	border-radius: 22px
+	background: rgba(255, 255, 255, 0.02)
+
+.asideLabel
+	margin: 0 0 18px
+	font-size: 11px
+	letter-spacing: 0.16em
+	text-transform: uppercase
+	color: rgba(255, 255, 255, 0.46)
+
+.asideNav
+	display: flex
+	flex-direction: column
+	gap: 4px
+
+.asideLink
+	display: flex
+	align-items: center
+	min-height: 40px
+	padding: 0 12px
+	border-radius: 999px
+	color: rgba(255, 255, 255, 0.72)
+	text-decoration: none
+	font-size: 14px
+	transition: background-color 0.2s ease, color 0.2s ease
+	&:hover
+		color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
+
+.asideLinkActive
+	color: #ffffff
+	background: #e11d2e
+	&:hover
+		background: #e11d2e
+		color: #ffffff
+
+.updated
+	display: flex
+	flex-direction: column
+	gap: 6px
+	margin: 22px 0 0
+	padding-top: 18px
+	border-top: 1px solid rgba(255, 255, 255, 0.08)
+	font-size: 12px
+	line-height: 18px
+	color: rgba(255, 255, 255, 0.46)
+	strong
+		font-weight: 500
+		color: rgba(255, 255, 255, 0.86)
+
+.grid
+	margin: 0
+	padding: 0
+	list-style: none
+	border: 1px solid rgba(255, 255, 255, 0.1)
+	border-radius: 22px
+	overflow: hidden
+	background: rgba(255, 255, 255, 0.02)
+
+.cell
+	display: grid
+	grid-template-columns: 88px minmax(0, 1fr)
+	gap: 24px 40px
+	padding: 36px 40px
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+	&:last-child
+		border-bottom: none
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+		gap: 12px
+		padding: 26px 20px
+
+.number
+	font-size: 44px
+	font-weight: 400
+	line-height: 1
+	letter-spacing: -0.04em
+	color: #e11d2e
+
+.body
+	max-width: 760px
+
+.heading
+	margin: 0 0 14px
+	font-size: 32px
+	font-weight: 400
+	line-height: 1.1
+	letter-spacing: -0.02em
+	color: #f4f4f4
+
+.body p
+	margin: 0 0 12px
+	font-size: 15px
+	line-height: 24px
+	color: rgba(255, 255, 255, 0.62)
+	white-space: pre-line
+	&:last-child
+		margin-bottom: 0
+
+@media screen and (max-width: 980px)
+	.headline
+		font-size: 56px
+	.headlineAm
+		font-size: 42px
+	.headlineRu
+		font-size: 48px
+	.section
+		padding: 56px 0 72px
+
+@media screen and (max-width: 640px)
+	.headline
+		font-size: 42px
+	.headlineAm
+		font-size: 34px
+	.headlineRu
+		font-size: 36px
+	.heading
+		font-size: 26px
+	.number
+		font-size: 36px

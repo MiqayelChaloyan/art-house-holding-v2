@@ -30,7 +30,7 @@ interface IHeaderProps {
 };
 
 const navigationLinks = [
-    { path: Pages.DESIGN_HOME, hash: '#about', label: 'about' },
+    { path: Pages.DESIGN_ABOUT, label: 'about' },
     { path: Pages.DESIGN_HOME, hash: '#design-courses', label: 'courses' },
     { path: Pages.DESIGN_BLOG_HOME, label: 'blog' },
     { path: Pages.DESIGN_PORTFOLIOS, label: 'portfolios' },

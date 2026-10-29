@@ -1,25 +1,18 @@
 'use client'
 
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { LuArrowUpRight } from 'react-icons/lu';
+import { useDispatch } from 'react-redux';
 
-import { FaFacebookF, FaTwitter, FaPinterestP, FaTiktok } from 'react-icons/fa';
-import { FaInstagram, FaViber } from 'react-icons/fa6';
-import { IoMailSharp } from 'react-icons/io5';
-import { GrLinkedinOption } from 'react-icons/gr';
-import { PiTelegramLogoLight, PiWhatsappLogo } from 'react-icons/pi';
-import { AiOutlineYoutube } from 'react-icons/ai';
+import { openModal } from '@/src/store/modal_reducer';
 
 import NextImage from '@/src/components/components/image';
-import Container from '@/src/components/components/container';
-import Copyright from '@/src/components/components/copyright';
+import LocalSwitcher from '@/src/components/components/local-switcher';
 
-import { Arial, ArianAMU } from '@/src/constants/font';
 import { ImagePaths } from '@/src/constants';
-
-import useWindowSize from '@/src/hooks/useWindowSize';
-
-import { socialNetwork } from '@/src/types/design';
+import { Inter } from '@/src/constants/font';
+import { Pages } from '@/src/constants/pages';
 
 import colors from '@/src/themes';
 
@@ -32,93 +25,138 @@ interface Props {
     socialData: CONTACT_US_DESIGN_QUERYResult;
 };
 
-const socialNetworkComponents: socialNetwork = {
-    facebook: FaFacebookF,
-    x: FaTwitter,
-    instagram: FaInstagram,
-    gmail: IoMailSharp,
-    linkedin: GrLinkedinOption,
-    pinterest: FaPinterestP,
-    telegram: PiTelegramLogoLight,
-    tiktok: FaTiktok,
-    viber: FaViber,
-    whatsapp: PiWhatsappLogo,
-    youtube: AiOutlineYoutube,
-};
+const navigationLinks = [
+    { path: Pages.DESIGN_ABOUT, label: 'about' },
+    { path: Pages.DESIGN_HOME, hash: '#design-courses', label: 'courses' },
+    { path: Pages.DESIGN_BLOG_HOME, label: 'blog' },
+    { path: Pages.DESIGN_PORTFOLIOS, label: 'portfolios' },
+    { path: Pages.DESIGN_CONTACT, label: 'contact' },
+];
+
+const preferredSocial = ['instagram', 'behance', 'linkedin'];
+
+const legalLinks = [
+    { path: Pages.DESIGN_PRIVACY, label: 'privacy' },
+    { path: Pages.DESIGN_TERMS, label: 'terms' },
+    { path: Pages.DESIGN_IMPRINT, label: 'imprint' },
+];
 
 const Footer = ({ socialData }: Readonly<Props>) => {
-    const windowSize = useWindowSize();
-    const t = useTranslations('address');
+    const locale = useLocale();
+    const t = useTranslations();
+    const dispatch = useDispatch();
+    const year = new Date().getFullYear();
+    const address = socialData?.address || t('address.address');
+    const mapsQuery = encodeURIComponent(address);
 
-    const phoneNumbers = socialData?.phone_numbers.map((number: string, index: number) => {
-        const phoneNumber = index < socialData.phone_numbers.length - 1 ? `${number}, ` : `${number}`;
-        const tel = 'tel:' + number.replace(/\s/g, '');
-
-        return (
-            <Link key={number} href={tel} aria-label={number} className={styles.icon}>
-                <p className={cn(styles.info_web, ArianAMU.className)}>
-                    {phoneNumber}
-                </p>
-            </Link>
-        )
-    });
-
-    const hosts = socialData?.social_links.map((host: SOCIAL_LINK) => {
-        const socialName = host?.social_name.toLowerCase();
-        const link = socialName === 'gmail' ? `mailto:${host?.social_link}` : host?.social_link;
-        const SocialIcon = (socialNetworkComponents as any)[socialName];
-        if (!SocialIcon) return null;
-
-        return (
-            <Link
-                key={host._key}
-                href={link}
-                aria-label={host?.social_name}
-                className={styles.social_network}
-                target='_blank'
-            >
-                <SocialIcon
-                    size={windowSize.width <= 1024 ? 15 : 30}
-                    fill={colors.yellow}
-                />
-            </Link>
-        )
-    });
+    const socials = (socialData?.social_links || [])
+        .filter((host) => preferredSocial.includes(host.social_name?.toLowerCase()))
+        .sort((a, b) => preferredSocial.indexOf(a.social_name.toLowerCase()) - preferredSocial.indexOf(b.social_name.toLowerCase()));
 
     return (
-        <footer className={styles.footer}>
-            <Container className='container'>
-                <div className={styles.column}>
-                    <div className={styles.logo}>
-                        <NextImage
-                            src={ImagePaths.DESIGN.logoURL}
-                            alt='logo'
-                            className={styles.image}
-                            width={500}
-                            height={500}
-                        />
+        <footer id="site-footer" className={cn(styles.footer, Inter.className)}>
+            <div className={styles.wrap}>
+                <div className={styles.grid}>
+                    <div className={styles.brand}>
+                        <Link href={`/${locale}${Pages.DESIGN_HOME}`} className={styles.logo} aria-label="Art House Design Studio">
+                            <NextImage
+                                src={ImagePaths.DESIGN.logoURL}
+                                alt="Art House"
+                                className={styles.logoImage}
+                                width={120}
+                                height={80}
+                            />
+                        </Link>
+                        <p className={styles.tagline}>{t('footer-design.tagline')}</p>
+                        <button
+                            type="button"
+                            className={styles.cta}
+                            onClick={() => dispatch(openModal(true))}
+                        >
+                            <span>{t('buttons.start-learning')}</span>
+                            <LuArrowUpRight aria-hidden />
+                        </button>
                     </div>
-                    <div>
-                        <div className={styles.address}>
-                            <span className={Arial.className}>{socialData?.address || t('address')}</span>
-                            <div className={styles.phone_numbers}>
-                                {phoneNumbers}
-                            </div>
-                            <Link href={`mailto:${socialData?.email}`} aria-label='Email'>
-                                <p className={styles.info_web}>
-                                    {socialData?.email}
-                                </p>
+
+                    <nav className={styles.col} aria-label={t('footer-design.navigate')}>
+                        <p className={styles.label}>{t('footer-design.navigate')}</p>
+                        <ul className={styles.links}>
+                            {navigationLinks.map((link) => (
+                                <li key={link.label}>
+                                    <Link href={`/${locale}${link.path}${link.hash ?? ''}`}>
+                                        {link.label === 'about' && locale === 'en'
+                                            ? 'About'
+                                            : t(`navigation.${link.label}`)}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+
+                    <div className={styles.col}>
+                        <p className={styles.label}>{t('footer-design.social')}</p>
+                        <ul className={styles.links}>
+                            {socials.map((host) => (
+                                <li key={host._key}>
+                                    <Link href={host.social_link} target="_blank" rel="noreferrer">
+                                        {host.social_name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className={styles.maps}>
+                            <Link href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`} target="_blank" rel="noreferrer">
+                                <span className={styles.mapMark}>G</span>
+                                Google
+                            </Link>
+                            <Link href={`https://yandex.com/maps/?text=${mapsQuery}`} target="_blank" rel="noreferrer">
+                                Yandex
+                            </Link>
+                            <Link href={`https://2gis.am/yerevan/search/${mapsQuery}`} target="_blank" rel="noreferrer">
+                                <span className={styles.mapMark}>2</span>
+                                GIS
                             </Link>
                         </div>
-                        <Copyright className={cn(styles.reserved, Arial.className)} />
                     </div>
-                    <div className={styles.hosts}>
-                        {hosts}
+
+                    <div className={styles.col}>
+                        <p className={styles.label}>{t('footer-design.contact')}</p>
+                        <ul className={styles.links}>
+                            {socialData?.email && (
+                                <li>
+                                    <Link href={`mailto:${socialData.email}`}>{socialData.email}</Link>
+                                </li>
+                            )}
+                            {(socialData?.phone_numbers || []).map((number) => (
+                                <li key={number}>
+                                    <Link href={`tel:${number.replace(/\s/g, '')}`}>{number}</Link>
+                                </li>
+                            ))}
+                            {address && <li className={styles.address}>{address}</li>}
+                        </ul>
+                        <div className={styles.langs}>
+                            <LocalSwitcher
+                                variant="codes"
+                                activeColor={colors.white}
+                                color="rgba(255, 255, 255, 0.55)"
+                            />
+                        </div>
                     </div>
                 </div>
-            </Container>
+
+                <div className={styles.bottom}>
+                    <p>© {year} ART HOUSE Studio. {t('texts.rights')}.</p>
+                    <div className={styles.legal}>
+                        {legalLinks.map((link) => (
+                            <Link key={link.label} href={`/${locale}${link.path}`}>
+                                {t(`footer-design.${link.label}`)}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </footer>
-    )
+    );
 };
 
 export default Footer;

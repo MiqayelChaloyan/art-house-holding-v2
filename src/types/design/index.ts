@@ -24,6 +24,11 @@ export interface FormContactUs {
 export interface WORKER {
     profession: string;
     worker: string;
+    experience?: string;
+    bio?: string;
+    programs?: string[];
+    skills?: string[];
+    behance_url?: string;
     worker_image: { _type: 'image'; alt: string; asset: ImagePath };
     _key: string;
 };

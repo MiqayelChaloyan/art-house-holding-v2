@@ -7,6 +7,14 @@ const Arial = localFont({ src: '../../public/font/arial.ttf', display: 'swap', p
 const Calibri = localFont({ src: '../../public/font/calibri.ttf', display: 'swap', preload: false });
 const Belleza = localFont({ src: '../../public/font/belleza.ttf', display: 'swap', preload: false });
 const MMArmenU = localFont({ src: '../../public/font/MMArmenU.ttf', display: 'swap', preload: false });
+const InstrumentSerif = localFont({
+    src: [
+        { path: '../../public/font/InstrumentSerif-Regular.ttf', weight: '400', style: 'normal' },
+        { path: '../../public/font/InstrumentSerif-Italic.ttf', weight: '400', style: 'italic' },
+    ],
+    display: 'swap',
+    preload: false,
+});
 
 export {
     ArianAMU,
@@ -15,5 +23,6 @@ export {
     Arial,
     Calibri,
     Belleza,
-    MMArmenU
+    MMArmenU,
+    InstrumentSerif,
 };

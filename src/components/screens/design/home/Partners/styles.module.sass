@@ -1,275 +1,56 @@
 .section
-    margin-bottom: 50px
-    width: 100%
-    height: auto
-    /* @sm */
-    @media screen and (max-width: 768px)
-        margin-bottom: 120px
+	background: #070707
+	color: #ffffff
+	border-top: 1px solid rgba(255, 255, 255, 0.12)
 
-/*Titles*/
-.titles
-    margin-top: 50px
-    
-.title-line
-    width: 39%
-    height: 4px
-    position: absolute
-    background-color: #5F401B
-    /* @sm */
-    @media screen and (max-width: 768px)
-        height: 3px
+.marquee
+	overflow: hidden
+	padding: 28px 0
+	mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%)
 
-.bottom-line
-    right: 0
+.track
+	display: flex
+	align-items: center
+	width: max-content
+	gap: 40px
+	padding-right: 40px
+	animation: marquee 42s linear infinite
+	@media (prefers-reduced-motion: reduce)
+		animation: none
 
-.back-line
-    left: 0
+.item
+	display: inline-flex
+	align-items: center
+	gap: 4px
+	flex-shrink: 0
 
-.bottom-title
-    position: relative
-    bottom: 65px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        bottom: 75px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        bottom: 65px
-    @media screen and (max-width: 980px)
-        bottom: 46px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        bottom: 60px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        bottom: 20px
+.logo
+	width: 84px !important
+	height: 84px !important
+	border-radius: 50%
+	object-fit: cover
+	background: #ffffff
+	flex-shrink: 0
 
-.title
-    font-size: 90px
-    font-weight: 700
-    color: #362906
-    text-align: center
-    line-height: 130px
-    text-transform: uppercase
-    /* @4xl */
-    @media screen and (max-width: 2560px)
-        font-size: 90px
-        line-height: 130px
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        font-size: 90px
-        line-height: 130px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        font-size: 90px
-        line-height: 130px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        font-size: 70px
-        line-height: 130px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        font-size: 70px
-        line-height: 100px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        font-size: 70px
-        line-height: 100px
-    @media screen and (max-width: 980px)
-        font-size: 60px
-        line-height: 90px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        font-size: 50px
-        line-height: 90px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        font-size: 30px
-        line-height: 60px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        font-size: 27px
-        line-height: 50px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        font-size: 25px
-        line-height: 50px
+.dot
+	font-size: 48px
+	line-height: 1
+	color: #e11d2e
 
-.title-back
-    font-size: 100px
-    font-weight: 700
-    color: #D7D3CE
-    text-align: center
-    line-height: 130px
-    padding-right: 400px
-    /* @4xl */
-    @media screen and (max-width: 2560px)
-        font-size: 100px
-        line-height: 130px
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        font-size: 100px
-        line-height: 130px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        font-size: 100px
-        line-height: 130px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        font-size: 80px
-        line-height: 130px
-        padding-right: 350px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        font-size: 80px
-        line-height: 130px
-        padding-right: 300px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        font-size: 80px
-        line-height: 130px
-        padding-right: 0
-    @media screen and (max-width: 980px)
-        font-size: 60px
-        line-height: 90px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        font-size: 50px
-        line-height: 100px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        font-size: 35px
-        line-height: 60px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        font-size: 28px
-        line-height: 50px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        font-size: 25px
-        line-height: 50px
+@keyframes marquee
+	from
+		transform: translateX(0)
+	to
+		transform: translateX(-50%)
 
-/* Slider Styles*/
-.slider
-    width: 100%
-    margin: 0 auto
-
-.arrow
-    display: flex
-    position: absolute
-    top: 50px
-    font-size: 20px
-    padding: 5px 15px
-    z-index: 10
-    cursor: pointer
-    align-items: center
-    /* 2xl */
-    @media screen and ( max-width: 1536px )
-        top: 50px
-    /* xl */
-    @media screen and ( max-width: 1280px )
-        top: 50px
-    /* lg */
-    @media screen and ( max-width: 1024px )
-        top: 338px
-    /* md */
-    @media screen and ( max-width: 768px )
-        top: 280px
-    /* sm */
-    @media screen and ( max-width: 640px )
-        top: 280px
-    /* xs */
-    @media screen and ( max-width: 475px )
-        top: 280px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        top: 280px
-    svg
-        /* xl */
-        @media screen and ( max-width: 1280px )
-            width: 20px
-            height: 20px
-        /* sm */
-        @media screen and ( max-width: 640px )
-            width: 17px
-            height: 17px
-
-.arrow_right
-    right: 0
-    /* @md */
-    @media screen and (max-width: 1024px)
-        right: 20px
-        background-color: #4b352b
-        width: 50px
-        height: 38px
-        border-radius: 10px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        right: 20px
-        background-color: #4b352b
-        width: 50px
-        height: 38px
-        border-radius: 10px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        right: 20px
-        background-color: #4b352b
-        width: 50px
-        height: 30px
-        border-radius: 10px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        right: 20px
-        background-color: #4b352b
-        width: 40px
-        height: 30px
-        border-radius: 10px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        right: 20px
-        background-color: #4b352b
-        width: 40px
-        height: 30px
-        border-radius: 10px
-
-.arrow_left
-    left: 0
-    /* @md */
-    @media screen and (max-width: 1024px)
-        left: auto
-        right: 80px
-        background-color: #4b352b
-        width: 50px
-        height: 38px
-        border-radius: 10px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        left: auto
-        right: 80px
-        background-color: #4b352b
-        width: 50px
-        height: 38px
-        border-radius: 10px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        left: auto
-        right: 80px
-        background-color: #4b352b
-        width: 50px
-        height: 30px
-        border-radius: 10px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        left: auto
-        right: 80px
-        background-color: #4b352b
-        width: 40px
-        height: 30px
-        border-radius: 10px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        left: auto
-        right: 80px
-        background-color: #4b352b
-        width: 40px
-        height: 30px
-        border-radius: 10px
+@media screen and (max-width: 640px)
+	.marquee
+		padding: 20px 0
+	.logo
+		width: 64px !important
+		height: 64px !important
+	.dot
+		font-size: 36px
+	.track
+		gap: 28px
+		padding-right: 28px

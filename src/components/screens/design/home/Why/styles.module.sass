@@ -1,0 +1,138 @@
+.section
+	background: #070707
+	color: #ffffff
+	padding: 88px 0 96px
+	border-top: 1px solid rgba(255, 255, 255, 0.12)
+
+.wrap
+	width: 100%
+	max-width: 1320px
+	margin: 0 auto
+	padding: 0 24px
+	@media screen and (max-width: 980px)
+		padding: 0 20px
+
+.header
+	margin-bottom: 36px
+
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin: 0 0 24px
+	font-size: 12px
+	font-weight: 500
+	line-height: 16px
+	letter-spacing: 0.18em
+	text-transform: uppercase
+	color: rgba(255, 255, 255, 0.72)
+
+.mark
+	width: 28px
+	height: 2px
+	border-radius: 2px
+	background: #e11d2e
+	flex-shrink: 0
+
+.headline
+	width: 100%
+	min-width: 0
+	max-width: 920px
+	margin: 0
+	font-size: 72px
+	font-weight: 400
+	line-height: 0.98
+	letter-spacing: -0.02em
+	color: #f7f7f7
+	container-type: inline-size
+	span
+		display: block
+
+.headlineAm
+	font-size: 6.2cqi
+	line-height: 1
+
+.headlineRu
+	font-size: 5.8cqi
+	line-height: 1
+
+.emphasis
+	font-style: italic
+	color: rgba(255, 255, 255, 0.72)
+
+.grid
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	margin: 0
+	padding: 0
+	list-style: none
+	border: 1px solid rgba(255, 255, 255, 0.1)
+	border-radius: 22px
+	overflow: hidden
+	background: rgba(255, 255, 255, 0.02)
+	@media screen and (max-width: 980px)
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+
+.cell
+	display: flex
+	flex-direction: column
+	gap: 14px
+	min-height: 220px
+	padding: 28px 28px 32px
+	border-right: 1px solid rgba(255, 255, 255, 0.1)
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+	&:nth-child(3n)
+		border-right: none
+	&:nth-last-child(-n + 3)
+		border-bottom: none
+	@media screen and (max-width: 980px)
+		min-height: 200px
+		&:nth-child(3n)
+			border-right: 1px solid rgba(255, 255, 255, 0.1)
+		&:nth-child(2n)
+			border-right: none
+		&:nth-last-child(-n + 3)
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+		&:nth-last-child(-n + 2)
+			border-bottom: none
+		&:last-child
+			border-bottom: none
+	@media screen and (max-width: 640px)
+		border-right: none
+		&:not(:last-child)
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+
+.number
+	font-size: 44px
+	font-weight: 500
+	line-height: 1
+	letter-spacing: -0.04em
+	color: #e11d2e
+
+.title
+	margin: 0
+	font-size: 22px
+	font-weight: 500
+	line-height: 28px
+	letter-spacing: -0.02em
+
+.description
+	margin: 0
+	max-width: 320px
+	font-size: 14px
+	line-height: 22px
+	color: rgba(255, 255, 255, 0.55)
+
+@media screen and (max-width: 640px)
+	.section
+		padding: 56px 0 64px
+	.headline
+		font-size: 40px
+	.headlineAm, .headlineRu
+		font-size: 6.2cqi
+	.number
+		font-size: 36px
+	.cell
+		padding: 22px 20px 26px

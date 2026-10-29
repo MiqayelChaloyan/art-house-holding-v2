@@ -24,8 +24,13 @@ import coursesSchemaDesign from './schemas/design/courses-schema';
 import priceListSchemaDesign from './schemas/design/price-list-schema';
 import lessonsSchemaDesign from './schemas/design/lessons-schema';
 import portfolioSchemaDesign from './schemas/design/portfolios-schema';
+import legalPageSchemaDesign from './schemas/design/legal-schema';
+import aboutPageSchemaDesign from './schemas/design/about-page-schema';
+import { localeString, localeText } from './schemas/shared/localeString';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
+  localeString,
+  localeText,
   homeSchemaArtHouse,
   blogSchemaEducationalCenter,
   blogSchemaDesign,
@@ -50,6 +55,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   lessonsSchemaDesign,
   partnersSchema,
   portfolioSchemaDesign,
+  legalPageSchemaDesign,
+  aboutPageSchemaDesign,
 ];
 
 export const schema: { types: SchemaTypeDefinition[] } = {

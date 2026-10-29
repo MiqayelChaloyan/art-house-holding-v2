@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { ABOUT_US_DETAILS_QUERY, COURSE_ID_QUERY, COURSE_SLUG_QUERY, COURSES_QUERY, LESSONS_QUERY, PORTFOLIO_QUERY, PRICE_LIST_QUERY, SOCIAL_QUERY, BLOG_POSTS_QUERY, BLOG_SLUG_QUERY, BLOG_SIMILAR_POSTS_QUERY } from '@/sanity/services/design-service';
+import { ABOUT_US_DETAILS_QUERY, COURSE_ID_QUERY, COURSE_SLUG_QUERY, COURSES_QUERY, LESSONS_QUERY, PORTFOLIO_QUERY, PRICE_LIST_QUERY, SOCIAL_QUERY, BLOG_POSTS_QUERY, BLOG_SLUG_QUERY, BLOG_SIMILAR_POSTS_QUERY, LEGAL_PAGE_QUERY, ABOUT_PAGE_QUERY } from '@/sanity/services/design-service';
 
 import { sanityFetch } from '@/src/api/sanity-fetch';
 import { createBlogFetchers } from '@/src/utils/data/blog/fetchers';
@@ -76,6 +76,26 @@ export const getSelectOptions = cache(async (locale: string): Promise<SELECT_OPT
     });
 
     return result[0];
+});
+
+export const getAboutPage = cache(async (locale: string): Promise<ABOUT_PAGE_DESIGN_QUERYResult | null> => {
+    const result = await sanityFetch<ABOUT_PAGE_DESIGN_QUERYResult | null>({
+        query: ABOUT_PAGE_QUERY,
+        params: { language: locale },
+        tags: ['design-about'],
+    });
+
+    return result;
+});
+
+export const getLegalPage = cache(async (locale: string, page: LEGAL_PAGE_SLUG): Promise<LEGAL_PAGE_DESIGN_QUERYResult | null> => {
+    const result = await sanityFetch<LEGAL_PAGE_DESIGN_QUERYResult | null>({
+        query: LEGAL_PAGE_QUERY,
+        params: { language: locale, page },
+        tags: ['design-legal'],
+    });
+
+    return result;
 });
 
 export const getContacts = cache(async (locale: string): Promise<CONTACT_US_DESIGN_QUERYResult> => {

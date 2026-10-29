@@ -52,6 +52,7 @@ export const createBlogSimilarPostsQuery = (documentType: string) => `
 
 export const blogSectionQueryFragment = `
     "blog_section": blog_section {
+        "eyebrow": eyebrow[$language],
         "section_title": section_title[$language],
         "section_subtitle": section_subtitle[$language],
     }`;

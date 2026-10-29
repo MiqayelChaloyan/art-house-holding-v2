@@ -1,37 +1,23 @@
-const localizedStringFields = [
-    {
-        title: 'Armenian',
-        name: 'am',
-        type: 'string',
-    },
-    {
-        title: 'English',
-        name: 'en',
-        type: 'string',
-    },
-    {
-        title: 'Russian',
-        name: 'ru',
-        type: 'string',
-    },
-];
-
 export const blogSectionFields = {
     name: 'blog_section',
     type: 'object',
     title: 'Blog Section',
+    description: 'Heading for the home Blog and news block, and the blog listing page.',
     fields: [
         {
-            title: 'Section Title',
-            name: 'section_title',
-            type: 'object',
-            fields: localizedStringFields,
+            title: 'Eyebrow',
+            name: 'eyebrow',
+            type: 'localeString',
         },
         {
-            title: 'Section Subtitle',
+            title: 'Headline line 1',
+            name: 'section_title',
+            type: 'localeString',
+        },
+        {
+            title: 'Headline line 2 (italic)',
             name: 'section_subtitle',
-            type: 'object',
-            fields: localizedStringFields,
+            type: 'localeString',
         },
     ],
 };

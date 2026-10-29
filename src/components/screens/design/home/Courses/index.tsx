@@ -1,15 +1,12 @@
 'use client'
 
-import React, { useCallback } from 'react';
+import React from 'react';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import Course from './Course';
 
-import { Arial } from '@/src/constants/font';
-import { Titles } from '@/src/constants';
-
-import useWindowSize from '@/src/hooks/useWindowSize';
+import { InstrumentSerif, Inter } from '@/src/constants/font';
 
 import cn from 'classnames';
 
@@ -18,37 +15,42 @@ import styles from './styles.module.sass';
 
 interface Props {
     courses: HOME_COURSES[];
+    section?: COURSES_SECTION;
 };
 
-const Courses = ({ courses }: Readonly<Props>) => {
-    const t = useTranslations('navigation');
-    const windowSize = useWindowSize();
+const Courses = ({ courses, section }: Readonly<Props>) => {
+    const t = useTranslations('courses-section');
+    const locale = useLocale();
 
-    const determinePosition = useCallback((index: number) => {
-        return index % 2 === 0 && (windowSize.width > 780 || windowSize.width === undefined) ? 'right' : 'left';
-    }, [windowSize]);
+    const copy = {
+        eyebrow: section?.eyebrow || t('eyebrow'),
+        line1: section?.line_1 || t('line-1'),
+        line2: section?.line_2 || t('line-2'),
+    };
 
     return (
-        <section id='design-courses' className={styles['design-courses']}>
-            <div className={styles.titles}>
-                <div>
-                    <div className={cn(styles['title-line'], styles['back-line'])} />
-                    <h2 className={cn(styles['title-back'], Arial.className)}>{Titles.courses}</h2>
-                </div>
-                <div className={styles['bottom-title']}>
-                    <h1 className={cn(styles.title, Arial.className)}>{t('courses')}</h1>
-                    <div className={cn(styles['title-line'], styles['bottom-line'])} />
-                </div>
+        <section id="design-courses" className={cn(styles.section, Inter.className)}>
+            <div className={styles.wrap}>
+                <header className={styles.header}>
+                    <p className={styles.eyebrow}>
+                        <span className={styles.mark} aria-hidden />
+                        {copy.eyebrow}
+                    </p>
+                    <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
+                        <span>{copy.line1}</span>
+                        <span className={styles.emphasis}>{copy.line2}</span>
+                    </h2>
+                </header>
+                <ul className={styles.grid}>
+                    {courses?.map((course) => (
+                        <li key={course._key}>
+                            <Course course={course} />
+                        </li>
+                    ))}
+                </ul>
             </div>
-            {courses?.map((course, index) => (
-                <Course
-                    key={course._key}
-                    course={course}
-                    position={determinePosition(index)}
-                />
-            ))}
         </section>
-    )
+    );
 };
 
 export default React.memo(Courses);

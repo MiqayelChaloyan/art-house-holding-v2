@@ -15,24 +15,20 @@ interface Props {
     lessonsArmenian: SELECT_OPTIONS_DESIGN_QUERYResult;
 };
 
+const hiddenOn = (locale: string) => ([
+    `/${locale}/design`,
+    `/${locale}/design/about`,
+    `/${locale}/design/contact`,
+    `/${locale}/design/orders`,
+    `/${locale}/design/privacy`,
+    `/${locale}/design/terms`,
+    `/${locale}/design/imprint`,
+]);
+
 const ContactUs = ({ lessons, lessonsArmenian }: Readonly<Props>) => {
     const activeLocale = useLocale();
     const pathname = usePathname();
-    let isOpen = true;
-
-    switch (pathname) {
-        case `/${activeLocale}/design/contact`:
-            isOpen = false
-            break;
-        case `/${activeLocale}/design/orders`:
-            isOpen = false
-            break;
-        case `/${activeLocale}/design`:
-            isOpen = false
-            break;
-        default:
-            isOpen = true
-    };
+    const isOpen = !hiddenOn(activeLocale).includes(pathname.replace(/\/$/, ''));
 
     return isOpen && (
         <div className={styles['form-container']}>

@@ -62,13 +62,13 @@ export default async function Layout({
         <>
             <Header typePosition='fixed' locale={locale} />
             <div className='design-container'>
-                <GoBack locale={locale} theme={colors.darkChestnut} />
-                <ScrollToTopButton theme={colors.darkChestnut} />
+                <GoBack locale={locale} theme={colors.studioRed} />
+                <ScrollToTopButton theme={colors.studioRed} />
                 <FloatingMenu
                     website={localeStrings[locale]}
                     branches={branches}
-                    theme={colors.darkChestnut}
-                    hover={colors.brown}
+                    theme={colors.studioRed}
+                    hover={colors.studioRedDark}
                 />
                 {children}
                 <ContactUs lessons={lessons} lessonsArmenian={lessonsArmenianKeyword} />

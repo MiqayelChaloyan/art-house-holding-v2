@@ -1,0 +1,229 @@
+.section
+	background: #070707
+	color: #ffffff
+	padding: 88px 0 96px
+	border-top: 1px solid rgba(255, 255, 255, 0.12)
+
+.wrap
+	display: grid
+	grid-template-columns: minmax(0, 1fr) 420px
+	align-items: start
+	gap: 28px 56px
+	width: 100%
+	max-width: 1320px
+	margin: 0 auto
+	padding: 0 24px
+	@media screen and (max-width: 980px)
+		grid-template-columns: 1fr
+		gap: 36px
+		padding: 0 20px
+
+.copy
+	display: flex
+	flex-direction: column
+	align-items: flex-start
+	width: 100%
+	min-width: 0
+	container-type: inline-size
+
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin: 0 0 28px
+	font-size: 12px
+	font-weight: 500
+	line-height: 16px
+	letter-spacing: 0.18em
+	text-transform: uppercase
+	color: rgba(255, 255, 255, 0.72)
+
+.mark
+	width: 28px
+	height: 2px
+	border-radius: 2px
+	background: #e11d2e
+	flex-shrink: 0
+
+.headline
+	width: 100%
+	margin: 0
+	font-size: 108px
+	font-weight: 400
+	line-height: 0.93
+	letter-spacing: -0.02em
+	color: #f7f7f7
+	span
+		display: block
+
+.headlineAm
+	font-size: 8cqi
+	line-height: 0.96
+
+.headlineRu
+	font-size: 7.6cqi
+	line-height: 0.96
+
+.emphasis
+	font-style: italic
+	font-weight: 400
+	color: #c4c4c4
+
+.headline .dot
+	display: inline
+	color: #e11d2e
+
+.description
+	max-width: 480px
+	margin: 28px 0 0
+	font-size: 15px
+	font-weight: 400
+	line-height: 24px
+	color: rgba(255, 255, 255, 0.68)
+
+.actions
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	gap: 14px
+	margin-top: 32px
+
+.primary, .secondary
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	gap: 8px
+	height: 46px
+	padding: 0 20px
+	border-radius: 999px
+	font-size: 15px
+	font-weight: 500
+	line-height: 20px
+	text-decoration: none
+	white-space: nowrap
+	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease
+	svg
+		width: 18px
+		height: 18px
+		transition: transform 0.2s ease
+
+.primary
+	background: #e11d2e
+	color: #ffffff
+	&:hover
+		background: #ff2d3f
+		box-shadow: 0 8px 18px rgba(225, 29, 46, 0.35)
+		svg
+			transform: translate(3px, -3px)
+
+.secondary
+	border: 1px solid rgba(255, 255, 255, 0.28)
+	color: #ffffff
+	&:hover
+		border-color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
+		svg
+			transform: translateX(3px)
+
+.visual
+	display: flex
+	flex-direction: column
+	gap: 16px
+	width: 420px
+	margin-top: 48px
+
+.photo
+	position: relative
+	overflow: hidden
+	width: 420px
+	height: 500px
+	border-radius: 22px
+	background: #141414
+
+.slide
+	position: absolute
+	inset: 0
+	background-position: center
+	background-size: cover
+	background-repeat: no-repeat
+	will-change: transform, opacity
+
+.shade
+	position: absolute
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 2
+	height: 88px
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.42), transparent)
+	pointer-events: none
+
+.dots
+	position: absolute
+	bottom: 16px
+	left: 18px
+	z-index: 3
+	display: flex
+	align-items: center
+	gap: 6px
+
+.pager
+	width: 6px
+	height: 6px
+	border-radius: 99px
+	background: rgba(255, 255, 255, 0.45)
+	transition: width 0.35s ease, background-color 0.35s ease
+
+.pagerActive
+	width: 22px
+	background: #ffffff
+
+.stats
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 12px
+	margin: 0
+	padding: 0
+	list-style: none
+
+.stat
+	display: flex
+	flex-direction: column
+	justify-content: center
+	min-height: 84px
+	padding: 14px 16px
+	border: 1px solid rgba(255, 255, 255, 0.12)
+	border-radius: 18px
+	background: rgba(255, 255, 255, 0.03)
+
+.value
+	font-size: 26px
+	font-weight: 500
+	line-height: 30px
+	letter-spacing: -0.03em
+
+.label
+	margin-top: 4px
+	font-size: 13px
+	line-height: 18px
+	color: rgba(255, 255, 255, 0.55)
+
+@media screen and (max-width: 980px)
+	.visual, .photo
+		width: 100%
+	.photo
+		height: auto
+		aspect-ratio: 420 / 500
+
+@media screen and (max-width: 640px)
+	.section
+		padding: 56px 0 64px
+	.headline
+		font-size: 52px
+		line-height: 0.96
+	.headlineAm
+		font-size: 8cqi
+	.headlineRu
+		font-size: 7.6cqi
+	.stats
+		grid-template-columns: 1fr

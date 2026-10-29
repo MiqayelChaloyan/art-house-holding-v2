@@ -12,13 +12,51 @@ export const ABOUT_US_DETAILS_QUERY = `
         image,
         "title": title[$language],
     },
+    "studio_section": studio_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "line_3": line_3[$language],
+        "line_4": line_4[$language],
+        "description": description[$language],
+        "stats": stats[] {
+            _key,
+            value,
+            "title": title[$language],
+        },
+        "slides": slides[] {
+            _key,
+            image,
+        },
+    },
+    "courses_section": courses_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+    },
+    "why_section": why_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "items": items[] {
+            _key,
+            number,
+            "title": title[$language],
+            "description": description[$language],
+        },
+    },
     "courses": courses[] {
         _key,
         name,
         gallery_of_course,
+        card_image,
         categories,
+        "slug": categories->slug.current,
         "course_name": course_name[$language],
         "about_course": about_course[$language],
+        "card_description": card_description[$language],
+        "duration": duration[$language],
+        "level": level[$language],
     },
     "our_day": our_day {
         video,
@@ -29,11 +67,60 @@ export const ABOUT_US_DETAILS_QUERY = `
         isPlusSign,
         "title": title[$language],
     },
+    "projects_section": projects_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "description": description[$language],
+        "projects": projects[] {
+            _key,
+            year,
+            href,
+            image,
+            "title": title[$language],
+            "category": category[$language],
+        },
+    },
+    "staff_section": staff_section {
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "line_3": line_3[$language],
+    },
+    "certificates_section": certificates_section {
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "line_3": line_3[$language],
+        certificate,
+        diploma,
+    },
     "workers": workers[] {
         _key,
         worker_image,
+        behance_url,
         "worker": worker[$language],
         "profession": profession[$language],
+        "experience": experience[$language],
+        "bio": bio[$language],
+        "programs": programs[] { "label": label[$language] }.label,
+        "skills": skills[] { "label": label[$language] }.label,
+    },
+    "clients": clients[] {
+        _key,
+        name,
+        logo,
+    },
+    "voices_section": voices_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "items": items[] {
+            _key,
+            rating,
+            image,
+            "name": name[$language],
+            "role": role[$language],
+            "quote": quote[$language],
+        },
     },
     ${blogSectionQueryFragment},
 }`;
@@ -161,6 +248,7 @@ export const SOCIAL_QUERY = `
     phone_numbers,
     social_links,
     "address": address[$language],
+    "hours": hours[$language],
 }`;
 
 export const LESSONS_QUERY = `
@@ -180,6 +268,37 @@ export const PORTFOLIO_QUERY = `
 *[_type == "portfolio-design"] {
     _id,
     image
+}`;
+
+export const ABOUT_PAGE_QUERY = `
+*[_type == "about-page-design"][0] {
+    _id,
+    "eyebrow": eyebrow[$language],
+    "line_1": line_1[$language],
+    "line_2": line_2[$language],
+    "intro": intro[$language],
+    image,
+    "sections": sections[] {
+        _key,
+        "heading": heading[$language],
+        "body": body[$language],
+    },
+}`;
+
+export const LEGAL_PAGE_QUERY = `
+*[_type == "legal-page-design" && page == $page][0] {
+    _id,
+    page,
+    "eyebrow": eyebrow[$language],
+    "line_1": line_1[$language],
+    "line_2": line_2[$language],
+    "lead": lead[$language],
+    updated_at,
+    "sections": sections[] {
+        _key,
+        "heading": heading[$language],
+        "body": body[$language],
+    },
 }`;
 
 export const PRICE_LIST_QUERY = `

@@ -2,10 +2,14 @@
 
 import React, { useMemo } from 'react';
 
-import Container from '@/src/components/components/container';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 
+import Container from '@/src/components/components/container';
 import ProgressItem from '@/src/lib/ui/progress';
-import { ArianAMU } from '@/src/constants/font';
+
+import { Inter } from '@/src/constants/font';
+import { Pages } from '@/src/constants/pages';
 
 import cn from 'classnames';
 
@@ -17,18 +21,27 @@ interface Props {
 };
 
 const Progress = ({ data }: Readonly<Props>) => {
-    const items = useMemo(() => data.map((item: PROGRESS) => (
+    const t = useTranslations();
+    const locale = useLocale();
+
+    const items = useMemo(() => (data || []).map((item: PROGRESS) => (
         <div key={item._key} className={styles.column}>
             <ProgressItem value={0} quantity={item.quantity} isPlusSign={item.isPlusSign} />
-            <p className={cn(styles.title, ArianAMU.className)}>
-                {item.title}
-            </p>
+            <p className={styles.title}>{item.title}</p>
         </div>
     )), [data]);
 
     return (
-        <section id='circle-progress' className={styles.container}>
-            <Container className='container'>
+        <section id="circle-progress" className={cn(styles.container, Inter.className)}>
+            <Container className="container">
+                <div className={styles.actions}>
+                    <Link
+                        href={`/${locale}${Pages.DESIGN_CONTACT}`}
+                        className={styles.register}
+                    >
+                        {t('buttons.register-now')}
+                    </Link>
+                </div>
                 <div className={styles.row}>
                     {items}
                 </div>

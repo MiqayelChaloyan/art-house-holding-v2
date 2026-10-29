@@ -19,9 +19,13 @@ const Pages = {
     LANGUAGE_ABOUT: '/language/about',
     LANGUAGE_QUIZ: LANGUAGE_QUIZ_PATH,
     DESIGN_HOME: '/design',
+    DESIGN_ABOUT: '/design/about',
     DESIGN_BLOG_HOME: '/design/blog',
     DESIGN_PRICE_LIST: '/design/price-list',
     DESIGN_CONTACT: '/design/contact',
+    DESIGN_PRIVACY: '/design/privacy',
+    DESIGN_TERMS: '/design/terms',
+    DESIGN_IMPRINT: '/design/imprint',
     DESIGN_PORTFOLIOS: '/design/portfolios',
     DESIGN_ORDERS: '/design/orders',
 };

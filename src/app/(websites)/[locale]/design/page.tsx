@@ -4,7 +4,6 @@ import Home from '@/src/components/screens/design/home';
 
 import { notFound } from 'next/navigation';
 
-import { getPartners } from '@/src/utils/data';
 import { getHomeDetails } from '@/src/utils/data/design';
 
 
@@ -18,15 +17,12 @@ export default async function Page({
     params: { locale }
 }:
     Readonly<RootProps>) {
-    const [data, partners] = await Promise.all([
-        getHomeDetails(locale),
-        getPartners(locale),
-    ]);
+    const data = await getHomeDetails(locale);
 
-    if (!data || !partners) {
+    if (!data) {
         notFound()
     }
 
-    return (<Home data={data} partners={partners} />);
+    return (<Home data={data} />);
 };
 
