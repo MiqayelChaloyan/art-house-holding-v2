@@ -3,15 +3,15 @@
 import React, { useState, useEffect } from 'react';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { LuArrowUpRight } from 'react-icons/lu';
 
 import { useDispatch } from 'react-redux';
 import { openModal } from '@/src/store/modal_reducer';
 
-import Button from '@/src/lib/ui/Button';
 import { Pages } from '@/src/constants/pages';
-import { Arial, ArianAMU } from '@/src/constants/font';
+import { Inter } from '@/src/constants/font';
 import { ImagePaths } from '@/src/constants';
 
 import LocalSwitcher from '@/src/components/components/local-switcher';
@@ -30,9 +30,9 @@ interface IHeaderProps {
 };
 
 const navigationLinks = [
+    { path: Pages.DESIGN_HOME, hash: '#about', label: 'about' },
+    { path: Pages.DESIGN_HOME, hash: '#design-courses', label: 'courses' },
     { path: Pages.DESIGN_BLOG_HOME, label: 'blog' },
-    { path: Pages.DESIGN_PRICE_LIST, label: 'price-list' },
-    { path: Pages.DESIGN_ORDERS, label: 'orders' },
     { path: Pages.DESIGN_PORTFOLIOS, label: 'portfolios' },
     { path: Pages.DESIGN_CONTACT, label: 'contact' },
 ];
@@ -40,7 +40,7 @@ const navigationLinks = [
 const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
     const [isSticky, setIsSticky] = useState<boolean>(false);
     const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
-    const t = useTranslations('navigation');
+    const t = useTranslations();
     const pathname = usePathname();
     const dispatch = useDispatch();
 
@@ -50,11 +50,10 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
         };
 
         handleScroll();
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-
     }, []);
 
     const toggleMenuClick = () => setIsOpenMenu(!isOpenMenu);
@@ -64,63 +63,87 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
         setTimeout(() => dispatch(openModal(true)), 500);
     };
 
+    const homePath = `/${locale}${Pages.DESIGN_HOME}`;
+
     return (
         <header className={cn(
             styles.box,
+            Inter.className,
             typePosition === 'fixed' ? styles.boxFixed : '',
             isSticky ? styles.boxScrolled : '',
             isOpenMenu ? styles.boxOpenMenu : ''
         )}>
-            <div className={`container ${styles.wrap}`}>
+            <div className={styles.wrap}>
                 <Link
-                    href={`/${locale}${Pages.DESIGN_HOME}`}
-                    aria-label={Pages.DESIGN_HOME}
-                    className={styles.logo}
+                    href={homePath}
+                    aria-label="Art House Design Studio"
+                    className={styles.brand}
                 >
-                    <NextImage
-                        src={ImagePaths.DESIGN.headerLogoURL}
-                        alt='logo'
-                        className={styles.image}
-                        width={500}
-                        height={500}
-                    />
+                    <span className={styles.logoMark}>
+                        <NextImage
+                            src={ImagePaths.DESIGN.logoURL}
+                            alt="Art House Design Studio"
+                            className={styles.logoImage}
+                            width={120}
+                            height={120}
+                            priority
+                        />
+                    </span>
+                    <span className={styles.brandText}>
+                        <span>ART HOUSE</span>
+                        <span>DESIGN STUDIO</span>
+                    </span>
                 </Link>
                 <div className={cn(
                     styles.content,
                     isOpenMenu ? styles.contentShow : '',
-                    isSticky && isOpenMenu ? styles.contentSticky : '',
                 )}>
-                    <div className={styles.nav}>
-                        <Button
-                            text={t('departments')}
-                            onClick={handleSubmit}
-                            className={cn(styles.link, ArianAMU.className)}
+                    <nav className={styles.nav} aria-label="Design studio">
+                        {navigationLinks.map((link) => {
+                            const href = `/${locale}${link.path}${link.hash ?? ''}`;
+                            const isActive = !link.hash && pathname === `/${locale}${link.path}`;
+
+                            return (
+                                <Link
+                                    key={link.label}
+                                    href={href}
+                                    aria-label={link.label}
+                                    className={cn(styles.link, isActive ? styles.linkActive : '')}
+                                    prefetch={true}
+                                    onClick={() => setIsOpenMenu(false)}
+                                >
+                                    {link.label === 'about' && locale === 'en'
+                                        ? 'About'
+                                        : t(`navigation.${link.label}`)}
+                                </Link>
+                            );
+                        })}
+                    </nav>
+                    <div className={styles.actions}>
+                        <LocalSwitcher
+                            variant="codes"
+                            activeColor={colors.white}
+                            color="rgba(255, 255, 255, 0.72)"
                         />
-                        {navigationLinks.map((link, key) => (
-                            <Link
-                                key={key}
-                                href={`/${locale}${link.path}`}
-                                aria-label={link.path}
-                                className={cn(styles.link, styles.from_center, pathname === `/${locale}${link.path}` ? styles.linkActive : '', isSticky ? styles.scrollX : styles.scrollY, Arial.className)}
-                                prefetch={true}
-                                passHref
-                                onClick={() => setIsOpenMenu(false)}
-                            >
-                                {t(`${link.label}`)}
-                            </Link>
-                        ))}
-                        <div>
-                            <LocalSwitcher activeColor={colors.darkChestnut} color={colors.white} />
-                        </div>
+                        <button
+                            type="button"
+                            className={styles.cta}
+                            onClick={handleSubmit}
+                        >
+                            <span>{t('buttons.start-learning')}</span>
+                            <LuArrowUpRight className={styles.ctaIcon} aria-hidden />
+                        </button>
                     </div>
                 </div>
                 <button
+                    type="button"
                     className={cn(
                         styles.menuBtn,
                         isOpenMenu ? styles.menuBtnActive : '',
                     )}
                     onClick={toggleMenuClick}
-                    title='Art Design Center'
+                    aria-expanded={isOpenMenu}
+                    aria-label="Open menu"
                 >
                     <span></span>
                 </button>

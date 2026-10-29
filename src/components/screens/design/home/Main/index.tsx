@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -19,9 +19,13 @@ interface Props {
 	data: MAIN_SLIDE[];
 };
 
+const SLIDE_HOLD_MS = 5000;
+const SLIDE_SCROLL_DURATION = 45;
+
 const Main = ({ data }: Readonly<Props>) => {
-	const options: EmblaOptionsType = { loop: true, align: 'center',};
-	const [emblaRef] = useEmblaCarousel(options, [Autoplay()]);
+	const options: EmblaOptionsType = { loop: true, align: 'center', duration: SLIDE_SCROLL_DURATION };
+	const autoplay = useRef(Autoplay({ delay: SLIDE_HOLD_MS, stopOnInteraction: false }));
+	const [emblaRef] = useEmblaCarousel(options, [autoplay.current]);
 
 	const slidesItems = useMemo(() => {
 		return data?.map((item: MAIN_SLIDE) => {

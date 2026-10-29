@@ -52,7 +52,7 @@ const OurDay = ({ our_day }: Readonly<Props>) => {
     }, [our_day.video?.useUpload, our_day.video?.videoFile, our_day.video?.video_url]);
 
     return (
-        <div className={styles.container}>
+        <div id="about" className={styles.container}>
             <div className={styles.titles}>
                 <div>
                     <div className={cn(styles['title-line'], styles['back-line'])} />

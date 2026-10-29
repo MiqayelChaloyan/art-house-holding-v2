@@ -4,17 +4,26 @@
  * robots.txt and share links.
  */
 
-const configuredDomain = process.env.NEXT_PUBLIC_DOMAIN?.trim();
+function resolveSiteOrigin(): string {
+    const configuredDomain = process.env.NEXT_PUBLIC_DOMAIN?.trim();
+    if (configuredDomain) return configuredDomain.replace(/\/$/, '');
 
-if (!configuredDomain && process.env.NODE_ENV === 'production') {
-    throw new Error(
-        'Missing environment variable: NEXT_PUBLIC_DOMAIN. Production builds must not fall back to a localhost origin, because it would be baked into canonical tags and the sitemap.',
-    );
-};
+    const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+    if (productionHost) {
+        const host = productionHost.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        return `https://${host}`;
+    }
 
-export const siteUrl = (
-    configuredDomain || `http://localhost:${process.env.PORT || 3000}`
-).replace(/\/$/, '');
+    if (process.env.NODE_ENV === 'production') {
+        throw new Error(
+            'Missing environment variable: NEXT_PUBLIC_DOMAIN. Production builds must not fall back to a localhost origin, because it would be baked into canonical tags and the sitemap.',
+        );
+    }
+
+    return `http://localhost:${process.env.PORT || 3000}`;
+}
+
+export const siteUrl = resolveSiteOrigin();
 
 export const siteName = process.env.NEXT_PUBLIC_SITE_NAME?.trim() || 'Art House';
 

@@ -25,6 +25,12 @@ const localeStrings: {
   en: 'Eng',
 };
 
+const localeCodes = [
+  { key: 'am', label: 'ARM' },
+  { key: 'en', label: 'ENG' },
+  { key: 'ru', label: 'RUS' },
+];
+
 const localeImages: {
   [key: string]: string;
 } = {
@@ -35,7 +41,17 @@ const localeImages: {
 
 const keySwithcer = '/design';
 
-export default function LocalSwitcher({ activeColor = colors.darkRed, color = colors.black }) {
+type LocalSwitcherProps = {
+  activeColor?: string;
+  color?: string;
+  variant?: 'default' | 'codes';
+};
+
+export default function LocalSwitcher({
+  activeColor = colors.darkRed,
+  color = colors.black,
+  variant = 'default',
+}: LocalSwitcherProps) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
@@ -54,6 +70,27 @@ export default function LocalSwitcher({ activeColor = colors.darkRed, color = co
     });
   };
 
+  if (variant === 'codes') {
+    return (
+      <div className={styles.codes} role="group" aria-label="Language">
+        {localeCodes.map((locale, index) => (
+          <React.Fragment key={locale.key}>
+            {index > 0 && <span className={styles.codeSep} aria-hidden>/</span>}
+            <button
+              type="button"
+              className={cn(styles.code, { [styles.codeActive]: localActive === locale.key })}
+              style={{ color: localActive === locale.key ? activeColor : color }}
+              onClick={() => onSelectChange(locale.key)}
+              disabled={isPending}
+              aria-current={localActive === locale.key ? 'true' : undefined}
+            >
+              {locale.label}
+            </button>
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  }
 
   if (pathname.includes(keySwithcer)) {
     return pathname.includes(keySwithcer) && (

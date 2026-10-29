@@ -2,11 +2,7 @@
 
 import React from 'react';
 
-import Link from 'next/link';
-import { useTranslations, useLocale } from 'next-intl';
-
-import { Arial, Belleza } from '@/src/constants/font';
-import { Pages } from '@/src/constants/pages';
+import { Inter } from '@/src/constants/font';
 
 import { SlideItem as Props } from '@/src/types/design';
 
@@ -20,28 +16,17 @@ const SlideItem = ({
     company_name,
     title
 }: Readonly<Props>) => {
-    const t = useTranslations('buttons');
-    const localActive = useLocale();
-
     return (
         <div className={styles.article} style={{ backgroundImage: `url(${url})` }}>
+            <div className={styles.overlay} />
             <div className={styles.container}>
                 <div className={styles.contact}>
-                    <h2 className={cn(styles.company_name, Belleza.className)}>
+                    <h2 className={cn(styles.company_name, Inter.className)}>
                         {company_name}
                     </h2>
-                    <h1 className={cn(styles.title, Arial.className)}>
+                    <h1 className={cn(styles.title, Inter.className)}>
                         {title}
                     </h1>
-                    <Link
-                        href={`/${localActive}${Pages.DESIGN_CONTACT}`}
-                        aria-label={Pages.DESIGN_CONTACT}
-                        className={cn(styles.link, Arial.className)}
-                        prefetch={true}
-                        passHref
-                    >
-                        {t('register')}
-                    </Link>
                 </div>
             </div>
         </div>
