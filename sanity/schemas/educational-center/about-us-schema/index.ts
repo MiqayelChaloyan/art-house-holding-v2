@@ -9,17 +9,21 @@ import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
 export const aboutUsSchemaEducationalCenter = {
     name: 'about-us',
     type: 'document',
-    title: 'About Us',
+    title: 'Home',
     id: 'about-us-educational-center',
     groups: [
-        {
-            name: 'og',
-            title: 'Social Share Info',
-            default: true
-        },
+        { name: 'banner', title: '1. Banner', default: true },
+        { name: 'about', title: '2. About' },
+        { name: 'video', title: '3. Video' },
+        { name: 'lessons', title: '4. Lessons' },
+        { name: 'numbers', title: '5. Numbers' },
+        { name: 'specialists', title: '6. Specialists' },
+        { name: 'reviews', title: '7. Reviews' },
+        { name: 'blog', title: '8. Blog' },
+        { name: 'og', title: 'Social share' },
         {
             name: 'manifest',
-            title: 'Web App Settings',
+            title: 'Web app',
             hidden: ({ document }: {
                 document: {
                     [key: string]: string;
@@ -30,7 +34,7 @@ export const aboutUsSchemaEducationalCenter = {
     fields: [
         {
             type: 'string',
-            title: 'Open Graph Title',
+            title: 'Share title',
             name: 'ogTitle',
             description:
                 'Set the title Open Graph should use. In most situations, this should be different from the value of the title prop',
@@ -38,14 +42,14 @@ export const aboutUsSchemaEducationalCenter = {
             group: ['og']
         },
         {
-            title: 'Meta keywords',
+            title: 'Keywords',
             name: 'keywords',
             type: 'array',
             of: [{ type: 'string' }],
             group: ['og'],
         },
         {
-            title: 'Social Share Description',
+            title: 'Share description',
             name: 'ogDescription',
             type: 'object',
             group: ['og'],
@@ -69,7 +73,7 @@ export const aboutUsSchemaEducationalCenter = {
         },
         {
             type: 'image',
-            title: 'Image',
+            title: 'Share image',
             name: 'ogImage',
             description:
                 'URL of the image that should be used in social media previews.',
@@ -80,7 +84,8 @@ export const aboutUsSchemaEducationalCenter = {
         {
             name: 'main_section',
             type: 'array',
-            title: 'Main Section',
+            title: 'Banner slides',
+            group: 'banner',
             description: 'You can add any number of pictures, with a minimum of two.',
             validation: (Rule: RuleType) => Rule.required(),
             of: [
@@ -141,7 +146,8 @@ export const aboutUsSchemaEducationalCenter = {
         {
             name: 'about_us',
             type: 'object',
-            title: 'About Us',
+            title: 'About',
+            group: 'about',
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
@@ -189,7 +195,8 @@ export const aboutUsSchemaEducationalCenter = {
         {
             name: 'cooking_courses',
             type: 'object',
-            title: 'Cooking Courses',
+            title: 'Course video',
+            group: 'video',
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
@@ -272,7 +279,8 @@ export const aboutUsSchemaEducationalCenter = {
         {
             name: 'section',
             type: 'object',
-            title: 'Section Lessons',
+            title: 'Lessons',
+            group: 'lessons',
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
@@ -404,7 +412,8 @@ export const aboutUsSchemaEducationalCenter = {
         {
             name: 'progress_section',
             type: 'array',
-            title: 'Progress bars',
+            title: 'Numbers',
+            group: 'numbers',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.max(4),
             description: 'No less than four and no more, only you can modify them.',
@@ -474,6 +483,7 @@ export const aboutUsSchemaEducationalCenter = {
             name: 'specialists_section',
             type: 'array',
             title: 'Specialists',
+            group: 'specialists',
             description: 'You can add any number of pictures, with a minimum of two.',
             validation: (Rule: RuleType) => Rule.min(2),
             of: [
@@ -595,7 +605,8 @@ export const aboutUsSchemaEducationalCenter = {
         {
             name: 'our_rating_section',
             type: 'array',
-            title: 'Our Rating',
+            title: 'Reviews',
+            group: 'reviews',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.max(3),
             description: 'No less than three, and no more, only you can modify them.',
@@ -699,7 +710,10 @@ export const aboutUsSchemaEducationalCenter = {
                 }
             ],
         },
-        blogSectionFields,
+        {
+            ...blogSectionFields,
+            group: 'blog',
+        },
     ],
     preview: {
         select: {
@@ -707,7 +721,7 @@ export const aboutUsSchemaEducationalCenter = {
         },
         prepare() {
             return {
-                title: 'Մեր մասին',
+                title: 'Գլխավոր',
             };
         },
     }

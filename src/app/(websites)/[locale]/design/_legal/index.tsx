@@ -36,16 +36,20 @@ export async function legalPageMetadata(locale: Locale, page: LEGAL_PAGE_SLUG): 
     const path = `/${locale}${PATHS[page]}`;
     const base = buildSiteMetadata(meta, locale, path);
     const headline = [data?.line_1, data?.line_2].filter(Boolean).join(' ');
-    const title = headline ? `${headline} | ${siteName}` : base.title;
+    const title = headline
+        ? `${headline} | ${siteName}`
+        : (typeof base.title === 'string' ? base.title : siteName);
+    const description = data?.lead
+        || (typeof base.description === 'string' ? base.description : undefined);
 
     return {
         ...base,
         title,
-        description: data?.lead || base.description,
+        description,
         openGraph: {
             ...base.openGraph,
             title,
-            description: data?.lead || base.openGraph?.description,
+            description,
         },
     };
 }

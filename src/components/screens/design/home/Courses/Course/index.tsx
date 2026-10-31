@@ -8,39 +8,53 @@ import { LuArrowUpRight } from 'react-icons/lu';
 
 import NextImage from '@/src/components/components/image';
 
+import { Montserrat } from '@/src/constants/font';
+
+import cn from 'classnames';
+
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import styles from './styles.module.sass';
 
 
 interface CourseProps {
-    course: HOME_COURSES;
+    course: HOME_COURSES | COURSES_DESIGN_QUERYResult;
+    index?: number;
 };
 
-const Course = ({ course }: Readonly<CourseProps>) => {
+const Course = ({ course, index }: Readonly<CourseProps>) => {
     const locale = useLocale();
 
-    const imageSource = course.card_image || course.gallery_of_course?.[0];
-    const image = imageSource ? urlForImage(imageSource) : undefined;
-    const description = course.card_description || course.about_course;
+    const imageSource = ('card_image' in course && course.card_image) || course.gallery_of_course?.[0];
+    const image = imageSource ? urlForImage(imageSource, 848) : undefined;
+    const description = ('card_description' in course && course.card_description)
+        || ('about_course' in course && course.about_course)
+        || ('conditions' in course && course.conditions?.[0])
+        || '';
+    const duration = 'duration' in course ? course.duration : undefined;
+    const level = 'level' in course ? course.level : undefined;
     const href = course.slug ? `/${locale}/design/${course.slug}` : `/${locale}/design#design-courses`;
 
     return (
         <article className={styles.card}>
             <Link href={href} className={styles.media} aria-label={course.course_name}>
+                {typeof index === 'number' && (
+                    <span className={styles.badge}>N°{String(index + 1).padStart(2, '0')}</span>
+                )}
                 {image?.src && (
                     <NextImage
                         src={image.src}
                         alt={imageSource?.alt || course.course_name}
                         className={styles.image}
-                        width={640}
-                        height={640}
+                        width={image.width}
+                        height={image.height}
+                        sizes="(max-width: 640px) 100vw, 424px"
                     />
                 )}
             </Link>
             <div className={styles.body}>
                 <div className={styles.titleRow}>
-                    <h3 className={styles.title}>
+                    <h3 className={cn(styles.title, Montserrat.className)}>
                         <Link href={href}>{course.course_name}</Link>
                     </h3>
                     <Link href={href} className={styles.iconBtn} aria-label={course.course_name}>
@@ -49,8 +63,8 @@ const Course = ({ course }: Readonly<CourseProps>) => {
                 </div>
                 {description && <p className={styles.description}>{description}</p>}
                 <footer className={styles.footer}>
-                    <span className={styles.duration}>{course.duration || '\u00A0'}</span>
-                    <span className={styles.level}>{course.level || '\u00A0'}</span>
+                    <span className={styles.duration}>{duration || '\u00A0'}</span>
+                    <span className={styles.level}>{level || '\u00A0'}</span>
                 </footer>
             </div>
         </article>

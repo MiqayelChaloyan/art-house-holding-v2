@@ -5,17 +5,16 @@ import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
 const aboutUsSchemaLanguage = {
     name: 'about-us-language',
     type: 'document',
-    title: 'About Us',
+    title: 'Home',
     id: 'about-us-language',
     groups: [
-        {
-            name: 'og',
-            title: 'Social Share Info',
-            default: true
-        },
+        { name: 'about', title: '1. About', default: true },
+        { name: 'daily', title: '2. Daily life' },
+        { name: 'blog', title: '3. Blog' },
+        { name: 'og', title: 'Social share' },
         {
             name: 'manifest',
-            title: 'Web App Settings',
+            title: 'Web app',
             hidden: ({ document }: {
                 document: {
                     [key: string]: never;
@@ -26,7 +25,7 @@ const aboutUsSchemaLanguage = {
     fields: [
         {
             type: 'string',
-            title: 'Open Graph Title',
+            title: 'Share title',
             name: 'ogTitle',
             description:
                 'Set the title Open Graph should use. In most situations, this should be different from the value of the title prop',
@@ -34,14 +33,14 @@ const aboutUsSchemaLanguage = {
             group: ['og']
         },
         {
-            title: 'Meta keywords',
+            title: 'Keywords',
             name: 'keywords',
             type: 'array',
             of: [{ type: 'string' }],
             group: ['og'],
         },
         {
-            title: 'Social Share Description',
+            title: 'Share description',
             name: 'ogDescription',
             type: 'object',
             group: ['og'],
@@ -65,7 +64,7 @@ const aboutUsSchemaLanguage = {
         },
         {
             type: 'image',
-            title: 'Image',
+            title: 'Share image',
             name: 'ogImage',
             description:
                 'URL of the image that should be used in social media previews.',
@@ -74,9 +73,10 @@ const aboutUsSchemaLanguage = {
         },
         /* Schema */
         {
-            title: 'About us',
+            title: 'About',
             name: 'about_us',
             type: 'object',
+            group: 'about',
             fields: [
                 {
                     title: 'Content',
@@ -205,9 +205,10 @@ const aboutUsSchemaLanguage = {
             ],
         },
         {
-            title: 'Our Daily Life',
+            title: 'Daily life',
             name: 'our_daily_life',
             type: 'object',
+            group: 'daily',
             fields: [
                 {
                     name: 'our_daily_life_images',
@@ -348,7 +349,10 @@ const aboutUsSchemaLanguage = {
                 },
             ],
         },
-        blogSectionFields,
+        {
+            ...blogSectionFields,
+            group: 'blog',
+        },
     ],
     preview: {
         select: {

@@ -182,6 +182,7 @@ interface CERTIFICATES_SECTION {
     line_1: string;
     line_2: string;
     line_3: string;
+    images?: { _key: string; image: Asset }[];
     certificate?: Asset;
     diploma?: Asset;
 };

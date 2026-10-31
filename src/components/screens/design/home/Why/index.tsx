@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { InstrumentSerif, Inter, JetBrainsMono, Montserrat } from '@/src/constants/font';
 
 import cn from 'classnames';
 
@@ -15,26 +15,16 @@ interface Props {
     section?: WHY_SECTION;
 };
 
-const fallbackNumbers = ['01', '02', '03', '04', '05', '06'] as const;
-
 const Why = ({ section }: Readonly<Props>) => {
-    const t = useTranslations('why-section');
     const locale = useLocale();
 
     const copy = {
-        eyebrow: section?.eyebrow || t('eyebrow'),
-        line1: section?.line_1 || t('line-1'),
-        line2: section?.line_2 || t('line-2'),
+        eyebrow: section?.eyebrow || '',
+        line1: section?.line_1 || '',
+        line2: section?.line_2 || '',
     };
 
-    const items = section?.items?.length === 6
-        ? section.items
-        : fallbackNumbers.map((number, index) => ({
-            _key: `fallback-${index}`,
-            number,
-            title: t(`item-${number}-title`),
-            description: t(`item-${number}-description`),
-        }));
+    const items = (section?.items || []).slice(0, 30);
 
     return (
         <section id="why-art-house" className={cn(styles.section, Inter.className)}>
@@ -52,8 +42,11 @@ const Why = ({ section }: Readonly<Props>) => {
                 <ul className={styles.grid}>
                     {items.map((item) => (
                         <li key={item._key} className={styles.cell}>
-                            <span className={styles.number}>{item.number}</span>
-                            <h3 className={styles.title}>{item.title}</h3>
+                            <div className={styles.numberRow}>
+                                <span className={cn(styles.number, JetBrainsMono.className)}>{item.number}</span>
+                                <span className={styles.rule} aria-hidden />
+                            </div>
+                            <h3 className={cn(styles.title, Montserrat.className)}>{item.title}</h3>
                             <p className={styles.description}>{item.description}</p>
                         </li>
                     ))}

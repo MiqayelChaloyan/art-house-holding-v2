@@ -2,10 +2,7 @@
 
 import React, { useMemo } from 'react';
 
-import NextImage from '@/src/components/components/image';
-
 import { InstrumentSerif } from '@/src/constants/font';
-import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
 
@@ -18,7 +15,7 @@ interface Props {
 
 const Partners = ({ clients }: Readonly<Props>) => {
     const items = useMemo(
-        () => (clients || []).filter((item) => item?.logo?.asset),
+        () => (clients || []).filter((item) => item?.name || item?.logo?.alt),
         [clients],
     );
 
@@ -31,18 +28,12 @@ const Partners = ({ clients }: Readonly<Props>) => {
             <div className={styles.marquee}>
                 <div className={cn(styles.track, InstrumentSerif.className)}>
                     {loop.map((client, index) => {
-                        const image = urlForImage(client.logo);
-                        if (!image?.src) return null;
+                        const label = (client.name || client.logo?.alt || '').trim();
+                        if (!label) return null;
 
                         return (
                             <span key={`${client._key}-${index}`} className={styles.item}>
-                                <NextImage
-                                    src={image.src}
-                                    alt={client.logo?.alt || client.name || 'Client'}
-                                    className={styles.logo}
-                                    width={154}
-                                    height={154}
-                                />
+                                {label}
                                 <span className={styles.dot}>.</span>
                             </span>
                         );

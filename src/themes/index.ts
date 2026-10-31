@@ -9,8 +9,8 @@ const colors = {
     darkChestnut: '#8E685C',
     red: '#821616',
     grapefruit: '#DF362D',
-    studioRed: '#e11d2e',
-    studioRedDark: '#b01624',
+    studioRed: '#ce2421',
+    studioRedDark: '#a41c1a',
     green: '#5CD85A',
     leafGreen: '#65a30d',
     iron: '#d6d6d6'

@@ -33,7 +33,8 @@ const Main = ({ siteKey, config, post, similarPosts, shareUrl }: Readonly<Props>
     const sectionT = useTranslations('sections');
     const textsT = useTranslations('texts');
     const imagePath = post.featuredImagePath;
-    const hasDarkHero = Boolean(config.heroEyebrowKey);
+    const isDesign = siteKey === 'design';
+    const hasDarkHero = !isDesign && Boolean(config.heroEyebrowKey);
     const heroEyebrowKey = config.heroEyebrowKey;
 
     const backLink = (

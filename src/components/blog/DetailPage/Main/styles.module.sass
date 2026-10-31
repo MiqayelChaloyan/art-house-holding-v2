@@ -88,8 +88,8 @@ $languageHeroBg: '../../../../../public/assets/images/language/background.png'
     @media screen and (max-width: 768px)
         font-size: 28px
 
-[data-variant='design'] .title
-    font-family: Arial, sans-serif
+[data-variant='design'] .sidebarTitle
+    font-weight: 400
 
 .date
     display: block
@@ -315,11 +315,106 @@ $languageHeroBg: '../../../../../public/assets/images/language/background.png'
     color: rgba(255, 255, 255, 0.86)
     margin-bottom: 0
 
-[data-variant='design'] .sidebarInner
-    border-radius: 10px
-    background: #5F401B
-    border-color: rgba(255, 255, 255, 0.22)
-    box-shadow: 0 12px 40px rgba(95, 64, 27, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12)
+.section.section[data-variant='design']
+    background: #090909
+    color: #ffffff
+    padding: 170px 0 96px
+    @media screen and (max-width: 991px)
+        padding-top: 104px
+    @media screen and (max-width: 640px)
+        padding: 104px 0 64px
+
+.section.section[data-variant='design'] :global(.container)
+    width: min(1320px, calc(100% - 48px))
+    max-width: none
+    margin-right: auto
+    margin-left: auto
+    padding-right: 0
+    padding-left: 0
+    @media screen and (max-width: 640px)
+        width: calc(100% - 32px)
+
+.section.section[data-variant='design'] .layout
+    grid-template-columns: minmax(0, 860px)
+    justify-content: start
+    gap: 72px
+    padding-top: 0
+
+.section.section[data-variant='design'] .category
+    display: inline
+    margin: 0
+    padding: 0
+    border-radius: 0
+    background: transparent
+    color: #ce2421
+    font-size: 14px
+    font-weight: 500
+    line-height: 16px
+
+.section.section[data-variant='design'] .title
+    margin: 12px 0 0
+    max-width: 860px
+    font-size: clamp(40px, 5vw, 72px)
+    font-weight: 400
+    line-height: 1
+    letter-spacing: -0.025em
+    color: #ffffff
+    text-shadow: none
+
+.section.section[data-variant='design'] .date
+    margin: 16px 0 0
+    color: #d9d9d9
+    font-size: 14px
+    line-height: 16px
+
+.section.section[data-variant='design'] .imageWrapper
+    margin-top: 36px
+    margin-bottom: 32px
+    border: 0
+    border-radius: 0
+    aspect-ratio: 16 / 9
+
+.section.section[data-variant='design'] .image
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+.section.section[data-variant='design'] .excerpt
+    max-width: 720px
+    color: #9b9b9b
+    font-size: 20px
+    font-weight: 400
+    line-height: 1.5
+
+.section.section[data-variant='design'] .body
+    max-width: 720px
+    color: #d9d9d9
+    font-size: 18px
+    line-height: 30px
+    p, h1, h2, h3, h4, li
+        color: inherit
+        font-size: inherit
+        line-height: inherit
+    a
+        color: #ffffff
+
+.section.section[data-variant='design'] .sidebarInner
+    max-height: none
+    padding: 0
+    overflow: visible
+    border: 0
+    border-radius: 0
+    background: transparent
+    box-shadow: none
+
+.section.section[data-variant='design'] .sidebarTitle
+    margin-bottom: 24px
+    padding: 0
+    border: 0
+    color: #ffffff
+    font-size: clamp(28px, 3vw, 40px)
+    font-weight: 400
+    line-height: 1.05
 
 [data-variant='language'] .sidebarInner
     background: #006ED2
@@ -336,4 +431,4 @@ $languageHeroBg: '../../../../../public/assets/images/language/background.png'
         color: #006ED2
 
 [data-variant='design'] .sidebarTitle
-    font-family: Arial, sans-serif
+    font-weight: 400

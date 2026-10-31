@@ -42,8 +42,7 @@
 .backLabel
     padding-right: 2px
 
-:global([data-variant='educational']) .backLink,
-:global([data-variant='design']) .backLink
+:global([data-variant='educational']) .backLink
     border-color: rgba(255, 255, 255, 0.28)
     background: rgba(255, 255, 255, 0.1)
     color: #ffffff
@@ -59,10 +58,38 @@
             background: var(--blog-accent)
             color: #ffffff
 
-:global([data-variant='educational']) .backIcon,
-:global([data-variant='design']) .backIcon
+:global([data-variant='educational']) .backIcon
     background: var(--blog-accent)
     color: #ffffff
+
+:global([data-variant='design']) .backLink
+    margin-bottom: 28px
+    padding: 0
+    border: 0
+    border-radius: 0
+    background: transparent
+    box-shadow: none
+    color: #d9d9d9
+    font-size: 14px
+    font-weight: 500
+    backdrop-filter: none
+    @media (hover: hover)
+        &:hover
+            background: transparent
+            border-color: transparent
+            color: #ffffff
+            transform: none
+            box-shadow: none
+        &:hover .backIcon
+            background: transparent
+            color: #ce2421
+
+:global([data-variant='design']) .backIcon
+    width: auto
+    height: auto
+    border-radius: 0
+    background: transparent
+    color: #ce2421
 
 :global([data-variant='language']) .backLink
     border-color: rgba(249, 204, 72, 0.45)

@@ -1,13 +1,15 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import NextImage from '@/src/components/components/image';
+
+import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
 import { Pages } from '@/src/constants/pages';
 
 import { urlForImage } from '@/sanity/imageUrlBuilder';
@@ -35,25 +37,19 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
     const locale = useLocale();
 
     const copy = {
-        eyebrow: section?.eyebrow || t('eyebrow'),
-        line1: section?.line_1 || t('line-1'),
-        line2: section?.line_2 || t('line-2'),
-        line3: section?.line_3 || t('line-3'),
-        line4: section?.line_4 || t('line-4'),
-        description: section?.description || t('description'),
+        eyebrow: section?.eyebrow || '',
+        line1: section?.line_1 || '',
+        line2: section?.line_2 || '',
+        line3: section?.line_3 || '',
+        line4: section?.line_4 || '',
+        description: section?.description || '',
     };
 
-    const stats = section?.stats?.length
-        ? section.stats.map((item) => ({
-            key: item._key,
-            value: item.value,
-            label: item.title,
-        }))
-        : [
-            { key: 'years', value: t('years-value'), label: t('years') },
-            { key: 'students', value: t('students-value'), label: t('students') },
-            { key: 'projects', value: t('projects-value'), label: t('projects') },
-        ];
+    const stats = (section?.stats || []).map((item) => ({
+        key: item._key,
+        value: item.value,
+        label: item.title,
+    }));
 
     const slides = useMemo(() => {
         const fromStudio = (section?.slides || [])
@@ -70,20 +66,32 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
     const [index, setIndex] = useState(0);
     const activeIndex = slides.length ? index % slides.length : 0;
 
+    const paused = useRef(false);
+    const [runId, setRunId] = useState(0);
+
     useEffect(() => {
         if (slides.length < 2) return undefined;
 
         const timer = window.setInterval(() => {
+            if (paused.current) return;
             setIndex((current) => current + 1);
         }, HOLD_MS);
 
         return () => window.clearInterval(timer);
-    }, [slides.length]);
+    }, [slides.length, runId]);
 
     const active = slides[activeIndex];
 
     return (
-        <section id="studio" className={cn(styles.section, Inter.className)}>
+        <section
+            id="studio"
+            className={cn(styles.section, Inter.className)}
+            onMouseEnter={() => { paused.current = true; }}
+            onMouseLeave={() => {
+                paused.current = false;
+                setRunId((value) => value + 1);
+            }}
+        >
             <div className={styles.wrap}>
                 <div className={styles.copy}>
                     <p className={styles.eyebrow}>
@@ -124,17 +132,24 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
                                 <motion.div
                                     key={active.key}
                                     className={styles.slide}
-                                    style={{ backgroundImage: `url(${active.src})` }}
-                                    initial={{ opacity: 0, scale: 1.14 }}
+                                    initial={{ opacity: 0, scale: 1.08 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{
-                                        opacity: { duration: 1.4, ease: [0.4, 0, 0.2, 1] },
+                                        opacity: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
                                         scale: { duration: 6.4, ease: 'linear' },
                                     }}
-                                    role="img"
-                                    aria-label={active.alt}
-                                />
+                                >
+                                    <NextImage
+                                        src={active.src}
+                                        alt={active.alt}
+                                        className={styles.slideImage}
+                                        width={1040}
+                                        height={1300}
+                                        sizes="(max-width: 980px) 100vw, 520px"
+                                        priority={activeIndex === 0}
+                                    />
+                                </motion.div>
                             </AnimatePresence>
                             <div className={styles.shade} aria-hidden />
                             {slides.length > 1 && (
@@ -152,7 +167,7 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
                     <ul className={styles.stats}>
                         {stats.map((item) => (
                             <li key={item.key} className={styles.stat}>
-                                <span className={styles.value}>{item.value}</span>
+                                <span className={cn(styles.value, Montserrat.className)}>{item.value}</span>
                                 <span className={styles.label}>{item.label}</span>
                             </li>
                         ))}
@@ -164,7 +179,7 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
 };
 
 const toSlide = (key: string, image: Asset | undefined, alt: string): SlideView | null => {
-    const path = image ? urlForImage(image) : undefined;
+    const path = image ? urlForImage(image, 1040) : undefined;
     if (!path?.src) return null;
     return { key, src: path.src, alt };
 };

@@ -10,14 +10,12 @@ const homeSchemaArtHouse = {
     title: 'Home',
     id: 'art-house',
     groups: [
-        {
-            name: 'og',
-            title: 'Social Share Info',
-            default: true
-        },
+        { name: 'websites', title: '1. Websites', default: true },
+        { name: 'numbers', title: '2. Numbers' },
+        { name: 'og', title: 'Social share' },
         {
             name: 'manifest',
-            title: 'Web App Settings',
+            title: 'Web app',
             hidden: ({ document }: {
                 document: {
                     [key: string]: never;
@@ -27,7 +25,7 @@ const homeSchemaArtHouse = {
     ],
     fields: [
         {
-            title: 'Open Graph Title',
+            title: 'Share title',
             name: 'ogTitle',
             type: 'string',
             description:
@@ -36,14 +34,14 @@ const homeSchemaArtHouse = {
             group: ['og']
         },
         {
-            title: 'Meta keywords',
+            title: 'Keywords',
             name: 'keywords',
             type: 'array',
             of: [{ type: 'string' }],
             group: ['og'],
         },
         {
-            title: 'Social Share Description',
+            title: 'Share description',
             name: 'ogDescription',
             type: 'object',
             group: ['og'],
@@ -67,7 +65,7 @@ const homeSchemaArtHouse = {
         },
         {
             type: 'image',
-            title: 'Image',
+            title: 'Share image',
             name: 'ogImage',
             description:
                 'URL of the image that should be used in social media previews.',
@@ -79,6 +77,7 @@ const homeSchemaArtHouse = {
             name: 'our_websites',
             type: 'array',
             title: 'Websites',
+            group: 'websites',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.max(5),
             description: 'No less than five and no more, only you can modify them.',
@@ -165,7 +164,8 @@ const homeSchemaArtHouse = {
         {
             name: 'progress_section',
             type: 'array',
-            title: 'Progress bars',
+            title: 'Numbers',
+            group: 'numbers',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.max(4),
             description: 'No less than four and no more, only you can modify them.',

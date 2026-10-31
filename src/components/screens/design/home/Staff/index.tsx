@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
@@ -29,9 +29,9 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
     const team = useMemo(() => workers.filter((member) => member.worker_image?.asset), [workers]);
 
     const copy = {
-        line1: section?.line_1 || t('line-1'),
-        line2: section?.line_2 || t('line-2'),
-        line3: section?.line_3 || t('line-3'),
+        line1: section?.line_1 || '',
+        line2: section?.line_2 || '',
+        line3: section?.line_3 || '',
         experience: t('experience-label'),
         programs: t('programs'),
         skills: t('skills'),
@@ -42,34 +42,51 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
     const activeIndex = count ? ((index % count) + count) % count : 0;
     const member = team[activeIndex];
 
+    const paused = useRef(false);
+    const [runId, setRunId] = useState(0);
+
     const go = useCallback((step: number) => {
         if (!count) return;
         setPage(([current]) => [current + step, step]);
+        setRunId((value) => value + 1);
     }, [count]);
 
     const goTo = useCallback((nextIndex: number) => {
         if (!count || nextIndex === activeIndex) return;
         setPage([nextIndex, nextIndex > activeIndex ? 1 : -1]);
+        setRunId((value) => value + 1);
     }, [activeIndex, count]);
 
     useEffect(() => {
         if (count < 2) return undefined;
-        const timer = window.setInterval(() => go(1), HOLD_MS);
+        const timer = window.setInterval(() => {
+            if (paused.current) return;
+            setPage(([current]) => [current + 1, 1]);
+        }, HOLD_MS);
         return () => window.clearInterval(timer);
-    }, [go, count]);
+    }, [count, runId]);
 
     if (!member) return null;
 
-    const image = urlForImage(member.worker_image);
+    const portrait = urlForImage(member.worker_image, 960);
+    const avatar = urlForImage(member.worker_image, 524);
     const programs = member.programs?.length
         ? member.programs
         : member.profession.split(',').map((item) => item.trim()).filter(Boolean);
     const skills = member.skills?.length ? member.skills : [];
-    const experience = member.experience || t('default-experience');
+    const experience = member.experience || '';
     const bio = member.bio || member.profession;
 
     return (
-        <section id="staff" className={cn(styles.section, Inter.className)}>
+        <section
+            id="staff"
+            className={cn(styles.section, Inter.className)}
+            onMouseEnter={() => { paused.current = true; }}
+            onMouseLeave={() => {
+                paused.current = false;
+                setRunId((value) => value + 1);
+            }}
+        >
             <div className={styles.wrap}>
                 <div className={styles.stage}>
                     <div className={styles.left}>
@@ -107,13 +124,13 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
                                     exit={{ x: direction > 0 ? -56 : 56, opacity: 0, scale: 0.96 }}
                                     transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
                                 >
-                                    {image?.src && (
+                                    {portrait?.src && (
                                         <NextImage
-                                            src={image.src}
+                                            src={portrait.src}
                                             alt={member.worker_image.alt || member.worker}
                                             className={styles.portrait}
-                                            width={720}
-                                            height={800}
+                                            width={portrait.width}
+                                            height={portrait.height}
                                             sizes="(max-width: 980px) 90vw, 480px"
                                         />
                                     )}
@@ -133,18 +150,21 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
                                 transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
                             >
                                 <div className={styles.panelHead}>
-                                    <p className={styles.experience}>
-                                        <span>{experience}</span>
-                                        <small>{copy.experience}</small>
-                                    </p>
+                                    {experience && (
+                                        <p className={styles.experience}>
+                                            <span>{experience}</span>
+                                            <small>{copy.experience}</small>
+                                        </p>
+                                    )}
                                     <div className={styles.avatarWrap}>
-                                        {image?.src && (
+                                        {avatar?.src && (
                                             <NextImage
-                                                src={image.src}
+                                                src={avatar.src}
                                                 alt=""
                                                 className={styles.avatar}
-                                                width={220}
-                                                height={220}
+                                                width={avatar.width}
+                                                height={avatar.height}
+                                                sizes="262px"
                                                 aria-hidden
                                             />
                                         )}

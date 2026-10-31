@@ -29,17 +29,17 @@
         "terms": "Terms",
         "imprint": "Imprint"
     },
-    "about-page": {
-        "eyebrow": "About us",
-        "line-1": "About",
-        "line-2": "Art House."
+    "portfolios-page": {
+        "eyebrow": "Portfolio",
+        "line-1": "Selected",
+        "line-2": "work.",
+        "empty": "No projects in this program yet."
     },
     "contact-page": {
         "eyebrow": "Contact",
         "line-1": "Contact",
         "line-2": "with us.",
         "feedback": "Feedback",
-        "hours": "10:00 - 21:00 Monday-saturday",
         "choose-course": "Choose Course",
         "surname": "Surname",
         "phone": "Phone number"
@@ -121,75 +121,37 @@
         "explore-all-stories": "Explore all stories"
     },
     "voices-section": {
-        "eyebrow": "Student Voices",
-        "line-1": "What our students",
-        "line-2": "actually say.",
         "slides": "Testimonials"
     },
-    "blog-section": {
-        "eyebrow": "Blog",
-        "line-1": "Blog and",
-        "line-2": "news."
-    },
-    "projects-section": {
-        "eyebrow": "Selected Work",
-        "line-1": "Projects from",
-        "line-2": "the studio floor.",
-        "description": "A short excerpt from client engagements across branding, editorial, spatial and digital work."
-    },
-    "certificates-section": {
-        "line-1": "Certificate",
-        "line-2": "and",
-        "line-3": "Diploma"
-    },
     "staff-section": {
-        "line-1": "Our",
-        "line-2": "creative",
-        "line-3": "Staff",
         "experience-label": "Experience",
-        "default-experience": "5+ YEAR",
         "programs": "Programs",
         "skills": "Skills",
         "prev": "Previous team member",
         "next": "Next team member"
     },
-    "why-section": {
-        "eyebrow": "Why Art House",
-        "line-1": "A rigorous studio inside an",
-        "line-2": "academy.",
-        "item-01-title": "Experienced Mentors",
-        "item-01-description": "Learn directly from practicing designers shipping real work.",
-        "item-02-title": "Real Projects",
-        "item-02-description": "Build a professional portfolio through live client briefs.",
-        "item-03-title": "Modern Programs",
-        "item-03-description": "Curriculum updated to today's tools, trends and standards.",
-        "item-04-title": "Creative Environment",
-        "item-04-description": "Grow inside a tight community of ambitious designers.",
-        "item-05-title": "Career Development",
-        "item-05-description": "Interview prep, presentation craft, portfolio reviews.",
-        "item-06-title": "Practical Learning",
-        "item-06-description": "Studio-first pedagogy. Skills over theory, always."
-    },
-    "courses-section": {
+    "courses-page": {
         "eyebrow": "Courses · Six Programs",
-        "line-1": "Our",
-        "line-2": "courses."
+        "line-1": "Programs for",
+        "line-2": "serious designers."
     },
-    "studio": {
-        "eyebrow": "Studio · Academy · Est. 2009",
-        "line-1": "Where Creativity",
-        "line-2": "Meets",
-        "line-3": "Professional",
-        "line-4": "Design",
-        "description": "ART HOUSE is a creative design studio and educational center helping future designers develop professional skills through knowledge, practice, and real-world projects.",
+    "course-page": {
+        "eyebrow": "course",
         "explore": "Explore Courses",
         "portfolio": "View Portfolio",
-        "years": "Years",
-        "students": "Students",
-        "projects": "Projects",
-        "years-value": "07",
-        "students-value": "1.2k",
-        "projects-value": "180+"
+        "about-eyebrow": "about the course",
+        "about-title": "Programs for",
+        "about-emphasis": "serious designers.",
+        "curriculum-eyebrow": "Curriculum",
+        "curriculum-title": "What you",
+        "curriculum-emphasis": "learn.",
+        "portfolio-eyebrow": "Selected work",
+        "portfolio-title": "From the",
+        "portfolio-emphasis": "studio."
+    },
+    "studio": {
+        "explore": "Explore Courses",
+        "portfolio": "View Portfolio"
     },
     "contact": {
         "tell": "Tell.",

@@ -1,14 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 
-import Gallery from '@/src/components/components/gallery';
-import { Arial } from '@/src/constants/font';
+import NextImage from '@/src/components/components/image';
+
+import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
 import { Pages } from '@/src/constants/pages';
-import { Titles } from '@/src/constants';
+import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
 
@@ -16,75 +18,121 @@ import styles from './styles.module.sass';
 
 
 interface Props {
-  courses: COURSES_DESIGN_QUERYResult[];
+    courses: COURSES_DESIGN_QUERYResult[];
 };
 
-const defaultSearchParam = 'All';
+const PAGE_SIZE = 9;
 
 const Portfolios = ({ courses }: Readonly<Props>) => {
-  const t = useTranslations();
-  const searchParams = useSearchParams();
-  const property: string | null = searchParams.get('name');
-  const decodedProperty = property ? decodeURIComponent(property).replace(/_/g, ' ') : '';
-  const [allCourses, _] = useState<COURSES_DESIGN_QUERYResult[]>(courses);
-  const [category, setCategory] = useState<COURSES_DESIGN_QUERYResult[]>([]);
+    const t = useTranslations('portfolios-page');
+    const buttons = useTranslations('buttons');
+    const searchParams = useSearchParams();
+    const locale = useLocale();
+    const property = searchParams.get('name');
+    const decodedProperty = property ? decodeURIComponent(property).replace(/_/g, ' ') : '';
+    const [visible, setVisible] = useState(PAGE_SIZE);
 
-  const activeLocale = useLocale();
+    useEffect(() => {
+        setVisible(PAGE_SIZE);
+    }, [decodedProperty]);
 
-  useEffect(() => {
-    const filteredCourses = decodedProperty && decodedProperty !== defaultSearchParam
-      ? allCourses?.filter((elem: COURSES_DESIGN_QUERYResult) => elem.name === decodedProperty)
-      : allCourses;
-    setCategory(filteredCourses);
-  }, [decodedProperty, courses, allCourses]);
+    const items = useMemo(() => {
+        const selected = decodedProperty
+            ? courses.filter((course) => course.name === decodedProperty)
+            : courses;
 
-  const navbar: React.JSX.Element[] = allCourses?.map(({ course_name, _id, slug, name }: COURSES_DESIGN_QUERYResult) => (
-    <Link
-      key={_id}
-      href={`/${activeLocale}${Pages.DESIGN_PORTFOLIOS}/${encodeURIComponent(slug)}`}
-      scroll={false}
-      className={cn(styles.link, styles.line, decodedProperty === name ? styles.active : '', Arial.className)}
-    >
-      <span>{course_name}</span>
-    </Link>
-  ));
+        return selected.flatMap((course) => (
+            (course.portfolios || []).map((project) => ({
+                course,
+                project,
+            }))
+        ));
+    }, [courses, decodedProperty]);
 
+    const shown = items.slice(0, visible);
 
-  return (
-    <section id='portfolio' className={styles.container}>
-      <div className={styles.navigation}>
-        <Link
-          href={`/${activeLocale}${Pages.DESIGN_PORTFOLIOS}`}
-          scroll={false}
-          className={cn(styles.link, styles.line, !decodedProperty || decodedProperty === defaultSearchParam ? styles.active : '', Arial.className)}
-        >
-          <span>{t('buttons.view-all')}</span>
-        </Link>
-        {navbar}
-      </div>
-      <div className={styles.titles}>
-        <div>
-          <div className={cn(styles['title-line'], styles['back-line'])} />
-          <h2 className={cn(styles['title-back'], Arial.className)}>{Titles.portfolio}</h2>
-        </div>
-        <div className={styles['bottom-title']}>
-          <h1 className={cn(styles.title, Arial.className)}>{t('navigation.portfolios')}</h1>
-          <div className={cn(styles['title-line'], styles['bottom-line'])} />
-        </div>
-      </div>
-      <div className={styles.gallery}>
-        {category.length === 0 ? (
-          <div className={styles.loader}>
-            <div className={styles['loader-card']} />
-          </div>
-        ) : (
-          <div className='projects'>
-            <Gallery projects={category} type='portfolios' />
-          </div>
-        )}
-      </div>
-    </section>
-  );
+    return (
+        <section className={cn(styles.section, Inter.className)}>
+            <div className={styles.wrap}>
+                <div className={styles.top}>
+                    <header>
+                        <p className={styles.eyebrow}>
+                            <span className={styles.mark} aria-hidden />
+                            {t('eyebrow')}
+                        </p>
+                        <h1 className={cn(styles.headline, InstrumentSerif.className)}>
+                            <span>{t('line-1')}</span>
+                            <span className={styles.emphasis}>{t('line-2')}</span>
+                        </h1>
+                    </header>
+                    <nav className={styles.filters} aria-label={t('eyebrow')}>
+                        <Link
+                            href={`/${locale}${Pages.DESIGN_PORTFOLIOS}`}
+                            scroll={false}
+                            className={cn(styles.chip, !decodedProperty && styles.chipActive)}
+                        >
+                            {buttons('view-all')}
+                        </Link>
+                        {courses.map((course) => (
+                            <Link
+                                key={course._id}
+                                href={{
+                                    pathname: `/${locale}${Pages.DESIGN_PORTFOLIOS}`,
+                                    query: { name: course.name },
+                                }}
+                                scroll={false}
+                                className={cn(styles.chip, decodedProperty === course.name && styles.chipActive)}
+                            >
+                                {course.course_name || course.name}
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
+
+                {shown.length === 0 ? (
+                    <p className={styles.empty}>{t('empty')}</p>
+                ) : (
+                    <ul className={styles.grid}>
+                        {shown.map(({ course, project }) => {
+                            const image = project.image ? urlForImage(project.image, 900) : undefined;
+                            const href = `/${locale}${Pages.DESIGN_PORTFOLIOS}/${encodeURIComponent(course.slug)}#${encodeURIComponent(project._key)}`;
+
+                            return (
+                                <li key={project._key}>
+                                    <Link href={href} className={styles.card}>
+                                        <span className={styles.media}>
+                                            {image?.src && (
+                                                <NextImage
+                                                    src={image.src}
+                                                    alt={project.image?.alt || project.author || course.course_name || ''}
+                                                    className={styles.image}
+                                                    width={image.width}
+                                                    height={image.height}
+                                                    sizes="(max-width: 640px) 100vw, 418px"
+                                                />
+                                            )}
+                                        </span>
+                                        <span className={cn(styles.course, Montserrat.className)}>
+                                            {course.course_name}
+                                        </span>
+                                        <span className={cn(styles.author, Montserrat.className)}>
+                                            {project.author}
+                                        </span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
+
+                {visible < items.length && (
+                    <button type="button" className={styles.more} onClick={() => setVisible((count) => count + PAGE_SIZE)}>
+                        {buttons('view-more')}
+                    </button>
+                )}
+            </div>
+        </section>
+    );
 };
 
 export default React.memo(Portfolios);

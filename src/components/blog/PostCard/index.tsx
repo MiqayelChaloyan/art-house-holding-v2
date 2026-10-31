@@ -4,6 +4,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { LuArrowUpRight } from 'react-icons/lu';
 
 import NextImage from '@/src/components/components/image';
 import { BlogSiteConfig } from '@/src/components/blog/config';
@@ -45,19 +46,30 @@ const PostCard = ({ post, siteKey, config }: Readonly<Props>) => {
                     )}
                 </div>
                 <div className={styles.content}>
-                    {post.formattedDate && (
+                    {siteKey === 'design' ? (
+                        <span className={cn(styles.meta, config.bodyFont.className)}>
+                            {post.category && <span>{post.category}</span>}
+                            {post.category && post.formattedDate && <span aria-hidden> · </span>}
+                            {post.formattedDate && (
+                                <time dateTime={post.publishedAt}>{post.formattedDate}</time>
+                            )}
+                        </span>
+                    ) : post.formattedDate && (
                         <time className={cn(styles.date, config.bodyFont.className)} dateTime={post.publishedAt}>
                             {post.formattedDate}
                         </time>
                     )}
-                    <h3 className={cn(styles.title, config.titleFont.className)}>
+                    <h3 className={cn(styles.title, siteKey === 'design' ? config.bodyFont.className : config.titleFont.className)}>
                         {post.title}
                     </h3>
-                    <p className={cn(styles.excerpt, config.bodyFont.className)}>
-                        {post.excerpt}
-                    </p>
+                    {siteKey !== 'design' && (
+                        <p className={cn(styles.excerpt, config.bodyFont.className)}>
+                            {post.excerpt}
+                        </p>
+                    )}
                     <span className={cn(styles.readMore, config.bodyFont.className)}>
                         {t('read-more')}
+                        {siteKey === 'design' && <LuArrowUpRight aria-hidden />}
                     </span>
                 </div>
             </Link>

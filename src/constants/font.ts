@@ -15,6 +15,18 @@ const InstrumentSerif = localFont({
     display: 'swap',
     preload: false,
 });
+const Montserrat = localFont({
+    src: '../../public/font/Montserrat-Medium.ttf',
+    weight: '500',
+    display: 'swap',
+    preload: false,
+});
+const JetBrainsMono = localFont({
+    src: '../../public/font/JetBrainsMono-Regular.ttf',
+    weight: '400',
+    display: 'swap',
+    preload: false,
+});
 
 export {
     ArianAMU,
@@ -25,4 +37,6 @@ export {
     Belleza,
     MMArmenU,
     InstrumentSerif,
+    Montserrat,
+    JetBrainsMono,
 };

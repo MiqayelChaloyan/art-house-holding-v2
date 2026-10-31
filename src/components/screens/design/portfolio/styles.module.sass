@@ -1,148 +1,93 @@
-.course_name
-    font-size: 50px
-    color: #fff
-    font-weight: 700
-    text-transform: uppercase
-    text-align: center
-    line-height: 57.5px
-    margin-bottom: 10px
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        font-size: 50px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        font-size: 50px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        font-size: 50px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        font-size: 50px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        font-size: 50px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        font-size: 40px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        font-size: 40px
-        line-height: 57.5px
-        margin-bottom: 10px
-    @media screen and (max-width: 550px)
-        font-size: 30px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        font-size: 30px
-        line-height: 57.5px
-        margin-bottom: 10px
-    @media screen and (max-width: 420px)
-        font-size: 30px
-        line-height: 57.5px
-        margin-bottom: 10px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        font-size: 30px
-        line-height: 57.5px
-        margin-bottom: 10px
+.page
+	background: #090909
+	color: #ffffff
+	padding-bottom: 96px
+
+.hero
+	position: relative
+	display: flex
+	align-items: center
+	justify-content: center
+	height: clamp(320px, 44vw, 666px)
+	margin-top: 36px
+	min-height: 320px
+	@media screen and (max-width: 980px)
+		height: clamp(300px, 62vw, 520px)
+		margin-top: 20px
+	@media screen and (max-width: 640px)
+		height: 68vw
+		min-height: 260px
+		margin-top: 12px
+	overflow: hidden
+	background: #141414
+
+.heroImage
+	position: absolute
+	inset: 0
+	width: 100% !important
+	height: 100% !important
+	object-fit: cover
+
+.hero::after
+	content: ''
+	position: absolute
+	inset: 0
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45))
+
+.heroCopy
+	position: relative
+	z-index: 1
+	max-width: 760px
+	padding: 24px
+	text-align: center
 
 .author
-    font-size: 40px
-    color: #fff
-    text-transform: uppercase
-    font-weight: 700
-    text-align: center
-    line-height: 46px
-    opacity: 0.5
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        font-size: 40px
-        line-height: 46px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        font-size: 40px
-        line-height: 46px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        font-size: 40px
-        line-height: 46px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        font-size: 40px
-        line-height: 46px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        font-size: 40px
-        line-height: 46px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        font-size: 40px
-        line-height: 46px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        font-size: 30px
-        line-height: 46px
-    @media screen and (max-width: 550px)
-        font-size: 25px
-        line-height: 46px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        font-size: 25px
-        line-height: 46px
-    @media screen and (max-width: 420px)
-        font-size: 25px
-        line-height: 46px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        font-size: 25px
-        line-height: 46px
+	margin: 0
+	font-size: clamp(32px, 8vw, 72px)
+	font-weight: 400
+	line-height: 1
+	letter-spacing: -0.03em
+	overflow-wrap: anywhere
 
-.loader
-    display: grid
-    justify-content: center
-    align-items: center
-    margin: 50px auto
-    width: 80%
+.course
+	margin: 12px 0 0
+	font-size: 20px
+	font-weight: 500
+	line-height: 26px
 
-.article
-    width: 100%
-    min-height: 95vh
-    display: grid
-    min-width: 100%
-    background-size: cover
-    background-repeat: no-repeat
-    background-position: center center
-    background-color: #00000094
-    background-blend-mode: multiply
-    /* @md */
-    @media screen and (max-width: 1024px)
-        height: 70vh
-        min-height: 70vh
-    /* @xs */
-    @media screen and (max-width: 600px)
-        height: 70vh
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        height: 70vh
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        height: 70vh
+.section
+	width: min(1320px, calc(100% - 48px))
+	margin: 60px auto 0
+	@media screen and (max-width: 640px)
+		width: calc(100% - 40px)
+		margin-top: 48px
 
-.titles
-    width: auto
-    height: 100px
-    place-self: center
+.sectionTitle
+	margin: 0 0 60px
+	font-size: clamp(28px, 6vw, 72px)
+	font-weight: 400
+	line-height: 1.05
+	letter-spacing: -0.03em
+	overflow-wrap: anywhere
+	@media screen and (max-width: 640px)
+		margin-bottom: 20px
+
+.row
+	display: flex
+	gap: 20px
+	overflow-x: auto
+	padding-bottom: 8px
+	scroll-snap-type: x mandatory
+	-webkit-overflow-scrolling: touch
+
+.shot
+	flex: 0 0 min(418px, 78vw)
+	aspect-ratio: 418 / 313
+	overflow: hidden
+	scroll-snap-align: start
+	background: #141414
+
+.shotImage
+	width: 100% !important
+	height: 100% !important
+	object-fit: cover

@@ -65,12 +65,6 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
         gap: 20px
         padding-top: 40px
 
-[data-variant='design'] .title
-    font-family: Arial, sans-serif
-
-[data-variant='design'] .grid
-    gap: 24px
-
 .section.section[data-variant='language']
     background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 28%)
 
@@ -145,12 +139,10 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
 .section[data-variant='language'] .grid
     padding-top: 48px
 
-.section.section[data-variant='educational'],
-.section.section[data-variant='design']
+.section.section[data-variant='educational']
     background: var(--color-bg-gray)
 
-.section[data-variant='educational'] .hero,
-.section[data-variant='design'] .hero
+.section[data-variant='educational'] .hero
     position: relative
     padding: 120px 0 64px
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 42%, color-mix(in srgb, var(--blog-accent) 55%, #000000) 100%)
@@ -158,16 +150,14 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
     @media screen and (max-width: 768px)
         padding: 100px 0 48px
 
-.section[data-variant='educational'] .hero::before,
-.section[data-variant='design'] .hero::before
+.section[data-variant='educational'] .hero::before
     content: ''
     position: absolute
     inset: 0
     background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--blog-accent) 35%, transparent) 0%, transparent 45%), radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 35%)
     pointer-events: none
 
-.section[data-variant='educational'] .hero::after,
-.section[data-variant='design'] .hero::after
+.section[data-variant='educational'] .hero::after
     content: ''
     position: absolute
     left: 0
@@ -177,13 +167,11 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
     background: linear-gradient(90deg, transparent 0%, var(--blog-accent) 20%, color-mix(in srgb, var(--blog-accent) 75%, #ffffff) 50%, var(--blog-accent) 80%, transparent 100%)
     pointer-events: none
 
-.section[data-variant='educational'] .hero > :global(.container),
-.section[data-variant='design'] .hero > :global(.container)
+.section[data-variant='educational'] .hero > :global(.container)
     position: relative
     z-index: 1
 
-.section[data-variant='educational'] .eyebrow,
-.section[data-variant='design'] .eyebrow
+.section[data-variant='educational'] .eyebrow
     display: block
     margin: 0 auto 14px
     text-align: center
@@ -197,16 +185,14 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
         letter-spacing: 0.14em
         line-height: 1.5
 
-.section[data-variant='educational'] .title,
-.section[data-variant='design'] .title
+.section[data-variant='educational'] .title
     color: #FFFFFF
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35)
     max-width: 900px
     margin-left: auto
     margin-right: auto
 
-.section[data-variant='educational'] .subtitle,
-.section[data-variant='design'] .subtitle
+.section[data-variant='educational'] .subtitle
     color: rgba(255, 255, 255, 0.82)
     font-size: 18px
     line-height: 1.65
@@ -214,9 +200,97 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
         font-size: 16px
 
 .section[data-variant='educational'] .header,
-.section[data-variant='design'] .header,
 .section[data-variant='language'] .header
     margin-bottom: 0
     padding: 0 8px
     @media screen and (max-width: 768px)
         padding: 0 4px
+
+.section.section[data-variant='design']
+    background: #090909
+    color: #ffffff
+    padding: 170px 0 96px
+    @media screen and (max-width: 991px)
+        padding-top: 104px
+    @media screen and (max-width: 640px)
+        padding: 104px 0 64px
+
+.section.section[data-variant='design'] :global(.container)
+    width: min(1320px, calc(100% - 48px))
+    max-width: none
+    margin-right: auto
+    margin-left: auto
+    padding-right: 0
+    padding-left: 0
+    @media screen and (max-width: 640px)
+        width: calc(100% - 32px)
+
+.section[data-variant='design'] .hero
+    background: transparent
+    padding: 0
+    overflow: visible
+
+.section[data-variant='design'] .hero::before,
+.section[data-variant='design'] .hero::after
+    content: none
+
+.section[data-variant='design'] .heroTop
+    display: none
+
+.section[data-variant='design'] .header
+    text-align: left
+    margin: 0
+    padding: 0
+
+.section[data-variant='design'] .eyebrow
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 12px
+    width: fit-content
+    margin: 0 0 16px
+    text-align: left
+    font-size: 11.2px
+    font-weight: 500
+    line-height: 16.8px
+    letter-spacing: 2.8px
+    text-transform: uppercase
+    color: #d9d9d9
+
+.section[data-variant='design'] .eyebrow::before
+    content: ''
+    width: 40px
+    height: 1px
+    background: #ce2421
+
+.section[data-variant='design'] .title,
+.section[data-variant='design'] .subtitle
+    max-width: 292px
+    margin: 0
+    text-align: left
+    text-shadow: none
+    font-weight: 400
+    font-size: clamp(36px, 4.8vw, 72px)
+    line-height: 1
+    letter-spacing: -0.025em
+    color: #ffffff
+
+.section[data-variant='design'] .subtitle
+    font-style: italic
+    color: #9b9b9b
+
+.section[data-variant='design'] .grid
+    gap: 60px 29px
+    padding-top: 60px
+
+@media screen and (max-width: 768px)
+    .section[data-variant='design'] .title,
+    .section[data-variant='design'] .subtitle
+        max-width: 100%
+        font-size: clamp(32px, 9vw, 48px)
+    .section[data-variant='design'] .grid
+        gap: 32px
+        padding-top: 32px
+    .section[data-variant='design'] .eyebrow
+        letter-spacing: 0.14em
+        flex-wrap: wrap

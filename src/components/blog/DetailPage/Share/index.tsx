@@ -46,7 +46,7 @@ const Share = ({ shareUrl, title, keywords, config }: Readonly<Props>) => {
     ];
 
     return (
-        <div className={styles.share}>
+        <div className={styles.share} data-variant={config.key}>
             {!!keywords?.length && (
                 <div className={styles.meta}>
                     {keywords.map((keyword) => (

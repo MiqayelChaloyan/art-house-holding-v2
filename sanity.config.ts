@@ -8,6 +8,7 @@ import { dashboardTool, projectUsersWidget, projectInfoWidget } from '@sanity/da
 import { BsDatabaseFillGear } from 'react-icons/bs';
 
 import Structure from './sanity.structure';
+import { StudioFormInput } from './sanity/components/SectionDocumentInput';
 
 const config = defineConfig(
   {
@@ -18,6 +19,11 @@ const config = defineConfig(
     basePath,
     schema,
     icon: BsDatabaseFillGear,
+    form: {
+      components: {
+        input: StudioFormInput,
+      },
+    },
     plugins: [
       deskTool({
         structure: Structure,

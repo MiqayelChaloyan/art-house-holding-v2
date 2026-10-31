@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { MdAccessTimeFilled, MdEmail, MdLocalPhone, MdLocationOn } from 'react-icons/md';
 
 import Snackbar from '@/src/components/components/snackbar';
@@ -50,7 +50,6 @@ const initValues: FormValues = {
 };
 
 const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
-    const locale = useLocale();
     const t = useTranslations();
     const tPage = useTranslations('contact-page');
 
@@ -64,9 +63,9 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     });
 
     const phones = (contacts?.phone_numbers || []).filter(Boolean);
-    const hours = contacts?.hours || tPage('hours');
+    const hours = contacts?.hours || '';
     const email = contacts?.email;
-    const address = contacts?.address || t('address.address');
+    const address = contacts?.address || '';
     const mapsQuery = encodeURIComponent(address);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -133,7 +132,7 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {tPage('eyebrow')}
                         </p>
-                        <h1 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
+                        <h1 className={cn(styles.headline, InstrumentSerif.className)}>
                             <span>{tPage('line-1')}</span>
                             <span className={styles.emphasis}>{tPage('line-2')}</span>
                         </h1>

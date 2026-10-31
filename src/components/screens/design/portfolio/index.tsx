@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
-import WorksGallery from '@/src/components/components/worksGallery';
+import Fancybox from '@/src/components/components/fancybox';
+import NextImage from '@/src/components/components/image';
 
-import HoneyCombLoader from '@/src/lib/ui/rotatingLines';
-import { Arial } from '@/src/constants/font';
-
+import { options } from '@/src/components/components/fancybox/options';
+import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
-import { ImagePath } from '@/src/types/general';
 import { getPortfolioItemKey } from '@/src/utils/portfolio-item-key';
 
 import cn from 'classnames';
@@ -24,8 +23,8 @@ interface Props {
 
 const Home = ({ data }: Readonly<Props>) => {
     const searchParams = useSearchParams();
-    const [portfolio, setPortfolio] = useState<PORTFOLIO[]>([]);
-    const [path, setPath] = useState<ImagePath | null>(null);
+    const first = data.portfolios?.[0];
+    const [portfolio, setPortfolio] = useState<PORTFOLIO[]>(first ? [first] : []);
 
     useEffect(() => {
         let nameFromParams = getPortfolioItemKey(searchParams);
@@ -42,42 +41,66 @@ const Home = ({ data }: Readonly<Props>) => {
             localStorage.setItem('name', nameFromParams);
         }
 
-        const filteredPortfolio = data.portfolios?.filter((item: PORTFOLIO) => item._key === nameFromParams) || [];
-        setPortfolio(filteredPortfolio);
-
-
-        if (filteredPortfolio.length > 0) {
-            const imagePath = urlForImage(filteredPortfolio[0]?.background_image);
-            setPath(imagePath);
+        const filtered = data.portfolios?.filter((item) => item._key === nameFromParams) || [];
+        if (filtered.length) {
+            setPortfolio(filtered);
         }
-
     }, [searchParams, data.portfolios]);
 
-    if (portfolio.length === 0) {
-        return (
-            <div className={styles.loader}>
-                <HoneyCombLoader />
-            </div>
-        );
-    }
+    const current = portfolio[0];
+    if (!current) return null;
 
-    const { author } = portfolio[0];
-
+    const coverSource = current.background_image || current.image;
+    const cover = coverSource ? urlForImage(coverSource, 1600) : undefined;
 
     return (
-        <div>
-            <div className={styles.article} style={{ backgroundImage: `url(${path?.src})` }}>
-                <div className={styles.titles}>
-                    <h1 className={cn(styles.course_name, Arial.className)}>{data.course_name}</h1>
-                    <h2 className={cn(styles.author, Arial.className)}>{author}</h2>
+        <article className={cn(styles.page, Inter.className)}>
+            <header className={styles.hero}>
+                {cover?.src && (
+                    <NextImage
+                        src={cover.src}
+                        alt={coverSource?.alt || current.author || data.course_name || ''}
+                        className={styles.heroImage}
+                        width={cover.width}
+                        height={cover.height}
+                        sizes="100vw"
+                        priority
+                    />
+                )}
+                <div className={styles.heroCopy}>
+                    <h1 className={cn(styles.author, InstrumentSerif.className)}>{current.author}</h1>
+                    <p className={cn(styles.course, Montserrat.className)}>{data.course_name}</p>
                 </div>
-            </div>
-            {portfolio[0]?.title_images_array.map((works: WORK) => (
-                <WorksGallery key={works._key} works={works} />
+            </header>
+
+            {(current.title_images_array || []).map((works) => (
+                <section key={works._key} className={styles.section}>
+                    <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>{works.title}</h2>
+                    <div className={styles.row}>
+                        <Fancybox options={options}>
+                            {(works.images || []).map((image, index) => {
+                                const path = urlForImage(image, 900);
+                                if (!path?.src) return null;
+
+                                return (
+                                    <a key={image.asset?._ref || `${works._key}-${index}`} data-fancybox="gallery" href={path.src} className={styles.shot}>
+                                        <NextImage
+                                            src={path.src}
+                                            alt={image.alt || works.title || ''}
+                                            className={styles.shotImage}
+                                            width={path.width}
+                                            height={path.height}
+                                            sizes="418px"
+                                        />
+                                    </a>
+                                );
+                            })}
+                        </Fancybox>
+                    </div>
+                </section>
             ))}
-        </div>
+        </article>
     );
 };
 
 export default Home;
-

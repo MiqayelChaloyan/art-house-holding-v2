@@ -38,14 +38,14 @@ export const ABOUT_US_DETAILS_QUERY = `
         "eyebrow": eyebrow[$language],
         "line_1": line_1[$language],
         "line_2": line_2[$language],
-        "items": items[] {
+        "items": items[0...30] {
             _key,
             number,
             "title": title[$language],
             "description": description[$language],
         },
     },
-    "courses": courses[] {
+    "courses": courses[0...10] {
         _key,
         name,
         gallery_of_course,
@@ -72,7 +72,7 @@ export const ABOUT_US_DETAILS_QUERY = `
         "line_1": line_1[$language],
         "line_2": line_2[$language],
         "description": description[$language],
-        "projects": projects[] {
+        "projects": projects[0...10] {
             _key,
             year,
             href,
@@ -90,6 +90,10 @@ export const ABOUT_US_DETAILS_QUERY = `
         "line_1": line_1[$language],
         "line_2": line_2[$language],
         "line_3": line_3[$language],
+        "images": images[0...10] {
+            _key,
+            image,
+        },
         certificate,
         diploma,
     },

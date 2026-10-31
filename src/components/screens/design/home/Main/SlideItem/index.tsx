@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import NextImage from '@/src/components/components/image';
+
 import { Inter } from '@/src/constants/font';
 
 import { SlideItem as Props } from '@/src/types/design';
@@ -14,10 +16,22 @@ import styles from './styles.module.sass';
 const SlideItem = ({
     url,
     company_name,
-    title
+    title,
+    priority = false,
 }: Readonly<Props>) => {
     return (
-        <div className={styles.article} style={{ backgroundImage: `url(${url})` }}>
+        <div className={styles.article}>
+            {url && (
+                <NextImage
+                    src={url}
+                    alt={company_name || title || ''}
+                    className={styles.photo}
+                    width={1512}
+                    height={709}
+                    sizes="100vw"
+                    priority={priority}
+                />
+            )}
             <div className={styles.overlay} />
             <div className={styles.container}>
                 <div className={styles.contact}>

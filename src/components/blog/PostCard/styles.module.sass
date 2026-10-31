@@ -102,10 +102,6 @@
     @media screen and (max-width: 768px)
         font-size: 18px
 
-[data-variant='design'] .title
-    font-family: Arial, sans-serif
-    font-weight: 700
-
 .excerpt
     font-size: 16px
     line-height: 1.6
@@ -132,3 +128,51 @@
     @media screen and (max-width: 768px)
         font-size: 14px
         padding: 8px 20px
+
+[data-variant='design'] .link
+    background: transparent
+    border: 0
+    border-radius: 0
+    box-shadow: none
+    @media (hover: hover)
+        &:hover
+            transform: none
+            box-shadow: none
+            border-color: transparent
+
+[data-variant='design'] .imageWrapper
+    aspect-ratio: 418 / 313
+
+[data-variant='design'] .category
+    display: none
+
+[data-variant='design'] .content
+    padding: 14px 0 0
+    gap: 8px
+
+[data-variant='design'] .meta
+    font-size: 14px
+    line-height: 16px
+    color: #d9d9d9
+
+[data-variant='design'] .title
+    font-weight: 500
+    font-size: 20px
+    line-height: 26px
+    letter-spacing: -0.02em
+    color: #ffffff
+
+[data-variant='design'] .readMore
+    display: inline-flex
+    align-items: center
+    gap: 8px
+    margin-top: 4px
+    padding: 0
+    background: transparent
+    border-radius: 0
+    color: #ffffff
+    font-size: 14px
+    font-weight: 500
+    svg
+        width: 14px
+        height: 14px

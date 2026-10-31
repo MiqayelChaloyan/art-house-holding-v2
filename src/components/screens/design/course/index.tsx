@@ -1,136 +1,191 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
+import { LuArrowUpRight } from 'react-icons/lu';
 
-import useWindowSize from '@/src/hooks/useWindowSize';
-
-import Checkmark from '@/src/lib/icons/design/Checkmark';
+import NextImage from '@/src/components/components/image';
 import PortfolioImageCard from '@/src/lib/ui/portfolio-card';
 
 import { Pages } from '@/src/constants/pages';
-import { Arial } from '@/src/constants/font';
-import { Titles } from '@/src/constants';
+import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
 
-import colors from '@/src/themes';
+import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
 
 import styles from './styles.module.sass';
 
 
-const AnimatedComponent = dynamic(() => import('./AnimationCarousel'), { ssr: false });
-
 interface Props {
-  locale: string;
-  course: COURSES_DESIGN_QUERYResult;
+    locale: string;
+    course: COURSES_DESIGN_QUERYResult;
 };
-
-interface BoxProps {
-  guide: string;
-  iconSize: number;
-};
-
-const Box = ({ guide, iconSize }: Readonly<BoxProps>) => (
-  <div className={cn(styles.hex)}>
-    <Checkmark width={20} height={18} fill={colors.white} />
-    <p className={cn(styles['our-advantages'], Arial.className)}>{guide}</p>
-  </div>);
-
 
 const Course = ({ locale, course }: Readonly<Props>) => {
-  const { gallery_of_course, course_name, conditions, guides, name, portfolios } = course;
-  const latestProjects = portfolios?.slice(Math.max(portfolios.length - 4, 0)) ?? [];
-  const [index, setIndex] = useState<number>(0);
-  const windoSize = useWindowSize();
-  const t = useTranslations();
+    const t = useTranslations('course-page');
+    const {
+        gallery_of_course,
+        course_name,
+        conditions = [],
+        guides = [],
+        name,
+        portfolios,
+        ogDescription,
+        slug,
+    } = course;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % gallery_of_course.length);
-    }, 5000);
+    const portrait = gallery_of_course?.[0];
+    const aboutSource = gallery_of_course?.[1] || portrait;
+    const image = portrait ? urlForImage(portrait, 1040) : undefined;
+    const aboutImage = aboutSource ? urlForImage(aboutSource, 1040) : undefined;
+    const intro = ogDescription || conditions[0] || '';
+    const facts = (ogDescription ? conditions : conditions.slice(1)).slice(0, 4);
+    const latestProjects = portfolios?.slice(Math.max(portfolios.length - 4, 0)) ?? [];
+    const title = course_name || name;
 
-    return () => clearTimeout(timer);
-  }, [index, gallery_of_course.length]);
+    return (
+        <article className={cn(styles.page, Inter.className)}>
+            <section className={styles.hero}>
+                <div className={styles.copy}>
+                    <p className={styles.eyebrow}>
+                        <span className={styles.mark} aria-hidden />
+                        {t('eyebrow')} · {name}
+                    </p>
+                    <h1 className={cn(styles.headline, InstrumentSerif.className)}>{title}</h1>
+                    {intro && <p className={cn(styles.intro, Montserrat.className)}>{intro}</p>}
+                    <div className={styles.actions}>
+                        <Link href={`/${locale}${Pages.DESIGN_COURSES}`} className={styles.primary}>
+                            {t('explore')}
+                            <LuArrowUpRight aria-hidden />
+                        </Link>
+                        <Link
+                            href={{
+                                pathname: `/${locale}${Pages.DESIGN_PORTFOLIOS}`,
+                                query: { name },
+                            }}
+                            className={styles.secondary}
+                        >
+                            {t('portfolio')}
+                            <LuArrowUpRight aria-hidden />
+                        </Link>
+                    </div>
+                </div>
+                {image?.src && (
+                    <div className={styles.portrait}>
+                        <NextImage
+                            src={image.src}
+                            alt={portrait?.alt || title}
+                            className={styles.portraitImage}
+                            width={image.width}
+                            height={image.height}
+                            sizes="(max-width: 980px) 100vw, 518px"
+                            priority
+                        />
+                    </div>
+                )}
+            </section>
 
-  const terms = conditions?.map((condition: string, conditionIndex: number) =>
-    <div key={conditionIndex} className={styles.term}>
-      <li className={cn(styles.condition, Arial.className)}>{condition}</li>
-    </div>);
+            {(aboutImage?.src || facts.length > 0) && (
+                <section className={styles.about}>
+                    {aboutImage?.src && (
+                        <div className={styles.aboutMedia}>
+                            <NextImage
+                                src={aboutImage.src}
+                                alt={aboutSource?.alt || title}
+                                className={styles.aboutImage}
+                                width={aboutImage.width}
+                                height={aboutImage.height}
+                                sizes="(max-width: 980px) 100vw, 658px"
+                            />
+                        </div>
+                    )}
+                    <div className={styles.aboutCopy}>
+                        <p className={styles.eyebrow}>
+                            <span className={styles.mark} aria-hidden />
+                            {t('about-eyebrow')}
+                        </p>
+                        <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>
+                            <span>{t('about-title')}</span>
+                            <span className={styles.emphasis}>{t('about-emphasis')}</span>
+                        </h2>
+                        {facts.length > 0 && (
+                            <ul className={styles.facts}>
+                                {facts.map((fact, index) => (
+                                    <li key={`${index}-${fact}`} className={styles.fact}>
+                                        <p className={cn(styles.factTitle, Montserrat.className)}>{fact}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                </section>
+            )}
 
-  const roadbook = guides?.map((guide: string, guideIndex: number) =>
-    <Box key={guideIndex} guide={guide} iconSize={windoSize.width} />);
+            {guides.length > 0 && (
+                <section className={styles.curriculum}>
+                    <header className={styles.curriculumHead}>
+                        <div>
+                            <p className={styles.eyebrow}>
+                                <span className={styles.mark} aria-hidden />
+                                {t('curriculum-eyebrow')}
+                            </p>
+                            <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>
+                                <span>{t('curriculum-title')}</span>
+                                <span className={styles.emphasis}>{t('curriculum-emphasis')}</span>
+                            </h2>
+                        </div>
+                    </header>
+                    <ol className={styles.modules}>
+                        {guides.map((guide, index) => (
+                            <li key={`${index}-${guide}`} className={styles.module}>
+                                <span className={cn(styles.moduleIndex, Montserrat.className)}>
+                                    {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <p className={cn(styles.moduleTitle, Montserrat.className)}>{guide}</p>
+                            </li>
+                        ))}
+                    </ol>
+                </section>
+            )}
 
-  const projects = latestProjects?.map(project => (
-    <PortfolioImageCard
-      key={project._key}
-      course_name={course_name}
-      project={project}
-      slug={course.slug}
-      type='portfolios'
-    />
-  ));
-
-  return (
-    <section id='course' className={styles.container}>
-      <div className={styles.line} />
-      <div className={styles.course}>
-        <div className={styles.left}>
-          <AnimatedComponent gallery={gallery_of_course} />
-        </div>
-        <div className={styles.right}>
-          <div>
-            <h2 className={cn(styles['design-title-top'], Arial.className)}>{name}</h2>
-            <div className={styles['design-corner-large-right']}>
-              <h1 className={cn(styles['design-title'], Arial.className)}>
-                {course_name}
-              </h1>
-            </div>
-            <h1 className={cn(styles['design-title-mobile'], Arial.className)}>
-              {course_name}
-            </h1>
-          </div>
-          <div className={styles.conditions}>
-            <ul className={styles.list}>
-              {terms}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div>
-        {roadbook}
-      </div>
-      <div className={styles.porfolio}>
-        <div className={styles.titles}>
-          <div>
-            <div className={cn(styles['title-line'], styles['back-line'])} />
-            <h2 className={cn(styles['title-back'], Arial.className)}>{Titles.portfolios}</h2>
-          </div>
-          <div className={styles['bottom-title']}>
-            <h1 className={cn(styles['title-portfolio'], Arial.className)}>{t('sections.portfolios')}</h1>
-            <div className={cn(styles['title-line'], styles['bottom-line'])} />
-          </div>
-        </div>
-        <div className={styles.projects}>
-          {projects}
-        </div>
-        <div className={styles.button}>
-          <Link
-            href={{
-              pathname: `/${locale}${Pages.DESIGN_PORTFOLIOS}`,
-              query: { name },
-            }}
-            className={cn(styles.link, Arial.className)}
-          >
-            {t('buttons.view-all')}
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
+            {latestProjects.length > 0 && (
+                <section className={styles.work}>
+                    <p className={styles.eyebrow}>
+                        <span className={styles.mark} aria-hidden />
+                        {t('portfolio-eyebrow')}
+                    </p>
+                    <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>
+                        <span>{t('portfolio-title')}</span>
+                        <span className={styles.emphasis}>{t('portfolio-emphasis')}</span>
+                    </h2>
+                    <div className={styles.projects}>
+                        {latestProjects.map((project) => (
+                            <PortfolioImageCard
+                                key={project._key}
+                                course_name={title}
+                                project={project}
+                                slug={slug}
+                                type="portfolios"
+                            />
+                        ))}
+                    </div>
+                    <Link
+                        href={{
+                            pathname: `/${locale}${Pages.DESIGN_PORTFOLIOS}`,
+                            query: { name },
+                        }}
+                        className={styles.secondary}
+                    >
+                        {t('portfolio')}
+                        <LuArrowUpRight aria-hidden />
+                    </Link>
+                </section>
+            )}
+        </article>
+    );
 };
 
 export default React.memo(Course);

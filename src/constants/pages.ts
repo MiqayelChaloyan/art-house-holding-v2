@@ -20,6 +20,7 @@ const Pages = {
     LANGUAGE_QUIZ: LANGUAGE_QUIZ_PATH,
     DESIGN_HOME: '/design',
     DESIGN_ABOUT: '/design/about',
+    DESIGN_COURSES: '/design/courses',
     DESIGN_BLOG_HOME: '/design/blog',
     DESIGN_PRICE_LIST: '/design/price-list',
     DESIGN_CONTACT: '/design/contact',

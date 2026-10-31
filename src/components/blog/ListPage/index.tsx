@@ -15,7 +15,7 @@ import styles from './styles.module.sass';
 
 const BLOG_ACCENT: Record<BlogSiteKey, string> = {
     educational: '#DF362D',
-    design: '#5F401B',
+    design: '#ce2421',
     language: '#006ED2',
 };
 
@@ -30,8 +30,11 @@ const ListPage = ({ siteKey, posts, section }: Readonly<Props>) => {
     const config = BLOG_SITE_CONFIG[siteKey];
     const t = useTranslations('navigation');
     const textsT = useTranslations('texts');
-    const sectionTitle = section?.section_title || t('blog');
+    const sectionTitle = section?.section_title || (siteKey === 'design' ? '' : t('blog'));
     const sectionSubtitle = section?.section_subtitle;
+    const eyebrow = siteKey === 'design'
+        ? (section?.eyebrow || '')
+        : (config.heroEyebrowKey ? textsT(config.heroEyebrowKey) : '');
     const blogAccent = BLOG_ACCENT[siteKey];
 
     return (
@@ -50,16 +53,18 @@ const ListPage = ({ siteKey, posts, section }: Readonly<Props>) => {
                         />
                     </div>
                     <div className={styles.header}>
-                        {config.heroEyebrowKey && (
+                        {eyebrow && (
                             <span className={cn(styles.eyebrow, config.bodyFont.className)}>
-                                {textsT(config.heroEyebrowKey)}
+                                {eyebrow}
                             </span>
                         )}
-                        <h1 className={cn(styles.title, config.titleFont.className)}>
-                            {sectionTitle}
-                        </h1>
+                        {sectionTitle && (
+                            <h1 className={cn(styles.title, config.titleFont.className)}>
+                                {sectionTitle}
+                            </h1>
+                        )}
                         {sectionSubtitle && (
-                            <p className={cn(styles.subtitle, config.bodyFont.className)}>
+                            <p className={cn(styles.subtitle, siteKey === 'design' ? config.titleFont.className : config.bodyFont.className)}>
                                 {sectionSubtitle}
                             </p>
                         )}

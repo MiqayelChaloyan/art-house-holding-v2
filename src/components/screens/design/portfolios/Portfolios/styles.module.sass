@@ -1,505 +1,161 @@
-.container
-    height: max-content
-    padding-top: 50px
+.section
+	background: #090909
+	color: #ffffff
+	padding: 68px 0 96px
+	@media screen and (max-width: 640px)
+		padding: 32px 0 72px
 
-.navigation
-    display: grid    
-    grid-template-columns: repeat(9, 1fr)
-    align-items: center
-    gap: 20px
-    margin: 0 50px
-    justify-content: center
-    /* @4xl */
-    @media screen and (max-width: 2560px)
-        grid-template-columns: repeat(9, 1fr)
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        grid-template-columns: repeat(9, 1fr)
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        grid-template-columns: repeat(6, 1fr)
-        margin: 0 100px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        grid-template-columns: repeat(5, 1fr)
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        grid-template-columns: repeat(5, 1fr)
-    @media screen and (max-width: 1150px)
-        grid-template-columns: repeat(4, 1fr)
-        margin: 0 180px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        grid-template-columns: repeat(4, 1fr)
-        margin: 0 120px
-    @media screen and (max-width: 950px)
-        grid-template-columns: repeat(4, 1fr)
-    /* @sm */
-    @media screen and (max-width: 768px)
-        grid-template-columns: repeat(4, 1fr)
-    @media screen and (max-width: 670px)
-        grid-template-columns: repeat(3, 1fr)
-    @media screen and (max-width: 600px)
-        grid-template-columns: repeat(3, 1fr)
-    @media screen and (max-width: 550px)
-        grid-template-columns: repeat(1, 1fr)
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        grid-template-columns: repeat(1, 1fr)
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        grid-template-columns: repeat(1, 1fr)
+.wrap
+	width: min(1320px, calc(100% - 48px))
+	margin: 0 auto
+	@media screen and (max-width: 640px)
+		width: calc(100% - 40px)
 
-.link
-    filter: drop-shadow(1px 1px 3px #D4C6B9) 
-    span 
-        display: inline-block 
-        position: relative 
-        color: #fff 
-        font-weight: 500 
-        text-decoration: none 
-        text-transform: uppercase 
-        padding: 10px 
-        width: 180px
-        font-size: 12px
-        text-align: center 
-        clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%) 
-        background-color: #4B352B 
-        background-image: radial-gradient(200% 70% at center 20%, #4B352B -30%, #4B352B 49%, #4B352B 50%, #4B352B 150%) 
-        background-repeat: no-repeat 
-        transition: all .5s 
-        z-index: 5
-    &:hover 
-        span 
-            background-image: radial-gradient(200% 70% at center 20%, #6E5E4A -30%, #6E5E4A 49%, #6E5E4A 50%, #6E5E4A 150%) 
-    @media screen and (max-width: 1150px)
-        span
-            width: 150px
-            font-size: 10px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        span
-            width: 150px
-            font-size: 10px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        span
-            width: 140px
-            font-size: 8px
-    @media screen and (max-width: 550px)
-        span
-            width: 100%
-            height: auto
-            min-height: 40px
-            font-size: 13px
-            display: flex
-            justify-content: center
-            align-items: center
-            margin: 0 auto
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        span
-            width: 100%
-            height: auto
-            min-height: 45px
-            font-size: 11px
-            display: flex
-            justify-content: center
-            align-items: center
-            margin: 0 auto
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        span
-            width: 100%
-            height: auto
-            min-height: 45px
-            font-size: 10px
-            display: flex
-            justify-content: center
-            align-items: center
-            margin: 0 auto
+.top
+	display: flex
+	align-items: flex-end
+	justify-content: space-between
+	gap: 32px
+	margin-bottom: 60px
+	@media screen and (max-width: 980px)
+		flex-direction: column
+		align-items: flex-start
 
-.active
-    span
-        background-image: radial-gradient(200% 70% at center 20%, #6E5E4A -30%, #6E5E4A 49%, #6E5E4A 50%, #6E5E4A 150%) 
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin: 0 0 16px
+	font-size: 11.2px
+	font-weight: 500
+	line-height: 16.8px
+	letter-spacing: 2.8px
+	text-transform: uppercase
+	color: #d9d9d9
 
-.line
-    position: relative
-    &:before 
-        content: " " 
-        display: block 
-        height: 2px 
-        width: 100% 
-        position: absolute 
-        top: 47%
-        left: 25px
-        background: #4B352B 
-    &:nth-child(9n)
-        &:before 
-            display: none
-    &:last-child
-        &:before 
-            display: none
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        &:nth-child(6n)
-            &:before 
-                display: none
-        &:nth-child(9n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 47%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        &:nth-child(5n)
-            &:before 
-                display: none
-        &:nth-child(6n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 47%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    /* @xl */
-    @media screen and (max-width: 1280px)
-        &:nth-child(5n)
-            &:before 
-                display: none
-        &:nth-child(6n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 47%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    @media screen and (max-width: 1150px)
-        &:nth-child(4n)
-            &:before 
-                display: none
-        &:nth-child(5n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 49%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    @media screen and (max-width: 950px)
-        &:nth-child(4n)
-            &:before 
-                display: none
-        &:nth-child(5n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 49%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    /* @sm */
-    @media screen and (max-width: 768px)
-        &:nth-child(4n)
-            &:before 
-                display: none
-        &:nth-child(5n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 49%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    @media screen and (max-width: 670px)
-        &:nth-child(3n)
-            &:before 
-                display: none
-        &:nth-child(5n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 49%
-                left: 25px
-                background: #4B352B 
-        &:nth-child(4n)
-            &:before 
-                content: " " 
-                display: block 
-                height: 2px 
-                width: 100% 
-                position: absolute 
-                top: 49%
-                left: 25px
-                background: #4B352B 
-        &:last-child
-            &:before 
-                display: none
-    /* @xs */
-    @media screen and (max-width: 670px)
-       &:before
-            display: none !important
-    @media screen and (max-width: 550px)
-        &:before
-            display: none !important
+.mark
+	width: 40px
+	height: 1px
+	background: #ce2421
+	flex-shrink: 0
 
-.loader
-    display: grid
-    justify-content: center
-    align-items: center
-    margin: 50px auto
-    width: 80%
+.headline
+	margin: 0
+	max-width: 280px
+	font-size: clamp(36px, 4.8vw, 72px)
+	font-weight: 400
+	line-height: 1
+	letter-spacing: -0.03em
+	span
+		display: block
 
-.loader-card
-    width: 313px
-    height: 439px
-    position: relative
-    top: 0
-    right: 0
-    left: 0
-    bottom: 0
-    background-color: #DDDBDD
-    box-shadow: 0 0 10px #DDDBDD
-    transition: all 0.12s ease-in-out
-    cursor: pointer
-    margin: 10px
-    backdrop-filter: blur(8px)
-    animation: shimmer 2s infinite 
-    &:after 
-        position: absolute 
-        top: 0 
-        right: 0 
-        bottom: 0 
-        left: 0 
-        transform: translateX(-100%) 
-        background-image: linear-gradient(90deg,rgba(#fff, 0) 0,rgba(#fff, 0.2) 20%,rgba(#fff, 0.5) 60%,rgba(#fff, 0)) 
-        content: '' 
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        width: 313px
-        height: 439px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        width: 240px
-        height: 340px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        width: 220px
-        height: 320px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        width: 195px
-        height: 280px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        width: 195px
-        height: 250px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        width: 260px
-        height: 380px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        width: 230px
-        height: 340px
-    @media screen and (max-width: 550px)
-        width: 200px
-        height: 300px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        width: 180px
-        height: 270px
-    @media screen and (max-width: 420px)
-        width: 150px
-        height: 230px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        width: 135px
-        height: 200px
-        
-@keyframes shine
-    100%
-        transform: translateX(100%)
+.emphasis
+	font-style: italic
+	color: #9b9b9b
 
-/*Titles*/
-.titles
-    margin-top: 60px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        margin-top: 100px
+.filters
+	display: flex
+	flex-wrap: wrap
+	justify-content: flex-end
+	gap: 10px
+	max-width: 880px
+	@media screen and (max-width: 980px)
+		justify-content: flex-start
+		max-width: 100%
+	@media screen and (max-width: 640px)
+		flex-wrap: nowrap
+		justify-content: flex-start
+		width: 100%
+		overflow-x: auto
+		padding-bottom: 6px
+		-webkit-overflow-scrolling: touch
 
-.title-line
-    width: 39%
-    height: 4px
-    position: absolute
-    background-color: #5F401B
-    /* @sm */
-    @media screen and (max-width: 768px)
-        height: 3px
+.chip
+	display: inline-flex
+	align-items: center
+	min-height: 36px
+	padding: 0 18px
+	border: 1px solid #232323
+	color: #d9d9d9
+	font-size: 14px
+	line-height: 20px
+	text-decoration: none
+	white-space: nowrap
+	max-width: 100%
+	@media screen and (max-width: 640px)
+		flex: 0 0 auto
+	&:hover
+		border-color: #ffffff
+		color: #ffffff
 
-.bottom-line
-    left: 0
+.chipActive
+	background: #ffffff
+	border-color: #ffffff
+	color: #090909
+	&:hover
+		color: #090909
 
-.back-line
-    right: 0
+.grid
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 60px 29px
+	margin: 0
+	padding: 0
+	list-style: none
+	@media screen and (max-width: 980px)
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+		gap: 32px
 
-.bottom-title
-    position: relative
-    bottom: 65px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        bottom: 75px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        bottom: 65px
-    @media screen and (max-width: 980px)
-        bottom: 46px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        bottom: 60px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        bottom: 20px
+.card
+	display: flex
+	flex-direction: column
+	color: inherit
+	text-decoration: none
 
-.title
-    font-size: 90px
-    font-weight: 700
-    color: #362906
-    text-align: center
-    line-height: 130px
-    text-transform: uppercase
-    /* @4xl */
-    @media screen and (max-width: 2560px)
-        font-size: 90px
-        line-height: 130px
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        font-size: 90px
-        line-height: 130px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        font-size: 90px
-        line-height: 130px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        font-size: 70px
-        line-height: 130px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        font-size: 70px
-        line-height: 100px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        font-size: 70px
-        line-height: 100px
-    @media screen and (max-width: 980px)
-        font-size: 60px
-        line-height: 90px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        font-size: 50px
-        line-height: 90px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        font-size: 30px
-        line-height: 60px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        font-size: 27px
-        line-height: 50px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        font-size: 25px
-        line-height: 50px
+.media
+	display: block
+	overflow: hidden
+	aspect-ratio: 418 / 313
+	background: #141414
 
-.title-back
-    font-size: 100px
-    font-weight: 700
-    color: #D7D3CE
-    text-align: center
-    line-height: 130px
-    padding-right: 400px
-    /* @4xl */
-    @media screen and (max-width: 2560px)
-        font-size: 100px
-        line-height: 130px
-    /* @3xl */
-    @media screen and (max-width: 1920px)
-        font-size: 100px
-        line-height: 130px
-    /* @2xl */
-    @media screen and (max-width: 1600px)
-        font-size: 100px
-        line-height: 130px
-    /* @xl */
-    @media screen and (max-width: 1440px)
-        font-size: 80px
-        line-height: 130px
-        padding-right: 350px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-        font-size: 80px
-        line-height: 130px
-        padding-right: 300px
-    /* @md */
-    @media screen and (max-width: 1024px)
-        font-size: 80px
-        line-height: 130px
-        padding-right: 0
-    @media screen and (max-width: 980px)
-        font-size: 60px
-        line-height: 90px
-    /* @sm */
-    @media screen and (max-width: 768px)
-        font-size: 50px
-        line-height: 100px
-    /* @xs */
-    @media screen and (max-width: 600px)
-        font-size: 35px
-        line-height: 60px
-    /* @2xs */
-    @media screen and (max-width: 480px)
-        font-size: 28px
-        line-height: 50px
-    /* @3xs */
-    @media screen and (max-width: 360px)
-        font-size: 25px
-        line-height: 50px
+.image
+	width: 100% !important
+	height: 100% !important
+	object-fit: cover
+	transition: transform 0.45s ease
+	.card:hover &
+		transform: scale(1.04)
+
+.course
+	margin-top: 16px
+	font-size: 18px
+	font-weight: 500
+	line-height: 24px
+	color: #ffffff
+
+.author
+	margin-top: 4px
+	font-size: 16px
+	font-weight: 500
+	line-height: 22px
+	color: #d9d9d9
+
+.empty
+	margin: 24px 0 0
+	color: #d9d9d9
+
+.more
+	display: block
+	margin: 48px auto 0
+	min-height: 36px
+	padding: 0 18px
+	border: 1px solid #232323
+	background: transparent
+	color: #ffffff
+	font-size: 14px
+	line-height: 36px
+	cursor: pointer
+	&:hover
+		border-color: #ffffff

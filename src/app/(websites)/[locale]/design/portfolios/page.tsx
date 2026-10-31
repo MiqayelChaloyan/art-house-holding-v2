@@ -9,7 +9,7 @@ import { Locale } from '@/src/locales';
 
 import { buildSectionPageMetadata } from '@/src/utils/page-metadata';
 import { SITE_META_QUERY } from '@/sanity/services/design-service';
-import { getCourses, getPortfolio } from '@/src/utils/data/design';
+import { getCourses } from '@/src/utils/data/design';
 import { Pages } from '@/src/constants/pages';
 
 
@@ -23,13 +23,12 @@ export default async function Page({
     params: { locale }
 }: Readonly<Props>) {
     const courses = await getCourses(locale);
-    const portfolio = await getPortfolio(locale);
 
-    if (!courses || !portfolio) {
+    if (!courses?.length) {
         notFound()
     }
 
-    return (<Home courses={courses} data={portfolio} />);
+    return <Home courses={courses} />;
 };
 
 export async function generateMetadata({

@@ -128,19 +128,43 @@
             background: rgba(255, 255, 255, 0.12)
             border-color: rgba(255, 255, 255, 0.2)
 
+.list[data-variant='design']
+    gap: 20px
+    padding: 0
+    overflow: visible
+
 .list[data-variant='design'] .item
-    background: rgba(255, 255, 255, 0.1)
-    border-color: rgba(255, 255, 255, 0.18)
-    transition: background .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease
+    margin: 0
+    padding: 0
+    gap: 16px
+    align-items: center
+    border: 0
+    border-radius: 0
+    background: transparent
     @media (hover: hover)
         &:hover
-            background: color-mix(in srgb, var(--blog-accent) 24%, rgba(255, 255, 255, 0.04))
-            border-color: color-mix(in srgb, var(--blog-accent) 55%, rgba(255, 255, 255, 0.12))
-            transform: translateX(4px)
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22)
+            background: transparent
+            border-color: transparent
+            transform: none
+            box-shadow: none
+
+.list[data-variant='design'] .thumbnail
+    width: 120px
+    height: 90px
+    border: 0
+    border-radius: 0
+
+.list[data-variant='design'] .title
+    font-weight: 500
+    font-size: 16px
+    line-height: 22px
+    color: #ffffff
+
+.list[data-variant='design'] .date
+    color: #d9d9d9
 
 .list[data-variant='design'] .item:hover .title
-    color: #FFFFFF
+    color: #ffffff
 
 .list[data-variant='design'] .item:hover .date
-    color: rgba(255, 255, 255, 0.52)
+    color: #d9d9d9

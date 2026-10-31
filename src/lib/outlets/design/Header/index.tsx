@@ -31,7 +31,7 @@ interface IHeaderProps {
 
 const navigationLinks = [
     { path: Pages.DESIGN_ABOUT, label: 'about' },
-    { path: Pages.DESIGN_HOME, hash: '#design-courses', label: 'courses' },
+    { path: Pages.DESIGN_COURSES, label: 'courses' },
     { path: Pages.DESIGN_BLOG_HOME, label: 'blog' },
     { path: Pages.DESIGN_PORTFOLIOS, label: 'portfolios' },
     { path: Pages.DESIGN_CONTACT, label: 'contact' },
@@ -100,8 +100,8 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
                 )}>
                     <nav className={styles.nav} aria-label="Design studio">
                         {navigationLinks.map((link) => {
-                            const href = `/${locale}${link.path}${link.hash ?? ''}`;
-                            const isActive = !link.hash && pathname === `/${locale}${link.path}`;
+                            const href = `/${locale}${link.path}`;
+                            const isActive = pathname === href;
 
                             return (
                                 <Link
@@ -120,11 +120,13 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
                         })}
                     </nav>
                     <div className={styles.actions}>
-                        <LocalSwitcher
-                            variant="codes"
-                            activeColor={colors.white}
-                            color="rgba(255, 255, 255, 0.72)"
-                        />
+                        <div className={styles.langs}>
+                            <LocalSwitcher
+                                variant="codes"
+                                activeColor={colors.white}
+                                color="#d9d9d9"
+                            />
+                        </div>
                         <button
                             type="button"
                             className={styles.cta}

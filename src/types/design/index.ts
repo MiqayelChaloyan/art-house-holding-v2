@@ -5,6 +5,7 @@ export interface SlideItem {
     url: string;
     company_name: string;
     title: string;
+    priority?: boolean;
 };
 
 export interface PROMOTIONS {

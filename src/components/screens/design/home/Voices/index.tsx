@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -26,9 +26,9 @@ const Voices = ({ section }: Readonly<Props>) => {
     const locale = useLocale();
 
     const copy = {
-        eyebrow: section?.eyebrow || t('eyebrow'),
-        line1: section?.line_1 || t('line-1'),
-        line2: section?.line_2 || t('line-2'),
+        eyebrow: section?.eyebrow || '',
+        line1: section?.line_1 || '',
+        line2: section?.line_2 || '',
     };
 
     const items = useMemo(
@@ -41,29 +41,39 @@ const Voices = ({ section }: Readonly<Props>) => {
     const activeIndex = count ? ((index % count) + count) % count : 0;
     const voice = items[activeIndex];
 
-    const go = useCallback((step: number) => {
-        if (!count) return;
-        setPage(([current]) => [current + step, step]);
-    }, [count]);
+    const paused = useRef(false);
+    const [runId, setRunId] = useState(0);
 
     const goTo = useCallback((nextIndex: number) => {
         if (!count || nextIndex === activeIndex) return;
         setPage([nextIndex, nextIndex > activeIndex ? 1 : -1]);
+        setRunId((value) => value + 1);
     }, [activeIndex, count]);
 
     useEffect(() => {
         if (count < 2) return undefined;
-        const timer = window.setInterval(() => go(1), HOLD_MS);
+        const timer = window.setInterval(() => {
+            if (paused.current) return;
+            setPage(([current]) => [current + 1, 1]);
+        }, HOLD_MS);
         return () => window.clearInterval(timer);
-    }, [go, count]);
+    }, [count, runId]);
 
     if (!voice) return null;
 
-    const image = voice.image ? urlForImage(voice.image) : undefined;
+    const image = voice.image ? urlForImage(voice.image, 720) : undefined;
     const rating = Math.max(1, Math.min(5, voice.rating || 5));
 
     return (
-        <section id="student-voices" className={cn(styles.section, Inter.className)}>
+        <section
+            id="student-voices"
+            className={cn(styles.section, Inter.className)}
+            onMouseEnter={() => { paused.current = true; }}
+            onMouseLeave={() => {
+                paused.current = false;
+                setRunId((value) => value + 1);
+            }}
+        >
             <div className={styles.wrap}>
                 <header className={styles.header}>
                     <p className={styles.eyebrow}>
@@ -93,18 +103,19 @@ const Voices = ({ section }: Readonly<Props>) => {
                                         src={image.src}
                                         alt={voice.image?.alt || voice.name}
                                         className={styles.image}
-                                        width={440}
-                                        height={440}
+                                        width={image.width}
+                                        height={image.height}
+                                        sizes="(max-width: 860px) 70vw, 359px"
                                     />
                                 )}
                             </div>
                             <div className={styles.body}>
                                 <span className={styles.quoteMark} aria-hidden>
                                     <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
-                                        <path d="M11.2 21.2H0.8V12.4C0.8 8.08 1.84 4.72 3.92 2.32C6 0.88 8.4 0.16 11.12 0.16V5.2C9.52 5.36 8.32 6 7.52 7.12C6.72 8.24 6.32 9.84 6.32 11.92H11.2V21.2ZM27.2 21.2H16.8V12.4C16.8 8.08 17.84 4.72 19.92 2.32C22 0.88 24.4 0.16 27.12 0.16V5.2C25.52 5.36 24.32 6 23.52 7.12C22.72 8.24 22.32 9.84 22.32 11.92H27.2V21.2Z" fill="#e11d2e" />
+                                        <path d="M11.2 21.2H0.8V12.4C0.8 8.08 1.84 4.72 3.92 2.32C6 0.88 8.4 0.16 11.12 0.16V5.2C9.52 5.36 8.32 6 7.52 7.12C6.72 8.24 6.32 9.84 6.32 11.92H11.2V21.2ZM27.2 21.2H16.8V12.4C16.8 8.08 17.84 4.72 19.92 2.32C22 0.88 24.4 0.16 27.12 0.16V5.2C25.52 5.36 24.32 6 23.52 7.12C22.72 8.24 22.32 9.84 22.32 11.92H27.2V21.2Z" fill="#ce2421" />
                                     </svg>
                                 </span>
-                                <blockquote className={styles.quote}>“{voice.quote}”</blockquote>
+                                <blockquote className={cn(styles.quote, InstrumentSerif.className)}>“{voice.quote}”</blockquote>
                                 <div className={styles.footer}>
                                     <div>
                                         <p className={styles.name}>{voice.name}</p>

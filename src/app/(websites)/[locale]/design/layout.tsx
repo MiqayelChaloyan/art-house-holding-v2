@@ -9,7 +9,6 @@ import ScrollToTopButton from '@/src/lib/outlets/general/ScrollToTopButton';
 import FloatingMenu from '@/src/lib/outlets/general/FloatingMenu';
 import Modal from '@/src/lib/outlets/design/Modal';
 import CoursesModal from '@/src/lib/outlets/design/Modal/courses';
-import ContactUs from '@/src/lib/outlets/design/ContactUs';
 import PlayerModal from '@/src/lib/outlets/general/PlayerModal';
 import GoBack from '@/src/lib/outlets/general/GoBack';
 
@@ -20,7 +19,7 @@ import { Locale } from '@/src/locales';
 import { SITE_META_QUERY } from '@/sanity/services/design-service';
 
 import { getHomeDetails } from '@/src/utils/data/art-house';
-import { getContacts, getCourses, getSelectOptions } from '@/src/utils/data/design';
+import { getContacts, getCourses } from '@/src/utils/data/design';
 import { buildSiteMetadata, fetchSiteMetaEntry } from '@/src/utils/site-meta';
 
 
@@ -46,15 +45,13 @@ export default async function Layout({
     children,
     params: { locale },
 }: Readonly<RootLayoutProps>) {
-    const [courses, contacts, lessons, lessonsArmenianKeyword, branches] = await Promise.all([
+    const [courses, contacts, branches] = await Promise.all([
         getCourses(locale),
         getContacts(locale),
-        getSelectOptions(locale),
-        getSelectOptions('am'),
         getHomeDetails(locale),
     ]);
 
-    if (!branches || !courses || !contacts || !lessons || !lessonsArmenianKeyword) {
+    if (!branches || !courses || !contacts) {
         notFound()
     };
 
@@ -71,7 +68,6 @@ export default async function Layout({
                     hover={colors.studioRedDark}
                 />
                 {children}
-                <ContactUs lessons={lessons} lessonsArmenian={lessonsArmenianKeyword} />
                 <Footer socialData={contacts} />
             </div>
             <Modal>

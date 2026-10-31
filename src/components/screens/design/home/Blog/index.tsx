@@ -3,12 +3,15 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 import NextImage from '@/src/components/components/image';
 
+import { urlForImage } from '@/sanity/imageUrlBuilder';
+
 import { InstrumentSerif, Inter } from '@/src/constants/font';
 import { BLOG_SITE_CONFIG } from '@/src/components/blog/config';
+import { formatCardDate } from '@/src/utils/format-date';
 
 import cn from 'classnames';
 
@@ -20,23 +23,7 @@ interface Props {
     posts: BLOG_POST[];
 };
 
-const localeDateMap: Record<string, string> = {
-    am: 'hy-AM',
-    en: 'en-US',
-    ru: 'ru-RU',
-};
-
-const formatCardDate = (date: string, locale: string) => {
-    if (!date) return '';
-    return new Date(date).toLocaleDateString(localeDateMap[locale] ?? 'en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-    });
-};
-
 const Blog = ({ section, posts }: Readonly<Props>) => {
-    const t = useTranslations('blog-section');
     const locale = useLocale();
     const config = BLOG_SITE_CONFIG.design;
 
@@ -45,12 +32,15 @@ const Blog = ({ section, posts }: Readonly<Props>) => {
 
     const [featured, ...rest] = items;
     const copy = {
-        eyebrow: section?.eyebrow || t('eyebrow'),
-        line1: section?.section_title || t('line-1'),
-        line2: section?.section_subtitle || t('line-2'),
+        eyebrow: section?.eyebrow || '',
+        line1: section?.section_title || '',
+        line2: section?.section_subtitle || '',
     };
 
     const hrefFor = (slug: string) => `/${locale}${config.blogHome}/${slug}`;
+    const imageFor = (post: BLOG_POST, maxWidth: number) => (
+        post.featuredImage ? urlForImage(post.featuredImage, maxWidth) : post.featuredImagePath
+    );
 
     return (
         <section id="blog" className={cn(styles.section, Inter.className)}>
@@ -68,15 +58,21 @@ const Blog = ({ section, posts }: Readonly<Props>) => {
 
                 <div className={styles.stage}>
                     <Link href={hrefFor(featured.slug)} className={styles.featuredFrame} aria-label={featured.title}>
-                        {featured.featuredImagePath?.src && (
-                            <NextImage
-                                src={featured.featuredImagePath.src}
-                                alt={featured.featuredImage?.alt || featured.title}
-                                className={styles.featuredImage}
-                                width={900}
-                                height={860}
-                            />
-                        )}
+                        {(() => {
+                            const image = imageFor(featured, 1500);
+                            if (!image?.src) return null;
+                            return (
+                                <NextImage
+                                    src={image.src}
+                                    alt={featured.featuredImage?.alt || featured.title}
+                                    className={styles.featuredImage}
+                                    width={image.width}
+                                    height={image.height}
+                                    sizes="(max-width: 860px) 100vw, 753px"
+                                    priority
+                                />
+                            );
+                        })()}
                     </Link>
 
                     {rest.length > 0 && (
@@ -85,15 +81,20 @@ const Blog = ({ section, posts }: Readonly<Props>) => {
                                 <li key={post._id}>
                                     <Link href={hrefFor(post.slug)} className={styles.item}>
                                         <span className={styles.thumb}>
-                                            {post.featuredImagePath?.src && (
-                                                <NextImage
-                                                    src={post.featuredImagePath.src}
-                                                    alt={post.featuredImage?.alt || post.title}
-                                                    className={styles.thumbImage}
-                                                    width={296}
-                                                    height={200}
-                                                />
-                                            )}
+                                            {(() => {
+                                                const image = imageFor(post, 420);
+                                                if (!image?.src) return null;
+                                                return (
+                                                    <NextImage
+                                                        src={image.src}
+                                                        alt={post.featuredImage?.alt || post.title}
+                                                        className={styles.thumbImage}
+                                                        width={image.width}
+                                                        height={image.height}
+                                                        sizes="201px"
+                                                    />
+                                                );
+                                            })()}
                                         </span>
                                         <span className={styles.itemCopy}>
                                             <span className={styles.meta}>

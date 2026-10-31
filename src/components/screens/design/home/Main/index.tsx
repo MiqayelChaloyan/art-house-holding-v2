@@ -24,12 +24,12 @@ const SLIDE_SCROLL_DURATION = 45;
 
 const Main = ({ data }: Readonly<Props>) => {
 	const options: EmblaOptionsType = { loop: true, align: 'center', duration: SLIDE_SCROLL_DURATION };
-	const autoplay = useRef(Autoplay({ delay: SLIDE_HOLD_MS, stopOnInteraction: false }));
+	const autoplay = useRef(Autoplay({ delay: SLIDE_HOLD_MS, stopOnInteraction: false, stopOnMouseEnter: true }));
 	const [emblaRef] = useEmblaCarousel(options, [autoplay.current]);
 
 	const slidesItems = useMemo(() => {
-		return data?.map((item: MAIN_SLIDE) => {
-			const path: ImagePath = urlForImage(item.image);
+		return data?.map((item: MAIN_SLIDE, index: number) => {
+			const path: ImagePath = urlForImage(item.image, 1600);
 
 			return (
 				<SlideItem
@@ -37,6 +37,7 @@ const Main = ({ data }: Readonly<Props>) => {
 					url={path?.src}
 					company_name={item.company_name}
 					title={item.title}
+					priority={index === 0}
 				/>
 			);
 		});

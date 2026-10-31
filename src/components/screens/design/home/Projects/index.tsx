@@ -3,11 +3,11 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 import NextImage from '@/src/components/components/image';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -21,17 +21,16 @@ interface Props {
 };
 
 const Projects = ({ section }: Readonly<Props>) => {
-    const t = useTranslations('projects-section');
     const locale = useLocale();
 
     const copy = {
-        eyebrow: section?.eyebrow || t('eyebrow'),
-        line1: section?.line_1 || t('line-1'),
-        line2: section?.line_2 || t('line-2'),
-        description: section?.description || t('description'),
+        eyebrow: section?.eyebrow || '',
+        line1: section?.line_1 || '',
+        line2: section?.line_2 || '',
+        description: section?.description || '',
     };
 
-    const projects = (section?.projects || []).filter((item) => item?.image?.asset);
+    const projects = (section?.projects || []).filter((item) => item?.image?.asset).slice(0, 10);
     if (!projects.length) return null;
 
     return (
@@ -53,7 +52,7 @@ const Projects = ({ section }: Readonly<Props>) => {
 
                 <ul className={styles.grid}>
                     {projects.map((project, index) => {
-                        const image = urlForImage(project.image);
+                        const image = urlForImage(project.image, index === 0 || index === 3 ? 1400 : 1000);
                         const href = project.href
                             ? (project.href.startsWith('/') ? `/${locale}${project.href}` : project.href)
                             : `/${locale}${Pages.DESIGN_PORTFOLIOS}`;
@@ -67,15 +66,16 @@ const Projects = ({ section }: Readonly<Props>) => {
                                             src={image.src}
                                             alt={project.image?.alt || project.title}
                                             className={styles.image}
-                                            width={variant === 'wide' ? 1400 : 900}
-                                            height={variant === 'featured' ? 1100 : 640}
+                                            width={image.width}
+                                            height={image.height}
+                                            sizes={variant === 'wide' ? '100vw' : '(max-width: 860px) 100vw, 648px'}
                                         />
                                     )}
                                     <span className={styles.shade} aria-hidden />
                                     {project.category && <span className={styles.chip}>{project.category}</span>}
                                     <span className={styles.meta}>
                                         {project.year && <span className={styles.year}>{project.year}</span>}
-                                        <span className={styles.title}>{project.title}</span>
+                                        <span className={cn(styles.title, Montserrat.className)}>{project.title}</span>
                                     </span>
                                 </Link>
                             </li>

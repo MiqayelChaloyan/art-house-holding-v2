@@ -4,16 +4,16 @@
 	transition: var(--tr-time)
 	position: sticky
 	top: 0 !important
-	background-color: #0a0a0a
+	background-color: #090909
 	left: 0
 	z-index: 9
 
 .boxScrolled
-	background-color: #0a0a0a
+	background-color: #090909
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06)
 
 .boxOpenMenu
-	background-color: #0a0a0a
+	background-color: #090909
 
 .boxFixed
 	position: fixed
@@ -25,10 +25,10 @@
 	justify-content: space-between
 	gap: 24px
 	box-sizing: border-box
-	width: 100%
+	width: min(1320px, calc(100% - 48px))
 	max-width: 1320px
-	height: 100px
-	min-height: 100px
+	height: 102px
+	min-height: 102px
 	margin: 0 auto
 	padding: 0
 	@media screen and (max-width: 991px)
@@ -50,26 +50,27 @@
 
 .logoMark
 	display: block
-	width: 68px
-	height: 42px
+	width: 73px
+	height: 44px
 	overflow: hidden
 	flex-shrink: 0
 
 .logoImage
-	width: 68px !important
-	height: 57px !important
+	width: 73px !important
+	height: 44px !important
 	max-width: none
-	object-fit: fill
-	object-position: top center
+	object-fit: contain
+	object-position: left center
 
 .brandText
 	display: flex
 	flex-direction: column
-	line-height: 1.15
-	font-size: 11px
+	line-height: 15.5px
+	font-size: 13.188px
 	font-weight: 700
-	letter-spacing: 0.12em
-	color: var(--color-white)
+	letter-spacing: 0
+	text-transform: uppercase
+	color: #d9d9d9
 	@media screen and (max-width: 480px)
 		font-size: 10px
 
@@ -92,7 +93,7 @@
 		top: 100%
 		left: 0
 		gap: 32px
-		background-color: #0a0a0a
+		background-color: #090909
 		transition: var(--tr-time)
 		overflow: hidden
 
@@ -106,9 +107,9 @@
 	align-items: center
 	justify-content: center
 	flex: 1
-	gap: 8px
+	gap: 40px
 	@media screen and (max-width: 1200px)
-		gap: 4px
+		gap: 24px
 	@media screen and (max-width: 991px)
 		flex-direction: column
 		flex: 0
@@ -123,47 +124,36 @@
 		flex-direction: column
 		gap: 28px
 
+.langs
+	button
+		height: 16px
+		font-size: 12px
+		line-height: 16px
+
 .link
 	display: inline-flex
 	align-items: center
 	justify-content: center
 	position: relative
 	height: 20px
-	padding: 0 12px
+	padding: 0
 	text-align: center
 	font-size: 14px
 	font-weight: 400
 	line-height: 20px
 	letter-spacing: 0
-	color: rgba(255, 255, 255, 0.92)
+	color: #d9d9d9
 	text-decoration: none
 	text-transform: none
 	white-space: nowrap
 	transition: color 0.2s ease
-	&:after
-		content: ''
-		position: absolute
-		left: 12px
-		right: 12px
-		bottom: -6px
-		height: 2px
-		border-radius: 2px
-		background-color: #e11d2e
-		transform: scaleX(0)
-		transform-origin: center
-		transition: transform 0.2s ease
 	&:hover
 		color: #ffffff
-		&:after
-			transform: scaleX(1)
 	@media screen and (max-width: 991px)
 		height: auto
 		padding: 12px 8px
 		font-size: 22px
 		line-height: 28px
-		&:after
-			display: none
-
 .linkActive
 	color: var(--color-white)
 	font-weight: 400
@@ -173,22 +163,22 @@
 	align-items: center
 	justify-content: center
 	gap: 8px
-	height: 38px
-	padding: 0 18px
+	height: 40px
+	padding: 0 20px
 	border: 0
 	border-radius: 999px
-	background-color: #e11d2e
+	background-color: #ce2421
 	color: var(--color-white)
 	font-size: 14px
-	font-weight: 400
+	font-weight: 500
 	line-height: 20px
 	letter-spacing: 0
 	white-space: nowrap
 	cursor: pointer
 	transition: background-color 0.2s ease, box-shadow 0.2s ease
 	&:hover
-		background-color: #ff2d3f
-		box-shadow: 0 8px 18px rgba(225, 29, 46, 0.35)
+		background-color: #d42b28
+		box-shadow: 0 8px 18px rgba(206, 36, 33, 0.35)
 		.ctaIcon
 			transform: translate(3px, -3px)
 	@media screen and (max-width: 991px)
@@ -198,8 +188,8 @@
 		line-height: 20px
 
 .ctaIcon
-	width: 18px
-	height: 18px
+	width: 16px
+	height: 16px
 	flex-shrink: 0
 	stroke-width: 2.25
 	transition: transform 0.2s ease
