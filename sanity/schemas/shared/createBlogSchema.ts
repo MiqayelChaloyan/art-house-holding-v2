@@ -4,7 +4,7 @@ import { RuleType } from '@/sanity/ruleType';
 
 const localizedStringFields = [
     {
-        title: 'Armenian',
+        title: 'Հայերեն',
         name: 'am',
         type: 'string',
     },
@@ -14,7 +14,7 @@ const localizedStringFields = [
         type: 'string',
     },
     {
-        title: 'Russian',
+        title: 'Русский',
         name: 'ru',
         type: 'string',
     },
@@ -22,7 +22,7 @@ const localizedStringFields = [
 
 const localizedBlockFields = [
     {
-        title: 'Armenian',
+        title: 'Հայերեն',
         name: 'am',
         type: 'array',
         of: [{ type: 'block' }],
@@ -34,24 +34,24 @@ const localizedBlockFields = [
         of: [{ type: 'block' }],
     },
     {
-        title: 'Russian',
+        title: 'Русский',
         name: 'ru',
         type: 'array',
         of: [{ type: 'block' }],
     },
 ];
 
-export default function createBlogSchema(name: string, title: string) {
+export default function createBlogSchema(name: string, title: string, description?: string) {
     return {
         name,
         type: 'document',
         title,
+        description,
         icon: DocumentTextIcon,
         groups: [
             {
                 name: 'og',
-                title: 'Social Share Info',
-                default: true,
+                title: 'Social share',
             },
         ],
         fields: [
@@ -63,7 +63,7 @@ export default function createBlogSchema(name: string, title: string) {
                 group: ['og'],
             },
             {
-                title: 'Social Share Description',
+                title: 'Share description',
                 name: 'ogDescription',
                 type: 'object',
                 group: ['og'],
@@ -71,7 +71,7 @@ export default function createBlogSchema(name: string, title: string) {
             },
             {
                 type: 'image',
-                title: 'Social Share Image',
+                title: 'Share image',
                 name: 'ogImage',
                 description: 'URL of the image that should be used in social media previews.',
                 group: ['og'],

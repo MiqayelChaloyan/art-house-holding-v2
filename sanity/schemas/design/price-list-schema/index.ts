@@ -5,7 +5,8 @@ import { RuleType } from '@/sanity/ruleType';
 const priceListSchemaDesign = {
     name: 'price-list-design',
     type: 'document',
-    title: 'Price List',
+    title: 'Price list',
+    description: 'Design Studio price list.',
     icon: EarthGlobeIcon,
     id: 'price-list-design',
     initialValue: () => ({
@@ -19,7 +20,7 @@ const priceListSchemaDesign = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'array',
                     of: [{ type: 'block' }],
@@ -31,7 +32,7 @@ const priceListSchemaDesign = {
                     of: [{ type: 'block' }],
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'array',
                     of: [{ type: 'block' }],
@@ -51,7 +52,7 @@ const priceListSchemaDesign = {
                     icon: CheckmarkIcon,
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'string',
                         },
@@ -61,7 +62,7 @@ const priceListSchemaDesign = {
                             type: 'string'
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'string'
                         }
@@ -87,7 +88,7 @@ const priceListSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -97,7 +98,7 @@ const priceListSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -123,7 +124,7 @@ const priceListSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -133,7 +134,7 @@ const priceListSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -147,7 +148,7 @@ const priceListSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -157,7 +158,7 @@ const priceListSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -184,7 +185,8 @@ const priceListSchemaDesign = {
         },
         prepare() {
             return {
-                title: 'Գնացուցակ',
+                title: 'Price list',
+                subtitle: 'Design Studio · Գնացուցակ',
             };
         },
     }

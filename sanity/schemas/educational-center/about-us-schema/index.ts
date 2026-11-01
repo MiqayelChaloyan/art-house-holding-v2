@@ -1,4 +1,4 @@
-import { ClipboardIcon, LaunchIcon, UserIcon } from '@sanity/icons';
+import { ClipboardIcon, HomeIcon, LaunchIcon, UserIcon } from '@sanity/icons';
 import { GiProgression } from 'react-icons/gi';
 import { TfiLayoutSliderAlt } from 'react-icons/tfi';
 
@@ -9,7 +9,9 @@ import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
 export const aboutUsSchemaEducationalCenter = {
     name: 'about-us',
     type: 'document',
-    title: 'Home',
+    title: 'Home page',
+    description: 'Educational Center landing page — banner, about, lessons, specialists, and reviews.',
+    icon: HomeIcon,
     id: 'about-us-educational-center',
     groups: [
         { name: 'banner', title: '1. Banner', default: true },
@@ -55,7 +57,7 @@ export const aboutUsSchemaEducationalCenter = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -65,7 +67,7 @@ export const aboutUsSchemaEducationalCenter = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -100,7 +102,7 @@ export const aboutUsSchemaEducationalCenter = {
                             type: 'object',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -110,7 +112,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -157,7 +159,7 @@ export const aboutUsSchemaEducationalCenter = {
                     validation: (Rule: RuleType) => Rule.required(),
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'array',
                             of: [{ type: 'block' }],
@@ -169,7 +171,7 @@ export const aboutUsSchemaEducationalCenter = {
                             of: [{ type: 'block' }],
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'array',
                             of: [{ type: 'block' }],
@@ -206,7 +208,7 @@ export const aboutUsSchemaEducationalCenter = {
                     validation: (Rule: RuleType) => Rule.required(),
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'string'
                         },
@@ -216,7 +218,7 @@ export const aboutUsSchemaEducationalCenter = {
                             type: 'string'
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'string'
                         }
@@ -290,7 +292,7 @@ export const aboutUsSchemaEducationalCenter = {
                     validation: (Rule: RuleType) => Rule.required(),
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'string'
                         },
@@ -300,7 +302,7 @@ export const aboutUsSchemaEducationalCenter = {
                             type: 'string'
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'string'
                         }
@@ -326,7 +328,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     validation: (Rule: RuleType) => Rule.required(),
                                     fields: [
                                         {
-                                            title: 'Armenian',
+                                            title: 'Հայերեն',
                                             name: 'am',
                                             type: 'string'
                                         },
@@ -336,7 +338,7 @@ export const aboutUsSchemaEducationalCenter = {
                                             type: 'string'
                                         },
                                         {
-                                            title: 'Russian',
+                                            title: 'Русский',
                                             name: 'ru',
                                             type: 'string'
                                         }
@@ -349,7 +351,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     validation: (Rule: RuleType) => Rule.required(),
                                     fields: [
                                         {
-                                            title: 'Armenian',
+                                            title: 'Հայերեն',
                                             name: 'am',
                                             type: 'string'
                                         },
@@ -359,7 +361,7 @@ export const aboutUsSchemaEducationalCenter = {
                                             type: 'string'
                                         },
                                         {
-                                            title: 'Russian',
+                                            title: 'Русский',
                                             name: 'ru',
                                             type: 'string'
                                         }
@@ -430,7 +432,7 @@ export const aboutUsSchemaEducationalCenter = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -440,7 +442,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -499,7 +501,7 @@ export const aboutUsSchemaEducationalCenter = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -509,7 +511,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -522,7 +524,7 @@ export const aboutUsSchemaEducationalCenter = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -532,7 +534,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -623,7 +625,7 @@ export const aboutUsSchemaEducationalCenter = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -633,7 +635,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -660,7 +662,7 @@ export const aboutUsSchemaEducationalCenter = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -670,7 +672,7 @@ export const aboutUsSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -721,7 +723,8 @@ export const aboutUsSchemaEducationalCenter = {
         },
         prepare() {
             return {
-                title: 'Գլխավոր',
+                title: 'Home page',
+                subtitle: 'Educational Center · Գլխավոր',
             };
         },
     }

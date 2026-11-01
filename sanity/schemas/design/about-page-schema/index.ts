@@ -10,6 +10,7 @@ const aboutPageSchemaDesign = {
     name: 'about-page-design',
     type: 'document',
     title: 'About',
+    description: 'Design Studio about page — headline, portrait, and story sections.',
     icon: UserIcon,
     fields: [
         localizedString('Eyebrow', 'eyebrow'),
@@ -44,7 +45,7 @@ const aboutPageSchemaDesign = {
     ],
     preview: {
         prepare() {
-            return { title: 'About' };
+            return { title: 'About', subtitle: 'Design Studio · Մեր մասին' };
         },
     },
 };

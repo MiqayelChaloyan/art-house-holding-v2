@@ -1,4 +1,4 @@
-import { UserIcon } from '@sanity/icons';
+import { UserIcon, UsersIcon } from '@sanity/icons';
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
 
@@ -7,22 +7,42 @@ const feedbackLengthWarning = 'This feedback is much longer than the others and 
 export const aboutUsSchemaArtHouse = {
     name: 'art-house-about-us',
     type: 'document',
-    title: 'Home',
+    title: 'About',
+    description: 'The Art House Holding about page: the story at the top, then the reviews.',
+    icon: UsersIcon,
     id: 'art-house-about-us',
+    fieldsets: [
+        {
+            name: 'about',
+            title: '1. About',
+            description: 'Story and portrait at the top of the page.',
+            options: { collapsible: false },
+        },
+        {
+            name: 'ratings',
+            title: '2. Ratings',
+            description: 'Review cards under the story.',
+            options: { collapsible: false },
+        },
+    ],
     fields: [
         {
-            title: 'About Us',
+            title: 'Story and portrait',
             name: 'about_us_section',
             type: 'object',
+            fieldset: 'about',
+            description: 'This block sits at the top of the About page.',
+            options: { collapsible: false },
             fields: [
                 {
-                    title: 'Content',
+                    title: 'Story',
                     name: 'about_us_content',
                     type: 'object',
+                    description: 'Write the same story in each language. It appears next to the portrait.',
                     validation: (Rule: RuleType) => Rule.required(),
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'array',
                             of: [{ type: 'block' }],
@@ -34,7 +54,7 @@ export const aboutUsSchemaArtHouse = {
                             of: [{ type: 'block' }],
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'array',
                             of: [{ type: 'block' }],
@@ -42,15 +62,17 @@ export const aboutUsSchemaArtHouse = {
                     ]
                 },
                 {
-                    title: 'Image',
+                    title: 'Portrait',
                     name: 'image',
                     type: 'image',
+                    description: 'The photo shown beside the story.',
                     options: { hotspot: true },
                     fields: [
                         {
                             name: 'alt',
                             title: 'Alternative text',
-                            type: 'string'
+                            type: 'string',
+                            description: 'Short description of the photo for accessibility.',
                         }
                     ]
                 },
@@ -59,24 +81,27 @@ export const aboutUsSchemaArtHouse = {
         {
             name: 'our_rating',
             type: 'array',
-            title: 'Our Rating Section (max 70)',
+            title: 'Reviews',
+            fieldset: 'ratings',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.min(2).max(70),
-            description: 'No less than 2, and no more than 70.',
+            description: 'Each item is one review card. Add at least 2, at most 70.',
             of: [
                 {
                     name: 'Object',
                     type: 'object',
+                    title: 'Review',
                     icon: UserIcon,
                     fields: [
                         {
-                            title: 'User Name',
+                            title: 'Name',
                             name: 'user_name',
                             type: 'object',
+                            description: 'The name shown on the review card.',
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -86,7 +111,7 @@ export const aboutUsSchemaArtHouse = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -94,8 +119,9 @@ export const aboutUsSchemaArtHouse = {
                         },
                         {
                             name: 'user_image',
-                            title: 'User Image',
+                            title: 'Photo',
                             type: 'image',
+                            description: 'The person on the review card.',
                             options: { hotspot: true },
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
@@ -107,14 +133,14 @@ export const aboutUsSchemaArtHouse = {
                             ]
                         },
                         {
-                            title: 'User Feedback',
+                            title: 'Quote',
                             name: 'user_feedback',
                             type: 'object',
                             validation: (Rule: RuleType) => Rule.required(),
-                            description: 'Recommended length: 150-300 characters, so every testimonial card stays the same size.',
+                            description: 'Keep this around 150–300 characters so the cards stay the same size.',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string',
                                     validation: (Rule: RuleType) => Rule.max(350).warning(feedbackLengthWarning),
@@ -126,7 +152,7 @@ export const aboutUsSchemaArtHouse = {
                                     validation: (Rule: RuleType) => Rule.max(350).warning(feedbackLengthWarning),
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string',
                                     validation: (Rule: RuleType) => Rule.max(350).warning(feedbackLengthWarning),
@@ -137,10 +163,15 @@ export const aboutUsSchemaArtHouse = {
                     preview: {
                         select: {
                             title: 'user_name.en',
+                            armenian: 'user_name.am',
+                            russian: 'user_name.ru',
+                            media: 'user_image',
                         },
-                        prepare(selection: { title?: string }) {
+                        prepare(selection: { title?: string; armenian?: string; russian?: string; media?: unknown }) {
                             return {
-                                title: selection.title,
+                                title: selection.title || selection.armenian || selection.russian || 'Review',
+                                subtitle: 'About page review',
+                                media: selection.media,
                             };
                         },
                     }
@@ -154,7 +185,8 @@ export const aboutUsSchemaArtHouse = {
         },
         prepare() {
             return {
-                title: 'Մեր մասին',
+                title: 'About',
+                subtitle: 'Art House Holding · Մեր մասին',
             };
         },
     }

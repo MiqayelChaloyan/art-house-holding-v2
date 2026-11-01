@@ -4,28 +4,26 @@ import { RuleType } from '@/sanity/ruleType';
 export const coursesSchemaDesign = {
     name: 'courses-design',
     type: 'document',
-    title: 'Courses',
+    title: 'Design course',
+    description: 'A course page for the Design Studio, including portfolios and orders.',
     id: 'courses-design',
     icon: SparklesIcon,
     groups: [
         {
             name: 'portfolio',
             title: 'Portfolios',
-            default: false
         },
         {
             name: 'orders',
             title: 'Orders',
-            default: false
         },
         {
             name: 'og',
-            title: 'Social Share Info',
-            default: true
+            title: 'Social share',
         },
         {
             name: 'manifest',
-            title: 'Web App Settings',
+            title: 'Web app',
             hidden: ({ document }: {
                 document: {
                     [key: string]: never;
@@ -48,7 +46,7 @@ export const coursesSchemaDesign = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -58,7 +56,7 @@ export const coursesSchemaDesign = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -88,7 +86,7 @@ export const coursesSchemaDesign = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -98,7 +96,7 @@ export const coursesSchemaDesign = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -145,7 +143,7 @@ export const coursesSchemaDesign = {
                     icon: BulbOutlineIcon,
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'string',
                             validation: (Rule: RuleType) => Rule.required(),
@@ -157,7 +155,7 @@ export const coursesSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'string',
                             validation: (Rule: RuleType) => Rule.required(),
@@ -179,7 +177,7 @@ export const coursesSchemaDesign = {
                     icon: CheckmarkIcon,
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'string',
                             validation: (Rule: RuleType) => Rule.required(),
@@ -191,7 +189,7 @@ export const coursesSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'string',
                             validation: (Rule: RuleType) => Rule.required(),
@@ -221,7 +219,7 @@ export const coursesSchemaDesign = {
                             type: 'object',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string',
                                     validation: (Rule: RuleType) => Rule.required(),
@@ -233,7 +231,7 @@ export const coursesSchemaDesign = {
                                     validation: (Rule: RuleType) => Rule.required(),
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string',
                                     validation: (Rule: RuleType) => Rule.required(),
@@ -296,7 +294,7 @@ export const coursesSchemaDesign = {
                                             validation: (Rule: RuleType) => Rule.required(),
                                             fields: [
                                                 {
-                                                    title: 'Armenian',
+                                                    title: 'Հայերեն',
                                                     name: 'am',
                                                     type: 'string',
                                                     validation: (Rule: RuleType) => Rule.required(),
@@ -308,7 +306,7 @@ export const coursesSchemaDesign = {
                                                     validation: (Rule: RuleType) => Rule.required(),
                                                 },
                                                 {
-                                                    title: 'Russian',
+                                                    title: 'Русский',
                                                     name: 'ru',
                                                     type: 'string',
                                                     validation: (Rule: RuleType) => Rule.required(),
@@ -387,7 +385,7 @@ export const coursesSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string',
                                     validation: (Rule: RuleType) => Rule.required(),
@@ -399,7 +397,7 @@ export const coursesSchemaDesign = {
                                     validation: (Rule: RuleType) => Rule.required(),
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string',
                                     validation: (Rule: RuleType) => Rule.required(),
@@ -462,7 +460,7 @@ export const coursesSchemaDesign = {
                                             validation: (Rule: RuleType) => Rule.required(),
                                             fields: [
                                                 {
-                                                    title: 'Armenian',
+                                                    title: 'Հայերեն',
                                                     name: 'am',
                                                     type: 'string',
                                                     validation: (Rule: RuleType) => Rule.required(),
@@ -474,7 +472,7 @@ export const coursesSchemaDesign = {
                                                     validation: (Rule: RuleType) => Rule.required(),
                                                 },
                                                 {
-                                                    title: 'Russian',
+                                                    title: 'Русский',
                                                     name: 'ru',
                                                     type: 'string',
                                                     validation: (Rule: RuleType) => Rule.required(),
@@ -543,6 +541,17 @@ export const coursesSchemaDesign = {
             ],
         },
     ],
+    preview: {
+        select: {
+            title: 'course_name.en',
+        },
+        prepare(selection: { title?: string }) {
+            return {
+                title: selection.title || 'Design course',
+                subtitle: 'Design Studio',
+            };
+        },
+    },
 };
 
 export default coursesSchemaDesign;

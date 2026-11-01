@@ -4,7 +4,9 @@ import { RuleType } from '@/sanity/ruleType';
 const coursesSchemaLanguage = {
     name: 'languages-select-option',
     type: 'document',
-    title: 'Courses',
+    title: 'Request form options',
+    description: 'Lesson names and types shown in the Language Studio request form.',
+    icon: EarthGlobeIcon,
     id: 'languages-select-option',
     fields: [
         {
@@ -24,7 +26,7 @@ const coursesSchemaLanguage = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -34,7 +36,7 @@ const coursesSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -81,7 +83,7 @@ const coursesSchemaLanguage = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -91,7 +93,7 @@ const coursesSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -138,7 +140,7 @@ const coursesSchemaLanguage = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -148,7 +150,7 @@ const coursesSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -185,7 +187,8 @@ const coursesSchemaLanguage = {
         },
         prepare() {
             return {
-                title: 'Դասընթացներ',
+                title: 'Request form options',
+                subtitle: 'Language Studio · Դասընթացներ',
             };
         },
     }

@@ -1,4 +1,4 @@
-import { ClipboardIcon, UserIcon } from '@sanity/icons';
+import { ClipboardIcon, HomeIcon, UserIcon } from '@sanity/icons';
 import { GiProgression } from 'react-icons/gi';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
@@ -27,7 +27,9 @@ const smallLabel = () => localizedString(
 export const aboutUsSchemaDesign = {
     name: 'about-us-design',
     type: 'document',
-    title: 'Home',
+    title: 'Home page',
+    description: 'Design Studio landing page — banner, studio, courses, staff, and projects.',
+    icon: HomeIcon,
     id: 'about-us-design',
     groups: [
         { name: 'banner', title: '1. Banner', default: true },
@@ -77,7 +79,7 @@ export const aboutUsSchemaDesign = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -87,7 +89,7 @@ export const aboutUsSchemaDesign = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -128,7 +130,7 @@ export const aboutUsSchemaDesign = {
                             description: 'The line under the studio name, in each language.',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -138,7 +140,7 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -323,7 +325,7 @@ export const aboutUsSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -333,7 +335,7 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -347,7 +349,7 @@ export const aboutUsSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -357,7 +359,7 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -497,7 +499,7 @@ export const aboutUsSchemaDesign = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -507,7 +509,7 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -688,7 +690,7 @@ export const aboutUsSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -698,7 +700,7 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -712,7 +714,7 @@ export const aboutUsSchemaDesign = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -722,7 +724,7 @@ export const aboutUsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -887,7 +889,8 @@ export const aboutUsSchemaDesign = {
         },
         prepare() {
             return {
-                title: 'Գլխավոր',
+                title: 'Home page',
+                subtitle: 'Design Studio · Գլխավոր',
             };
         },
     }

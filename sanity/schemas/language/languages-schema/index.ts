@@ -5,18 +5,18 @@ import { RuleType } from '@/sanity/ruleType';
 const languagesSchemaLanguage = {
     name: 'about-language',
     type: 'document',
-    title: 'Languages',
+    title: 'Language program',
+    description: 'A language page — overview, teachers, and course process.',
     icon: EarthGlobeIcon,
     id: 'languages-languages-center',
     groups: [
         {
             name: 'og',
-            title: 'Social Share Info',
-            default: true
+            title: 'Social share',
         },
         {
             name: 'manifest',
-            title: 'Web App Settings',
+            title: 'Web app',
             hidden: ({ document }: {
                 document: {
                     [key: string]: never;
@@ -39,7 +39,7 @@ const languagesSchemaLanguage = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -49,7 +49,7 @@ const languagesSchemaLanguage = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -90,7 +90,7 @@ const languagesSchemaLanguage = {
                 {
                     name: 'am',
                     type: 'image',
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     options: {
                         hotspot: true,
                     },
@@ -120,7 +120,7 @@ const languagesSchemaLanguage = {
                 {
                     name: 'ru',
                     type: 'image',
-                    title: 'Russian',
+                    title: 'Русский',
                     options: {
                         hotspot: true,
                     },
@@ -141,7 +141,7 @@ const languagesSchemaLanguage = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'array',
                     of: [{ type: 'block' }],
@@ -153,7 +153,7 @@ const languagesSchemaLanguage = {
                     of: [{ type: 'block' }],
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'array',
                     of: [{ type: 'block' }],
@@ -264,7 +264,7 @@ const languagesSchemaLanguage = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -274,7 +274,7 @@ const languagesSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -309,6 +309,18 @@ const languagesSchemaLanguage = {
             ]
         }
     ],
+    preview: {
+        select: {
+            title: 'name',
+            media: 'image.en',
+        },
+        prepare(selection: { title?: string }) {
+            return {
+                title: selection.title || 'Language program',
+                subtitle: 'Language Studio',
+            };
+        },
+    },
 };
 
 export default languagesSchemaLanguage;

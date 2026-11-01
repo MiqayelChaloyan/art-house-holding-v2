@@ -1,233 +1,396 @@
-import { IoFolderOpen } from 'react-icons/io5';
-import { MdFolder } from 'react-icons/md';
-import { MdContactSupport } from 'react-icons/md';
-import { RiAiGenerate } from 'react-icons/ri';
+import {
+    BillIcon,
+    BookIcon,
+    CaseIcon,
+    CogIcon,
+    ComposeIcon,
+    DocumentTextIcon,
+    DocumentsIcon,
+    EarthGlobeIcon,
+    EnvelopeIcon,
+    HelpCircleIcon,
+    HomeIcon,
+    ImagesIcon,
+    MasterDetailIcon,
+    TagIcon,
+    UsersIcon,
+} from '@sanity/icons';
+import { ComponentType } from 'react';
 
-import { StructureBuilder } from 'sanity/structure';
+import { artHouseEnglish } from './sanity/i18n/art-house';
 
-export default (S: any) =>
-    S.list()
-        .title('Base')
+type Desk = any;
+
+const singleton = (
+    S: Desk,
+    {
+        id,
+        title,
+        type,
+        documentId,
+        icon,
+    }: {
+        id: string;
+        title: string;
+        type: string;
+        documentId: string;
+        icon: ComponentType;
+    },
+) =>
+    S.listItem()
+        .id(id)
+        .title(title)
+        .icon(icon)
+        .child(
+            S.document()
+                .schemaType(type)
+                .documentId(documentId)
+                .title(title),
+        );
+
+const collection = (
+    S: Desk,
+    {
+        id,
+        title,
+        type,
+        icon,
+        orderField,
+    }: {
+        id: string;
+        title: string;
+        type: string;
+        icon: ComponentType;
+        orderField?: string;
+    },
+) => {
+    const list = S.documentTypeList(type).title(title).id(id);
+
+    return S.listItem()
+        .id(id)
+        .title(title)
+        .icon(icon)
+        .child(
+            orderField
+                ? list.defaultOrdering([{ field: orderField, direction: 'desc' }])
+                : list,
+        );
+};
+
+const folder = (
+    S: Desk,
+    {
+        id,
+        title,
+        icon,
+        items,
+    }: {
+        id: string;
+        title: string;
+        icon: ComponentType;
+        items: unknown[];
+    },
+) =>
+    S.listItem()
+        .id(id)
+        .title(title)
+        .icon(icon)
+        .child(S.list().id(`${id}-list`).title(title).items(items));
+
+const structure = (S: Desk) => {
+    const t = (key: keyof typeof artHouseEnglish) => artHouseEnglish[key];
+
+    return S.list()
+        .id('art-house-root')
+        .title(t('nav.root'))
         .items([
-            ...S.documentTypeListItems().filter(
-                (listItem: any) => ![
-                    'art-house-home',
-                    'art-house-about-us',
-                    'art-house-contact-us',
-                    'educational-center-blog-post',
-                    'design-blog-post',
-                    'language-blog-post',
-                    'about-us',
-                    'courses',
-                    'educational-center-contact-us',
-                    'educational-lessons-select-option',
-                    'languages',
-                    'language-contact-us',
-                    'about-language',
-                    'about-us-language',
-                    'price-list-language',
-                    'languages-select-option',
-                    'questions-language',
-                    'promotions-languages',
-                    'languages-quiz',
-                    'about-us-design',
-                    'design-contact-us',
-                    'courses-design',
-                    'price-list-design',
-                    'design-lessons-select-option',
-                    'partners',
-                    'portfolio-design',
-                    'legal-page-design',
-                    'about-page-design',
-                ].includes(listItem.getId() as string)
-            ),
-
-            S.listItem()
-                .title('ART-HOUSE-HOME')
-                .icon(MdFolder)
-                .child(
-                    S.list()
-                        .title('Pages')
-                        .items([
-                            S.listItem()
-                                .title('Home')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('art-house-home').documentId('art-house')),
-                            S.listItem()
-                                .title('About Us')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('art-house-about-us').documentId('art-house-about-us')),
-                            S.listItem()
-                                .title('Contact Us')
-                                .icon(MdContactSupport)
-                                .child(S.document().schemaType('art-house-contact-us').documentId('art-house-contact-us')),
-                        ])
-                ),
-            S.listItem()
-                .title('ART-HOUSE-EDUCATIONAL-CENTER')
-                .icon(MdFolder)
-                .child(
-                    S.list()
-                        .title('Pages')
-                        .items([
-                            S.listItem()
-                                .title('Home')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('about-us').documentId('about-us-educational-center')),
-                            S.listItem()
-                                .title('Courses')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Courses')
-                                        .filter('_type == "courses"')),
-                            S.listItem()
-                                .title('Lessons')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('educational-lessons-select-option').documentId('educational-lessons-select-option')),
-                            S.listItem()
-                                .title('Contact Us')
-                                .icon(MdContactSupport)
-                                .child(S.document().schemaType('educational-center-contact-us').documentId('contact-us-educational-center')),
-                            S.listItem()
-                                .title('Blog')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Blog Posts')
-                                        .filter('_type == "educational-center-blog-post"')),
-                        ])
-                ),
-            S.listItem().title('ART-HOUSE-DESIGN')
-                .icon(MdFolder)
-                .child(
-                    S.list()
-                        .title('Pages')
-                        .items([
-                            S.listItem()
-                                .title('Home')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('about-us-design').documentId('about-us-design')),
-                            S.listItem()
-                                .title('About')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('about-page-design').documentId('about-page-design')),
-                            S.listItem()
-                                .title('Courses')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Courses')
-                                        .filter('_type == "courses-design"')),
-                            S.listItem()
-                                .title('Price List')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('price-list-design').documentId('price-list-design')),
-                            S.listItem()
-                                .title('Lessons & Orders')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('design-lessons-select-option').documentId('design-lessons-select-option')),
-                            S.listItem()
-                                .title('Portfolios')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('portfolio-design').documentId('portfolio-design')),
-                            S.listItem()
-                                .title('Contact Us')
-                                .icon(MdContactSupport)
-                                .child(S.document().schemaType('design-contact-us').documentId('contact-us-design')),
-                            S.listItem()
-                                .title('Legal')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.list()
-                                        .title('Legal')
-                                        .items([
-                                            S.listItem()
-                                                .title('Privacy')
-                                                .icon(IoFolderOpen)
-                                                .child(S.document().schemaType('legal-page-design').documentId('legal-privacy-design')),
-                                            S.listItem()
-                                                .title('Terms')
-                                                .icon(IoFolderOpen)
-                                                .child(S.document().schemaType('legal-page-design').documentId('legal-terms-design')),
-                                            S.listItem()
-                                                .title('Imprint')
-                                                .icon(IoFolderOpen)
-                                                .child(S.document().schemaType('legal-page-design').documentId('legal-imprint-design')),
-                                        ]),
-                                ),
-                            S.listItem()
-                                .title('Blog')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Blog Posts')
-                                        .filter('_type == "design-blog-post"')),
-                        ])
-                ),
-            S.listItem()
-                .title('ART-HOUSE-LANGUAGE')
-                .icon(MdFolder)
-                .child(
-                    S.list()
-                        .title('Pages')
-                        .items([
-                            S.listItem()
-                                .title('Home')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('about-us-language').documentId('about-us-language')),
-                            S.listItem()
-                                .title('Lessons')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('languages-select-option').documentId('languages-select-option')),
-                            S.listItem()
-                                .title('Languages')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Languages')
-                                        .filter('_type == "about-language"')),
-                            S.listItem()
-                                .title('Price List')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('price-list-language').documentId('price-list-languages')),
-                            S.listItem()
-                                .title('Promotions')
-                                .icon(IoFolderOpen)
-                                .child(S.document().schemaType('promotions-languages').documentId('promotions-languages')),
-                            S.listItem()
-                                .title('Quiz')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Quiz')
-                                        .filter('_type == "languages-quiz"')),
-                            S.listItem()
-                                .title('Contact Us')
-                                .icon(MdContactSupport)
-                                .child(S.document().schemaType('language-contact-us').documentId('contact-us-language')),
-                            S.listItem()
-                                .title('Blog')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Blog Posts')
-                                        .filter('_type == "language-blog-post"')),
-                        ])
-                ),
-            S.listItem().title('GENERIC')
-                .icon(RiAiGenerate)
-                .child(
-                    S.list()
-                        .title('Pages')
-                        .items([
-                            S.listItem()
-                                .title('Partners')
-                                .icon(IoFolderOpen)
-                                .child(
-                                    S.documentList()
-                                        .title('Partners')
-                                        .filter('_type == "partners"')),
-                        ])
-                ),
+            folder(S, {
+                id: 'art-house-home',
+                title: t('nav.home'),
+                icon: HomeIcon,
+                items: [
+                    singleton(S, {
+                        id: 'home-page',
+                        title: t('nav.home-page'),
+                        type: 'art-house-home',
+                        documentId: 'art-house',
+                        icon: HomeIcon,
+                    }),
+                    singleton(S, {
+                        id: 'home-about',
+                        title: t('nav.about'),
+                        type: 'art-house-about-us',
+                        documentId: 'art-house-about-us',
+                        icon: UsersIcon,
+                    }),
+                    singleton(S, {
+                        id: 'home-contact',
+                        title: t('nav.contact'),
+                        type: 'art-house-contact-us',
+                        documentId: 'art-house-contact-us',
+                        icon: EnvelopeIcon,
+                    }),
+                ],
+            }),
+            S.divider(),
+            folder(S, {
+                id: 'educational-center',
+                title: t('nav.educational'),
+                icon: BookIcon,
+                items: [
+                    folder(S, {
+                        id: 'educational-website',
+                        title: t('nav.website'),
+                        icon: MasterDetailIcon,
+                        items: [
+                            singleton(S, {
+                                id: 'educational-home',
+                                title: t('nav.home-page'),
+                                type: 'about-us',
+                                documentId: 'about-us-educational-center',
+                                icon: HomeIcon,
+                            }),
+                            collection(S, {
+                                id: 'educational-blog',
+                                title: t('nav.blog'),
+                                type: 'educational-center-blog-post',
+                                icon: DocumentTextIcon,
+                                orderField: 'publishedAt',
+                            }),
+                            singleton(S, {
+                                id: 'educational-contact',
+                                title: t('nav.contact'),
+                                type: 'educational-center-contact-us',
+                                documentId: 'contact-us-educational-center',
+                                icon: EnvelopeIcon,
+                            }),
+                        ],
+                    }),
+                    folder(S, {
+                        id: 'educational-programs',
+                        title: t('nav.programs'),
+                        icon: BookIcon,
+                        items: [
+                            collection(S, {
+                                id: 'educational-courses',
+                                title: t('nav.courses'),
+                                type: 'courses',
+                                icon: BookIcon,
+                            }),
+                            singleton(S, {
+                                id: 'educational-form-options',
+                                title: t('nav.form-options'),
+                                type: 'educational-lessons-select-option',
+                                documentId: 'educational-lessons-select-option',
+                                icon: ComposeIcon,
+                            }),
+                        ],
+                    }),
+                ],
+            }),
+            S.divider(),
+            folder(S, {
+                id: 'design-studio',
+                title: t('nav.design'),
+                icon: ImagesIcon,
+                items: [
+                    folder(S, {
+                        id: 'design-website',
+                        title: t('nav.website'),
+                        icon: MasterDetailIcon,
+                        items: [
+                            singleton(S, {
+                                id: 'design-home',
+                                title: t('nav.home-page'),
+                                type: 'about-us-design',
+                                documentId: 'about-us-design',
+                                icon: HomeIcon,
+                            }),
+                            singleton(S, {
+                                id: 'design-about',
+                                title: t('nav.about'),
+                                type: 'about-page-design',
+                                documentId: 'about-page-design',
+                                icon: UsersIcon,
+                            }),
+                            collection(S, {
+                                id: 'design-blog',
+                                title: t('nav.blog'),
+                                type: 'design-blog-post',
+                                icon: DocumentTextIcon,
+                                orderField: 'publishedAt',
+                            }),
+                            singleton(S, {
+                                id: 'design-contact',
+                                title: t('nav.contact'),
+                                type: 'design-contact-us',
+                                documentId: 'contact-us-design',
+                                icon: EnvelopeIcon,
+                            }),
+                        ],
+                    }),
+                    folder(S, {
+                        id: 'design-work',
+                        title: t('nav.work'),
+                        icon: ImagesIcon,
+                        items: [
+                            collection(S, {
+                                id: 'design-courses',
+                                title: t('nav.courses'),
+                                type: 'courses-design',
+                                icon: BookIcon,
+                            }),
+                            singleton(S, {
+                                id: 'design-portfolios',
+                                title: t('nav.portfolios'),
+                                type: 'portfolio-design',
+                                documentId: 'portfolio-design',
+                                icon: ImagesIcon,
+                            }),
+                            singleton(S, {
+                                id: 'design-price-list',
+                                title: t('nav.price-list'),
+                                type: 'price-list-design',
+                                documentId: 'price-list-design',
+                                icon: BillIcon,
+                            }),
+                        ],
+                    }),
+                    folder(S, {
+                        id: 'design-settings',
+                        title: t('nav.settings'),
+                        icon: CogIcon,
+                        items: [
+                            singleton(S, {
+                                id: 'design-form-options',
+                                title: t('nav.form-options'),
+                                type: 'design-lessons-select-option',
+                                documentId: 'design-lessons-select-option',
+                                icon: ComposeIcon,
+                            }),
+                            folder(S, {
+                                id: 'design-legal',
+                                title: t('nav.legal'),
+                                icon: DocumentsIcon,
+                                items: [
+                                    singleton(S, {
+                                        id: 'design-privacy',
+                                        title: t('nav.privacy'),
+                                        type: 'legal-page-design',
+                                        documentId: 'legal-privacy-design',
+                                        icon: DocumentsIcon,
+                                    }),
+                                    singleton(S, {
+                                        id: 'design-terms',
+                                        title: t('nav.terms'),
+                                        type: 'legal-page-design',
+                                        documentId: 'legal-terms-design',
+                                        icon: DocumentsIcon,
+                                    }),
+                                    singleton(S, {
+                                        id: 'design-imprint',
+                                        title: t('nav.imprint'),
+                                        type: 'legal-page-design',
+                                        documentId: 'legal-imprint-design',
+                                        icon: DocumentsIcon,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                ],
+            }),
+            S.divider(),
+            folder(S, {
+                id: 'language-studio',
+                title: t('nav.language'),
+                icon: EarthGlobeIcon,
+                items: [
+                    folder(S, {
+                        id: 'language-website',
+                        title: t('nav.website'),
+                        icon: MasterDetailIcon,
+                        items: [
+                            singleton(S, {
+                                id: 'language-home',
+                                title: t('nav.home-page'),
+                                type: 'about-us-language',
+                                documentId: 'about-us-language',
+                                icon: HomeIcon,
+                            }),
+                            collection(S, {
+                                id: 'language-blog',
+                                title: t('nav.blog'),
+                                type: 'language-blog-post',
+                                icon: DocumentTextIcon,
+                                orderField: 'publishedAt',
+                            }),
+                            singleton(S, {
+                                id: 'language-contact',
+                                title: t('nav.contact'),
+                                type: 'language-contact-us',
+                                documentId: 'contact-us-language',
+                                icon: EnvelopeIcon,
+                            }),
+                        ],
+                    }),
+                    folder(S, {
+                        id: 'language-programs',
+                        title: t('nav.programs'),
+                        icon: EarthGlobeIcon,
+                        items: [
+                            collection(S, {
+                                id: 'language-programs-list',
+                                title: t('nav.languages'),
+                                type: 'about-language',
+                                icon: EarthGlobeIcon,
+                            }),
+                            singleton(S, {
+                                id: 'language-form-options',
+                                title: t('nav.form-options'),
+                                type: 'languages-select-option',
+                                documentId: 'languages-select-option',
+                                icon: ComposeIcon,
+                            }),
+                            singleton(S, {
+                                id: 'language-price-list',
+                                title: t('nav.price-list'),
+                                type: 'price-list-language',
+                                documentId: 'price-list-languages',
+                                icon: BillIcon,
+                            }),
+                            singleton(S, {
+                                id: 'language-promotions',
+                                title: t('nav.promotions'),
+                                type: 'promotions-languages',
+                                documentId: 'promotions-languages',
+                                icon: TagIcon,
+                            }),
+                            collection(S, {
+                                id: 'language-quizzes',
+                                title: t('nav.quizzes'),
+                                type: 'languages-quiz',
+                                icon: HelpCircleIcon,
+                            }),
+                        ],
+                    }),
+                ],
+            }),
+            S.divider(),
+            folder(S, {
+                id: 'general',
+                title: t('nav.general'),
+                icon: CaseIcon,
+                items: [
+                    collection(S, {
+                        id: 'partners',
+                        title: t('nav.partners'),
+                        type: 'partners',
+                        icon: CaseIcon,
+                    }),
+                ],
+            }),
         ]);
+};
+
+export default structure;

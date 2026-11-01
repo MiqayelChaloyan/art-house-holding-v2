@@ -29,6 +29,8 @@ const nextConfig = {
         ...config.resolve.alias,
         // Avoid lazy chunk load failures for Sanity document lists in embedded Studio
         '@sanity/eventsource$': '@sanity/eventsource/browser',
+        'slate-react': path.resolve(__dirname, 'node_modules/slate-react'),
+        slate: path.resolve(__dirname, 'node_modules/slate'),
       };
 
       if (dev && isServer) {

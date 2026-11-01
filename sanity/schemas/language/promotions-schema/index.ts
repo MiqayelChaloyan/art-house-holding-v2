@@ -5,6 +5,8 @@ const promotionsSchemaLanguage = {
     name: 'promotions-languages',
     type: 'document',
     title: 'Promotions',
+    description: 'Language Studio discounts and offers.',
+    icon: ActivityIcon,
     id: 'promotions-languages',
     initialValue: () => ({
         publishedAt: new Date().toISOString()
@@ -49,7 +51,7 @@ const promotionsSchemaLanguage = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -59,7 +61,7 @@ const promotionsSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -86,7 +88,8 @@ const promotionsSchemaLanguage = {
         },
         prepare() {
             return {
-                title: 'Զեղչեր',
+                title: 'Promotions',
+                subtitle: 'Language Studio · Զեղչեր',
             };
         },
     }

@@ -4,7 +4,9 @@ import { RuleType } from '@/sanity/ruleType';
 const lessonsSchemaDesign = {
     name: 'design-lessons-select-option',
     type: 'document',
-    title: 'Lessons & Orders',
+    title: 'Request form options',
+    description: 'Lesson and order names shown in the Design Studio request form.',
+    icon: ComposeIcon,
     id: 'design-lessons-select-option',
     fields: [
         {
@@ -24,7 +26,7 @@ const lessonsSchemaDesign = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -34,7 +36,7 @@ const lessonsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -81,7 +83,7 @@ const lessonsSchemaDesign = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -91,7 +93,7 @@ const lessonsSchemaDesign = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -128,7 +130,8 @@ const lessonsSchemaDesign = {
         },
         prepare() {
             return {
-                title: 'Դասընթացներ և պատվերներ',
+                title: 'Request form options',
+                subtitle: 'Design Studio · Դասընթացներ և պատվերներ',
             };
         },
     }

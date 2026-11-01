@@ -1,10 +1,14 @@
+import { CaseIcon } from '@sanity/icons';
+
 import { ImagePath } from '@/src/types/general';
 import { RuleType } from '@/sanity/ruleType';
 
 const partnersSchema = {
     name: 'partners',
     type: 'document',
-    title: 'Partners',
+    title: 'Partner',
+    description: 'A partner shown across Art House websites.',
+    icon: CaseIcon,
     id: 'partners',
     fields: [
        {
@@ -14,7 +18,7 @@ const partnersSchema = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -24,7 +28,7 @@ const partnersSchema = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -37,7 +41,7 @@ const partnersSchema = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -47,7 +51,7 @@ const partnersSchema = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -60,7 +64,7 @@ const partnersSchema = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -70,7 +74,7 @@ const partnersSchema = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -99,7 +103,8 @@ const partnersSchema = {
         },
         prepare(selection: { title?: string, media?: ImagePath }) {
             return {
-                title: selection.title,
+                title: selection.title || 'Partner',
+                subtitle: 'Shared across websites',
                 media: selection.media,
             };
         },

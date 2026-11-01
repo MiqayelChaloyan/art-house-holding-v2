@@ -3,9 +3,9 @@ export const localeString = {
     title: 'Localized string',
     type: 'object',
     fields: [
-        { title: 'Armenian', name: 'am', type: 'string' },
+        { title: 'Հայերեն', name: 'am', type: 'string' },
         { title: 'English', name: 'en', type: 'string' },
-        { title: 'Russian', name: 'ru', type: 'string' },
+        { title: 'Русский', name: 'ru', type: 'string' },
     ],
 };
 
@@ -14,8 +14,8 @@ export const localeText = {
     title: 'Localized text',
     type: 'object',
     fields: [
-        { title: 'Armenian', name: 'am', type: 'text' },
+        { title: 'Հայերեն', name: 'am', type: 'text' },
         { title: 'English', name: 'en', type: 'text' },
-        { title: 'Russian', name: 'ru', type: 'text' },
+        { title: 'Русский', name: 'ru', type: 'text' },
     ],
 };

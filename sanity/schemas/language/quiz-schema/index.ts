@@ -6,7 +6,9 @@ import { ImagePath } from '@/src/types/general';
 const quizSchemaLanguage = {
     name: 'languages-quiz',
     type: 'document',
-    title: 'Quiz',
+    title: 'Language quiz',
+    description: 'A placement quiz for the Language Studio.',
+    icon: ClipboardIcon,
     id: 'languages-quiz',
     fields: [
         {
@@ -101,7 +103,8 @@ const quizSchemaLanguage = {
         },
         prepare(selection: { title?: string, media?: ImagePath }) {
             return {
-                title: selection.title,
+                title: selection.title || 'Language quiz',
+                subtitle: 'Language Studio',
                 media: selection.media,
             };
         },

@@ -6,18 +6,18 @@ import { RuleType } from '@/sanity/ruleType';
 export const coursesSchemaEducationalCenter = {
     name: 'courses',
     type: 'document',
-    title: 'Courses',
+    title: 'Educational course',
+    description: 'A course page for the Educational Center.',
     id: 'courses-educational-center',
     icon: BookIcon,
     groups: [
         {
             name: 'og',
-            title: 'Social Share Info',
-            default: true
+            title: 'Social share',
         },
         {
             name: 'manifest',
-            title: 'Web App Settings',
+            title: 'Web app',
             hidden: ({ document }: {
                 document: {
                     [key: string]: string;
@@ -40,7 +40,7 @@ export const coursesSchemaEducationalCenter = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -50,7 +50,7 @@ export const coursesSchemaEducationalCenter = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -73,7 +73,7 @@ export const coursesSchemaEducationalCenter = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -83,7 +83,7 @@ export const coursesSchemaEducationalCenter = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -116,7 +116,7 @@ export const coursesSchemaEducationalCenter = {
                             type: 'object',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -126,7 +126,7 @@ export const coursesSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -165,7 +165,7 @@ export const coursesSchemaEducationalCenter = {
             type: 'object',
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -175,7 +175,7 @@ export const coursesSchemaEducationalCenter = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -188,7 +188,7 @@ export const coursesSchemaEducationalCenter = {
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'array',
                     of: [{ type: 'block' }],
@@ -200,7 +200,7 @@ export const coursesSchemaEducationalCenter = {
                     of: [{ type: 'block' }],
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'array',
                     of: [{ type: 'block' }],
@@ -327,7 +327,7 @@ export const coursesSchemaEducationalCenter = {
                             type: 'object',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -337,7 +337,7 @@ export const coursesSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -356,7 +356,7 @@ export const coursesSchemaEducationalCenter = {
                             description: 'Տևողությունը',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -366,7 +366,7 @@ export const coursesSchemaEducationalCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -400,7 +400,8 @@ export const coursesSchemaEducationalCenter = {
         },
         prepare(selection: { title?: string }) {
             return {
-                title: selection.title,
+                title: selection.title || 'Educational course',
+                subtitle: 'Educational Center',
             };
         },
     },

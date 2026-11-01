@@ -1,4 +1,4 @@
-import { ProjectsIcon } from '@sanity/icons';
+import { HomeIcon, ProjectsIcon } from '@sanity/icons';
 import { GiProgression } from 'react-icons/gi';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
@@ -7,7 +7,9 @@ import { RuleType } from '@/sanity/ruleType';
 const homeSchemaArtHouse = {
     name: 'art-house-home',
     type: 'document',
-    title: 'Home',
+    title: 'Home page',
+    description: 'The holding home page: website cards, then the numbers.',
+    icon: HomeIcon,
     id: 'art-house',
     groups: [
         { name: 'websites', title: '1. Websites', default: true },
@@ -47,7 +49,7 @@ const homeSchemaArtHouse = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -57,7 +59,7 @@ const homeSchemaArtHouse = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -76,11 +78,11 @@ const homeSchemaArtHouse = {
         {
             name: 'our_websites',
             type: 'array',
-            title: 'Websites',
+            title: 'Website cards',
             group: 'websites',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.max(5),
-            description: 'No less than five and no more, only you can modify them.',
+            description: 'The company cards on the home page. You can edit these, not add more than 5.',
             of: [
                 {
                     name: 'Object',
@@ -89,17 +91,17 @@ const homeSchemaArtHouse = {
                     validation: (Rule: RuleType) => Rule.required(),
                     fields: [
                         {
-                            title: 'Company Name (Ընկերության Անվանումը)',
+                            title: 'Company name',
                             name: 'company_name',
                             type: 'string'
                         },
                         {
-                            title: 'Website Title',
+                            title: 'Short title',
                             name: 'words',
                             type: 'object',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -109,14 +111,14 @@ const homeSchemaArtHouse = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
                             ]
                         },
                         {
-                            title: 'Website Logo Front',
+                            title: 'Logo (front)',
                             name: 'website_logo_front',
                             type: 'image',
                             options: { hotspot: true },
@@ -129,7 +131,7 @@ const homeSchemaArtHouse = {
                             ]
                         },
                         {
-                            title: 'Website Logo Back',
+                            title: 'Logo (back)',
                             name: 'website_logo_back',
                             type: 'image',
                             options: { hotspot: true },
@@ -143,7 +145,7 @@ const homeSchemaArtHouse = {
                         },
                         {
                             name: 'web_site_url',
-                            title: 'Website url',
+                            title: 'Website URL',
                             type: 'string',
                         },
                     ],
@@ -168,7 +170,7 @@ const homeSchemaArtHouse = {
             group: 'numbers',
             components: { input: ArrayMaxItems },
             validation: (Rule: RuleType) => Rule.max(4),
-            description: 'No less than four and no more, only you can modify them.',
+            description: 'The counters on the home page. Edit these four items.',
             of: [
                 {
                     type: 'object',
@@ -181,7 +183,7 @@ const homeSchemaArtHouse = {
                             type: 'object',
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -191,7 +193,7 @@ const homeSchemaArtHouse = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -236,7 +238,8 @@ const homeSchemaArtHouse = {
         },
         prepare() {
             return {
-                title: 'Գլխավոր',
+                title: 'Home page',
+                subtitle: 'Art House Holding · Գլխավոր',
             };
         },
     }

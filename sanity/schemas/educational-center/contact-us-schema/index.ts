@@ -5,17 +5,24 @@ import { RuleType } from '@/sanity/ruleType';
 const contactUsSchemaEducationalCenter = {
     name: 'educational-center-contact-us',
     type: 'document',
-    title: 'Contact Us',
+    title: 'Contact',
+    description: 'Educational Center address, phones, and social links.',
+    icon: LinkIcon,
     id: 'contact-us-educational-center',
+    groups: [
+        { name: 'contact', title: '1. Contact', default: true },
+        { name: 'social', title: '2. Social' },
+    ],
     fields: [
         {
             title: 'Country, Region/City, Street',
             name: 'address',
             type: 'object',
+            group: 'contact',
             validation: (Rule: RuleType) => Rule.required(),
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -25,7 +32,7 @@ const contactUsSchemaEducationalCenter = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -35,18 +42,21 @@ const contactUsSchemaEducationalCenter = {
             name: 'email',
             title: 'Email',
             type: 'string',
+            group: 'contact',
             validation: (Rule: RuleType) => Rule.required(),
         },  
         {
             name: 'phone_number',
             title: 'Phone Number',
             type: 'string',
+            group: 'contact',
             validation: (Rule: RuleType) => Rule.required(),
         },
         {
             name: 'social_links',
             type: 'array',
             title: 'Social Links',
+            group: 'social',
             description: `
                         You can only add these Facebook, Instagram, Gmail, Linkedin, X, Tiktok, Telegram, YouTube, Pinterest, WhatsApp, Viber.
                         It would be advisable to choose any three of the above, no more.
@@ -81,7 +91,8 @@ const contactUsSchemaEducationalCenter = {
         },
         prepare() {
             return {
-                title: 'Կապ մեզ հետ',
+                title: 'Contact',
+                subtitle: 'Educational Center · Կապ մեզ հետ',
             };
         },
     }

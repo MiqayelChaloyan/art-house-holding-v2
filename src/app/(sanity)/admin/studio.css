@@ -1,0 +1,10 @@
+[data-ui=Root],
+[data-ui=Root] button,
+[data-ui=Root] input,
+[data-ui=Root] textarea,
+[data-ui=Root] [data-slate-editor],
+[data-ui=Root] [data-ui=Text],
+[data-ui=Root] [data-ui=Label],
+[data-ui=Root] [data-ui=Heading] {
+    font-family: var(--font-inter), var(--font-arian-amu), system-ui, sans-serif !important;
+}

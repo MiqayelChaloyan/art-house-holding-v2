@@ -12,6 +12,7 @@ const legalPageSchemaDesign = {
     name: 'legal-page-design',
     type: 'document',
     title: 'Legal page',
+    description: 'Design Studio privacy, terms, or imprint page.',
     icon: DocumentTextIcon,
     fields: [
         {
@@ -70,7 +71,7 @@ const legalPageSchemaDesign = {
 
             return {
                 title: labels[page || ''] || 'Legal page',
-                subtitle: title,
+                subtitle: title ? `Design Studio · ${title}` : 'Design Studio',
             };
         },
     },

@@ -1,3 +1,5 @@
+import { HomeIcon } from '@sanity/icons';
+
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
 import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
@@ -5,7 +7,9 @@ import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
 const aboutUsSchemaLanguage = {
     name: 'about-us-language',
     type: 'document',
-    title: 'Home',
+    title: 'Home page',
+    description: 'Language Studio landing page — about, daily life, and blog heading.',
+    icon: HomeIcon,
     id: 'about-us-language',
     groups: [
         { name: 'about', title: '1. About', default: true },
@@ -46,7 +50,7 @@ const aboutUsSchemaLanguage = {
             group: ['og'],
             fields: [
                 {
-                    title: 'Armenian',
+                    title: 'Հայերեն',
                     name: 'am',
                     type: 'string'
                 },
@@ -56,7 +60,7 @@ const aboutUsSchemaLanguage = {
                     type: 'string'
                 },
                 {
-                    title: 'Russian',
+                    title: 'Русский',
                     name: 'ru',
                     type: 'string'
                 }
@@ -84,7 +88,7 @@ const aboutUsSchemaLanguage = {
                     type: 'object',
                     fields: [
                         {
-                            title: 'Armenian',
+                            title: 'Հայերեն',
                             name: 'am',
                             type: 'array',
                             of: [{ type: 'block' }],
@@ -96,7 +100,7 @@ const aboutUsSchemaLanguage = {
                             of: [{ type: 'block' }],
                         },
                         {
-                            title: 'Russian',
+                            title: 'Русский',
                             name: 'ru',
                             type: 'array',
                             of: [{ type: 'block' }],
@@ -258,7 +262,7 @@ const aboutUsSchemaLanguage = {
                                     validation: (Rule: any) => Rule.required(),
                                     fields: [
                                         {
-                                            title: 'Armenian',
+                                            title: 'Հայերեն',
                                             name: 'am',
                                             type: 'string'
                                         },
@@ -268,7 +272,7 @@ const aboutUsSchemaLanguage = {
                                             type: 'string'
                                         },
                                         {
-                                            title: 'Russian',
+                                            title: 'Русский',
                                             name: 'ru',
                                             type: 'string'
                                         }
@@ -360,7 +364,8 @@ const aboutUsSchemaLanguage = {
         },
         prepare() {
             return {
-                title: 'Գլխավոր',
+                title: 'Home page',
+                subtitle: 'Language Studio · Գլխավոր',
             };
         },
     }

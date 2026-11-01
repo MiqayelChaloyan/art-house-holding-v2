@@ -3,7 +3,8 @@ import { SparklesIcon } from '@sanity/icons';
 export const portfolioSchemaDesign = {
     name: 'portfolio-design',
     type: 'document',
-    title: 'Portfolio',
+    title: 'Portfolios',
+    description: 'Shared portfolio images for the Design Studio.',
     id: 'portfolio-design',
     icon: SparklesIcon,
     fields: [
@@ -27,7 +28,8 @@ export const portfolioSchemaDesign = {
         },
         prepare() {
             return {
-                title: 'Պորտֆոլիո',
+                title: 'Portfolios',
+                subtitle: 'Design Studio · Պորտֆոլիո',
             };
         },
     }

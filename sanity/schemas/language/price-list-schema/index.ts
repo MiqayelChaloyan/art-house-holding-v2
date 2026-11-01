@@ -5,7 +5,8 @@ import { RuleType } from '@/sanity/ruleType';
 const priceListSchemaLanguage = {
     name: 'price-list-language',
     type: 'document',
-    title: 'Price List',
+    title: 'Price list',
+    description: 'Language Studio price list.',
     icon: EarthGlobeIcon,
     id: 'price-list-languages',
     initialValue: () => ({
@@ -30,7 +31,7 @@ const priceListSchemaLanguage = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -40,7 +41,7 @@ const priceListSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -106,7 +107,7 @@ const priceListSchemaLanguage = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -116,7 +117,7 @@ const priceListSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -176,7 +177,7 @@ const priceListSchemaLanguage = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -186,7 +187,7 @@ const priceListSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -206,7 +207,7 @@ const priceListSchemaLanguage = {
                             validation: (Rule: RuleType) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -216,7 +217,7 @@ const priceListSchemaLanguage = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -243,7 +244,8 @@ const priceListSchemaLanguage = {
         },
         prepare() {
             return {
-                title: 'Գնացուցակ',
+                title: 'Price list',
+                subtitle: 'Language Studio · Գնացուցակ',
             };
         },
     }

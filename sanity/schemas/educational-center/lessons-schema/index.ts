@@ -1,10 +1,12 @@
-import { RocketIcon } from '@sanity/icons';
+import { ComposeIcon, RocketIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
 
 const lessonsSchemaEducationCenter = {
     name: 'educational-lessons-select-option',
     type: 'document',
-    title: 'Courses',
+    title: 'Request form options',
+    description: 'Lesson names shown in the Educational Center request form.',
+    icon: ComposeIcon,
     id: 'educational-lessons-select-option',
     fields: [
         {
@@ -24,7 +26,7 @@ const lessonsSchemaEducationCenter = {
                             validation: (Rule: any) => Rule.required(),
                             fields: [
                                 {
-                                    title: 'Armenian',
+                                    title: 'Հայերեն',
                                     name: 'am',
                                     type: 'string'
                                 },
@@ -34,7 +36,7 @@ const lessonsSchemaEducationCenter = {
                                     type: 'string'
                                 },
                                 {
-                                    title: 'Russian',
+                                    title: 'Русский',
                                     name: 'ru',
                                     type: 'string'
                                 }
@@ -71,7 +73,8 @@ const lessonsSchemaEducationCenter = {
         },
         prepare() {
             return {
-                title: 'Դասընթացներ',
+                title: 'Request form options',
+                subtitle: 'Educational Center · Դասընթացներ',
             };
         },
     }
