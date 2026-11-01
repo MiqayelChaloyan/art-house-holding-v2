@@ -8,9 +8,12 @@
 .hero,
 .about,
 .curriculum,
-.work
-	width: min(1320px, calc(100% - 48px))
+.work,
+.block
+	width: min(1320px, calc(100% - 192px))
 	margin: 0 auto
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
 	@media screen and (max-width: 640px)
 		width: calc(100% - 40px)
 
@@ -48,7 +51,8 @@
 	font-weight: 400
 	line-height: 1.03
 	letter-spacing: -0.025em
-	overflow-wrap: break-word
+	overflow-wrap: normal
+	word-break: keep-all
 
 .intro
 	max-width: 530px
@@ -73,27 +77,58 @@
 	align-items: center
 	justify-content: center
 	gap: 10px
+	position: relative
+	overflow: hidden
+	isolation: isolate
 	min-height: 52px
 	padding: 0 28px
 	font-size: 14px
 	font-weight: 500
 	line-height: 17px
 	text-decoration: none
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1)
+	span, svg
+		position: relative
+		z-index: 1
 	svg
 		width: 16px
 		height: 16px
+		transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)
 
 .primary
 	background: #ce2421
 	color: #ffffff
+	&::before
+		content: ''
+		position: absolute
+		inset: 0
+		background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.28) 48%, transparent 72%)
+		transform: translateX(-140%)
+		transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+		pointer-events: none
 	&:hover
-		background: #a41c1a
+		transform: translateY(-2px)
+		background: #e43330
+		box-shadow: 0 12px 28px rgba(206, 36, 33, 0.4)
+		&::before
+			transform: translateX(140%)
+		svg
+			transform: translate(3px, -3px)
+	&:active
+		transform: translateY(0)
 
 .secondary
 	border: 1px solid #232323
 	color: #ffffff
 	&:hover
-		border-color: #ffffff
+		transform: translateY(-2px)
+		border-color: rgba(255, 255, 255, 0.88)
+		background: rgba(255, 255, 255, 0.08)
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28)
+		svg
+			transform: translateX(4px)
+	&:active
+		transform: translateY(0)
 
 .portrait,
 .aboutMedia
@@ -163,10 +198,282 @@
 	color: #ffffff
 
 .curriculum,
-.work
+.work,
+.block
 	margin-top: 112px
 	@media screen and (max-width: 640px)
 		margin-top: 72px
+
+.blockHead
+	margin-bottom: 28px
+
+.priceGrid
+	display: grid
+	grid-template-columns: 1fr 1fr
+	gap: 20px
+	margin: 0
+	padding: 0
+	list-style: none
+	@media screen and (max-width: 860px)
+		grid-template-columns: 1fr
+
+.priceCard
+	display: flex
+	align-items: center
+	justify-content: space-between
+	gap: 24px
+	min-height: 95px
+	padding: 24px 32px
+	background: #111
+	border: 1px solid #232323
+
+.priceTitle
+	margin: 0
+	font-size: 18px
+	font-weight: 500
+	line-height: 24px
+
+.priceSub
+	margin: 6px 0 0
+	font-size: 13px
+	line-height: 18px
+	color: #9b9b9b
+
+.priceAmount
+	margin: 0
+	font-size: 22px
+	font-weight: 500
+	line-height: 28px
+	white-space: nowrap
+
+.whyGrid
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 0
+	margin: 0
+	padding: 0
+	list-style: none
+	border: 1px solid #232323
+	@media screen and (max-width: 980px)
+		grid-template-columns: 1fr 1fr
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+
+.whyItem
+	padding: 32px 28px
+	border-right: 1px solid #232323
+	border-bottom: 1px solid #232323
+	@media screen and (max-width: 640px)
+		border-right: 0
+
+.whyIndex
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	width: 44px
+	height: 44px
+	margin-bottom: 16px
+	border: 1px solid #232323
+	border-radius: 50%
+	font-size: 14px
+	color: #ce2421
+
+.whyTitle
+	margin: 0 0 10px
+	font-size: 18px
+	font-weight: 500
+	line-height: 24px
+
+.whyText
+	margin: 0
+	font-size: 14px
+	line-height: 22px
+	color: #9b9b9b
+
+.filters
+	display: flex
+	flex-wrap: wrap
+	gap: 10px
+	margin: 0 0 32px
+
+.chip
+	min-height: 36px
+	padding: 8px 16px
+	border: 1px solid #232323
+	background: transparent
+	color: #d9d9d9
+	font-size: 14px
+	line-height: 20px
+	cursor: pointer
+	transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease
+	&:hover,
+	&.chipActive
+		border-color: #ffffff
+		color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
+
+.groupGrid
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 24px
+	margin: 0
+	padding: 0
+	list-style: none
+	@media screen and (max-width: 1100px)
+		grid-template-columns: 1fr 1fr
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+
+.groupCard
+	display: flex
+	flex-direction: column
+	min-height: 472px
+	padding: 36px 32px 28px
+	background: #111
+	border: 1px solid #232323
+
+.groupBadge
+	align-self: flex-start
+	padding: 4px 12px
+	background: #1b1b1b
+	border: 1px solid #232323
+	font-size: 13px
+	line-height: 19px
+	color: #d9d9d9
+
+.groupDate
+	margin: 24px 0 20px
+	padding-bottom: 20px
+	border-bottom: 1px solid #232323
+	span
+		display: block
+		margin-bottom: 8px
+		font-size: 11px
+		letter-spacing: 0.14em
+		text-transform: uppercase
+		color: #9b9b9b
+	p
+		margin: 0
+		font-size: 22px
+		line-height: 28px
+
+.groupMeta
+	display: grid
+	gap: 12px
+	margin: 0
+	div
+		display: flex
+		justify-content: space-between
+		gap: 16px
+	dt
+		font-size: 13px
+		color: #9b9b9b
+	dd
+		margin: 0
+		font-size: 14px
+		text-align: right
+
+.groupFooter
+	display: flex
+	align-items: flex-end
+	justify-content: space-between
+	gap: 16px
+	margin-top: auto
+	padding-top: 24px
+	border-top: 1px solid #232323
+	span
+		display: block
+		margin-bottom: 6px
+		font-size: 11px
+		letter-spacing: 0.14em
+		text-transform: uppercase
+		color: #9b9b9b
+	p
+		margin: 0
+		font-size: 20px
+		line-height: 26px
+
+.enroll
+	display: inline-flex
+	align-items: center
+	gap: 8px
+	min-height: 44px
+	padding: 0 16px
+	background: #ce2421
+	color: #ffffff
+	font-size: 14px
+	text-decoration: none
+	svg
+		width: 16px
+		height: 16px
+
+.faq
+	margin: 0
+	padding: 0
+	list-style: none
+	border-top: 1px solid #232323
+
+.faqItem
+	border-bottom: 1px solid #232323
+
+.faqButton
+	display: grid
+	grid-template-columns: 48px minmax(0, 1fr) 40px
+	align-items: center
+	gap: 16px
+	width: 100%
+	min-height: 108px
+	padding: 24px 0
+	border: 0
+	background: transparent
+	color: #ffffff
+	text-align: left
+	cursor: pointer
+
+.faqIndex
+	font-size: 14px
+	color: #ce2421
+
+.faqQuestion
+	font-size: 20px
+	font-weight: 500
+	line-height: 28px
+
+.faqToggle
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	width: 40px
+	height: 40px
+	border: 1px solid #232323
+	border-radius: 50%
+	font-size: 22px
+	line-height: 1
+	color: #ffffff
+
+.faqAnswer
+	margin: 0 0 24px 64px
+	max-width: 720px
+	font-size: 16px
+	line-height: 26px
+	color: #9b9b9b
+	@media screen and (max-width: 640px)
+		margin-left: 0
+
+@media screen and (max-width: 640px)
+	.faqButton
+		grid-template-columns: 36px minmax(0, 1fr) 36px
+		min-height: 0
+		padding: 16px 0
+	.faqQuestion
+		font-size: 16px
+		line-height: 24px
+	.priceAmount
+		font-size: 18px
+		white-space: normal
+	.groupCard
+		min-height: 0
+		padding: 24px 20px
 
 .modules
 	margin: 8px 0 0

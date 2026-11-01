@@ -3,12 +3,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import NextImage from '@/src/components/components/image';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -25,16 +26,15 @@ const HOLD_MS = 5200;
 
 const Staff = ({ workers, section }: Readonly<Props>) => {
     const t = useTranslations('staff-section');
-    const locale = useLocale();
     const team = useMemo(() => workers.filter((member) => member.worker_image?.asset), [workers]);
 
     const copy = {
         line1: section?.line_1 || '',
         line2: section?.line_2 || '',
         line3: section?.line_3 || '',
-        experience: t('experience-label'),
-        programs: t('programs'),
-        skills: t('skills'),
+        experience: section?.experience_label || '',
+        programs: section?.programs_label || '',
+        skills: section?.skills_label || '',
     };
 
     const [[index, direction], setPage] = useState([0, 1]);
@@ -70,9 +70,7 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
 
     const portrait = urlForImage(member.worker_image, 960);
     const avatar = urlForImage(member.worker_image, 524);
-    const programs = member.programs?.length
-        ? member.programs
-        : member.profession.split(',').map((item) => item.trim()).filter(Boolean);
+    const programs = member.programs?.length ? member.programs : [];
     const skills = member.skills?.length ? member.skills : [];
     const experience = member.experience || '';
     const bio = member.bio || member.profession;
@@ -90,13 +88,13 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
             <div className={styles.wrap}>
                 <div className={styles.stage}>
                     <div className={styles.left}>
-                        <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
+                        <h2 className={cn(styles.headline, InstrumentSerif.className)}>
                             <span className={styles.lead}>
-                                {copy.line1}
+                                {keepWords(copy.line1)}
                                 {' '}
-                                <em className={styles.emphasis}>{copy.line2}</em>
+                                <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
                             </span>
-                            <span>{copy.line3}</span>
+                            <span>{keepWords(copy.line3)}</span>
                         </h2>
 
                         <div
@@ -132,6 +130,7 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
                                             width={portrait.width}
                                             height={portrait.height}
                                             sizes="(max-width: 980px) 90vw, 480px"
+                                            loading="eager"
                                         />
                                     )}
                                 </motion.div>
@@ -165,6 +164,7 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
                                                 width={avatar.width}
                                                 height={avatar.height}
                                                 sizes="262px"
+                                                loading="eager"
                                                 aria-hidden
                                             />
                                         )}
@@ -227,6 +227,18 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
                         ))}
                     </div>
                 )}
+            </div>
+            <div className={styles.preload} aria-hidden>
+                {team.map((person) => {
+                    const large = urlForImage(person.worker_image, 960);
+                    const small = urlForImage(person.worker_image, 524);
+                    return (
+                        <React.Fragment key={person._key}>
+                            {large?.src && <img src={large.src} alt="" />}
+                            {small?.src && <img src={small.src} alt="" />}
+                        </React.Fragment>
+                    );
+                })}
             </div>
         </section>
     );

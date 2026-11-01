@@ -37,11 +37,11 @@ const singleton = (
         icon: ComponentType;
     },
 ) =>
-    S.listItem()
+            S.listItem()
         .id(id)
         .title(title)
         .icon(icon)
-        .child(
+                .child(
             S.document()
                 .schemaType(type)
                 .documentId(documentId)
@@ -70,7 +70,7 @@ const collection = (
         .id(id)
         .title(title)
         .icon(icon)
-        .child(
+                .child(
             orderField
                 ? list.defaultOrdering([{ field: orderField, direction: 'desc' }])
                 : list,
@@ -91,7 +91,7 @@ const folder = (
         items: unknown[];
     },
 ) =>
-    S.listItem()
+                            S.listItem()
         .id(id)
         .title(title)
         .icon(icon)
@@ -103,7 +103,7 @@ const structure = (S: Desk) => {
     return S.list()
         .id('art-house-root')
         .title(t('nav.root'))
-        .items([
+                        .items([
             folder(S, {
                 id: 'art-house-home',
                 title: t('nav.home'),
@@ -247,11 +247,10 @@ const structure = (S: Desk) => {
                                 documentId: 'portfolio-design',
                                 icon: ImagesIcon,
                             }),
-                            singleton(S, {
-                                id: 'design-price-list',
-                                title: t('nav.price-list'),
-                                type: 'price-list-design',
-                                documentId: 'price-list-design',
+                            collection(S, {
+                                id: 'design-course-prices',
+                                title: t('nav.course-prices'),
+                                type: 'course-price-design',
                                 icon: BillIcon,
                             }),
                         ],

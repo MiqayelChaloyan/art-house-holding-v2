@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import NextImage from '@/src/components/components/image';
 
 import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -19,13 +20,21 @@ import styles from './styles.module.sass';
 
 interface Props {
     courses: COURSES_DESIGN_QUERYResult[];
+    page?: PORTFOLIO_PAGE_DESIGN_QUERYResult | null;
 };
 
 const PAGE_SIZE = 9;
 
-const Portfolios = ({ courses }: Readonly<Props>) => {
-    const t = useTranslations('portfolios-page');
+const Portfolios = ({ courses, page }: Readonly<Props>) => {
     const buttons = useTranslations('buttons');
+    const copy = {
+        eyebrow: page?.eyebrow || '',
+        line1: page?.line_1 || '',
+        line2: page?.line_2 || '',
+        empty: page?.empty || '',
+        all: page?.all_label || '',
+        viewMore: page?.view_more || '',
+    };
     const searchParams = useSearchParams();
     const locale = useLocale();
     const property = searchParams.get('name');
@@ -58,20 +67,20 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                     <header>
                         <p className={styles.eyebrow}>
                             <span className={styles.mark} aria-hidden />
-                            {t('eyebrow')}
+                            {copy.eyebrow}
                         </p>
                         <h1 className={cn(styles.headline, InstrumentSerif.className)}>
-                            <span>{t('line-1')}</span>
-                            <span className={styles.emphasis}>{t('line-2')}</span>
+                            <span>{keepWords(copy.line1)}</span>
+                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h1>
                     </header>
-                    <nav className={styles.filters} aria-label={t('eyebrow')}>
+                    <nav className={styles.filters} aria-label={copy.eyebrow || 'Portfolio'}>
                         <Link
                             href={`/${locale}${Pages.DESIGN_PORTFOLIOS}`}
                             scroll={false}
                             className={cn(styles.chip, !decodedProperty && styles.chipActive)}
                         >
-                            {buttons('view-all')}
+                            {copy.all || buttons('view-all')}
                         </Link>
                         {courses.map((course) => (
                             <Link
@@ -90,7 +99,7 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                 </div>
 
                 {shown.length === 0 ? (
-                    <p className={styles.empty}>{t('empty')}</p>
+                    <p className={styles.empty}>{copy.empty}</p>
                 ) : (
                     <ul className={styles.grid}>
                         {shown.map(({ course, project }) => {
@@ -127,7 +136,7 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
 
                 {visible < items.length && (
                     <button type="button" className={styles.more} onClick={() => setVisible((count) => count + PAGE_SIZE)}>
-                        {buttons('view-more')}
+                        {copy.viewMore || buttons('view-more')}
                     </button>
                 )}
             </div>

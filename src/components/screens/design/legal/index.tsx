@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '@/src/store/modal_reducer';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 
 import cn from 'classnames';
@@ -60,10 +61,10 @@ const LegalPage = ({ data, page }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {data.eyebrow}
                         </p>
-                        <h1 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
-                            <span>{data.line_1}</span>
+                        <h1 className={cn(styles.headline, InstrumentSerif.className)}>
+                            <span>{keepWords(data.line_1)}</span>
                             <span className={styles.emphasis}>
-                                {line2}
+                                {keepWords(line2)}
                                 <span className={styles.dot}>.</span>
                             </span>
                         </h1>

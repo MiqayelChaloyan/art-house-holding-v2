@@ -1,10 +1,19 @@
 import { ArrayOfPrimitivesFunctions } from 'sanity'
 
+function getMax(schemaType) {
+  const validation = schemaType?.validation
+  const items = Array.isArray(validation) ? validation : validation ? [validation] : []
+  for (const item of items) {
+    const max = (item?._rules || []).find((rule) => rule.flag === 'max')?.constraint
+    if (typeof max === 'number') return max
+  }
+  return undefined
+}
+
 function ArrayFunctions(props) {
-  const valRules = props?.schemaType?.validation?.[0]?._rules || []
-  const max = valRules.find((r) => r.flag === 'max')?.constraint
+  const max = getMax(props?.schemaType)
   const total = props?.value?.length || 0
-  if (!isNaN(max) && total >= max) return null
+  if (typeof max === 'number' && total >= max) return null
   return <ArrayOfPrimitivesFunctions {...props} />
 }
 

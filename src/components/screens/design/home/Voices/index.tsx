@@ -2,12 +2,13 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import NextImage from '@/src/components/components/image';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -23,7 +24,6 @@ const HOLD_MS = 5600;
 
 const Voices = ({ section }: Readonly<Props>) => {
     const t = useTranslations('voices-section');
-    const locale = useLocale();
 
     const copy = {
         eyebrow: section?.eyebrow || '',
@@ -80,9 +80,9 @@ const Voices = ({ section }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
-                        <span>{copy.line1}</span>
-                        <span className={styles.emphasis}>{copy.line2}</span>
+                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <span>{keepWords(copy.line1)}</span>
+                        <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                     </h2>
                 </header>
 

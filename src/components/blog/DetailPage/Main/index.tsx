@@ -115,7 +115,12 @@ const Main = ({ siteKey, config, post, similarPosts, shareUrl }: Readonly<Props>
                         />
                     </article>
                     {similarPosts.length > 0 && (
-                        <StickySidebar className={styles.sidebar} innerClassName={styles.sidebarInner}>
+                        <StickySidebar
+                            className={styles.sidebar}
+                            innerClassName={styles.sidebarInner}
+                            topOffset={isDesign ? 118 : 100}
+                            mobileBreakpoint={isDesign ? 980 : 768}
+                        >
                             <h2 className={cn(styles.sidebarTitle, config.titleFont.className)}>
                                 {sectionT('similar-posts')}
                             </h2>

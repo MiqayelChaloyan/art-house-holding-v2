@@ -1,5 +1,4 @@
 import { ClipboardIcon, HomeIcon, UserIcon } from '@sanity/icons';
-import { GiProgression } from 'react-icons/gi';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
@@ -28,7 +27,7 @@ export const aboutUsSchemaDesign = {
     name: 'about-us-design',
     type: 'document',
     title: 'Home page',
-    description: 'Design Studio landing page — banner, studio, courses, staff, and projects.',
+    description: 'Design Studio landing page — banner, studio, courses, staff, projects, and the partners slider.',
     icon: HomeIcon,
     id: 'about-us-design',
     groups: [
@@ -41,18 +40,8 @@ export const aboutUsSchemaDesign = {
         { name: 'projects', title: '7. Projects' },
         { name: 'blog', title: '8. Blog' },
         { name: 'voices', title: '9. Voices' },
-        { name: 'clients', title: '10. Clients' },
-        { name: 'older', title: 'Not on this page' },
+        { name: 'clients', title: '10. Partners' },
         { name: 'og', title: 'Social share' },
-        {
-            name: 'manifest',
-            title: 'Web app',
-            hidden: ({ document }: {
-                document: {
-                    [key: string]: never;
-                }
-            }): boolean => !(document.isPwa)
-        },
     ],
     fields: [
         {
@@ -188,6 +177,8 @@ export const aboutUsSchemaDesign = {
                 localizedString('Headline line 3 (italic)', 'line_3'),
                 localizedString('Headline line 4', 'line_4'),
                 localizedString('Description', 'description', 'text'),
+                localizedString('Courses button', 'explore_label', 'string', 'The red button under the paragraph.'),
+                localizedString('Portfolio button', 'portfolio_label', 'string', 'The outline button next to it.'),
                 {
                     name: 'stats',
                     title: 'Numbers',
@@ -251,11 +242,26 @@ export const aboutUsSchemaDesign = {
             title: 'Courses heading',
             type: 'object',
             group: 'courses',
-            description: 'The title above the course cards. The cards themselves are the list under this heading. Up to 10 are shown.',
+            description: 'The title above the course cards on Home and on the Courses page. The course page headings below are used on every course.',
             fields: [
                 smallLabel(),
                 localizedString('Headline line 1', 'line_1'),
                 localizedString('Headline line 2 (italic)', 'line_2'),
+                localizedString('Courses page eyebrow', 'page_eyebrow', 'string', 'The Courses list page, for example Courses · Six Programs. If empty, the home eyebrow is used.'),
+                localizedString('Courses page line 1', 'page_line_1', 'string', 'First line of the Courses list title.'),
+                localizedString('Courses page line 2 (italic)', 'page_line_2', 'string', 'Second line of the Courses list title.'),
+                localizedString('Course page eyebrow', 'detail_eyebrow', 'string', 'Small line above the course name, for example Course.'),
+                localizedString('Courses button', 'explore_label', 'string', 'Button on the course page.'),
+                localizedString('Portfolio button', 'portfolio_label', 'string', 'Second button on the course page.'),
+                localizedString('About block eyebrow', 'about_eyebrow'),
+                localizedString('About block title', 'about_title'),
+                localizedString('About block italic', 'about_emphasis'),
+                localizedString('Curriculum eyebrow', 'curriculum_eyebrow'),
+                localizedString('Curriculum title', 'curriculum_title'),
+                localizedString('Curriculum italic', 'curriculum_emphasis'),
+                localizedString('Work block eyebrow', 'work_eyebrow'),
+                localizedString('Work block title', 'work_title'),
+                localizedString('Work block italic', 'work_emphasis'),
             ],
         },
         {
@@ -416,139 +422,6 @@ export const aboutUsSchemaDesign = {
             ],
         },
         {
-            name: 'our_day',
-            type: 'object',
-            title: 'Video',
-            group: 'older',
-            description: 'Saved for an older layout. It is not shown on the current home page.',
-            validation: (Rule: RuleType) => Rule.required(),
-            fields: [
-                {
-                    name: 'video',
-                    type: 'object',
-                    title: 'Video',
-                    fields: [
-                        {
-                            name: 'useUpload',
-                            type: 'boolean',
-                            title: 'Upload a file instead of a link',
-                            description: 'Turn this on to upload a video file. Leave it off to paste a video link.',
-                            initialValue: false,
-                        },
-                        {
-                            name: 'video_url',
-                            title: 'Video link',
-                            type: 'url',
-                            hidden: ({ parent }: { parent: { useUpload?: boolean } }) => parent?.useUpload === true,
-                        },
-                        {
-                            name: 'videoFile',
-                            type: 'file',
-                            title: 'Upload Video',
-                            options: {
-                                accept: 'video/*',
-                            },
-                            hidden: ({ parent }: { parent: { useUpload?: boolean } }) => parent?.useUpload === false,
-                        },
-                        {
-                            name: 'video_light',
-                            title: 'Poster image',
-                            description: 'The still image shown before the video plays.',
-                            type: 'image',
-                            options: { hotspot: true },
-                            fields: [
-                                {
-                                    name: 'alt',
-                                    title: 'Alternative text',
-                                    type: 'string'
-                                }
-                            ],
-                        },
-                    ],
-                    validation: (Rule: RuleType) =>
-                        Rule.custom((fields) => {
-                            if (fields.useUpload && !fields.videoFile) {
-                                return 'Upload a video file, or turn off “Upload a file instead of a link”.';
-                            }
-                            if (!fields.useUpload && !fields.video_url) {
-                                return 'Paste a video link, or turn on “Upload a file instead of a link”.';
-                            }
-                            return true;
-                        }),
-                }
-            ]
-        },
-        {
-            name: 'progress_section',
-            type: 'array',
-            title: 'Progress numbers',
-            group: 'older',
-            components: { input: ArrayMaxItems },
-            validation: (Rule: RuleType) => Rule.max(4),
-            description: 'Up to 4 numbers. This block is not shown on the current home page.',
-            of: [
-                {
-                    type: 'object',
-                    name: 'tag',
-                    icon: GiProgression,
-                    fields: [
-                        {
-                            title: 'Title',
-                            name: 'title',
-                            type: 'object',
-                            validation: (Rule: any) => Rule.required(),
-                            fields: [
-                                {
-                                    title: 'Հայերեն',
-                                    name: 'am',
-                                    type: 'string'
-                                },
-                                {
-                                    title: 'English',
-                                    name: 'en',
-                                    type: 'string'
-                                },
-                                {
-                                    title: 'Русский',
-                                    name: 'ru',
-                                    type: 'string'
-                                }
-                            ]
-                        },
-                        {
-                            title: 'Quantity',
-                            name: 'quantity',
-                            type: 'number',
-                            initialValue: 0,
-                            validation: (Rule: any) => Rule.required(),
-                        },
-                        {
-                            name: 'isPlusSign',
-                            title: 'Plus sign',
-                            type: 'boolean',
-                            description: 'Add a plus sign (+) to the quantity.',
-                            options: {
-                                layout: 'checkbox',
-                            },
-                        }
-                    ],
-                    preview: {
-                        select: {
-                            title: 'title.en'
-                        },
-                        prepare(selection: { title?: string }) {
-                            return {
-                                title: selection.title,
-                            };
-                        },
-                    },
-                    initialValue: {
-                        isPlusSign: true,
-                    },
-                }
-            ]
-        },
-        {
             name: 'projects_section',
             title: 'Projects block',
             type: 'object',
@@ -610,6 +483,9 @@ export const aboutUsSchemaDesign = {
                 localizedString('Headline line 1', 'line_1'),
                 localizedString('Headline line 2 (italic)', 'line_2'),
                 localizedString('Headline line 3', 'line_3'),
+                localizedString('Experience label', 'experience_label', 'string', 'Small word under the years, for example Experience.'),
+                localizedString('Programs label', 'programs_label', 'string', 'Heading above the program tags.'),
+                localizedString('Skills label', 'skills_label', 'string', 'Heading above the skill tags.'),
             ],
         },
         {
@@ -624,9 +500,9 @@ export const aboutUsSchemaDesign = {
                 localizedString('Headline line 3', 'line_3'),
                 {
                     name: 'images',
-                    title: 'Certificates',
+                    title: 'Certificate pictures',
                     type: 'array',
-                    description: 'Up to 10 pictures, in this order. If this list is empty, the two pictures below are shown instead.',
+                    description: 'Add the diploma, the certificate, and any other pictures here. Maximum 10, in this order.',
                     components: { input: ArrayMaxItems },
                     validation: (Rule: RuleType) => Rule.max(10),
                     of: [
@@ -650,22 +526,6 @@ export const aboutUsSchemaDesign = {
                             },
                         },
                     ],
-                },
-                {
-                    name: 'certificate',
-                    title: 'Certificate picture',
-                    description: 'Used only when the list above is empty.',
-                    type: 'image',
-                    options: { hotspot: true },
-                    fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
-                },
-                {
-                    name: 'diploma',
-                    title: 'Diploma picture',
-                    description: 'Used only when the list above is empty.',
-                    type: 'image',
-                    options: { hotspot: true },
-                    fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
                 },
             ],
         },
@@ -795,6 +655,30 @@ export const aboutUsSchemaDesign = {
             ],
         },
         {
+            ...blogSectionFields,
+            title: 'Blog block',
+            group: 'blog',
+            description: 'The heading and four existing Design Studio posts. Pick them from the list. Do not create new posts here.',
+            fields: [
+                ...blogSectionFields.fields,
+                {
+                    name: 'posts',
+                    title: 'Posts on the home page',
+                    type: 'array',
+                    description: 'Choose up to 4 existing blog posts. The first is the large card. Drag to change the order. New posts are added under Blog posts, not here.',
+                    components: { input: ArrayMaxItems },
+                    validation: (Rule: RuleType) => Rule.max(4),
+                    of: [
+                        {
+                            type: 'reference',
+                            to: [{ type: 'design-blog-post' }],
+                            options: { disableNew: true },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             name: 'voices_section',
             title: 'Voices block',
             type: 'object',
@@ -845,42 +729,28 @@ export const aboutUsSchemaDesign = {
         },
         {
             name: 'clients',
-            title: 'Client names',
+            title: 'Partner names',
             group: 'clients',
             type: 'array',
-            description: 'The names that scroll above the footer. The name is what visitors see. A logo is kept for reference.',
+            description: 'Only the names that slide above the footer. Add each one in Armenian, English, and Russian.',
             of: [
                 {
                     name: 'client',
                     type: 'object',
                     fields: [
-                        {
-                            name: 'name',
-                            title: 'Name on the page',
-                            type: 'string',
-                            description: 'Shown in the scrolling line, for example ART HOUSE.',
-                        },
-                        {
-                            name: 'logo',
-                            title: 'Logo',
-                            description: 'Required by the form. The scrolling line uses the name, and the logo text if the name is empty.',
-                            type: 'image',
-                            options: { hotspot: true },
-                            fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
-                            validation: (Rule: RuleType) => Rule.required(),
-                        },
+                        localizedString('Name', 'name'),
                     ],
                     preview: {
-                        select: { title: 'name', media: 'logo' },
+                        select: { title: 'name.en', fallback: 'name' },
+                        prepare(selection: { title?: string; fallback?: string | { en?: string } }) {
+                            const fallback = typeof selection.fallback === 'string'
+                                ? selection.fallback
+                                : selection.fallback?.en;
+                            return { title: selection.title || fallback || 'Partner' };
+                        },
                     },
                 },
             ],
-        },
-        {
-            ...blogSectionFields,
-            group: 'blog',
-            title: 'Blog heading',
-            description: 'The title above the news cards. The articles themselves are edited under Blog posts. The home page shows up to four.',
         },
     ],
     preview: {

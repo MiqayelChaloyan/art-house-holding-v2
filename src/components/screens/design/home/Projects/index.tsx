@@ -8,6 +8,7 @@ import { useLocale } from 'next-intl';
 import NextImage from '@/src/components/components/image';
 
 import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -42,9 +43,9 @@ const Projects = ({ section }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {copy.eyebrow}
                         </p>
-                        <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
-                            <span>{copy.line1}</span>
-                            <span className={styles.emphasis}>{copy.line2}</span>
+                        <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                            <span>{keepWords(copy.line1)}</span>
+                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h2>
                     </div>
                     <p className={styles.lede}>{copy.description}</p>

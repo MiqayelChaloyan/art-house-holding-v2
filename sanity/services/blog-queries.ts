@@ -55,4 +55,13 @@ export const blogSectionQueryFragment = `
         "eyebrow": eyebrow[$language],
         "section_title": section_title[$language],
         "section_subtitle": section_subtitle[$language],
+        "posts": posts[]-> {
+            _id,
+            "slug": slug.current,
+            publishedAt,
+            featuredImage,
+            "title": title[$language],
+            "excerpt": excerpt[$language],
+            "category": category[$language],
+        },
     }`;

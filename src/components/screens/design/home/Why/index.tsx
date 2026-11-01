@@ -2,9 +2,8 @@
 
 import React from 'react';
 
-import { useLocale } from 'next-intl';
-
 import { InstrumentSerif, Inter, JetBrainsMono, Montserrat } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
 
@@ -16,8 +15,6 @@ interface Props {
 };
 
 const Why = ({ section }: Readonly<Props>) => {
-    const locale = useLocale();
-
     const copy = {
         eyebrow: section?.eyebrow || '',
         line1: section?.line_1 || '',
@@ -34,9 +31,9 @@ const Why = ({ section }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
-                        <span>{copy.line1}</span>
-                        <span className={styles.emphasis}>{copy.line2}</span>
+                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <span>{keepWords(copy.line1)}</span>
+                        <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                     </h2>
                 </header>
                 <ul className={styles.grid}>
@@ -46,7 +43,7 @@ const Why = ({ section }: Readonly<Props>) => {
                                 <span className={cn(styles.number, JetBrainsMono.className)}>{item.number}</span>
                                 <span className={styles.rule} aria-hidden />
                             </div>
-                            <h3 className={cn(styles.title, Montserrat.className)}>{item.title}</h3>
+                            <h3 className={cn(styles.title, Montserrat.className)}>{keepWords(item.title)}</h3>
                             <p className={styles.description}>{item.description}</p>
                         </li>
                     ))}

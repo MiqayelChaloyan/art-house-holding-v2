@@ -33,6 +33,7 @@ const SANITY_TYPE_TO_TAGS: Record<string, readonly string[]> = {
   'design-lessons-select-option': [CACHE_TAGS.designLessons],
   'design-contact-us': [CACHE_TAGS.designContacts],
   'price-list-design': [CACHE_TAGS.designHome, CACHE_TAGS.designCourses],
+  'course-price-design': [CACHE_TAGS.designCourses],
   'portfolio-design': [CACHE_TAGS.designCourses],
   'design-blog-post': [CACHE_TAGS.designBlog],
   'legal-page-design': [CACHE_TAGS.designLegal],

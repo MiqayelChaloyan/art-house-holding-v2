@@ -5,6 +5,7 @@ import React from 'react';
 import Course from './Course';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
 
@@ -35,13 +36,13 @@ const Courses = ({ courses, section, numbered, page }: Readonly<Props>) => {
                     </p>
                     {page ? (
                         <h1 className={cn(styles.headline, InstrumentSerif.className)}>
-                            <span>{copy.line1}</span>
-                            <span className={styles.emphasis}>{copy.line2}</span>
+                            <span>{keepWords(copy.line1)}</span>
+                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h1>
                     ) : (
                         <h2 className={cn(styles.headline, InstrumentSerif.className)}>
-                            <span>{copy.line1}</span>
-                            <span className={styles.emphasis}>{copy.line2}</span>
+                            <span>{keepWords(copy.line1)}</span>
+                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h2>
                     )}
                 </header>

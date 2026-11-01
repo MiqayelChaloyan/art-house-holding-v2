@@ -57,7 +57,7 @@ export default async function Layout({
 
     return (
         <>
-            <Header typePosition='fixed' locale={locale} />
+            <Header typePosition='fixed' locale={locale} brand={contacts} />
             <div className='design-container'>
                 <GoBack locale={locale} theme={colors.studioRed} />
                 <ScrollToTopButton theme={colors.studioRed} />

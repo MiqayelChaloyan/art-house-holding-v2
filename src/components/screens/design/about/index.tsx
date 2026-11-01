@@ -6,6 +6,7 @@ import NextImage from '@/src/components/components/image';
 import Partners from '@/src/components/screens/design/home/Partners';
 
 import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -35,8 +36,8 @@ const About = ({ data, clients }: Readonly<Props>) => {
                                 {data.eyebrow}
                             </p>
                             <h1 className={cn(styles.headline, InstrumentSerif.className)}>
-                                <span>{line1}</span>
-                                <span className={styles.emphasis}>{line2}</span>
+                                <span>{keepWords(line1)}</span>
+                                <span className={styles.emphasis}>{keepWords(line2)}</span>
                             </h1>
                             {data.intro && <p className={cn(styles.intro, Montserrat.className)}>{data.intro}</p>}
                         </div>

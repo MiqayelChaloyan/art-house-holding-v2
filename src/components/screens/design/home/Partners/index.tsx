@@ -15,29 +15,27 @@ interface Props {
 
 const Partners = ({ clients }: Readonly<Props>) => {
     const items = useMemo(
-        () => (clients || []).filter((item) => item?.name || item?.logo?.alt),
+        () => (clients || []).filter((item) => item?.name?.trim()),
         [clients],
     );
 
     if (!items.length) return null;
 
-    const loop = [...items, ...items];
+    const row = (copy: number) => items.map((client, index) => (
+        <span key={`${copy}-${client._key || index}`} className={styles.item}>
+            {(client.name || '').trim()}
+            <span className={styles.dot}>.</span>
+        </span>
+    ));
 
     return (
-        <section id="partners" className={styles.section} aria-label="Clients">
+        <section id="partners" className={styles.section} aria-label="Partners">
             <div className={styles.marquee}>
                 <div className={cn(styles.track, InstrumentSerif.className)}>
-                    {loop.map((client, index) => {
-                        const label = (client.name || client.logo?.alt || '').trim();
-                        if (!label) return null;
-
-                        return (
-                            <span key={`${client._key}-${index}`} className={styles.item}>
-                                {label}
-                                <span className={styles.dot}>.</span>
-                            </span>
-                        );
-                    })}
+                    {row(0)}
+                </div>
+                <div className={cn(styles.track, InstrumentSerif.className)} aria-hidden>
+                    {row(1)}
                 </div>
             </div>
         </section>

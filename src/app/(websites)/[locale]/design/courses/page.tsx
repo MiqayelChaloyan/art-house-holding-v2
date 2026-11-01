@@ -1,5 +1,4 @@
 import { type Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
 import Courses from '@/src/components/screens/design/home/Courses';
 
@@ -7,7 +6,7 @@ import { Locale } from '@/src/locales';
 import { Pages } from '@/src/constants/pages';
 import { SITE_META_QUERY } from '@/sanity/services/design-service';
 import { buildSectionPageMetadata } from '@/src/utils/page-metadata';
-import { getCourses } from '@/src/utils/data/design';
+import { getCourses, getHomeDetails } from '@/src/utils/data/design';
 
 
 interface Props {
@@ -17,9 +16,9 @@ interface Props {
 };
 
 export default async function Page({ params: { locale } }: Readonly<Props>) {
-    const [courses, t] = await Promise.all([
+    const [courses, home] = await Promise.all([
         getCourses(locale),
-        getTranslations({ locale, namespace: 'courses-page' }),
+        getHomeDetails(locale),
     ]);
 
     const cards = (courses ?? []).map((course) => ({
@@ -27,17 +26,22 @@ export default async function Page({ params: { locale } }: Readonly<Props>) {
         _key: course._id,
         course_name: course.course_name || course.name,
     }));
+    const listing = home?.courses_section;
+    const section = listing
+        ? {
+            ...listing,
+            eyebrow: listing.page_eyebrow || listing.eyebrow,
+            line_1: listing.page_line_1 || listing.line_1,
+            line_2: listing.page_line_2 || listing.line_2,
+        }
+        : listing;
 
     return (
         <Courses
             courses={cards}
             numbered
             page
-            section={{
-                eyebrow: t('eyebrow'),
-                line_1: t('line-1'),
-                line_2: t('line-2'),
-            }}
+            section={section}
         />
     );
 }

@@ -14,32 +14,41 @@ interface Props {
     siteKey: BlogSiteKey;
 };
 
-const PostCardSkeleton = ({ siteKey }: Readonly<Props>) => (
-    <article className={styles.cardShell} data-variant={siteKey} aria-hidden="true">
-        <div className={styles.cardImage}>
-            <Block tone="light" width="100%" height="100%" className={styles.imageFill} />
-            <Block tone="accent" height={28} width={88} className={styles.cardCategory} />
-        </div>
-        <div className={styles.cardBody}>
-            <Block tone="light" height={13} width="38%" />
-            <Block tone="light" height={22} width="92%" />
-            <Block tone="light" height={22} width="76%" />
-            <div className={styles.excerptLines}>
-                <Block tone="light" height={15} width="100%" />
-                <Block tone="light" height={15} width="100%" />
-                <Block tone="light" height={15} width="68%" />
+const PostCardSkeleton = ({ siteKey }: Readonly<Props>) => {
+    const dark = siteKey === 'design';
+
+    return (
+        <article className={styles.cardShell} data-variant={siteKey} aria-hidden="true">
+            <div className={cn(styles.cardImage, dark && styles.cardImageDesign)}>
+                <Block tone={dark ? 'hero' : 'light'} width="100%" height="100%" className={styles.imageFill} />
+                {!dark && <Block tone="accent" height={28} width={88} className={styles.cardCategory} />}
             </div>
-            <Block
-                tone="accent"
-                height={40}
-                width={132}
-                className={cn(
-                    styles.readMoreBtn,
-                    siteKey === 'language' && styles.readMoreBtnLanguage,
+            <div className={cn(styles.cardBody, dark && styles.cardBodyDesign)}>
+                <Block tone={dark ? 'hero' : 'light'} height={13} width="38%" />
+                <Block tone={dark ? 'hero' : 'light'} height={22} width="92%" />
+                <Block tone={dark ? 'hero' : 'light'} height={22} width="76%" />
+                {!dark && (
+                    <>
+                        <div className={styles.excerptLines}>
+                            <Block tone="light" height={15} width="100%" />
+                            <Block tone="light" height={15} width="100%" />
+                            <Block tone="light" height={15} width="68%" />
+                        </div>
+                        <Block
+                            tone="accent"
+                            height={40}
+                            width={132}
+                            className={cn(
+                                styles.readMoreBtn,
+                                siteKey === 'language' && styles.readMoreBtnLanguage,
+                            )}
+                        />
+                    </>
                 )}
-            />
-        </div>
-    </article>
-);
+                {dark && <Block tone="hero" height={14} width={88} />}
+            </div>
+        </article>
+    );
+};
 
 export default React.memo(PostCardSkeleton);

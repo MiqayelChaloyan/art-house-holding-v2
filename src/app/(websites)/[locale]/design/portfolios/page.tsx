@@ -9,7 +9,7 @@ import { Locale } from '@/src/locales';
 
 import { buildSectionPageMetadata } from '@/src/utils/page-metadata';
 import { SITE_META_QUERY } from '@/sanity/services/design-service';
-import { getCourses } from '@/src/utils/data/design';
+import { getCourses, getPortfolioPage } from '@/src/utils/data/design';
 import { Pages } from '@/src/constants/pages';
 
 
@@ -22,13 +22,16 @@ interface Props {
 export default async function Page({
     params: { locale }
 }: Readonly<Props>) {
-    const courses = await getCourses(locale);
+    const [courses, page] = await Promise.all([
+        getCourses(locale),
+        getPortfolioPage(locale),
+    ]);
 
     if (!courses?.length) {
         notFound()
     }
 
-    return <Home courses={courses} />;
+    return <Home courses={courses} page={page} />;
 };
 
 export async function generateMetadata({

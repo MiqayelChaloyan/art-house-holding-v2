@@ -2,24 +2,24 @@
 	background: #090909
 	color: #ffffff
 	padding-bottom: 96px
+	overflow-x: clip
 
 .hero
 	position: relative
 	display: flex
 	align-items: center
 	justify-content: center
-	height: clamp(320px, 44vw, 666px)
-	margin-top: 36px
+	width: 100%
+	height: clamp(420px, 44vw, 666px)
+	margin: 0
 	min-height: 320px
+	overflow: hidden
+	background: #141414
 	@media screen and (max-width: 980px)
 		height: clamp(300px, 62vw, 520px)
-		margin-top: 20px
 	@media screen and (max-width: 640px)
 		height: 68vw
 		min-height: 260px
-		margin-top: 12px
-	overflow: hidden
-	background: #141414
 
 .heroImage
 	position: absolute
@@ -47,7 +47,8 @@
 	font-weight: 400
 	line-height: 1
 	letter-spacing: -0.03em
-	overflow-wrap: anywhere
+	overflow-wrap: normal
+	word-break: keep-all
 
 .course
 	margin: 12px 0 0
@@ -56,38 +57,47 @@
 	line-height: 26px
 
 .section
-	width: min(1320px, calc(100% - 48px))
-	margin: 60px auto 0
+	margin-top: 60px
 	@media screen and (max-width: 640px)
-		width: calc(100% - 40px)
 		margin-top: 48px
 
 .sectionTitle
-	margin: 0 0 60px
+	width: min(1320px, calc(100% - 192px))
+	margin: 0 auto 60px
 	font-size: clamp(28px, 6vw, 72px)
 	font-weight: 400
 	line-height: 1.05
 	letter-spacing: -0.03em
-	overflow-wrap: anywhere
+	overflow-wrap: normal
+	word-break: keep-all
 	@media screen and (max-width: 640px)
+		width: calc(100% - 40px)
 		margin-bottom: 20px
 
-.row
+.rail
+	overflow: hidden
+	padding-left: max(20px, calc((100% - min(1320px, calc(100% - 192px))) / 2))
+	cursor: grab
+	&:active
+		cursor: grabbing
+	@media screen and (max-width: 640px)
+		padding-left: 20px
+
+.track
 	display: flex
 	gap: 20px
-	overflow-x: auto
-	padding-bottom: 8px
-	scroll-snap-type: x mandatory
-	-webkit-overflow-scrolling: touch
+	touch-action: pan-y
 
 .shot
-	flex: 0 0 min(418px, 78vw)
+	flex: 0 0 418px
 	aspect-ratio: 418 / 313
 	overflow: hidden
-	scroll-snap-align: start
 	background: #141414
+	@media screen and (max-width: 640px)
+		flex-basis: min(418px, 78vw)
 
 .shotImage
 	width: 100% !important
 	height: 100% !important
 	object-fit: cover
+	pointer-events: none

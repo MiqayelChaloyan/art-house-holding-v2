@@ -4,9 +4,11 @@
 	padding: 81px 0 28px
 
 .wrap
-	width: 100%
-	width: min(1320px, calc(100% - 48px))
+	width: min(1320px, calc(100% - 192px))
+	max-width: 1320px
 	margin: 0 auto
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
 	@media screen and (max-width: 640px)
 		width: calc(100% - 40px)
 
@@ -44,6 +46,9 @@
 	display: inline-flex
 	align-items: center
 	gap: 8px
+	position: relative
+	overflow: hidden
+	isolation: isolate
 	height: 44px
 	padding: 0 22px
 	border: 0
@@ -53,13 +58,32 @@
 	font-size: 14px
 	line-height: 20px
 	cursor: pointer
-	transition: background-color 0.2s ease, box-shadow 0.2s ease
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1)
+	span, svg
+		position: relative
+		z-index: 1
 	svg
 		width: 16px
 		height: 16px
+		transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)
+	&::before
+		content: ''
+		position: absolute
+		inset: 0
+		background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.28) 48%, transparent 72%)
+		transform: translateX(-140%)
+		transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+		pointer-events: none
 	&:hover
-		background: #ff2d3f
-		box-shadow: 0 8px 18px rgba(225, 29, 46, 0.35)
+		transform: translateY(-2px)
+		background: #e43330
+		box-shadow: 0 12px 28px rgba(206, 36, 33, 0.4)
+		&::before
+			transform: translateX(140%)
+		svg
+			transform: translate(3px, -3px)
+	&:active
+		transform: translateY(0)
 
 .col
 	min-width: 0
@@ -85,8 +109,12 @@
 		text-decoration: none
 		font-size: 14px
 		line-height: 20px
+	a
+		display: inline-block
+		transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)
 	a:hover
 		color: #ffffff
+		transform: translateX(4px)
 
 .address
 	color: rgba(255, 255, 255, 0.62)
@@ -147,6 +175,7 @@
 	a
 		color: rgba(255, 255, 255, 0.42)
 		text-decoration: none
-		transition: color 0.2s ease
+		transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)
 		&:hover
 			color: #ffffff
+			transform: translateY(-1px)

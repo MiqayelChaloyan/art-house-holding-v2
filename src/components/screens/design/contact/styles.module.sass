@@ -11,12 +11,14 @@
 		align-items: stretch
 
 .wrap
-	width: 100%
+	width: min(1320px, calc(100% - 192px))
 	max-width: 1320px
 	margin: 0 auto
-	padding: 0 24px
-	@media screen and (max-width: 980px)
-		padding: 0 20px
+	padding: 0
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
+	@media screen and (max-width: 640px)
+		width: calc(100% - 40px)
 
 .grid
 	display: grid
@@ -57,16 +59,10 @@
 	line-height: 1
 	letter-spacing: -0.03em
 	color: #ffffff
-	span
+	overflow-wrap: normal
+	word-break: keep-all
+	> span
 		display: block
-
-.headlineAm
-	font-size: 56px
-	line-height: 1
-
-.headlineRu
-	font-size: 68px
-	line-height: 0.96
 
 .emphasis
 	font-style: italic
@@ -216,6 +212,9 @@
 			color: #ffffff
 
 .submit
+	position: relative
+	overflow: hidden
+	isolation: isolate
 	height: 52px
 	margin-top: 4px
 	background: #ce2421
@@ -224,13 +223,31 @@
 	font-size: 16px
 	font-weight: 500
 	cursor: pointer
-	transition: background-color 0.2s ease
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1)
+	&::before
+		content: ''
+		position: absolute
+		inset: 0
+		background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.28) 48%, transparent 72%)
+		transform: translateX(-140%)
+		transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+		pointer-events: none
 	&:hover,
 	&:focus
-		background: #a41c1a
+		transform: translateY(-2px)
+		background: #e43330
+		box-shadow: 0 12px 28px rgba(206, 36, 33, 0.4)
+		&::before
+			transform: translateX(140%)
+	&:active
+		transform: translateY(0)
 	&:disabled
 		cursor: wait
 		opacity: 0.7
+		transform: none
+		box-shadow: none
+		&::before
+			transform: translateX(-140%)
 
 @media screen and (max-width: 860px)
 	.headline

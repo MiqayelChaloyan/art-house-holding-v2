@@ -4,6 +4,82 @@ export const BLOG_POSTS_QUERY = createBlogPostsQuery('design-blog-post');
 export const BLOG_SLUG_QUERY = createBlogSlugQuery('design-blog-post');
 export const BLOG_SIMILAR_POSTS_QUERY = createBlogSimilarPostsQuery('design-blog-post');
 
+const courseCardFields = `
+    card_image,
+    "duration": duration[$language],
+    "level": level[$language],
+    "card_description": card_description[$language],
+`;
+
+const coursePageFields = `
+    "price_section": coalesce(
+        *[_type == "course-price-design" && course._ref == ^._id][0] {
+            "eyebrow": eyebrow[$language],
+            "line_1": line_1[$language],
+            "line_2": line_2[$language],
+            "items": items[] {
+                _key,
+                "title": title[$language],
+                "subtitle": subtitle[$language],
+                "amount": amount[$language],
+            },
+        },
+        price_section {
+            "eyebrow": eyebrow[$language],
+            "line_1": line_1[$language],
+            "line_2": line_2[$language],
+            "items": items[] {
+                _key,
+                "title": title[$language],
+                "subtitle": subtitle[$language],
+                "amount": amount[$language],
+            },
+        }
+    ),
+    "why_section": why_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "items": items[] {
+            _key,
+            "title": title[$language],
+            "description": description[$language],
+        },
+    },
+    "groups_section": groups_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "enroll_label": enroll_label[$language],
+        "filter_all": filter_all[$language],
+        "start_date_label": start_date_label[$language],
+        "schedule_label": schedule_label[$language],
+        "time_label": time_label[$language],
+        "duration_label": duration_label[$language],
+        "price_label": price_label[$language],
+        "groups": groups[] {
+            _key,
+            mode,
+            "shift": shift[$language],
+            "start_date": start_date[$language],
+            "schedule": schedule[$language],
+            "time": time[$language],
+            "duration": duration[$language],
+            "price": price[$language],
+        },
+    },
+    "faq_section": faq_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "items": items[] {
+            _key,
+            "question": question[$language],
+            "answer": answer[$language],
+        },
+    },
+`;
+
 export const ABOUT_US_DETAILS_QUERY = `
 *[_type == "about-us-design"] {
    "main_section": main_section[] {
@@ -19,6 +95,8 @@ export const ABOUT_US_DETAILS_QUERY = `
         "line_3": line_3[$language],
         "line_4": line_4[$language],
         "description": description[$language],
+        "explore_label": explore_label[$language],
+        "portfolio_label": portfolio_label[$language],
         "stats": stats[] {
             _key,
             value,
@@ -33,6 +111,21 @@ export const ABOUT_US_DETAILS_QUERY = `
         "eyebrow": eyebrow[$language],
         "line_1": line_1[$language],
         "line_2": line_2[$language],
+        "page_eyebrow": page_eyebrow[$language],
+        "page_line_1": page_line_1[$language],
+        "page_line_2": page_line_2[$language],
+        "detail_eyebrow": detail_eyebrow[$language],
+        "explore_label": explore_label[$language],
+        "portfolio_label": portfolio_label[$language],
+        "about_eyebrow": about_eyebrow[$language],
+        "about_title": about_title[$language],
+        "about_emphasis": about_emphasis[$language],
+        "curriculum_eyebrow": curriculum_eyebrow[$language],
+        "curriculum_title": curriculum_title[$language],
+        "curriculum_emphasis": curriculum_emphasis[$language],
+        "work_eyebrow": work_eyebrow[$language],
+        "work_title": work_title[$language],
+        "work_emphasis": work_emphasis[$language],
     },
     "why_section": why_section {
         "eyebrow": eyebrow[$language],
@@ -58,15 +151,6 @@ export const ABOUT_US_DETAILS_QUERY = `
         "duration": duration[$language],
         "level": level[$language],
     },
-    "our_day": our_day {
-        video,
-    },
-    "progress_section": progress_section[] {
-        _key,
-        quantity,
-        isPlusSign,
-        "title": title[$language],
-    },
     "projects_section": projects_section {
         "eyebrow": eyebrow[$language],
         "line_1": line_1[$language],
@@ -85,6 +169,9 @@ export const ABOUT_US_DETAILS_QUERY = `
         "line_1": line_1[$language],
         "line_2": line_2[$language],
         "line_3": line_3[$language],
+        "experience_label": experience_label[$language],
+        "programs_label": programs_label[$language],
+        "skills_label": skills_label[$language],
     },
     "certificates_section": certificates_section {
         "line_1": line_1[$language],
@@ -94,8 +181,6 @@ export const ABOUT_US_DETAILS_QUERY = `
             _key,
             image,
         },
-        certificate,
-        diploma,
     },
     "workers": workers[] {
         _key,
@@ -110,8 +195,7 @@ export const ABOUT_US_DETAILS_QUERY = `
     },
     "clients": clients[] {
         _key,
-        name,
-        logo,
+        "name": coalesce(name[$language], name),
     },
     "voices_section": voices_section {
         "eyebrow": eyebrow[$language],
@@ -135,8 +219,10 @@ export const COURSES_QUERY = `
     name,
     "slug": slug.current,
     gallery_of_course,
+    ${courseCardFields}
     "conditions": conditions[][$language],
     "course_name": course_name[$language],
+    "intro": intro[$language],
     "guides": guides[][$language],
     "portfolios": portfolios[] {
         _key,
@@ -170,6 +256,7 @@ export const COURSE_ID_QUERY = `
     name,
     "slug": slug.current,
     gallery_of_course,
+    ${courseCardFields}
     "conditions": conditions[][$language],
     "course_name": course_name[$language],
     "guides": guides[][$language],
@@ -204,8 +291,11 @@ export const COURSE_SLUG_QUERY = `
     _id,
     name,
     "course_name": course_name[$language],
+    "intro": intro[$language],
     "slug": slug.current,
     gallery_of_course,
+    ${courseCardFields}
+    ${coursePageFields}
     "conditions": conditions[][$language],
     "guides": guides[][$language],
     "portfolios": portfolios[] {
@@ -247,12 +337,19 @@ export const SITE_META_QUERY = `
 
 export const SOCIAL_QUERY = `
 *[_type == "design-contact-us"] {
-    name,
     email,
     phone_numbers,
     social_links,
+    logo,
     "address": address[$language],
+    "eyebrow": eyebrow[$language],
+    "line_1": line_1[$language],
+    "line_2": line_2[$language],
+    "form_title": form_title[$language],
     "hours": hours[$language],
+    "brand_line_1": brand_line_1[$language],
+    "brand_line_2": brand_line_2[$language],
+    "tagline": tagline[$language],
 }`;
 
 export const LESSONS_QUERY = `
@@ -269,9 +366,14 @@ export const LESSONS_QUERY = `
 }`;
 
 export const PORTFOLIO_QUERY = `
-*[_type == "portfolio-design"] {
+*[_type == "portfolio-design"][0] {
     _id,
-    image
+    "eyebrow": eyebrow[$language],
+    "line_1": line_1[$language],
+    "line_2": line_2[$language],
+    "empty": empty[$language],
+    "all_label": all_label[$language],
+    "view_more": view_more[$language],
 }`;
 
 export const ABOUT_PAGE_QUERY = `

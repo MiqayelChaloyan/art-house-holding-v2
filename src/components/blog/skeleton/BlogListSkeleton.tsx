@@ -15,7 +15,7 @@ import styles from './styles.module.sass';
 
 const BLOG_ACCENT: Record<BlogSiteKey, string> = {
     educational: '#DF362D',
-    design: '#5F401B',
+    design: '#ce2421',
     language: '#006ED2',
 };
 
@@ -38,16 +38,18 @@ const BlogListSkeleton = ({ siteKey, count = 6 }: Readonly<Props>) => {
         >
             <div className={listStyles.hero}>
                 <Container className="container">
-                    <div className={listStyles.heroTop}>
-                        <div className={cn(styles.backPill, styles.backPillLight)}>
-                            <Block tone="hero" width={30} height={30} className={styles.backIcon} />
-                            <Block tone="hero" height={14} width={72} />
+                    {siteKey !== 'design' && (
+                        <div className={listStyles.heroTop}>
+                            <div className={cn(styles.backPill, styles.backPillLight)}>
+                                <Block tone="hero" width={30} height={30} className={styles.backIcon} />
+                                <Block tone="hero" height={14} width={72} />
+                            </div>
                         </div>
-                    </div>
-                    <div className={cn(listStyles.header, styles.heroHeader)}>
-                        <Block tone="hero" height={14} width={220} />
-                        <Block tone="hero" height={siteKey === 'language' ? 56 : 48} width="min(560px, 72%)" />
-                        <Block tone="hero" height={20} width="min(420px, 52%)" />
+                    )}
+                    <div className={cn(listStyles.header, siteKey === 'design' ? styles.heroHeaderDesign : styles.heroHeader)}>
+                        <Block tone="hero" height={14} width={siteKey === 'design' ? 120 : 220} />
+                        <Block tone="hero" height={siteKey === 'design' ? 72 : siteKey === 'language' ? 56 : 48} width={siteKey === 'design' ? 247 : 'min(560px, 72%)'} />
+                        <Block tone="hero" height={siteKey === 'design' ? 72 : 20} width={siteKey === 'design' ? 220 : 'min(420px, 52%)'} />
                     </div>
                 </Container>
             </div>

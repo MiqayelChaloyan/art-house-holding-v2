@@ -53,12 +53,14 @@
 	font-weight: 500
 	line-height: 30px
 	letter-spacing: -0.48px
+	overflow-wrap: normal
+	word-break: keep-all
 	a
 		color: #ffffff
 		text-decoration: none
-		transition: color 0.2s ease
+		transition: color 0.35s ease
 		&:hover
-			color: #d42b28
+			color: #e43330
 
 .iconBtn
 	display: inline-flex
@@ -71,14 +73,16 @@
 	border-radius: 0
 	color: #ffffff
 	text-decoration: none
-	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease
+	transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease
 	svg
 		width: 18px
 		height: 18px
+		transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)
 	&:hover
-		background: rgba(255, 255, 255, 0.08)
-		border-color: rgba(255, 255, 255, 0.32)
-		transform: translate(2px, -2px)
+		background: rgba(255, 255, 255, 0.1)
+		border-color: rgba(255, 255, 255, 0.45)
+		transform: translate(3px, -3px)
+		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28)
 
 .description
 	display: -webkit-box

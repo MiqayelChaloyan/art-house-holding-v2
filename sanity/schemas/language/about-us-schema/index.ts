@@ -2,19 +2,16 @@ import { HomeIcon } from '@sanity/icons';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
-import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
-
 const aboutUsSchemaLanguage = {
     name: 'about-us-language',
     type: 'document',
     title: 'Home page',
-    description: 'Language Studio landing page — about, daily life, and blog heading.',
+    description: 'Language Studio landing page — about and daily life.',
     icon: HomeIcon,
     id: 'about-us-language',
     groups: [
         { name: 'about', title: '1. About', default: true },
         { name: 'daily', title: '2. Daily life' },
-        { name: 'blog', title: '3. Blog' },
         { name: 'og', title: 'Social share' },
         {
             name: 'manifest',
@@ -352,10 +349,6 @@ const aboutUsSchemaLanguage = {
                     ],
                 },
             ],
-        },
-        {
-            ...blogSectionFields,
-            group: 'blog',
         },
     ],
     preview: {

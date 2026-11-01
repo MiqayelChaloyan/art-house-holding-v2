@@ -4,8 +4,6 @@ import { TfiLayoutSliderAlt } from 'react-icons/tfi';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
-import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
-
 export const aboutUsSchemaEducationalCenter = {
     name: 'about-us',
     type: 'document',
@@ -21,7 +19,6 @@ export const aboutUsSchemaEducationalCenter = {
         { name: 'numbers', title: '5. Numbers' },
         { name: 'specialists', title: '6. Specialists' },
         { name: 'reviews', title: '7. Reviews' },
-        { name: 'blog', title: '8. Blog' },
         { name: 'og', title: 'Social share' },
         {
             name: 'manifest',
@@ -711,10 +708,6 @@ export const aboutUsSchemaEducationalCenter = {
                     },
                 }
             ],
-        },
-        {
-            ...blogSectionFields,
-            group: 'blog',
         },
     ],
     preview: {

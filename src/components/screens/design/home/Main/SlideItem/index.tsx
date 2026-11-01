@@ -5,6 +5,7 @@ import React from 'react';
 import NextImage from '@/src/components/components/image';
 
 import { Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import { SlideItem as Props } from '@/src/types/design';
 
@@ -18,6 +19,7 @@ const SlideItem = ({
     company_name,
     title,
     priority = false,
+    loading = 'eager',
 }: Readonly<Props>) => {
     return (
         <div className={styles.article}>
@@ -30,16 +32,17 @@ const SlideItem = ({
                     height={709}
                     sizes="100vw"
                     priority={priority}
+                    loading={priority ? 'eager' : loading}
                 />
             )}
             <div className={styles.overlay} />
             <div className={styles.container}>
                 <div className={styles.contact}>
                     <h2 className={cn(styles.company_name, Inter.className)}>
-                        {company_name}
+                        {keepWords(company_name)}
                     </h2>
                     <h1 className={cn(styles.title, Inter.className)}>
-                        {title}
+                        {keepWords(title)}
                     </h1>
                 </div>
             </div>

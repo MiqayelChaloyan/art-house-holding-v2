@@ -4,7 +4,7 @@ import Home from '@/src/components/screens/design/home';
 
 import { notFound } from 'next/navigation';
 
-import { getBlogPosts, getHomeDetails } from '@/src/utils/data/design';
+import { getHomeDetails } from '@/src/utils/data/design';
 
 
 interface RootProps {
@@ -17,15 +17,11 @@ export default async function Page({
     params: { locale }
 }:
     Readonly<RootProps>) {
-    const [data, posts] = await Promise.all([
-        getHomeDetails(locale),
-        getBlogPosts(locale),
-    ]);
+    const data = await getHomeDetails(locale);
 
     if (!data) {
         notFound()
     }
 
-    return (<Home data={data} posts={posts} />);
+    return (<Home data={data} />);
 };
-

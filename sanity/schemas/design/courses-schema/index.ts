@@ -1,6 +1,19 @@
 import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
 
+const loc = (title: string, name: string, type: 'string' | 'text' = 'string', description?: string) => ({
+    title,
+    name,
+    type: type === 'text' ? 'localeText' : 'localeString',
+    ...(description ? { description } : {}),
+});
+
+const headingFields = [
+    loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title.'),
+    loc('Headline line 1', 'line_1'),
+    loc('Headline line 2 (italic)', 'line_2'),
+];
+
 export const coursesSchemaDesign = {
     name: 'courses-design',
     type: 'document',
@@ -9,27 +22,13 @@ export const coursesSchemaDesign = {
     id: 'courses-design',
     icon: SparklesIcon,
     groups: [
-        {
-            name: 'portfolio',
-            title: 'Portfolios',
-        },
-        {
-            name: 'orders',
-            title: 'Orders',
-        },
-        {
-            name: 'og',
-            title: 'Social share',
-        },
-        {
-            name: 'manifest',
-            title: 'Web app',
-            hidden: ({ document }: {
-                document: {
-                    [key: string]: never;
-                }
-            }): boolean => !(document.isPwa)
-        },
+        { name: 'card', title: '1. Course card' },
+        { name: 'why', title: '2. Why this course' },
+        { name: 'groups', title: '3. Upcoming groups' },
+        { name: 'faq', title: '4. FAQ' },
+        { name: 'portfolio', title: 'Portfolios' },
+        { name: 'orders', title: 'Orders' },
+        { name: 'og', title: 'Social share' },
     ],
     fields: [
         {
@@ -110,6 +109,29 @@ export const coursesSchemaDesign = {
                 source: 'name',
             },
             validation: (Rule: RuleType) => Rule.required(),
+        },
+        {
+            title: 'Intro',
+            name: 'intro',
+            type: 'object',
+            description: 'The paragraph under the course name on the course page, in each language.',
+            fields: [
+                { title: 'Հայերեն', name: 'am', type: 'text' },
+                { title: 'English', name: 'en', type: 'text' },
+                { title: 'Русский', name: 'ru', type: 'text' },
+            ],
+        },
+        { ...loc('Duration', 'duration', 'string', 'Shown on the course card, for example 6 months.'), group: 'card' },
+        { ...loc('Level', 'level', 'string', 'Shown next to the duration, for example Beginner.'), group: 'card' },
+        { ...loc('Card text', 'card_description', 'text', 'Short text under the course name on the Courses page.'), group: 'card' },
+        {
+            name: 'card_image',
+            title: 'Card image',
+            type: 'image',
+            group: 'card',
+            description: 'The picture on the Courses page card. If empty, the first gallery picture is used.',
+            options: { hotspot: true },
+            fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
         },
         {
             name: 'gallery_of_course',
@@ -196,6 +218,136 @@ export const coursesSchemaDesign = {
                         }
                     ]
                 }
+            ],
+        },
+        {
+            name: 'price_section',
+            title: 'Price list',
+            type: 'object',
+            hidden: true,
+            description: 'Kept for existing data. Edit prices on the Course prices pages.',
+            fields: [
+                ...headingFields,
+                {
+                    name: 'items',
+                    title: 'Prices',
+                    type: 'array',
+                    description: 'Usually two cards: group and individual.',
+                    validation: (Rule: RuleType) => Rule.max(4),
+                    of: [{
+                        type: 'object',
+                        fields: [
+                            loc('Title', 'title'),
+                            loc('Subtitle', 'subtitle', 'string', 'Short line under the title.'),
+                            loc('Amount', 'amount', 'string', 'For example 180 000 AMD.'),
+                        ],
+                        preview: {
+                            select: { title: 'title.en', subtitle: 'amount.en' },
+                        },
+                    }],
+                },
+            ],
+        },
+        {
+            name: 'why_section',
+            title: 'Why this course',
+            type: 'object',
+            group: 'why',
+            description: 'The six requirement cards under Why This Course.',
+            fields: [
+                ...headingFields,
+                {
+                    name: 'items',
+                    title: 'Requirements',
+                    type: 'array',
+                    description: 'Up to 6. Shown in a 3-column grid.',
+                    validation: (Rule: RuleType) => Rule.max(6),
+                    of: [{
+                        type: 'object',
+                        fields: [
+                            loc('Title', 'title'),
+                            loc('Description', 'description', 'text'),
+                        ],
+                        preview: {
+                            select: { title: 'title.en' },
+                        },
+                    }],
+                },
+            ],
+        },
+        {
+            name: 'groups_section',
+            title: 'Upcoming groups',
+            type: 'object',
+            group: 'groups',
+            description: 'The group cards with start date, schedule, time, duration, and price.',
+            fields: [
+                ...headingFields,
+                loc('Enroll button', 'enroll_label', 'string', 'The button on each group card.'),
+                loc('All filter', 'filter_all', 'string', 'The first filter chip.'),
+                loc('Start date label', 'start_date_label'),
+                loc('Schedule label', 'schedule_label'),
+                loc('Time label', 'time_label'),
+                loc('Duration label', 'duration_label'),
+                loc('Price label', 'price_label'),
+                {
+                    name: 'groups',
+                    title: 'Groups',
+                    type: 'array',
+                    of: [{
+                        type: 'object',
+                        fields: [
+                            {
+                                name: 'mode',
+                                title: 'Filter',
+                                type: 'string',
+                                options: {
+                                    list: [
+                                        { title: 'Morning', value: 'morning' },
+                                        { title: 'Evening', value: 'evening' },
+                                        { title: 'Online', value: 'online' },
+                                        { title: 'Offline', value: 'offline' },
+                                    ],
+                                    layout: 'radio',
+                                },
+                            },
+                            loc('Badge', 'shift', 'string', 'Shown on the card, for example Evening.'),
+                            loc('Start date', 'start_date'),
+                            loc('Schedule', 'schedule', 'string', 'For example Mon · Wed · Fri.'),
+                            loc('Time', 'time', 'string', 'For example 18:00.'),
+                            loc('Duration', 'duration', 'string', 'For example 3 months.'),
+                            loc('Price', 'price'),
+                        ],
+                        preview: {
+                            select: { title: 'shift.en', subtitle: 'start_date.en' },
+                        },
+                    }],
+                },
+            ],
+        },
+        {
+            name: 'faq_section',
+            title: 'FAQ',
+            type: 'object',
+            group: 'faq',
+            description: 'The numbered questions at the bottom of the About Course page.',
+            fields: [
+                ...headingFields,
+                {
+                    name: 'items',
+                    title: 'Questions',
+                    type: 'array',
+                    of: [{
+                        type: 'object',
+                        fields: [
+                            loc('Question', 'question'),
+                            loc('Answer', 'answer', 'text'),
+                        ],
+                        preview: {
+                            select: { title: 'question.en' },
+                        },
+                    }],
+                },
             ],
         },
         {

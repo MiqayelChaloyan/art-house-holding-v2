@@ -2,11 +2,10 @@
 
 import React from 'react';
 
-import { useLocale } from 'next-intl';
-
 import NextImage from '@/src/components/components/image';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -19,35 +18,29 @@ interface Props {
 };
 
 const Certificates = ({ section }: Readonly<Props>) => {
-    const locale = useLocale();
-
     const copy = {
         line1: section?.line_1 || '',
         line2: section?.line_2 || '',
         line3: section?.line_3 || '',
     };
 
-    const listed = (section?.images || [])
+    const sources = (section?.images || [])
         .filter((item) => item?.image?.asset)
-        .map((item) => ({ key: item._key, image: item.image }));
-    const legacy = [
-        section?.certificate?.asset ? { key: 'certificate', image: section.certificate } : null,
-        section?.diploma?.asset ? { key: 'diploma', image: section.diploma } : null,
-    ].filter((item): item is { key: string; image: Asset } => Boolean(item));
-    const sources = (listed.length ? listed : legacy).slice(0, 10);
+        .map((item) => ({ key: item._key, image: item.image }))
+        .slice(0, 10);
 
     if (!sources.length) return null;
 
     return (
         <section id="certificates" className={cn(styles.section, Inter.className)}>
             <div className={styles.wrap}>
-                <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
+                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
                     <span className={styles.lead}>
-                        {copy.line1}
+                        {keepWords(copy.line1)}
                         {' '}
-                        <em className={styles.emphasis}>{copy.line2}</em>
+                        <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
                     </span>
-                    <span>{copy.line3}</span>
+                    <span>{keepWords(copy.line3)}</span>
                 </h2>
                 <div className={styles.grid}>
                     {sources.map((source) => {

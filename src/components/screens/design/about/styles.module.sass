@@ -5,8 +5,10 @@
 	overflow: hidden
 
 .wrap
-	width: min(1320px, calc(100% - 48px))
+	width: min(1320px, calc(100% - 192px))
 	margin: 0 auto
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
 	@media screen and (max-width: 640px)
 		width: calc(100% - 40px)
 
@@ -47,8 +49,9 @@
 	line-height: 1.03
 	letter-spacing: -0.025em
 	color: #ffffff
-	overflow-wrap: break-word
-	span
+	overflow-wrap: normal
+	word-break: keep-all
+	> span
 		display: block
 
 .emphasis

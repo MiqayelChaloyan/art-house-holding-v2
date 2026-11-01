@@ -3,7 +3,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
-import { MdAccessTimeFilled, MdEmail, MdLocalPhone, MdLocationOn } from 'react-icons/md';
+import { MdAccessTime, MdEmail, MdLocalPhone, MdLocationOn } from 'react-icons/md';
 
 import Snackbar from '@/src/components/components/snackbar';
 
@@ -11,6 +11,7 @@ import InputField from '@/src/lib/ui/InputField';
 import InputNumber from '@/src/lib/ui/InputNumber';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { TRAINING_CENTERS } from '@/src/constants';
 
 import { sendContactUsDesign } from '@/src/api';
@@ -52,6 +53,13 @@ const initValues: FormValues = {
 const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     const t = useTranslations();
     const tPage = useTranslations('contact-page');
+    const copy = {
+        eyebrow: contacts?.eyebrow || '',
+        line1: contacts?.line_1 || '',
+        line2: contacts?.line_2 || '',
+        formTitle: contacts?.form_title || '',
+        hours: contacts?.hours || '',
+    };
 
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +71,6 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     });
 
     const phones = (contacts?.phone_numbers || []).filter(Boolean);
-    const hours = contacts?.hours || '';
     const email = contacts?.email;
     const address = contacts?.address || '';
     const mapsQuery = encodeURIComponent(address);
@@ -130,11 +137,11 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                     <div className={styles.info}>
                         <p className={styles.eyebrow}>
                             <span className={styles.mark} aria-hidden />
-                            {tPage('eyebrow')}
+                            {copy.eyebrow}
                         </p>
                         <h1 className={cn(styles.headline, InstrumentSerif.className)}>
-                            <span>{tPage('line-1')}</span>
-                            <span className={styles.emphasis}>{tPage('line-2')}</span>
+                            <span>{keepWords(copy.line1)}</span>
+                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h1>
                         <ul className={styles.details}>
                             {phones.map((number) => (
@@ -143,10 +150,10 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                                     <a href={`tel:${number.replace(/\s/g, '')}`}>{formatPhone(number)}</a>
                                 </li>
                             ))}
-                            {hours && (
+                            {copy.hours && (
                                 <li>
-                                    <MdAccessTimeFilled aria-hidden />
-                                    <span>{hours}</span>
+                                    <MdAccessTime aria-hidden />
+                                    <span>{copy.hours}</span>
                                 </li>
                             )}
                             {email && (
@@ -171,7 +178,9 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                     </div>
 
                     <div className={styles.panel}>
-                        <h2 className={cn(styles.feedback, InstrumentSerif.className)}>{tPage('feedback')}</h2>
+                        {copy.formTitle && (
+                        <h2 className={cn(styles.feedback, InstrumentSerif.className)}>{copy.formTitle}</h2>
+                        )}
                         <form className={styles.form} onSubmit={handleSubmit}>
                             <InputField
                                 className={styles.field}

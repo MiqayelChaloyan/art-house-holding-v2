@@ -2,6 +2,7 @@ interface BLOG_SECTION {
     eyebrow?: string;
     section_title: string;
     section_subtitle?: string;
+    posts?: BLOG_POST[];
 };
 
 interface BLOG_POST {

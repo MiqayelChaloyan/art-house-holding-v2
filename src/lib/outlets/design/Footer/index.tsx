@@ -10,9 +10,9 @@ import { openModal } from '@/src/store/modal_reducer';
 import NextImage from '@/src/components/components/image';
 import LocalSwitcher from '@/src/components/components/local-switcher';
 
-import { ImagePaths } from '@/src/constants';
 import { Inter } from '@/src/constants/font';
 import { Pages } from '@/src/constants/pages';
+import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import colors from '@/src/themes';
 
@@ -48,6 +48,8 @@ const Footer = ({ socialData }: Readonly<Props>) => {
     const year = new Date().getFullYear();
     const address = socialData?.address || t('address.address');
     const mapsQuery = encodeURIComponent(address);
+    const logo = socialData?.logo ? urlForImage(socialData.logo, 240) : undefined;
+    const brandName = [socialData?.brand_line_1, socialData?.brand_line_2].filter(Boolean).join(' ') || 'Art House';
 
     const socials = (socialData?.social_links || [])
         .filter((host) => preferredSocial.includes(host.social_name?.toLowerCase()))
@@ -58,16 +60,20 @@ const Footer = ({ socialData }: Readonly<Props>) => {
             <div className={styles.wrap}>
                 <div className={styles.grid}>
                     <div className={styles.brand}>
-                        <Link href={`/${locale}${Pages.DESIGN_HOME}`} className={styles.logo} aria-label="Art House Design Studio">
+                        <Link href={`/${locale}${Pages.DESIGN_HOME}`} className={styles.logo} aria-label={brandName}>
+                            {logo?.src && (
                             <NextImage
-                                src={ImagePaths.DESIGN.logoURL}
-                                alt="Art House"
+                                src={logo.src}
+                                alt={socialData?.logo?.alt || brandName}
                                 className={styles.logoImage}
-                                width={120}
-                                height={80}
+                                width={logo.width}
+                                height={logo.height}
                             />
+                            )}
                         </Link>
-                        <p className={styles.tagline}>{t('footer-design.tagline')}</p>
+                        {socialData?.tagline && (
+                        <p className={styles.tagline}>{socialData.tagline}</p>
+                        )}
                         <button
                             type="button"
                             className={styles.cta}
@@ -84,9 +90,7 @@ const Footer = ({ socialData }: Readonly<Props>) => {
                             {navigationLinks.map((link) => (
                                 <li key={link.label}>
                                     <Link href={`/${locale}${link.path}${link.hash ?? ''}`}>
-                                        {link.label === 'about' && locale === 'en'
-                                            ? 'About'
-                                            : t(`navigation.${link.label}`)}
+                                        {t(`navigation.${link.label}`)}
                                     </Link>
                                 </li>
                             ))}
@@ -145,7 +149,7 @@ const Footer = ({ socialData }: Readonly<Props>) => {
                 </div>
 
                 <div className={styles.bottom}>
-                    <p>© {year} ART HOUSE Studio. {t('texts.rights')}.</p>
+                    <p>© {year}{socialData?.brand_line_1 ? ` ${socialData.brand_line_1}` : ''}. {t('texts.rights')}.</p>
                     <div className={styles.legal}>
                         {legalLinks.map((link) => (
                             <Link key={link.label} href={`/${locale}${link.path}`}>

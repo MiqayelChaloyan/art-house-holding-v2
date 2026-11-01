@@ -14,7 +14,7 @@ import styles from './styles.module.sass';
 
 const BLOG_ACCENT: Record<BlogSiteKey, string> = {
     educational: '#DF362D',
-    design: '#5F401B',
+    design: '#ce2421',
     language: '#006ED2',
 };
 

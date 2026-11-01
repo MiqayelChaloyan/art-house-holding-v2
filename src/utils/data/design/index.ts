@@ -123,17 +123,12 @@ export async function getPriceList(locale: string): Promise<PRICE_LIST_DESIGN_QU
     }
 };
 
-export async function getPortfolio(locale: string): Promise<PRICE_LIST_DESIGN_QUERYResult> {
-    try {
-        "use server";
-        const result = await sanityFetch<PRICE_LIST_DESIGN_QUERYResult[]>({
-            query: PORTFOLIO_QUERY,
-            params: { language: locale },
-            tags: ['design-courses'],
-        });
+export const getPortfolioPage = cache(async (locale: string): Promise<PORTFOLIO_PAGE_DESIGN_QUERYResult | null> => {
+    const result = await sanityFetch<PORTFOLIO_PAGE_DESIGN_QUERYResult | null>({
+        query: PORTFOLIO_QUERY,
+        params: { language: locale },
+        tags: ['design-portfolios'],
+    });
 
-        return result[0];
-    } catch (error) {
-        throw error;
-    }
-};
+    return result;
+});

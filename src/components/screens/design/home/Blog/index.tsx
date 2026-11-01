@@ -10,6 +10,7 @@ import NextImage from '@/src/components/components/image';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { BLOG_SITE_CONFIG } from '@/src/components/blog/config';
 import { formatCardDate } from '@/src/utils/format-date';
 
@@ -50,9 +51,9 @@ const Blog = ({ section, posts }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
-                        <span>{copy.line1}</span>
-                        <span className={styles.emphasis}>{copy.line2}</span>
+                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <span>{keepWords(copy.line1)}</span>
+                        <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                     </h2>
                 </header>
 

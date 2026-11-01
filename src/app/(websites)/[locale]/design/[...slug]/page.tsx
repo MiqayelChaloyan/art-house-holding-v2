@@ -12,7 +12,7 @@ import { ImagePath } from '@/src/types/general';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import { generateMetadataDynamic } from '@/src/utils/default-metadata';
-import { getCourseBySlug } from '@/src/utils/data/design';
+import { getCourseBySlug, getHomeDetails } from '@/src/utils/data/design';
 
 
 interface Props {
@@ -26,14 +26,16 @@ export default async function Page({
     params: { locale, slug }
 }: Readonly<Props>) {
     const decodedQuery = decodeURIComponent(slug[0]);
-    const course = await getCourseBySlug(locale, decodedQuery);
+    const [course, home] = await Promise.all([
+        getCourseBySlug(locale, decodedQuery),
+        getHomeDetails(locale),
+    ]);
 
     if (!course) {
         notFound()
     }
 
-    return (<Course locale={locale} course={course} />
-    );
+    return (<Course locale={locale} course={course} headings={home?.courses_section} />);
 };
 
 

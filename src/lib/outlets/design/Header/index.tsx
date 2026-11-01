@@ -12,10 +12,10 @@ import { openModal } from '@/src/store/modal_reducer';
 
 import { Pages } from '@/src/constants/pages';
 import { Inter } from '@/src/constants/font';
-import { ImagePaths } from '@/src/constants';
 
 import LocalSwitcher from '@/src/components/components/local-switcher';
 import NextImage from '@/src/components/components/image';
+import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import colors from '@/src/themes';
 
@@ -27,6 +27,7 @@ import styles from './styles.module.sass';
 interface IHeaderProps {
     typePosition: string;
     locale: string;
+    brand?: CONTACT_US_DESIGN_QUERYResult;
 };
 
 const navigationLinks = [
@@ -37,7 +38,7 @@ const navigationLinks = [
     { path: Pages.DESIGN_CONTACT, label: 'contact' },
 ];
 
-const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
+const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
     const [isSticky, setIsSticky] = useState<boolean>(false);
     const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
     const t = useTranslations();
@@ -64,6 +65,10 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
     };
 
     const homePath = `/${locale}${Pages.DESIGN_HOME}`;
+    const logo = brand?.logo ? urlForImage(brand.logo, 240) : undefined;
+    const brandLine1 = brand?.brand_line_1 || '';
+    const brandLine2 = brand?.brand_line_2 || '';
+    const brandName = [brandLine1, brandLine2].filter(Boolean).join(' ') || 'Art House';
 
     return (
         <header className={cn(
@@ -76,23 +81,27 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
             <div className={styles.wrap}>
                 <Link
                     href={homePath}
-                    aria-label="Art House Design Studio"
+                    aria-label={brandName}
                     className={styles.brand}
                 >
+                    {logo?.src && (
                     <span className={styles.logoMark}>
                         <NextImage
-                            src={ImagePaths.DESIGN.logoURL}
-                            alt="Art House Design Studio"
+                            src={logo.src}
+                            alt={brand?.logo?.alt || brandName}
                             className={styles.logoImage}
-                            width={120}
-                            height={120}
+                            width={logo.width}
+                            height={logo.height}
                             priority
                         />
                     </span>
+                    )}
+                    {(brandLine1 || brandLine2) && (
                     <span className={styles.brandText}>
-                        <span>ART HOUSE</span>
-                        <span>DESIGN STUDIO</span>
+                        {brandLine1 && <span>{brandLine1}</span>}
+                        {brandLine2 && <span>{brandLine2}</span>}
                     </span>
+                    )}
                 </Link>
                 <div className={cn(
                     styles.content,
@@ -101,20 +110,19 @@ const Header = ({ typePosition, locale }: Readonly<IHeaderProps>) => {
                     <nav className={styles.nav} aria-label="Design studio">
                         {navigationLinks.map((link) => {
                             const href = `/${locale}${link.path}`;
-                            const isActive = pathname === href;
+                            const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
                             return (
                                 <Link
                                     key={link.label}
                                     href={href}
                                     aria-label={link.label}
+                                    aria-current={isActive ? 'page' : undefined}
                                     className={cn(styles.link, isActive ? styles.linkActive : '')}
                                     prefetch={true}
                                     onClick={() => setIsOpenMenu(false)}
                                 >
-                                    {link.label === 'about' && locale === 'en'
-                                        ? 'About'
-                                        : t(`navigation.${link.label}`)}
+                                    {t(`navigation.${link.label}`)}
                                 </Link>
                             );
                         })}

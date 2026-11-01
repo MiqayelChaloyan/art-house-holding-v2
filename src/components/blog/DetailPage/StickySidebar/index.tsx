@@ -10,12 +10,20 @@ interface Props {
     children: React.ReactNode;
     className?: string;
     innerClassName?: string;
+    topOffset?: number;
+    mobileBreakpoint?: number;
 }
 
-const TOP_OFFSET = 100;
-const MOBILE_BREAKPOINT = 768;
+const DEFAULT_TOP_OFFSET = 100;
+const DEFAULT_MOBILE_BREAKPOINT = 768;
 
-const StickySidebar = ({ children, className, innerClassName }: Readonly<Props>) => {
+const StickySidebar = ({
+    children,
+    className,
+    innerClassName,
+    topOffset = DEFAULT_TOP_OFFSET,
+    mobileBreakpoint = DEFAULT_MOBILE_BREAKPOINT,
+}: Readonly<Props>) => {
     const slotRef = useRef<HTMLDivElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
     const [panelStyle, setPanelStyle] = useState<React.CSSProperties>({});
@@ -29,15 +37,15 @@ const StickySidebar = ({ children, className, innerClassName }: Readonly<Props>)
                 return;
             }
 
-            if (window.innerWidth <= MOBILE_BREAKPOINT) {
+            if (window.innerWidth <= mobileBreakpoint) {
                 setPanelStyle({});
                 return;
             }
 
             const slotRect = slot.getBoundingClientRect();
             const panelHeight = panel.offsetHeight;
-            const shouldFix = slotRect.top <= TOP_OFFSET;
-            const bottomReached = slotRect.bottom <= panelHeight + TOP_OFFSET;
+            const shouldFix = slotRect.top <= topOffset;
+            const bottomReached = slotRect.bottom <= panelHeight + topOffset;
 
             if (shouldFix && !bottomReached) {
                 const left = Math.max(0, slotRect.left);
@@ -45,10 +53,10 @@ const StickySidebar = ({ children, className, innerClassName }: Readonly<Props>)
 
                 setPanelStyle({
                     position: 'fixed',
-                    top: TOP_OFFSET,
+                    top: topOffset,
                     left,
                     width,
-                    maxHeight: `calc(100vh - ${TOP_OFFSET + 20}px)`,
+                    maxHeight: `calc(100vh - ${topOffset + 20}px)`,
                 });
                 return;
             }
@@ -59,7 +67,7 @@ const StickySidebar = ({ children, className, innerClassName }: Readonly<Props>)
                     top: Math.max(0, slot.offsetHeight - panelHeight),
                     left: 0,
                     width: '100%',
-                    maxHeight: `calc(100vh - ${TOP_OFFSET + 20}px)`,
+                    maxHeight: `calc(100vh - ${topOffset + 20}px)`,
                 });
                 return;
             }
@@ -85,7 +93,7 @@ const StickySidebar = ({ children, className, innerClassName }: Readonly<Props>)
             window.removeEventListener('resize', update);
             observer?.disconnect();
         };
-    }, [children]);
+    }, [children, topOffset, mobileBreakpoint]);
 
     return (
         <aside ref={slotRef} className={cn(styles.slot, className)}>

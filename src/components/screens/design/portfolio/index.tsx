@@ -3,12 +3,14 @@
 import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import Fancybox from '@/src/components/components/fancybox';
 import NextImage from '@/src/components/components/image';
 
 import { options } from '@/src/components/components/fancybox/options';
 import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 import { getPortfolioItemKey } from '@/src/utils/portfolio-item-key';
 
@@ -54,7 +56,7 @@ const Home = ({ data }: Readonly<Props>) => {
     const cover = coverSource ? urlForImage(coverSource, 1600) : undefined;
 
     return (
-        <article className={cn(styles.page, Inter.className)}>
+        <article className={cn(styles.page, Inter.className)} data-portfolio-page>
             <header className={styles.hero}>
                 {cover?.src && (
                     <NextImage
@@ -68,22 +70,48 @@ const Home = ({ data }: Readonly<Props>) => {
                     />
                 )}
                 <div className={styles.heroCopy}>
-                    <h1 className={cn(styles.author, InstrumentSerif.className)}>{current.author}</h1>
+                    <h1 className={cn(styles.author, InstrumentSerif.className)}>{keepWords(current.author)}</h1>
                     <p className={cn(styles.course, Montserrat.className)}>{data.course_name}</p>
                 </div>
             </header>
 
             {(current.title_images_array || []).map((works) => (
-                <section key={works._key} className={styles.section}>
-                    <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>{works.title}</h2>
-                    <div className={styles.row}>
-                        <Fancybox options={options}>
-                            {(works.images || []).map((image, index) => {
+                <GalleryRow key={works._key} works={works} />
+            ))}
+        </article>
+    );
+};
+
+const GalleryRow = ({ works }: { works: WORK }) => {
+    const [emblaRef] = useEmblaCarousel({
+        align: 'start',
+        dragFree: true,
+        containScroll: false,
+    });
+    const shots = (works.images || []).filter((image) => urlForImage(image, 900)?.src);
+
+    if (!shots.length && !works.title) return null;
+
+    return (
+        <section className={styles.section}>
+            {works.title && (
+                <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>{keepWords(works.title)}</h2>
+            )}
+            {shots.length > 0 && (
+                <div className={styles.rail} ref={emblaRef}>
+                    <Fancybox options={options}>
+                        <div className={styles.track}>
+                            {shots.map((image, index) => {
                                 const path = urlForImage(image, 900);
                                 if (!path?.src) return null;
 
                                 return (
-                                    <a key={image.asset?._ref || `${works._key}-${index}`} data-fancybox="gallery" href={path.src} className={styles.shot}>
+                                    <a
+                                        key={image.asset?._ref || `${works._key}-${index}`}
+                                        data-fancybox="gallery"
+                                        href={path.src}
+                                        className={styles.shot}
+                                    >
                                         <NextImage
                                             src={path.src}
                                             alt={image.alt || works.title || ''}
@@ -95,11 +123,11 @@ const Home = ({ data }: Readonly<Props>) => {
                                     </a>
                                 );
                             })}
-                        </Fancybox>
-                    </div>
-                </section>
-            ))}
-        </article>
+                        </div>
+                    </Fancybox>
+                </div>
+            )}
+        </section>
     );
 };
 

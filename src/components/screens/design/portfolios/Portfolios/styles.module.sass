@@ -6,8 +6,10 @@
 		padding: 32px 0 72px
 
 .wrap
-	width: min(1320px, calc(100% - 48px))
+	width: min(1320px, calc(100% - 192px))
 	margin: 0 auto
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
 	@media screen and (max-width: 640px)
 		width: calc(100% - 40px)
 
@@ -45,8 +47,10 @@
 	font-size: clamp(36px, 4.8vw, 72px)
 	font-weight: 400
 	line-height: 1
-	letter-spacing: -0.03em
-	span
+	letter-spacing: -1.8px
+	overflow-wrap: normal
+	word-break: keep-all
+	> span
 		display: block
 
 .emphasis
@@ -82,18 +86,24 @@
 	text-decoration: none
 	white-space: nowrap
 	max-width: 100%
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease
 	@media screen and (max-width: 640px)
 		flex: 0 0 auto
 	&:hover
+		transform: translateY(-2px)
 		border-color: #ffffff
 		color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
 
 .chipActive
 	background: #ffffff
 	border-color: #ffffff
 	color: #090909
+	box-shadow: 0 8px 18px rgba(255, 255, 255, 0.12)
 	&:hover
 		color: #090909
+		background: #ffffff
+		box-shadow: 0 10px 22px rgba(255, 255, 255, 0.18)
 
 .grid
 	display: grid
@@ -157,5 +167,9 @@
 	font-size: 14px
 	line-height: 36px
 	cursor: pointer
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease
 	&:hover
+		transform: translateY(-2px)
 		border-color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28)

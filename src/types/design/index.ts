@@ -6,6 +6,7 @@ export interface SlideItem {
     company_name: string;
     title: string;
     priority?: boolean;
+    loading?: 'lazy' | 'eager';
 };
 
 export interface PROMOTIONS {

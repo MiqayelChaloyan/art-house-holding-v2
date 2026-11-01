@@ -3,13 +3,14 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
 import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 
 import NextImage from '@/src/components/components/image';
 
 import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 
 import { urlForImage } from '@/sanity/imageUrlBuilder';
@@ -21,7 +22,6 @@ import styles from './styles.module.sass';
 
 interface Props {
     section?: STUDIO_SECTION;
-    fallbackSlides?: MAIN_SLIDE[];
 };
 
 interface SlideView {
@@ -32,8 +32,7 @@ interface SlideView {
 
 const HOLD_MS = 5200;
 
-const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
-    const t = useTranslations('studio');
+const Studio = ({ section }: Readonly<Props>) => {
     const locale = useLocale();
 
     const copy = {
@@ -43,6 +42,8 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
         line3: section?.line_3 || '',
         line4: section?.line_4 || '',
         description: section?.description || '',
+        explore: section?.explore_label || '',
+        portfolio: section?.portfolio_label || '',
     };
 
     const stats = (section?.stats || []).map((item) => ({
@@ -51,17 +52,11 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
         label: item.title,
     }));
 
-    const slides = useMemo(() => {
-        const fromStudio = (section?.slides || [])
+    const slides = useMemo(() => (
+        (section?.slides || [])
             .map((slide) => toSlide(slide._key, slide.image, slide.image?.alt || copy.line4))
-            .filter((slide): slide is SlideView => Boolean(slide));
-
-        if (fromStudio.length) return fromStudio;
-
-        return (fallbackSlides || [])
-            .map((slide) => toSlide(slide._key, slide.image, slide.title || copy.line4))
-            .filter((slide): slide is SlideView => Boolean(slide));
-    }, [section?.slides, fallbackSlides, copy.line4]);
+            .filter((slide): slide is SlideView => Boolean(slide))
+    ), [section?.slides, copy.line4]);
 
     const [index, setIndex] = useState(0);
     const activeIndex = slides.length ? index % slides.length : 0;
@@ -80,8 +75,6 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
         return () => window.clearInterval(timer);
     }, [slides.length, runId]);
 
-    const active = slides[activeIndex];
-
     return (
         <section
             id="studio"
@@ -98,59 +91,74 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, locale === 'am' && styles.headlineAm, locale === 'ru' && styles.headlineRu, InstrumentSerif.className)}>
-                        <span>{copy.line1}</span>
-                        <span>{copy.line2}</span>
-                        <span className={styles.emphasis}>{copy.line3}</span>
+                    <h2 className={cn(
+                        styles.headline,
+                        locale === 'am' && styles.headlineAm,
+                        locale === 'ru' && styles.headlineRu,
+                        InstrumentSerif.className,
+                    )}>
+                        <span>{keepWords(copy.line1)}</span>
+                        <span>{keepWords(copy.line2)}</span>
+                        <span className={styles.emphasis}>{keepWords(copy.line3)}</span>
                         <span>
-                            {copy.line4}
+                            {keepWords(copy.line4)}
                             <span className={styles.dot}>.</span>
                         </span>
                     </h2>
                     <p className={styles.description}>{copy.description}</p>
+                    {(copy.explore || copy.portfolio) && (
                     <div className={styles.actions}>
+                        {copy.explore && (
                         <Link
                             href={`/${locale}${Pages.DESIGN_HOME}#design-courses`}
                             className={styles.primary}
                         >
-                            <span>{t('explore')}</span>
+                            <span>{copy.explore}</span>
                             <LuArrowUpRight aria-hidden />
                         </Link>
+                        )}
+                        {copy.portfolio && (
                         <Link
                             href={`/${locale}${Pages.DESIGN_PORTFOLIOS}`}
                             className={styles.secondary}
                         >
-                            <span>{t('portfolio')}</span>
+                            <span>{copy.portfolio}</span>
                             <LuArrowRight aria-hidden />
                         </Link>
+                        )}
                     </div>
+                    )}
                 </div>
                 <div className={styles.visual}>
-                    {active && (
+                    {slides.length > 0 && (
                         <div className={styles.photo}>
-                            <AnimatePresence initial={false}>
+                            {slides.map((slide, slideIndex) => (
                                 <motion.div
-                                    key={active.key}
+                                    key={slide.key}
                                     className={styles.slide}
-                                    initial={{ opacity: 0, scale: 1.08 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0 }}
+                                    initial={false}
+                                    animate={{
+                                        opacity: slideIndex === activeIndex ? 1 : 0,
+                                        scale: slideIndex === activeIndex ? 1 : 1.08,
+                                    }}
                                     transition={{
                                         opacity: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
                                         scale: { duration: 6.4, ease: 'linear' },
                                     }}
+                                    style={{ zIndex: slideIndex === activeIndex ? 1 : 0 }}
                                 >
                                     <NextImage
-                                        src={active.src}
-                                        alt={active.alt}
+                                        src={slide.src}
+                                        alt={slide.alt}
                                         className={styles.slideImage}
                                         width={1040}
                                         height={1300}
                                         sizes="(max-width: 980px) 100vw, 520px"
-                                        priority={activeIndex === 0}
+                                        priority={slideIndex === 0}
+                                        loading="eager"
                                     />
                                 </motion.div>
-                            </AnimatePresence>
+                            ))}
                             <div className={styles.shade} aria-hidden />
                             {slides.length > 1 && (
                                 <div className={styles.dots} aria-hidden>
@@ -164,18 +172,113 @@ const Studio = ({ section, fallbackSlides }: Readonly<Props>) => {
                             )}
                         </div>
                     )}
-                    <ul className={styles.stats}>
-                        {stats.map((item) => (
-                            <li key={item.key} className={styles.stat}>
-                                <span className={cn(styles.value, Montserrat.className)}>{item.value}</span>
+                    <motion.ul
+                        className={styles.stats}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.45 }}
+                    >
+                        {stats.map((item, index) => (
+                            <motion.li
+                                key={item.key}
+                                className={styles.stat}
+                                variants={{
+                                    hidden: { opacity: 0, y: 18 },
+                                    show: {
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: { delay: index * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                                    },
+                                }}
+                            >
+                                <StatValue value={item.value} className={cn(styles.value, Montserrat.className)} />
                                 <span className={styles.label}>{item.label}</span>
-                            </li>
+                            </motion.li>
                         ))}
-                    </ul>
+                    </motion.ul>
                 </div>
             </div>
         </section>
     );
+};
+
+const parseStat = (raw: string) => {
+    const text = String(raw || '').trim();
+    const match = text.match(/^(\D*?)(\d+(?:[.,]\d+)?)(.*)$/);
+    if (!match) {
+        return { prefix: '', number: 0, suffix: text, decimals: 0, pad: 0 };
+    }
+
+    const digits = match[2].replace(',', '.');
+    const decimals = (digits.split('.')[1] || '').length;
+    const whole = match[2].split(/[.,]/)[0];
+
+    return {
+        prefix: match[1],
+        number: Number(digits),
+        suffix: match[3],
+        decimals,
+        pad: /^0\d/.test(whole) ? whole.length : 0,
+    };
+};
+
+const formatStat = (
+    parsed: ReturnType<typeof parseStat>,
+    value: number,
+) => {
+    let body = parsed.decimals > 0 ? value.toFixed(parsed.decimals) : String(Math.round(value));
+    if (parsed.pad) {
+        const [int, frac] = body.split('.');
+        body = `${int.padStart(parsed.pad, '0')}${frac ? `.${frac}` : ''}`;
+    }
+    return `${parsed.prefix}${body}${parsed.suffix}`;
+};
+
+const StatValue = ({ value, className }: { value: string; className: string }) => {
+    const parsed = useMemo(() => parseStat(value), [value]);
+    const [shown, setShown] = useState(() => formatStat(parsed, 0));
+    const node = useRef<HTMLSpanElement>(null);
+    const started = useRef(false);
+
+    useEffect(() => {
+        const el = node.current;
+        if (!el) return undefined;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+            setShown(formatStat(parsed, parsed.number));
+            return undefined;
+        }
+
+        let frame = 0;
+        const play = () => {
+            if (started.current) return;
+            started.current = true;
+            const duration = 1400;
+            const start = performance.now();
+
+            const tick = (now: number) => {
+                const t = Math.min(1, (now - start) / duration);
+                const eased = 1 - (1 - t) ** 3;
+                setShown(formatStat(parsed, parsed.number * eased));
+                if (t < 1) frame = requestAnimationFrame(tick);
+            };
+
+            frame = requestAnimationFrame(tick);
+        };
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) play();
+        }, { threshold: 0.4 });
+
+        observer.observe(el);
+        return () => {
+            observer.disconnect();
+            cancelAnimationFrame(frame);
+        };
+    }, [parsed]);
+
+    return <span ref={node} className={className}>{shown}</span>;
 };
 
 const toSlide = (key: string, image: Asset | undefined, alt: string): SlideView | null => {
