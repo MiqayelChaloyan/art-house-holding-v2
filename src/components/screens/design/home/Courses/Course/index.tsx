@@ -44,7 +44,7 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
                 {image?.src && (
                     <NextImage
                         src={image.src}
-                        alt={imageSource?.alt || course.course_name}
+                        alt={imageSource?.alt || course.course_name || ''}
                         className={styles.image}
                         width={image.width}
                         height={image.height}
