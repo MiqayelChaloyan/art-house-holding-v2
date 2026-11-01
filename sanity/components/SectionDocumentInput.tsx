@@ -31,6 +31,7 @@ const NOTES: Record<string, string> = {
 };
 
 const OTHER_GROUPS = new Set(['og', 'manifest', 'older', 'seo', 'settings']);
+const IGNORED_GROUPS = new Set(['all-fields']);
 const CONTENT_NAME = '__content__';
 
 type NavGroup = {
@@ -41,7 +42,9 @@ type NavGroup = {
 const cleanTitle = (title?: string) => (title || 'Section').replace(/^\d+\.\s*/, '');
 
 const memberGroups = (member: ObjectMember) => (
-    member.kind === 'error' ? [] : member.groups || []
+    member.kind === 'error'
+        ? []
+        : (member.groups || []).filter((name) => !IGNORED_GROUPS.has(name))
 );
 
 const isDocumentRoot = (props: InputProps): props is ObjectInputProps => (
@@ -54,7 +57,7 @@ const SectionDocumentInput = (props: ObjectInputProps) => {
     const { groups, members, onFieldGroupSelect, renderField, renderInput, renderItem, renderPreview } = props;
     const [picked, setPicked] = useState<string | null>(null);
 
-    const visibleGroups = groups.filter((group) => !group.disabled);
+    const visibleGroups = groups.filter((group) => !group.disabled && !IGNORED_GROUPS.has(group.name));
     const pageGroups = visibleGroups.filter((group) => !OTHER_GROUPS.has(group.name));
     const otherGroups = visibleGroups.filter((group) => OTHER_GROUPS.has(group.name));
     const hasUngrouped = members.some((member) => member.kind !== 'error' && memberGroups(member).length === 0);

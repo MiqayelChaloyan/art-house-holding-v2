@@ -34,17 +34,19 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
     const duration = 'duration' in course ? course.duration : undefined;
     const level = 'level' in course ? course.level : undefined;
     const href = course.slug ? `/${locale}/design/${course.slug}` : `/${locale}/design#design-courses`;
+    const courseName = course.course_name ?? '';
+    const imageAlt = imageSource?.alt || courseName;
 
     return (
         <article className={styles.card}>
-            <Link href={href} className={styles.media} aria-label={course.course_name}>
+            <Link href={href} className={styles.media} aria-label={courseName}>
                 {typeof index === 'number' && (
                     <span className={styles.badge}>N°{String(index + 1).padStart(2, '0')}</span>
                 )}
                 {image?.src && (
                     <NextImage
                         src={image.src}
-                        alt={imageSource?.alt || course.course_name || ''}
+                        alt={imageAlt}
                         className={styles.image}
                         width={image.width}
                         height={image.height}
@@ -55,9 +57,9 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
             <div className={styles.body}>
                 <div className={styles.titleRow}>
                     <h3 className={cn(styles.title, Montserrat.className)}>
-                        <Link href={href}>{course.course_name}</Link>
+                        <Link href={href}>{courseName}</Link>
                     </h3>
-                    <Link href={href} className={styles.iconBtn} aria-label={course.course_name}>
+                    <Link href={href} className={styles.iconBtn} aria-label={courseName}>
                         <LuArrowUpRight aria-hidden />
                     </Link>
                 </div>
