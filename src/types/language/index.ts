@@ -159,6 +159,10 @@ export interface FormSmall {
     email: string;
     phone: string;
     course_name: string;
+    training_center?: number;
+    message?: string;
+    first_name?: string;
+    last_name?: string;
 };
 
 export interface socialNetwork {

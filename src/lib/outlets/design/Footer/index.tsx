@@ -3,14 +3,11 @@
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { LuArrowUpRight } from 'react-icons/lu';
-import { useDispatch } from 'react-redux';
-
-import { openModal } from '@/src/store/modal_reducer';
 
 import NextImage from '@/src/components/components/image';
 import LocalSwitcher from '@/src/components/components/local-switcher';
 
-import { Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -33,8 +30,6 @@ const navigationLinks = [
     { path: Pages.DESIGN_CONTACT, label: 'contact' },
 ];
 
-const preferredSocial = ['instagram', 'behance', 'linkedin'];
-
 const legalLinks = [
     { path: Pages.DESIGN_PRIVACY, label: 'privacy' },
     { path: Pages.DESIGN_TERMS, label: 'terms' },
@@ -44,19 +39,35 @@ const legalLinks = [
 const Footer = ({ socialData }: Readonly<Props>) => {
     const locale = useLocale();
     const t = useTranslations();
-    const dispatch = useDispatch();
     const year = new Date().getFullYear();
     const address = socialData?.address || t('address.address');
     const mapsQuery = encodeURIComponent(address);
     const logo = socialData?.logo ? urlForImage(socialData.logo, 240) : undefined;
     const brandName = [socialData?.brand_line_1, socialData?.brand_line_2].filter(Boolean).join(' ') || 'Art House';
+    const tagline = socialData?.tagline || t('footer-design.tagline');
 
     const socials = (socialData?.social_links || [])
-        .filter((host) => preferredSocial.includes(host.social_name?.toLowerCase()))
-        .sort((a, b) => preferredSocial.indexOf(a.social_name.toLowerCase()) - preferredSocial.indexOf(b.social_name.toLowerCase()));
+        .filter((host) => host.social_name && host.social_link)
+        .map((host) => {
+            const name = host.social_name.toLowerCase();
+            const value = host.social_link.trim();
+            const href = name === 'gmail' || (value.includes('@') && !/^https?:\/\//i.test(value))
+                ? (value.startsWith('mailto:') ? value : `mailto:${value}`)
+                : value;
+
+            return { ...host, href };
+        });
+
+    const maps = (socialData?.map_links || []).filter((item) => item.name && item.link);
+    const fallbackMaps: MAP_LINK[] = [
+        { _key: 'google', name: 'Google', link: `https://www.google.com/maps/search/?api=1&query=${mapsQuery}` },
+        { _key: 'yandex', name: 'Yandex', link: `https://yandex.com/maps/?text=${mapsQuery}` },
+        { _key: 'gis', name: '2GIS', link: `https://2gis.am/yerevan/search/${mapsQuery}` },
+    ];
+    const mapItems = maps.length ? maps : fallbackMaps;
 
     return (
-        <footer id="site-footer" className={cn(styles.footer, Inter.className)}>
+        <footer id="site-footer" className={cn(styles.footer, designFont.ui)}>
             <div className={styles.wrap}>
                 <div className={styles.grid}>
                     <div className={styles.brand}>
@@ -71,17 +82,13 @@ const Footer = ({ socialData }: Readonly<Props>) => {
                             />
                             )}
                         </Link>
-                        {socialData?.tagline && (
-                        <p className={styles.tagline}>{socialData.tagline}</p>
+                        {tagline && (
+                        <p className={styles.tagline}>{tagline}</p>
                         )}
-                        <button
-                            type="button"
-                            className={styles.cta}
-                            onClick={() => dispatch(openModal(true))}
-                        >
+                        <Link href={`/${locale}${Pages.DESIGN_START_LEARNING}`} className={styles.cta}>
                             <span>{t('buttons.start-learning')}</span>
                             <LuArrowUpRight aria-hidden />
-                        </button>
+                        </Link>
                     </div>
 
                     <nav className={styles.col} aria-label={t('footer-design.navigate')}>
@@ -102,24 +109,35 @@ const Footer = ({ socialData }: Readonly<Props>) => {
                         <ul className={styles.links}>
                             {socials.map((host) => (
                                 <li key={host._key}>
-                                    <Link href={host.social_link} target="_blank" rel="noreferrer">
+                                    <Link href={host.href} target="_blank" rel="noreferrer">
                                         {host.social_name}
                                     </Link>
                                 </li>
                             ))}
                         </ul>
                         <div className={styles.maps}>
-                            <Link href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`} target="_blank" rel="noreferrer">
-                                <span className={styles.mapMark}>G</span>
-                                Google
-                            </Link>
-                            <Link href={`https://yandex.com/maps/?text=${mapsQuery}`} target="_blank" rel="noreferrer">
-                                Yandex
-                            </Link>
-                            <Link href={`https://2gis.am/yerevan/search/${mapsQuery}`} target="_blank" rel="noreferrer">
-                                <span className={styles.mapMark}>2</span>
-                                GIS
-                            </Link>
+                            {mapItems.map((item) => {
+                                const mark = item.image ? urlForImage(item.image, 96) : undefined;
+
+                                return (
+                                    <Link key={item._key} href={item.link} target="_blank" rel="noreferrer">
+                                        {mark?.src ? (
+                                            <NextImage
+                                                src={mark.src}
+                                                alt={item.image?.alt || item.name}
+                                                className={styles.mapLogo}
+                                                width={mark.width}
+                                                height={mark.height}
+                                            />
+                                        ) : (
+                                            <>
+                                                <span className={styles.mapMark}>{item.name[0]}</span>
+                                                {item.name}
+                                            </>
+                                        )}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
 

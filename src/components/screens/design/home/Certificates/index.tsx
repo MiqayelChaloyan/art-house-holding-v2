@@ -4,7 +4,7 @@ import React from 'react';
 
 import NextImage from '@/src/components/components/image';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -32,9 +32,9 @@ const Certificates = ({ section }: Readonly<Props>) => {
     if (!sources.length) return null;
 
     return (
-        <section id="certificates" className={cn(styles.section, Inter.className)}>
+        <section id="certificates" className={cn(styles.section, designFont.ui)}>
             <div className={styles.wrap}>
-                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                    <h2 className={cn(styles.headline, designFont.serif)}>
                     <span className={styles.lead}>
                         {keepWords(copy.line1)}
                         {' '}

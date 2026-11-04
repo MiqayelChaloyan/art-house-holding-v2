@@ -15,19 +15,24 @@ interface Props {
 };
 
 const PostCardSkeleton = ({ siteKey }: Readonly<Props>) => {
-    const dark = siteKey === 'design';
+    const isDesign = siteKey === 'design';
 
     return (
         <article className={styles.cardShell} data-variant={siteKey} aria-hidden="true">
-            <div className={cn(styles.cardImage, dark && styles.cardImageDesign)}>
-                <Block tone={dark ? 'hero' : 'light'} width="100%" height="100%" className={styles.imageFill} />
-                {!dark && <Block tone="accent" height={28} width={88} className={styles.cardCategory} />}
+            <div className={cn(styles.cardImage, isDesign && styles.cardImageDesign)}>
+                <Block
+                    tone={isDesign ? 'designMuted' : 'light'}
+                    width="100%"
+                    height="100%"
+                    className={styles.imageFill}
+                />
+                {!isDesign && <Block tone="accent" height={28} width={88} className={styles.cardCategory} />}
             </div>
-            <div className={cn(styles.cardBody, dark && styles.cardBodyDesign)}>
-                <Block tone={dark ? 'hero' : 'light'} height={13} width="38%" />
-                <Block tone={dark ? 'hero' : 'light'} height={22} width="92%" />
-                <Block tone={dark ? 'hero' : 'light'} height={22} width="76%" />
-                {!dark && (
+            <div className={cn(styles.cardBody, isDesign && styles.cardBodyDesign)}>
+                <Block tone={isDesign ? 'designMuted' : 'light'} height={isDesign ? 14 : 13} width="38%" />
+                <Block tone={isDesign ? 'design' : 'light'} height={isDesign ? 20 : 22} width="92%" />
+                <Block tone={isDesign ? 'design' : 'light'} height={isDesign ? 20 : 22} width="76%" />
+                {!isDesign && (
                     <>
                         <div className={styles.excerptLines}>
                             <Block tone="light" height={15} width="100%" />
@@ -45,7 +50,7 @@ const PostCardSkeleton = ({ siteKey }: Readonly<Props>) => {
                         />
                     </>
                 )}
-                {dark && <Block tone="hero" height={14} width={88} />}
+                {isDesign && <Block tone="design" height={14} width={96} />}
             </div>
         </article>
     );

@@ -78,6 +78,11 @@ export function resolveLegacyPathRedirect(pathname: string): string | null {
         return '/am/design';
     }
 
+    const designPriceList = pathname.match(/^\/(am|en|ru)\/design\/price-list\/?$/);
+    if (designPriceList) {
+        return `/${designPriceList[1]}/design`;
+    }
+
     const langCenter = pathname.match(/^\/langcenter\/?$/);
     if (langCenter) {
         return '/am/language';
@@ -108,7 +113,12 @@ export function resolveLegacyPathRedirect(pathname: string): string | null {
 
     const localeOrders = pathname.match(/^\/(am|en|ru)\/orders\/?$/);
     if (localeOrders) {
-        return `/${localeOrders[1]}/design/orders`;
+        return `/${localeOrders[1]}/design/start-learning`;
+    }
+
+    const designOrdersForm = pathname.match(/^\/(am|en|ru)\/design\/orders\/?$/);
+    if (designOrdersForm) {
+        return `/${designOrdersForm[1]}/design/start-learning`;
     }
 
     const localeOnl = pathname.match(/^\/(am|en|ru)\/onl\/?$/);

@@ -63,14 +63,15 @@ LEGACY_PATTERNS = (
     r"\.html",
     r"/onl$",
     r"/orders$",
+    r"/design/price-list",
 )
 VALID_PAGE_PATTERNS = (
     r"/design/portfolios/",
     r"/design/orders/",
+    r"/design/start-learning",
     r"/design/contact",
     r"/language/",
     r"/educational-center/",
-    r"/design/price-list",
 )
 
 GSC_LISTS = {

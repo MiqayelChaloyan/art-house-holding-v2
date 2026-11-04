@@ -50,7 +50,8 @@ const coursePriceSchemaDesign = {
                 type: 'object',
                 fields: [
                     loc('Title', 'title'),
-                    loc('Subtitle', 'subtitle', 'string', 'Short line under the title.'),
+                    loc('Subtitle', 'subtitle', 'string', 'Short line under the title, for example Online/Offline.'),
+                    loc('Duration', 'duration', 'string', 'For example 4 months.'),
                     loc('Amount', 'amount', 'string', 'For example 180 000 AMD.'),
                 ],
                 preview: {

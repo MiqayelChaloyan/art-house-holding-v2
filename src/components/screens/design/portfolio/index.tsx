@@ -9,7 +9,7 @@ import Fancybox from '@/src/components/components/fancybox';
 import NextImage from '@/src/components/components/image';
 
 import { options } from '@/src/components/components/fancybox/options';
-import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 import { getPortfolioItemKey } from '@/src/utils/portfolio-item-key';
@@ -56,7 +56,7 @@ const Home = ({ data }: Readonly<Props>) => {
     const cover = coverSource ? urlForImage(coverSource, 1600) : undefined;
 
     return (
-        <article className={cn(styles.page, Inter.className)} data-portfolio-page>
+        <article className={cn(styles.page, designFont.ui)} data-portfolio-page>
             <header className={styles.hero}>
                 {cover?.src && (
                     <NextImage
@@ -70,8 +70,8 @@ const Home = ({ data }: Readonly<Props>) => {
                     />
                 )}
                 <div className={styles.heroCopy}>
-                    <h1 className={cn(styles.author, InstrumentSerif.className)}>{keepWords(current.author)}</h1>
-                    <p className={cn(styles.course, Montserrat.className)}>{data.course_name}</p>
+                    <h1 className={cn(styles.author, designFont.serif)}>{keepWords(current.author)}</h1>
+                    <p className={cn(styles.course, designFont.medium)}>{data.course_name}</p>
                 </div>
             </header>
 
@@ -95,7 +95,7 @@ const GalleryRow = ({ works }: { works: WORK }) => {
     return (
         <section className={styles.section}>
             {works.title && (
-                <h2 className={cn(styles.sectionTitle, InstrumentSerif.className)}>{keepWords(works.title)}</h2>
+                <h2 className={cn(styles.sectionTitle, designFont.serif)}>{keepWords(works.title)}</h2>
             )}
             {shots.length > 0 && (
                 <div className={styles.rail} ref={emblaRef}>

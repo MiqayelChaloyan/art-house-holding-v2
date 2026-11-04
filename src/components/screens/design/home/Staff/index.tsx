@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import NextImage from '@/src/components/components/image';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -20,11 +20,16 @@ import styles from './styles.module.sass';
 interface Props {
     workers: WORKER[];
     section?: STAFF_SECTION;
+    heading?: {
+        eyebrow?: string;
+        title?: string;
+        emphasis?: string;
+    };
 };
 
 const HOLD_MS = 5200;
 
-const Staff = ({ workers, section }: Readonly<Props>) => {
+const Staff = ({ workers, section, heading }: Readonly<Props>) => {
     const t = useTranslations('staff-section');
     const team = useMemo(() => workers.filter((member) => member.worker_image?.asset), [workers]);
 
@@ -78,7 +83,7 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
     return (
         <section
             id="staff"
-            className={cn(styles.section, Inter.className)}
+            className={cn(styles.section, designFont.ui)}
             onMouseEnter={() => { paused.current = true; }}
             onMouseLeave={() => {
                 paused.current = false;
@@ -86,16 +91,33 @@ const Staff = ({ workers, section }: Readonly<Props>) => {
             }}
         >
             <div className={styles.wrap}>
-                <div className={styles.stage}>
+                <div className={cn(styles.stage, heading && styles.stageCentered)}>
                     <div className={styles.left}>
-                        <h2 className={cn(styles.headline, InstrumentSerif.className)}>
-                            <span className={styles.lead}>
-                                {keepWords(copy.line1)}
-                                {' '}
-                                <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
-                            </span>
-                            <span>{keepWords(copy.line3)}</span>
-                        </h2>
+                        {heading ? (
+                            <header>
+                                {heading.eyebrow && (
+                                    <p className={styles.eyebrow}>
+                                        <span className={styles.mark} aria-hidden />
+                                        {heading.eyebrow}
+                                    </p>
+                                )}
+                                <h2 className={cn(styles.headline, designFont.serif)}>
+                                    <span>{keepWords(heading.title || '')}</span>
+                                    {heading.emphasis && (
+                                        <em className={styles.emphasis}>{keepWords(heading.emphasis)}</em>
+                                    )}
+                                </h2>
+                            </header>
+                        ) : (
+                            <h2 className={cn(styles.headline, designFont.serif)}>
+                                <span className={styles.lead}>
+                                    {keepWords(copy.line1)}
+                                    {' '}
+                                    <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
+                                </span>
+                                <span>{keepWords(copy.line3)}</span>
+                            </h2>
+                        )}
 
                         <div
                             className={styles.stack}

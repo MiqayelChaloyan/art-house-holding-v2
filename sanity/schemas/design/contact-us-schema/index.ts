@@ -79,7 +79,7 @@ const contactUsSchemaDesign = {
             type: 'array',
             title: 'Social Links',
             group: 'social',
-            description: 'You can only add these Facebook, Instagram, Gmail, Linkedin, X, Tiktok, Telegram, YouTube, Pinterest, WhatsApp, Viber.',
+            description: 'Footer social links. Use Instagram, Behance, and LinkedIn for the Design Studio footer. Facebook, Gmail, X, Tiktok, Telegram, YouTube, Pinterest, WhatsApp, and Viber are also allowed.',
             validation: (Rule: RuleType) => Rule.max(11).unique(),
             components: { input: ArrayMaxItems },
             of: [
@@ -100,6 +100,46 @@ const contactUsSchemaDesign = {
                             type: 'string',
                         },
                     ],
+                },
+            ],
+        },
+        {
+            name: 'map_links',
+            type: 'array',
+            title: 'Map links',
+            group: 'social',
+            description: 'Google, Yandex, and 2GIS logos shown under the footer social links.',
+            validation: (Rule: RuleType) => Rule.max(3),
+            components: { input: ArrayMaxItems },
+            of: [
+                {
+                    name: 'Object',
+                    type: 'object',
+                    icon: LinkIcon,
+                    fields: [
+                        {
+                            name: 'name',
+                            title: 'Name',
+                            type: 'string',
+                            validation: (Rule: RuleType) => Rule.required(),
+                        },
+                        {
+                            name: 'link',
+                            title: 'Link',
+                            type: 'url',
+                            validation: (Rule: RuleType) => Rule.required(),
+                        },
+                        {
+                            name: 'image',
+                            title: 'Logo',
+                            type: 'image',
+                            options: { hotspot: true },
+                            fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                        },
+                    ],
+                    preview: {
+                        select: { title: 'name', media: 'image' },
+                    },
                 },
             ],
         },

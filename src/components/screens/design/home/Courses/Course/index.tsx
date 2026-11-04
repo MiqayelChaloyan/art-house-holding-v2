@@ -8,7 +8,7 @@ import { LuArrowUpRight } from 'react-icons/lu';
 
 import NextImage from '@/src/components/components/image';
 
-import { Montserrat } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
@@ -57,7 +57,7 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
             </Link>
             <div className={styles.body}>
                 <div className={styles.titleRow}>
-                    <h3 className={cn(styles.title, Montserrat.className)}>
+                    <h3 className={cn(styles.title, designFont.serif)}>
                         <Link href={href}>{keepWords(courseName)}</Link>
                     </h3>
                     <Link href={href} className={styles.iconBtn} aria-label={courseName}>

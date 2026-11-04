@@ -58,7 +58,7 @@ export const FILTER_COURSES_QUERY = `
 }`;
 
 export const SOCIAL_QUERY = `
-*[_type == "language-contact-us"] {
+*[_type == "language-contact-us" && _id == "contact-us-language"] {
     name,
     phone_number,
     social_links,

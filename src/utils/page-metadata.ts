@@ -22,6 +22,7 @@ export type NavigationKey =
     | 'price-list'
     | 'promotions'
     | 'send-request'
+    | 'start-learning'
     | 'take-the-test';
 
 interface SectionPageMetadataInput {

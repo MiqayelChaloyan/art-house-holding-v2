@@ -1,4 +1,4 @@
-import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon } from '@sanity/icons';
+import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon, UserIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
 import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 
@@ -24,9 +24,13 @@ export const coursesSchemaDesign = {
     icon: SparklesIcon,
     groups: [
         { name: 'card', title: '1. Course card' },
-        { name: 'why', title: '2. Why this course' },
-        { name: 'groups', title: '3. Upcoming groups' },
-        { name: 'faq', title: '4. FAQ' },
+        { name: 'about', title: '2. About the course' },
+        { name: 'topics', title: '3. Course topics' },
+        { name: 'trainers', title: '4. Trainers' },
+        { name: 'price', title: '5. Price list' },
+        { name: 'why', title: '6. Why this course' },
+        { name: 'groups', title: '7. Upcoming groups' },
+        { name: 'faq', title: '8. FAQ' },
         { name: 'portfolio', title: 'Portfolios' },
         { name: 'orders', title: 'Orders' },
         { name: 'og', title: 'Social share' },
@@ -154,10 +158,67 @@ export const coursesSchemaDesign = {
             },
         },
         {
+            name: 'about_section',
+            title: 'About the course',
+            type: 'object',
+            group: 'about',
+            description: 'The block next to the second gallery picture. The title is the course name.',
+            fields: [
+                loc('Text', 'text', 'text', 'The paragraph under the title.'),
+                {
+                    name: 'points',
+                    title: 'Points',
+                    type: 'array',
+                    description: 'Up to 4, for example What you’ll learn, Who it’s for, Skills you’ll gain, Career opportunities. If empty, the first four Guides are shown.',
+                    validation: (Rule: RuleType) => Rule.max(4),
+                    of: [{
+                        name: 'point',
+                        type: 'object',
+                        fields: [
+                            loc('Title', 'title'),
+                            loc('Text', 'text', 'text'),
+                        ],
+                        preview: { select: { title: 'title.en', subtitle: 'text.en' } },
+                    }],
+                },
+            ],
+        },
+        {
+            name: 'topics_section',
+            title: 'Course topics heading',
+            type: 'object',
+            group: 'topics',
+            description: 'The heading above the topics list on this course page. If empty, Home → Courses curriculum fields are used.',
+            fields: [
+                loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title, for example Curriculum.'),
+                loc('Modules label', 'modules_label', 'string', 'Word after the topic count, for example modules. Shown as Curriculum · 7 modules.'),
+                loc('Headline line 1', 'title', 'string', 'For example Course.'),
+                loc('Headline italic', 'emphasis', 'string', 'Italic second word, for example topics.'),
+                loc('Text', 'description', 'text', 'Short paragraph to the right of the title.'),
+            ],
+        },
+        {
+            name: 'topics',
+            title: 'Course topics',
+            type: 'array',
+            group: 'topics',
+            description: 'Each row is a module. Clicking + on the course page opens the topic text.',
+            of: [{
+                name: 'topic',
+                type: 'object',
+                fields: [
+                    loc('Title', 'title', 'string', 'The row label, for example Typography.'),
+                    loc('Opened text', 'description', 'text', 'The text shown when + is clicked.'),
+                ],
+                preview: { select: { title: 'title.en', subtitle: 'description.en' } },
+            }],
+        },
+        {
             name: 'conditions',
             type: 'array',
             title: 'Conditions',
-            description: 'Optional. The first four show as facts on the course page.',
+            group: 'topics',
+            description: 'Optional fallback. Used as Course topics when the list above is empty. Prefer Course topics for new content.',
             of: [
                 {
                     name: 'Object',
@@ -181,8 +242,10 @@ export const coursesSchemaDesign = {
                             name: 'ru',
                             type: 'string',
                             validation: (Rule: RuleType) => Rule.required(),
-                        }
-                    ]
+                        },
+                        loc('Opened text', 'description', 'text', 'Shown when + is clicked. Prefer Course topics above for new rows.'),
+                    ],
+                    preview: { select: { title: 'en', subtitle: 'description.en' } },
                 }
             ],
         },
@@ -190,7 +253,8 @@ export const coursesSchemaDesign = {
             name: 'guides',
             type: 'array',
             title: 'Guides',
-            description: 'Optional. Hidden on the course page when empty.',
+            group: 'about',
+            description: 'Optional. The first four are shown in About the course when its points are empty.',
             of: [
                 {
                     name: 'Object',
@@ -220,11 +284,78 @@ export const coursesSchemaDesign = {
             ],
         },
         {
+            name: 'trainers_section',
+            title: 'Trainers',
+            type: 'object',
+            group: 'trainers',
+            description: 'The trainers block on this course page. If empty, the Design home staff is shown.',
+            fields: [
+                loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title, for example Trainers.'),
+                loc('Headline italic', 'emphasis', 'string', 'Italic line under the course name, for example trainers.'),
+                loc('Experience label', 'experience_label'),
+                loc('Programs label', 'programs_label'),
+                loc('Skills label', 'skills_label'),
+                {
+                    name: 'items',
+                    title: 'Trainers',
+                    type: 'array',
+                    of: [{
+                        name: 'trainer',
+                        type: 'object',
+                        icon: UserIcon,
+                        fields: [
+                            loc('Full name', 'worker'),
+                            loc('Role', 'profession'),
+                            {
+                                name: 'worker_image',
+                                title: 'Portrait',
+                                type: 'image',
+                                options: { hotspot: true },
+                                fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
+                            },
+                            loc('Experience', 'experience', 'string', 'Short line on the card, for example 5+ YEAR.'),
+                            loc('Bio', 'bio', 'text', 'The paragraph on the profile card.'),
+                            {
+                                name: 'programs',
+                                title: 'Programs',
+                                type: 'array',
+                                of: [{
+                                    name: 'program',
+                                    type: 'object',
+                                    fields: [loc('Label', 'label')],
+                                    preview: { select: { title: 'label.en' } },
+                                }],
+                            },
+                            {
+                                name: 'skills',
+                                title: 'Skills',
+                                type: 'array',
+                                of: [{
+                                    name: 'skill',
+                                    type: 'object',
+                                    fields: [loc('Label', 'label')],
+                                    preview: { select: { title: 'label.en' } },
+                                }],
+                            },
+                            {
+                                name: 'behance_url',
+                                title: 'Behance link',
+                                type: 'url',
+                            },
+                        ],
+                        preview: {
+                            select: { title: 'worker.en', subtitle: 'profession.en', media: 'worker_image' },
+                        },
+                    }],
+                },
+            ],
+        },
+        {
             name: 'price_section',
             title: 'Price list',
             type: 'object',
-            hidden: true,
-            description: 'Kept for existing data. Edit prices on the Course prices pages.',
+            group: 'price',
+            description: 'The price rows on this course page. Each course has its own list.',
             fields: [
                 ...headingFields,
                 {
@@ -237,7 +368,8 @@ export const coursesSchemaDesign = {
                         type: 'object',
                         fields: [
                             loc('Title', 'title'),
-                            loc('Subtitle', 'subtitle', 'string', 'Short line under the title.'),
+                            loc('Subtitle', 'subtitle', 'string', 'Short line under the title, for example Online/Offline.'),
+                            loc('Duration', 'duration', 'string', 'For example 4 months.'),
                             loc('Amount', 'amount', 'string', 'For example 180 000 AMD.'),
                         ],
                         preview: {

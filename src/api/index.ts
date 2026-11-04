@@ -122,29 +122,3 @@ export const sendContactUsDesign = async (contactUs: FormSmall) => {
         };
     }
 };
-
-// SEND ORDER
-export const sendOrderDesign = async (designFormData: any) => {
-    try {
-        const emailResponse = await sendEmail(designFormData);
-
-        const apiResponse = await axios.post(BASE_URL, null, {
-            params: { designFormData },
-            timeout: 10000
-        });
-
-        if (emailResponse.success && apiResponse.status === 200) {
-            return { status: 200 };
-        } else {
-            const error = !emailResponse.success 
-                ? emailResponse.error 
-                : 'API request failed';
-            return { status: 500, error };
-        }
-    } catch (error) {
-        return { 
-            status: 500, 
-            error: error instanceof Error ? error.message : 'Unknown error' 
-        };
-    }
-};

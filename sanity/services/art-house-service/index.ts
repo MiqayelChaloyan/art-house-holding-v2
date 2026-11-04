@@ -1,5 +1,5 @@
 export const HOME_DETALIS_QUERY = `
-*[_type == "art-house-home"] {
+*[_type == "art-house-home" && _id == "art-house"] {
     "our_websites": our_websites[] {
         _key,
         company_name,
@@ -17,7 +17,7 @@ export const HOME_DETALIS_QUERY = `
 }`;
 
 export const SITE_META_QUERY = `
-*[_type == "art-house-home"] {
+*[_type == "art-house-home" && _id == "art-house"] {
     ogTitle,
     ogImage,
     keywords,

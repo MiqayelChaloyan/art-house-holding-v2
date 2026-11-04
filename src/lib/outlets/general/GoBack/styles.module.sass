@@ -1,8 +1,8 @@
 .btn 
     &.book-now 
         position: fixed
-        bottom: 120px
-        right: 25px
+        bottom: calc(120px + env(safe-area-inset-bottom, 0px))
+        right: calc(25px + env(safe-area-inset-right, 0px))
         padding: 10px
         width: 50px !important
         height: 50px

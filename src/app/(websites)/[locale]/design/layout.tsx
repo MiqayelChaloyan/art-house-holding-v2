@@ -7,11 +7,10 @@ import Footer from '@/src/lib/outlets/design/Footer';
 import Header from '@/src/lib/outlets/design/Header';
 import ScrollToTopButton from '@/src/lib/outlets/general/ScrollToTopButton';
 import FloatingMenu from '@/src/lib/outlets/general/FloatingMenu';
-import Modal from '@/src/lib/outlets/design/Modal';
-import CoursesModal from '@/src/lib/outlets/design/Modal/courses';
 import PlayerModal from '@/src/lib/outlets/general/PlayerModal';
 import GoBack from '@/src/lib/outlets/general/GoBack';
 
+import { designFont } from '@/src/constants/font';
 import colors from '@/src/themes';
 
 import { Locale } from '@/src/locales';
@@ -19,7 +18,7 @@ import { Locale } from '@/src/locales';
 import { SITE_META_QUERY } from '@/sanity/services/design-service';
 
 import { getHomeDetails } from '@/src/utils/data/art-house';
-import { getContacts, getCourses } from '@/src/utils/data/design';
+import { getContacts } from '@/src/utils/data/design';
 import { buildSiteMetadata, fetchSiteMetaEntry } from '@/src/utils/site-meta';
 
 
@@ -45,18 +44,17 @@ export default async function Layout({
     children,
     params: { locale },
 }: Readonly<RootLayoutProps>) {
-    const [courses, contacts, branches] = await Promise.all([
-        getCourses(locale),
+    const [contacts, branches] = await Promise.all([
         getContacts(locale),
         getHomeDetails(locale),
     ]);
 
-    if (!branches || !courses || !contacts) {
+    if (!branches || !contacts) {
         notFound()
     };
 
     return (
-        <>
+        <div className={`${designFont.vars} ${designFont.ui}`}>
             <Header typePosition='fixed' locale={locale} brand={contacts} />
             <div className='design-container'>
                 <GoBack locale={locale} theme={colors.studioRed} />
@@ -70,11 +68,8 @@ export default async function Layout({
                 {children}
                 <Footer socialData={contacts} />
             </div>
-            <Modal>
-                <CoursesModal courses={courses} />
-            </Modal>
             <PlayerModal />
-        </>
+        </div>
     );
 };
 

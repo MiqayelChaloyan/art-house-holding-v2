@@ -222,8 +222,10 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
     margin-left: auto
     padding-right: 0
     padding-left: 0
-    @media screen and (max-width: 640px)
-        width: calc(100% - 32px)
+    @media screen and (max-width: 1200px)
+        width: calc(100% - 80px)
+    @media screen and (max-width: 991px)
+        width: calc(100% - 40px)
 
 .section[data-variant='design'] .hero
     background: transparent
@@ -274,6 +276,7 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
     line-height: 1
     letter-spacing: -0.025em
     color: #ffffff
+    overflow-wrap: anywhere
 
 .section[data-variant='design'] .subtitle
     font-style: italic

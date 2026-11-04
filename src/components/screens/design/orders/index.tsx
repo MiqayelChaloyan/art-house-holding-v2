@@ -5,10 +5,9 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 
 import OrderForm from './Form';
-import OrdersGallery from './OrdersGallery';
 
-import { Arial } from '@/src/constants/font';
-import { Titles } from '@/src/constants';
+import { designFont } from '@/src/constants/font';
+import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
 
@@ -16,34 +15,38 @@ import styles from './styles.module.sass';
 
 
 interface Props {
-  courses: COURSES_DESIGN_QUERYResult[];
-  orders: ORDER_Result[] | any[];
-  ordersArmenian: ORDER_Result[] | any[];
+    lessons: SELECT_OPTIONS_DESIGN_QUERYResult;
+    lessonsArmenian: SELECT_OPTIONS_DESIGN_QUERYResult;
+    selectedSlug?: string;
 };
 
-const Home = ({ courses, orders, ordersArmenian }: Readonly<Props>) => {
-  const t = useTranslations('sections');
+const Home = ({ lessons, lessonsArmenian, selectedSlug }: Readonly<Props>) => {
+    const t = useTranslations('form-page');
 
-  return (
-    <section id='orders' className={styles.container}>
-      <div className={styles.titles}>
-        <div>
-          <div className={cn(styles['title-line'], styles['back-line'])} />
-          <h2 className={cn(styles['title-back'], Arial.className)}>{Titles.orders}</h2>
-        </div>
-        <div className={styles['bottom-title']}>
-          <h1 className={cn(styles.title, Arial.className)}>{t('orders')}</h1>
-          <div className={cn(styles['title-line'], styles['bottom-line'])} />
-        </div>
-      </div>
-      <OrdersGallery courses={courses} />
-      <div className={styles['form-container']}>
-        <div className={styles.line} />
-        <OrderForm orders={orders} ordersArmenian={ordersArmenian} />
-        <div className={styles.line} />
-      </div>
-    </section>
-  );
+    return (
+        <section className={cn(styles.section, designFont.ui)}>
+            <div className={styles.wrap}>
+                <div className={styles.grid}>
+                    <div className={styles.copy}>
+                        <p className={styles.eyebrow}>
+                            <span className={styles.mark} aria-hidden />
+                            {t('eyebrow')}
+                        </p>
+                        <h1 className={cn(styles.headline, designFont.serif)}>
+                            <span>{keepWords(t('line-1'))}</span>
+                            <span className={styles.emphasis}>{keepWords(t('line-2'))}</span>
+                        </h1>
+                        <p className={styles.lead}>{t('lead')}</p>
+                    </div>
+                    <OrderForm
+                        lessons={lessons}
+                        lessonsArmenian={lessonsArmenian}
+                        selectedSlug={selectedSlug}
+                    />
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default React.memo(Home);

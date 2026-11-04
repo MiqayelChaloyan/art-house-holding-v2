@@ -66,18 +66,18 @@
 	font-size: clamp(26px, 3.1vw, 47px)
 	line-height: 44px
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
 	text-align: center
 	font-weight: 700
 	letter-spacing: 0
 	text-transform: uppercase
 	color: var(--color-white)
 	@media screen and (max-width: 768px)
-		font-size: 32px
-		line-height: 36px
+		font-size: clamp(20px, 6vw, 32px)
+		line-height: 1.15
 	@media screen and (max-width: 480px)
-		font-size: 26px
-		line-height: 30px
+		font-size: clamp(18px, 6.4vw, 26px)
+		line-height: 1.2
 
 .title
 	display: flex
@@ -89,7 +89,7 @@
 	font-size: clamp(18px, 2.4vw, 47px)
 	line-height: 44px
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
 	margin-top: 8px
 	text-align: center
 	font-weight: 700
@@ -97,8 +97,8 @@
 	text-transform: uppercase
 	color: var(--color-white)
 	@media screen and (max-width: 768px)
-		font-size: 24px
-		line-height: 32px
+		font-size: clamp(16px, 4.8vw, 24px)
+		line-height: 1.2
 	@media screen and (max-width: 480px)
-		font-size: 18px
-		line-height: 24px
+		font-size: clamp(15px, 4.6vw, 18px)
+		line-height: 1.25

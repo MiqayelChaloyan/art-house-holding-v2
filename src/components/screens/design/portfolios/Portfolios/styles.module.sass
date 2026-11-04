@@ -10,7 +10,7 @@
 	margin: 0 auto
 	@media screen and (max-width: 1200px)
 		width: calc(100% - 80px)
-	@media screen and (max-width: 640px)
+	@media screen and (max-width: 991px)
 		width: calc(100% - 40px)
 
 .top
@@ -43,13 +43,18 @@
 
 .headline
 	margin: 0
-	max-width: 280px
+	max-width: 100%
 	font-size: clamp(36px, 4.8vw, 72px)
 	font-weight: 400
 	line-height: 1
 	letter-spacing: -1.8px
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
+	@media screen and (max-width: 640px)
+		max-width: 100%
+	:global(html[lang="am"]) &,
+	:global(html[lang="ru"]) &
+		font-size: clamp(28px, 5vw, 48px)
 	> span
 		display: block
 
@@ -73,37 +78,48 @@
 		overflow-x: auto
 		padding-bottom: 6px
 		-webkit-overflow-scrolling: touch
+		scrollbar-width: none
+		&::-webkit-scrollbar
+			display: none
 
 .chip
 	display: inline-flex
 	align-items: center
-	min-height: 36px
-	padding: 0 18px
-	border: 1px solid #232323
+	min-height: 32px
+	padding: 0 16px
+	border: 1px solid #3a3a3a
+	border-radius: 999px
+	background: transparent
 	color: #d9d9d9
-	font-size: 14px
-	line-height: 20px
+	font-size: 13px
+	line-height: 18px
 	text-decoration: none
 	white-space: nowrap
 	max-width: 100%
-	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease
+	transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease
 	@media screen and (max-width: 640px)
 		flex: 0 0 auto
 	&:hover
-		transform: translateY(-2px)
 		border-color: #ffffff
 		color: #ffffff
 		background: rgba(255, 255, 255, 0.06)
 
+.chipAll
+	border-color: transparent
+	padding-left: 8px
+	padding-right: 8px
+	&.chipActive
+		border-color: transparent
+		background: transparent
+		color: #ffffff
+
 .chipActive
-	background: #ffffff
 	border-color: #ffffff
-	color: #090909
-	box-shadow: 0 8px 18px rgba(255, 255, 255, 0.12)
+	color: #ffffff
+	background: rgba(255, 255, 255, 0.08)
 	&:hover
-		color: #090909
-		background: #ffffff
-		box-shadow: 0 10px 22px rgba(255, 255, 255, 0.18)
+		color: #ffffff
+		background: rgba(255, 255, 255, 0.1)
 
 .grid
 	display: grid
@@ -129,6 +145,7 @@
 	overflow: hidden
 	aspect-ratio: 418 / 313
 	background: #141414
+	border-radius: 16px
 
 .image
 	width: 100% !important
@@ -138,19 +155,19 @@
 	.card:hover &
 		transform: scale(1.04)
 
-.course
+.author
 	margin-top: 16px
 	font-size: 18px
 	font-weight: 500
 	line-height: 24px
 	color: #ffffff
 
-.author
+.course
 	margin-top: 4px
-	font-size: 16px
-	font-weight: 500
-	line-height: 22px
-	color: #d9d9d9
+	font-size: 14px
+	font-weight: 400
+	line-height: 20px
+	color: #9b9b9b
 
 .empty
 	margin: 24px 0 0
@@ -158,18 +175,18 @@
 
 .more
 	display: block
-	margin: 48px auto 0
+	margin: 56px auto 0
 	min-height: 36px
-	padding: 0 18px
-	border: 1px solid #232323
+	padding: 0 20px
+	border: 1px solid #3a3a3a
+	border-radius: 999px
 	background: transparent
-	color: #ffffff
-	font-size: 14px
+	color: #d9d9d9
+	font-size: 13px
 	line-height: 36px
 	cursor: pointer
-	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease
+	transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease
 	&:hover
-		transform: translateY(-2px)
 		border-color: #ffffff
+		color: #ffffff
 		background: rgba(255, 255, 255, 0.06)
-		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28)

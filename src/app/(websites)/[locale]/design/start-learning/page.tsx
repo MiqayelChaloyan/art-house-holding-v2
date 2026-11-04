@@ -10,7 +10,7 @@ import { Locale } from '@/src/locales';
 import { SITE_META_QUERY } from '@/sanity/services/design-service';
 
 import { Pages } from '@/src/constants/pages';
-import { getCourses, getSelectOptions } from '@/src/utils/data/design';
+import { getSelectOptions } from '@/src/utils/data/design';
 import { buildSectionPageMetadata } from '@/src/utils/page-metadata';
 
 
@@ -18,24 +18,29 @@ interface Props {
     params: {
         locale: string;
     }
+    searchParams: {
+        course?: string;
+    }
 };
 
 export default async function Page({
-    params: { locale }
+    params: { locale },
+    searchParams,
 }: Readonly<Props>) {
-    const courses = await getCourses(locale);
-    const lessons = await getSelectOptions(locale);
-    const lessonsArmenianKeyword = await getSelectOptions('am');
+    const [lessons, lessonsArmenian] = await Promise.all([
+        getSelectOptions(locale),
+        getSelectOptions('am'),
+    ]);
 
-    if (!lessons || !lessonsArmenianKeyword || !courses) {
+    if (!lessons || !lessonsArmenian) {
         notFound()
     }
 
     return (
         <Home
-            orders={lessons.order_name}
-            ordersArmenian={lessonsArmenianKeyword.order_name}
-            courses={courses}
+            lessons={lessons}
+            lessonsArmenian={lessonsArmenian}
+            selectedSlug={searchParams.course}
         />
     )
 };
@@ -48,7 +53,7 @@ export async function generateMetadata({
     return buildSectionPageMetadata({
         query: SITE_META_QUERY,
         locale,
-        path: `/${locale}${Pages.DESIGN_ORDERS}`,
-        navigationKey: 'orders',
+        path: `/${locale}${Pages.DESIGN_START_LEARNING}`,
+        navigationKey: 'start-learning',
     });
 };

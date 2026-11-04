@@ -1,4 +1,4 @@
-import { ArianAMU, Arial, Calibri, InstrumentSerif, Inter } from '@/src/constants/font';
+import { ArianAMU, Arial, Calibri, designFont, Inter } from '@/src/constants/font';
 import { Pages } from '@/src/constants/pages';
 
 
@@ -32,8 +32,8 @@ export const BLOG_SITE_CONFIG: Record<BlogSiteKey, BlogSiteConfig> = {
         blogHome: Pages.DESIGN_BLOG_HOME,
         siteHome: Pages.DESIGN_HOME,
         sectionId: 'blog',
-        titleFont: InstrumentSerif,
-        bodyFont: Inter,
+        titleFont: { className: designFont.serif },
+        bodyFont: { className: designFont.ui },
         heroEyebrowKey: 'design-studio-title',
     },
     language: {

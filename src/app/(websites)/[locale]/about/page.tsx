@@ -46,7 +46,6 @@ export async function generateMetadata({
   return buildSectionPageMetadata({
     query: SITE_META_QUERY,
     locale,
-    index: 1,
     path: `/${locale}/about`,
     navigationKey: 'about',
   });

@@ -5,7 +5,7 @@ import React from 'react';
 import NextImage from '@/src/components/components/image';
 import Partners from '@/src/components/screens/design/home/Partners';
 
-import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -27,7 +27,7 @@ const About = ({ data, clients }: Readonly<Props>) => {
 
     return (
         <>
-            <section id="about" className={cn(styles.section, Inter.className)}>
+            <section id="about" className={cn(styles.section, designFont.ui)}>
                 <div className={styles.wrap}>
                     <div className={styles.hero}>
                         <div>
@@ -35,11 +35,11 @@ const About = ({ data, clients }: Readonly<Props>) => {
                                 <span className={styles.mark} aria-hidden />
                                 {data.eyebrow}
                             </p>
-                            <h1 className={cn(styles.headline, InstrumentSerif.className)}>
+                            <h1 className={cn(styles.headline, designFont.serif)}>
                                 <span>{keepWords(line1)}</span>
                                 <span className={styles.emphasis}>{keepWords(line2)}</span>
                             </h1>
-                            {data.intro && <p className={cn(styles.intro, Montserrat.className)}>{data.intro}</p>}
+                            {data.intro && <p className={cn(styles.intro, designFont.medium)}>{data.intro}</p>}
                         </div>
                         {image?.src && (
                             <figure className={styles.portrait}>
@@ -57,7 +57,7 @@ const About = ({ data, clients }: Readonly<Props>) => {
                     </div>
 
                     {sections.length > 0 && (
-                        <div className={cn(styles.blocks, Montserrat.className)}>
+                        <div className={cn(styles.blocks, designFont.medium)}>
                             {sections.map((item) => (
                                 <article key={item._key} className={styles.block}>
                                     <h2>{item.heading}</h2>

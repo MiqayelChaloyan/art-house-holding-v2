@@ -4,7 +4,7 @@ import React from 'react';
 
 import NextImage from '@/src/components/components/image';
 
-import { Calibri } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { ImagePath } from '@/src/types/general';
 
 import { urlForImage } from '@/sanity/imageUrlBuilder';
@@ -34,9 +34,9 @@ const Partner = ({
                     height={500}
                 />
             </div>
-            <p className={cn(styles.text, Calibri.className)}>{company_name}</p>
-            <p className={cn(styles.text, Calibri.className)}>{cooperation}</p>
-            <p className={cn(styles.text, Calibri.className)}>{implemented_projects}</p>
+            <p className={cn(styles.text, designFont.ui)}>{company_name}</p>
+            <p className={cn(styles.text, designFont.ui)}>{cooperation}</p>
+            <p className={cn(styles.text, designFont.ui)}>{implemented_projects}</p>
         </div>
     );
 };

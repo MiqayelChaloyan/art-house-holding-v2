@@ -12,7 +12,7 @@
 	padding: 0
 	@media screen and (max-width: 1200px)
 		width: calc(100% - 80px)
-	@media screen and (max-width: 640px)
+	@media screen and (max-width: 991px)
 		width: calc(100% - 40px)
 
 .hero
@@ -53,13 +53,13 @@
 	width: 100%
 	max-width: 860px
 	margin: 0
-	font-size: 88px
+	font-size: clamp(36px, 8vw, 88px)
 	font-weight: 400
 	line-height: 0.94
 	letter-spacing: -0.03em
 	color: #f7f7f7
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
 	> span
 		display: block
 
@@ -124,9 +124,9 @@
 		transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)
 		pointer-events: none
 	&:hover
-		transform: translateY(-2px)
+		transform: translateY(-3px)
 		background: #ff2d3f
-		box-shadow: 0 12px 28px rgba(225, 29, 46, 0.4)
+		box-shadow: 0 14px 32px rgba(225, 29, 46, 0.48), 0 0 0 4px rgba(225, 29, 46, 0.16)
 		&::before
 			transform: translateX(140%)
 		svg
@@ -252,14 +252,10 @@
 		margin-bottom: 0
 
 @media screen and (max-width: 980px)
-	.headline
-		font-size: 56px
 	.section
 		padding: 56px 0 72px
 
 @media screen and (max-width: 640px)
-	.headline
-		font-size: 42px
 	.heading
 		font-size: 26px
 	.number

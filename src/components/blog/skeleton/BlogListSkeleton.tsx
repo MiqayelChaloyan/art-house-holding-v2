@@ -26,6 +26,7 @@ interface Props {
 
 const BlogListSkeleton = ({ siteKey, count = 6 }: Readonly<Props>) => {
     const blogAccent = BLOG_ACCENT[siteKey];
+    const isDesign = siteKey === 'design';
 
     return (
         <section
@@ -38,7 +39,7 @@ const BlogListSkeleton = ({ siteKey, count = 6 }: Readonly<Props>) => {
         >
             <div className={listStyles.hero}>
                 <Container className="container">
-                    {siteKey !== 'design' && (
+                    {!isDesign && (
                         <div className={listStyles.heroTop}>
                             <div className={cn(styles.backPill, styles.backPillLight)}>
                                 <Block tone="hero" width={30} height={30} className={styles.backIcon} />
@@ -46,15 +47,28 @@ const BlogListSkeleton = ({ siteKey, count = 6 }: Readonly<Props>) => {
                             </div>
                         </div>
                     )}
-                    <div className={cn(listStyles.header, siteKey === 'design' ? styles.heroHeaderDesign : styles.heroHeader)}>
-                        <Block tone="hero" height={14} width={siteKey === 'design' ? 120 : 220} />
-                        <Block tone="hero" height={siteKey === 'design' ? 72 : siteKey === 'language' ? 56 : 48} width={siteKey === 'design' ? 247 : 'min(560px, 72%)'} />
-                        <Block tone="hero" height={siteKey === 'design' ? 72 : 20} width={siteKey === 'design' ? 220 : 'min(420px, 52%)'} />
+                    <div className={cn(listStyles.header, isDesign ? styles.heroHeaderDesign : styles.heroHeader)}>
+                        {isDesign ? (
+                            <>
+                                <div className={styles.designEyebrow}>
+                                    <span className={styles.designEyebrowMark} aria-hidden />
+                                    <Block tone="designMuted" height={12} width={120} />
+                                </div>
+                                <Block tone="design" height={64} width={247} />
+                                <Block tone="designMuted" height={56} width={220} />
+                            </>
+                        ) : (
+                            <>
+                                <Block tone="hero" height={14} width={220} />
+                                <Block tone="hero" height={siteKey === 'language' ? 56 : 48} width="min(560px, 72%)" />
+                                <Block tone="hero" height={20} width="min(420px, 52%)" />
+                            </>
+                        )}
                     </div>
                 </Container>
             </div>
             <Container className="container">
-                <div className={listStyles.grid}>
+                <div className={cn(listStyles.grid, isDesign && styles.gridDesign)}>
                     {Array.from({ length: count }).map((_, index) => (
                         <PostCardSkeleton key={index} siteKey={siteKey} />
                     ))}

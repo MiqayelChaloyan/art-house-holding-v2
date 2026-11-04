@@ -11,6 +11,7 @@
         "take-the-test": "Pass the test",
         "departments": "Sections",
         "orders": "Orders",
+        "start-learning": "Start Learning",
         "portfolios": "Portfolio",
         "our-team": "Our Team",
         "contact": "Contact"
@@ -33,7 +34,9 @@
         "eyebrow": "Portfolio",
         "line-1": "Selected",
         "line-2": "work.",
-        "empty": "No projects in this program yet."
+        "empty": "No projects in this program yet.",
+        "all": "All",
+        "view-more": "View more"
     },
     "contact-page": {
         "eyebrow": "Contact",
@@ -43,6 +46,13 @@
         "choose-course": "Choose Course",
         "surname": "Surname",
         "phone": "Phone number"
+    },
+    "form-page": {
+        "eyebrow": "Start learning",
+        "line-1": "Start",
+        "line-2": "learning.",
+        "lead": "Fill in the form and we will contact you about the course.",
+        "title": "Request"
     },
     "legal-page": {
         "index": "Legal",
@@ -114,7 +124,6 @@
         "contact-us": "Contact us",
         "promotions": "Promotions",
         "portfolios": "Portfolios",
-        "orders": "Orders",
         "similar-posts": "Similar posts",
         "more-stories": "More stories",
         "more-stories-description": "{count} more articles waiting for you",
@@ -129,29 +138,6 @@
         "skills": "Skills",
         "prev": "Previous team member",
         "next": "Next team member"
-    },
-    "courses-page": {
-        "eyebrow": "Courses · Six Programs",
-        "line-1": "Programs for",
-        "line-2": "serious designers."
-    },
-    "course-page": {
-        "eyebrow": "course",
-        "explore": "Explore Courses",
-        "portfolio": "View Portfolio",
-        "about-eyebrow": "about the course",
-        "about-title": "Programs for",
-        "about-emphasis": "serious designers.",
-        "curriculum-eyebrow": "Curriculum",
-        "curriculum-title": "What you",
-        "curriculum-emphasis": "learn.",
-        "portfolio-eyebrow": "Selected work",
-        "portfolio-title": "From the",
-        "portfolio-emphasis": "studio."
-    },
-    "studio": {
-        "explore": "Explore Courses",
-        "portfolio": "View Portfolio"
     },
     "contact": {
         "tell": "Tell.",

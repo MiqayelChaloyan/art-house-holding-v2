@@ -1,466 +1,182 @@
-.input
-   width: 100%
-   max-width: 100%
-   height: 40px
-   font-weight: 300
-   font-size: 18px
-   box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
-   padding: 0.675em 1em 
-   transition: .3s
-   margin: 15px 0
-   background: #FFFFFF
-   border-radius: 4px
-   color: black
-   &:focus
-      border-color: var(--color-primary)
-   &::placeholder
-      color: #D4C7BA
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      font-size: 18px
-   /* @3xl */
-   @media screen and (max-width: 1920px)   
-      font-size: 18px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      font-size: 18px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      font-size: 18px
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      font-size: 18px
-   /* @md */
-   @media screen and (max-width: 1024px)
-      font-size: 14px
-      height: 30px
-      margin: 10px auto
-   /* @sm */
-   @media screen and (max-width: 768px)
-      font-size: 14px
-      width: 100%
-   /* @xs */
-   @media screen and (max-width: 600px)
-      font-size: 14px
-      width: 100%
-   /* @2xs */
-   @media screen and (max-width: 480px)
-      font-size: 14px
-      width: 100%
-   /* @3xs */
-   @media screen and (max-width: 360px)
-      font-size: 14px
-      width: 100%
+.panel
+	width: 100%
+	max-width: 560px
 
-.textarea
-   width: 100%
-   max-width: 100%
-   min-width: 100%
-   height: 120px
-   min-height: 120px
-   font-weight: 300
-   font-size: 18px
-   box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
-   padding: 0.675em 1em 
-   transition: .3s
-   margin: 15px 0
-   background: #FFFFFF
-   border-radius: 4px
-   color: black
-   &:focus
-      border-color: var(--color-primary)
-   &::placeholder
-      color: #D4C7BA
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      font-size: 18px
-   /* @3xl */
-   @media screen and (max-width: 1920px)   
-      font-size: 18px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      font-size: 18px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      font-size: 18px
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      font-size: 18px
-   /* @md */
-   @media screen and (max-width: 1024px)
-      font-size: 14px
-      margin: 10px auto
-   /* @sm */
-   @media screen and (max-width: 768px)
-      font-size: 14px
-      width: 100%
-   /* @xs */
-   @media screen and (max-width: 600px)
-      font-size: 14px
-      width: 100%
-   /* @2xs */
-   @media screen and (max-width: 480px)
-      font-size: 14px
-      width: 100%
-   /* @3xs */
-   @media screen and (max-width: 360px)
-      font-size: 14px
-      width: 100%
-
-.fields
-    margin-bottom: 50px
-    /* @lg */
-    @media screen and (max-width: 1280px)
-       margin-bottom: 22px
-    /* @sm */
-    @media screen and (max-width: 768px)
- 
-.contact
-   display: flex
-   justify-content: center
-   align-items: flex-start 
-   margin: 60px auto
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      margin: 60px auto
-   /* @3xl */
-   @media screen and (max-width: 1920px)
-      margin: 60px auto
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      margin: 60px auto
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      margin: 40px auto
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      margin: 40px auto
-   /* @md */
-   @media screen and (max-width: 1024px)
-      margin: 40px auto
-      justify-content: space-around
-   /* @sm */
-   @media screen and (max-width: 768px)
-      margin: 40px auto
-   /* @xs */
-   @media screen and (max-width: 600px)
-      display: grid
-      justify-content: center
-      margin: 40px auto
-   /* @2xs */
-   @media screen and (max-width: 480px)
-      display: grid
-      justify-content: center
-      margin: 40px auto
-   /* @3xs */
-   @media screen and (max-width: 360px)
-      display: grid
-      justify-content: center
-      margin: 40px auto
+.title
+	margin: 0 0 28px
+	font-size: 32px
+	font-weight: 400
+	line-height: 1
+	letter-spacing: -0.03em
+	color: #ffffff
 
 .form
-   width: 644px
-   height: max-content
-   padding: 20px
-   margin: 10px
-   border-radius: 25px
-   box-shadow: 0px 2px 9px 1px gray
-   background-color: #D4C6B9
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      width: 644px
-      height: max-content
-      padding: 20px
-      border-radius: 25px
-      box-shadow: 0px 2px 9px 1px gray
-      background-color: #D4C6B9
-   /* @3xl */
-   @media screen and (max-width: 1920px)
-      height: max-content
-      width: 644px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      height: max-content
-      width: 644px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      height: max-content
-      width: 600px   
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      height: max-content
-      width: 500px
-   /* @md */
-   @media screen and (max-width: 1024px)
-      height: max-content
-      width: 400px
-   /* @sm */
-   @media screen and (max-width: 768px)
-      height: max-content
-      width: 350px
-      border-radius: 6px
-   /* @xs */
-   @media screen and (max-width: 600px)
-      height: max-content
-      width: 359px
-      border-radius: 6px
-   /* @2xs */
-   @media screen and (max-width: 480px)  
-      margin: 0 auto
-      height: max-content
-      width: 311px
-      border-radius: 6px
-   /* @3xs */  
-   @media screen and (max-width: 360px)
-      height: max-content
-      width: 290px
-      border-radius: 6px
+	display: flex
+	flex-direction: column
+	gap: 14px
 
-.line
-   position: relative
-   &:after 
-      content: '' 
-      width: 500px 
-      border-bottom: solid 3px #5F401B 
-      position: absolute 
-      left: 0 
-      top: 20% 
-      z-index: 0 
-   &:before 
-      content: '' 
-      width: 500px
-      border-bottom: solid 3px #5F401B 
-      position: absolute 
-      right: 0 
-      top: 20% 
-      z-index: 0 
+.field,
+.selectButton
+	box-sizing: border-box
+	width: 100%
+	height: 50px
+	padding: 0 22px
+	border: 1px solid #2c2c2c
+	border-radius: 999px
+	background: #141414
+	color: #f4f4f4
+	font-size: 14px
+	font-weight: 400
+	line-height: 50px
+	outline: none
+	box-shadow: none
+	appearance: none
+	-webkit-appearance: none
+	transition: border-color 0.2s ease
+	&::placeholder
+		color: rgba(255, 255, 255, 0.38)
+	&:focus
+		border-color: rgba(255, 255, 255, 0.28)
 
-.form_title
-   text-align: center
-   color: #4B352B
-   font-size: 26px
-   font-weight: 700
-   margin-bottom: 30px
-   text-transform: uppercase
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      text-align: center
-      color: #4B352B
-      font-size: 26px
-      font-weight: 700
-   /* @3xl */
-   @media screen and (max-width: 1920px)
-      font-size: 26px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      font-size: 20px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      font-size: 20px
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      font-size: 20px
-   /* @md */
-   @media screen and (max-width: 1024px)
-      font-size: 20px
-   /* @sm */
-   @media screen and (max-width: 768px)
-      font-size: 20px
-   /* @xs */
-   @media screen and (max-width: 600px)
-      font-size: 20px
-   /* @2xs */
-   @media screen and (max-width: 480px)  
-      font-size: 20px  
-   /* @3xs */  
-   @media screen and (max-width: 360px)
-      font-size: 20px
+.textarea
+	box-sizing: border-box
+	width: 100%
+	min-height: 120px
+	padding: 16px 22px
+	border: 1px solid #2c2c2c
+	border-radius: 20px
+	background: #141414
+	color: #f4f4f4
+	font-size: 14px
+	font-weight: 400
+	line-height: 22px
+	resize: vertical
+	outline: none
+	&::placeholder
+		color: rgba(255, 255, 255, 0.38)
+	&:focus
+		border-color: rgba(255, 255, 255, 0.28)
 
-.contact_us
-    width: 100%
-    display: grid
-    justify-content: center
-    /* @lg */
-    @media screen and (max-width: 1280px)
-      width: 30%
-    /* @sm */
-    @media screen and (max-width: 768px)
-      width: 100%
-      margin: 0 auto
-      display: grid
-      justify-content: center
+.select
+	position: relative
+	z-index: 2
 
-.button
-   display: flex
-   align-items: center
-   justify-content: center
-   height: 40px
-   width: 197.45px
-   color: #fff
-   font-weight: 500
-   text-align: center
-   border-radius: 6px
-   padding: 12px 0
-   background-color: #4B352B
-   margin: 10px auto
-   box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
-   span 
-         cursor: pointer 
-         display: inline-block 
-         position: relative 
-         transition: 0.5s 
-         font-size: 20px
-         &:after 
-            content: '\00bb' 
-            position: absolute 
-            opacity: 0 
-            top: 0 
-            right: -20px 
-            transition: 0.5s 
-         /* @2xl */
-         @media screen and (max-width: 1600px)
-            font-size: 20px
-         /* @xl */
-         @media screen and (max-width: 1440px)
-            font-size: 20px
-         /* @lg */
-         @media screen and (max-width: 1280px)
-            font-size: 17px
-         /* @md */
-         @media screen and (max-width: 1024px)
-            font-size: 15px
-         /* @sm */
-         @media screen and (max-width: 768px)
-            cursor: pointer 
-            display: inline-block 
-            position: relative 
-            transition: 0.5s 
-            &:after 
-               content: '\00bb' 
-               position: absolute 
-               opacity: 0 
-               top: 0 
-               right: -20px 
-               transition: 0.5s  
-   &:hover 
-      span 
-         padding-right: 25px 
-         &:after 
-            opacity: 1 
-            right: 0 
-   /* @3xl */
-   @media screen and (max-width: 1920px)
-      font-size: 16px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      font-size: 16px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      font-size: 16px
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      font-size: 15px
-      width: 50% !important
-   /* @md */
-   @media screen and (max-width: 1024px)
-      font-size: 14px
-      height: 30px
-      margin-bottom: 16px 
-   /* @sm */
-   @media screen and (max-width: 768px)
-      font-size: 16px
-   /* @xs */
-   @media screen and (max-width: 600px)
-      font-size: 14px
-      padding: 7px 72px
-      width: 32% !important
-      border-radius: 10px
-   /* @2xs */
-   @media screen and (max-width: 480px)  
-      font-size: 14px
-      padding: 7px 72px
-      width: 32% !important 
-   /* @3xs */  
-   @media screen and (max-width: 360px)
-      font-size: 14px
-      padding: 7px 72px
-      width: 32% !important
+.selectButton
+	display: flex
+	align-items: center
+	justify-content: space-between
+	gap: 12px
+	cursor: pointer
+	text-align: left
 
-.orders
-   display: grid    
-   grid-template-columns: repeat(2, 2fr)
-   gap: 25px 40px
-   margin: 10px auto
-   /* @sm */
-   @media screen and (max-width: 768px)
-      grid-template-columns: repeat(1, 2fr)
-      gap: 20px 40px
+.label
+	overflow: hidden
+	text-overflow: ellipsis
+	white-space: nowrap
 
-.order-button
-   background-color: #4B352B
-   color: #FFFFFF
-   width: 280px
-   height: 40px
-   border-radius: 4px
-   font-size: 18px
-   font-weight: 400
-   line-height: 39.06px
-   display: flex
-   justify-content: center
-   align-items: center
-   box-shadow: 1px 10px 11px -4px rgb(0 0 0 / 14%)
-   /* @4xl */
-   @media screen and (max-width: 2560px)
-      font-size: 18px
-   /* @3xl */
-   @media screen and (max-width: 1920px)   
-      font-size: 18px
-   /* @2xl */
-   @media screen and (max-width: 1600px)
-      font-size: 18px
-   /* @xl */
-   @media screen and (max-width: 1440px)
-      font-size: 18px
-      width: 257px
-   /* @lg */
-   @media screen and (max-width: 1280px)
-      font-size: 18px
-      width: 210px
-   /* @md */
-   @media screen and (max-width: 1024px)
-      font-size: 14px
-      height: 30px
-      width: 158px
-   /* @sm */
-   @media screen and (max-width: 768px)
-      font-size: 14px
-      width: 100%
-   /* @xs */
-   @media screen and (max-width: 600px)
-      font-size: 14px
-      width: 100%
-   /* @2xs */
-   @media screen and (max-width: 480px)
-      font-size: 14px
-      width: 100%
-   /* @3xs */
-   @media screen and (max-width: 360px)
-      font-size: 14px
-      width: 100%
+.placeholder
+	color: rgba(255, 255, 255, 0.38)
 
-.disabled
-   background-color: #9E7653
-   color: #FFFFFF
-   transition: .3s
+.arrow
+	width: 0
+	height: 0
+	border-left: 5px solid transparent
+	border-right: 5px solid transparent
+	border-top: 6px solid #ffffff
+	transition: transform ease-in-out 0.3s
+	flex-shrink: 0
 
+.selectOpen
+	z-index: 10
+	.selectButton
+		border-color: rgba(255, 255, 255, 0.28)
+	.arrow
+		transform: rotate(180deg)
+	.dropdown
+		opacity: 1
+		visibility: visible
+		transform: scaleY(1)
+		pointer-events: auto
 
+.dropdown
+	position: absolute
+	top: calc(100% + 8px)
+	left: 0
+	right: 0
+	margin: 0
+	padding: 0.675em 0
+	list-style: none
+	background: #ffffff
+	border: 1px solid #e5e5e5
+	border-radius: 16px
+	max-height: 220px
+	overflow-y: auto
+	opacity: 0
+	visibility: hidden
+	transform: scaleY(0)
+	transform-origin: top
+	transition: 0.3s ease
+	pointer-events: none
+	z-index: 9
+	box-shadow: 1px 13px 11px -4px #0000003d
+	li
+		width: 100%
+		padding: 10px 20px
+		color: #000000
+		font-size: 14px
+		font-weight: 300
+		line-height: 20px
+		cursor: pointer
+		&:hover,
+		&.optionSelected
+			background: #f2f2f2
+	&::-webkit-scrollbar
+		width: 7px
+	&::-webkit-scrollbar-track
+		background: #f1f1f1
+		border-radius: 25px
+	&::-webkit-scrollbar-thumb
+		background: #ccc
+		border-radius: 25px
 
+.submit
+	align-self: center
+	position: relative
+	min-height: 44px
+	height: auto
+	margin-top: 6px
+	padding: 10px 16px
+	background: transparent
+	border: 0
+	color: rgba(255, 255, 255, 0.55)
+	font-size: 15px
+	font-weight: 400
+	line-height: 24px
+	cursor: pointer
+	transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)
+	&::after
+		content: ''
+		position: absolute
+		left: 50%
+		bottom: 6px
+		width: 28px
+		height: 1px
+		border-radius: 99px
+		background: #ce2421
+		transform: translateX(-50%) scaleX(0)
+		transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease
+	&:hover:not(:disabled),
+	&:focus-visible:not(:disabled)
+		color: #ffffff
+		transform: translateY(-1px)
+		&::after
+			transform: translateX(-50%) scaleX(1)
+			box-shadow: 0 0 12px rgba(206, 36, 33, 0.7)
+	&:disabled
+		cursor: wait
+		opacity: 0.6
 
-
-
-
-
-
-
-
-
+@media screen and (max-width: 640px)
+	.title
+		font-size: 24px
+		margin-bottom: 20px

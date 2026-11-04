@@ -1,7 +1,7 @@
 .button
     position: fixed
-    bottom: 178px
-    right: 25px
+    bottom: calc(178px + env(safe-area-inset-bottom, 0px))
+    right: calc(25px + env(safe-area-inset-right, 0px))
     padding: 10px
     width: 50px !important
     height: 50px

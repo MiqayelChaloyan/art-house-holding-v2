@@ -136,7 +136,7 @@ export const COURSE_ID_QUERY =
 }`;
 
 export const SOCIAL_QUERY = `
-*[_type == "educational-center-contact-us"] {
+*[_type == "educational-center-contact-us" && _id == "contact-us-educational-center"] {
     name,
     phone_number,
     email,

@@ -10,7 +10,7 @@ import Snackbar from '@/src/components/components/snackbar';
 import InputField from '@/src/lib/ui/InputField';
 import InputNumber from '@/src/lib/ui/InputNumber';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { TRAINING_CENTERS } from '@/src/constants';
 
@@ -54,10 +54,10 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     const t = useTranslations();
     const tPage = useTranslations('contact-page');
     const copy = {
-        eyebrow: contacts?.eyebrow || '',
-        line1: contacts?.line_1 || '',
-        line2: contacts?.line_2 || '',
-        formTitle: contacts?.form_title || '',
+        eyebrow: contacts?.eyebrow || tPage('eyebrow'),
+        line1: contacts?.line_1 || tPage('line-1'),
+        line2: contacts?.line_2 || tPage('line-2'),
+        formTitle: contacts?.form_title || tPage('feedback'),
         hours: contacts?.hours || '',
     };
 
@@ -130,7 +130,7 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     };
 
     return (
-        <section id="contact" className={cn(styles.section, Inter.className)}>
+        <section id="contact" className={cn(styles.section, designFont.ui)}>
             <Snackbar open={open} handleChange={() => setOpen(false)} info={info} />
             <div className={styles.wrap}>
                 <div className={styles.grid}>
@@ -139,7 +139,7 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {copy.eyebrow}
                         </p>
-                        <h1 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <h1 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
                             <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h1>
@@ -179,7 +179,7 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
 
                     <div className={styles.panel}>
                         {copy.formTitle && (
-                        <h2 className={cn(styles.feedback, InstrumentSerif.className)}>{copy.formTitle}</h2>
+                        <h2 className={cn(styles.feedback, designFont.serif)}>{copy.formTitle}</h2>
                         )}
                         <form className={styles.form} onSubmit={handleSubmit}>
                             <InputField
@@ -247,9 +247,16 @@ const CourseSelect = ({
                 setIsOpen(false);
             }
         };
+        const onKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setIsOpen(false);
+        };
 
         document.addEventListener('mousedown', onPointer);
-        return () => document.removeEventListener('mousedown', onPointer);
+        document.addEventListener('keydown', onKey);
+        return () => {
+            document.removeEventListener('mousedown', onPointer);
+            document.removeEventListener('keydown', onKey);
+        };
     }, []);
 
     return (
@@ -261,23 +268,27 @@ const CourseSelect = ({
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen((current) => !current)}
             >
-                <span>{value || placeholder}</span>
+                <span className={styles.label}>{value || placeholder}</span>
                 <span className={styles.arrow} aria-hidden />
             </button>
             <ul className={styles.dropdown} role="listbox">
-                {lessons.map((lesson) => (
-                    <li key={String(lesson.slug)}>
-                        <button
-                            type="button"
+                {lessons.map((lesson) => {
+                    const selected = value === lesson.course_name;
+                    return (
+                        <li
+                            key={String(lesson.slug)}
+                            role="option"
+                            aria-selected={selected}
+                            className={cn(selected && styles.optionSelected)}
                             onClick={() => {
                                 onSelect(lesson);
                                 setIsOpen(false);
                             }}
                         >
                             {lesson.course_name}
-                        </button>
-                    </li>
-                ))}
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

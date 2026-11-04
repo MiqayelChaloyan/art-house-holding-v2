@@ -76,6 +76,9 @@
 	color: #d9d9d9
 	@media screen and (max-width: 480px)
 		font-size: 10px
+		line-height: 12px
+	@media screen and (max-width: 360px)
+		display: none
 
 .content
 	display: flex
@@ -102,8 +105,12 @@
 
 .contentShow
 	@media screen and (max-width: 991px)
-		height: calc(100vh - 72px)
+		height: calc(100dvh - 72px)
+		height: calc(100svh - 72px)
 		padding: 40px 20px 48px
+		overflow-y: auto
+		overscroll-behavior: contain
+		-webkit-overflow-scrolling: touch
 
 .nav
 	display: flex
@@ -208,6 +215,7 @@
 	line-height: 20px
 	letter-spacing: 0
 	white-space: nowrap
+	text-decoration: none
 	cursor: pointer
 	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1)
 	&::before
@@ -223,9 +231,9 @@
 		position: relative
 		z-index: 1
 	&:hover
-		transform: translateY(-2px)
+		transform: translateY(-3px)
 		background-color: #e43330
-		box-shadow: 0 12px 28px rgba(206, 36, 33, 0.4)
+		box-shadow: 0 14px 32px rgba(206, 36, 33, 0.48), 0 0 0 4px rgba(206, 36, 33, 0.16)
 		&::before
 			transform: translateX(140%)
 		.ctaIcon

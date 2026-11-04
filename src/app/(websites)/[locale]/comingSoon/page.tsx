@@ -37,7 +37,7 @@ export async function generateMetadata({
 }: {
     params: { locale: Locale };
 }): Promise<Metadata> {
-    const meta = await fetchSiteMetaEntry(SITE_META_QUERY, locale, 1);
+    const meta = await fetchSiteMetaEntry(SITE_META_QUERY, locale);
     const base = buildSiteMetadata(meta, locale, `/${locale}/comingSoon`);
     return {
         ...base,

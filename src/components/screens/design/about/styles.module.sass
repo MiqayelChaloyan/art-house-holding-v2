@@ -9,7 +9,7 @@
 	margin: 0 auto
 	@media screen and (max-width: 1200px)
 		width: calc(100% - 80px)
-	@media screen and (max-width: 640px)
+	@media screen and (max-width: 991px)
 		width: calc(100% - 40px)
 
 .hero
@@ -50,9 +50,12 @@
 	letter-spacing: -0.025em
 	color: #ffffff
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
 	> span
 		display: block
+	:global(html[lang="am"]) &,
+	:global(html[lang="ru"]) &
+		font-size: clamp(28px, 5.6vw, 56px)
 
 .emphasis
 	font-style: italic

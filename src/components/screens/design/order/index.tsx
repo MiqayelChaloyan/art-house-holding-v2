@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import WorksGallery from '@/src/components/components/worksGallery';
 
 import HoneyCombLoader from '@/src/lib/ui/rotatingLines';
-import { Arial } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 import { ImagePath } from '@/src/types/general';
@@ -68,8 +68,8 @@ const Home = ({ data }: Readonly<Props>) => {
         <div>
             <div className={styles.article} style={{ backgroundImage: `url(${path?.src})` }} >
                 <div className={styles.titles}>
-                    <h1 className={cn(styles.course_name, Arial.className)}>{data.course_name}</h1>
-                    <h2 className={cn(styles.author, Arial.className)}>{author}</h2>
+                    <h1 className={cn(styles.course_name, designFont.serif)}>{data.course_name}</h1>
+                    <h2 className={cn(styles.author, designFont.serif)}>{author}</h2>
                 </div>
             </div>
             {order[0]?.title_images_array.map((works: WORK) => (

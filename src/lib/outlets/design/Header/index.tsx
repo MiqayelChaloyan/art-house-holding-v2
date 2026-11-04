@@ -7,11 +7,8 @@ import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { LuArrowUpRight } from 'react-icons/lu';
 
-import { useDispatch } from 'react-redux';
-import { openModal } from '@/src/store/modal_reducer';
-
 import { Pages } from '@/src/constants/pages';
-import { Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 
 import LocalSwitcher from '@/src/components/components/local-switcher';
 import NextImage from '@/src/components/components/image';
@@ -43,7 +40,6 @@ const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
     const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
     const t = useTranslations();
     const pathname = usePathname();
-    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -57,12 +53,18 @@ const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
         };
     }, []);
 
-    const toggleMenuClick = () => setIsOpenMenu(!isOpenMenu);
+    useEffect(() => {
+        if (!isOpenMenu) return undefined;
 
-    const handleSubmit = () => {
-        setIsOpenMenu(false);
-        setTimeout(() => dispatch(openModal(true)), 500);
-    };
+        const previous = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = previous;
+        };
+    }, [isOpenMenu]);
+
+    const toggleMenuClick = () => setIsOpenMenu(!isOpenMenu);
+    const formPath = `/${locale}${Pages.DESIGN_START_LEARNING}`;
 
     const homePath = `/${locale}${Pages.DESIGN_HOME}`;
     const logo = brand?.logo ? urlForImage(brand.logo, 240) : undefined;
@@ -73,7 +75,7 @@ const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
     return (
         <header className={cn(
             styles.box,
-            Inter.className,
+            designFont.ui,
             typePosition === 'fixed' ? styles.boxFixed : '',
             isSticky ? styles.boxScrolled : '',
             isOpenMenu ? styles.boxOpenMenu : ''
@@ -135,14 +137,14 @@ const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
                                 color="#d9d9d9"
                             />
                         </div>
-                        <button
-                            type="button"
+                        <Link
+                            href={formPath}
                             className={styles.cta}
-                            onClick={handleSubmit}
+                            onClick={() => setIsOpenMenu(false)}
                         >
                             <span>{t('buttons.start-learning')}</span>
                             <LuArrowUpRight className={styles.ctaIcon} aria-hidden />
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 <button

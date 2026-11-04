@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 
-import { InstrumentSerif } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 
 import cn from 'classnames';
 
@@ -21,21 +21,24 @@ const Partners = ({ clients }: Readonly<Props>) => {
 
     if (!items.length) return null;
 
-    const row = (copy: number) => items.map((client, index) => (
-        <span key={`${copy}-${client._key || index}`} className={styles.item}>
-            {(client.name || '').trim()}
-            <span className={styles.dot}>.</span>
-        </span>
+    const copies = Math.max(8, Math.ceil(16 / items.length));
+    const row = (lane: string) => Array.from({ length: copies }, (_, copy) => (
+        items.map((client, index) => (
+            <span key={`${lane}-${copy}-${client._key || index}`} className={styles.item}>
+                {(client.name || '').trim()}
+                <span className={styles.dot}>.</span>
+            </span>
+        ))
     ));
 
     return (
         <section id="partners" className={styles.section} aria-label="Partners">
             <div className={styles.marquee}>
-                <div className={cn(styles.track, InstrumentSerif.className)}>
-                    {row(0)}
-                </div>
-                <div className={cn(styles.track, InstrumentSerif.className)} aria-hidden>
-                    {row(1)}
+                <div className={cn(styles.track, designFont.serif)}>
+                    {row('a')}
+                    <span className={styles.loop} aria-hidden>
+                        {row('b')}
+                    </span>
                 </div>
             </div>
         </section>

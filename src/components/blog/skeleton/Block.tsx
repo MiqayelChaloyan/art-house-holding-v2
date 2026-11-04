@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 import styles from './styles.module.sass';
 
-export type BlogSkeletonTone = 'light' | 'hero' | 'sidebar' | 'accent';
+export type BlogSkeletonTone = 'light' | 'hero' | 'sidebar' | 'accent' | 'design' | 'designMuted';
 
 interface Props {
     width?: string | number;
@@ -28,6 +28,8 @@ const Block = ({
             tone === 'hero' && styles.blockHero,
             tone === 'sidebar' && styles.blockSidebar,
             tone === 'accent' && styles.blockAccent,
+            tone === 'design' && styles.blockDesign,
+            tone === 'designMuted' && styles.blockDesignMuted,
             className,
         )}
         style={{ width, height }}

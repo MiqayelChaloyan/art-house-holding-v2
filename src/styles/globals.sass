@@ -223,7 +223,10 @@ iframe
 		background-color: #fff
 
 .design-container
+	width: 100%
+	max-width: 100%
 	margin-top: 102px
+	overflow-x: clip
 	@media screen and (max-width: 991px)
 		margin-top: 72px
 
@@ -240,6 +243,19 @@ iframe
 .languages-main:has([data-blog-page])
 	margin-top: 0
 	padding-top: 0
+
+.designFontUi
+	font-family: var(--font-montserrat), var(--font-arial), sans-serif
+
+.designFontSerif
+	font-family: var(--font-instrument-serif), var(--font-montserrat), var(--font-arial), serif
+	font-synthesis: style
+
+.designFontMedium
+	font-family: var(--font-montserrat), var(--font-arial), sans-serif
+
+.designFontMono
+	font-family: var(--font-jetbrains), var(--font-montserrat), var(--font-arial), monospace
 
 
 

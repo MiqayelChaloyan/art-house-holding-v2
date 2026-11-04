@@ -3,6 +3,7 @@
 	color: #ffffff
 	padding: 128px 0 96px
 	scroll-margin-top: 100px
+	overflow-x: clip
 
 .wrap
 	width: 100%
@@ -10,7 +11,7 @@
 	margin: 0 auto
 	@media screen and (max-width: 1200px)
 		width: calc(100% - 80px)
-	@media screen and (max-width: 640px)
+	@media screen and (max-width: 991px)
 		width: calc(100% - 40px)
 
 .header
@@ -37,14 +38,14 @@
 
 .headline
 	margin: 0
-	max-width: 420px
+	max-width: 100%
 	font-size: clamp(36px, 4.8vw, 72px)
 	font-weight: 400
 	line-height: 1
 	letter-spacing: -1.8px
 	color: #ffffff
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
 	> span
 		display: block
 
@@ -62,7 +63,8 @@
 	border-radius: 24px
 	background: #111111
 	@media screen and (max-width: 860px)
-		padding: 24px 20px 48px
+		min-height: 0
+		padding: 24px 20px 56px
 
 .slide
 	display: grid
@@ -73,14 +75,15 @@
 		grid-template-columns: 1fr
 
 .photo
-	width: 359px
-	height: 359px
+	width: min(359px, 100%)
+	height: auto
+	aspect-ratio: 1
 	overflow: hidden
 	border-radius: 0
 	background: #1a1a1a
 	@media screen and (max-width: 860px)
-		width: 160px
-		height: 160px
+		width: min(160px, 42vw)
+		height: auto
 
 .image
 	width: 100% !important
@@ -106,9 +109,10 @@
 	max-width: 720px
 	font-size: clamp(22px, 2.6vw, 39.3px)
 	font-weight: 400
-	line-height: 47.1px
+	line-height: 1.2
 	letter-spacing: -0.981px
 	color: #ffffff
+	overflow-wrap: normal
 	@media screen and (max-width: 640px)
 		font-size: 18px
 		line-height: 26px
@@ -155,11 +159,15 @@
 	bottom: 40px
 	z-index: 2
 	display: flex
+	flex-wrap: wrap
+	justify-content: flex-end
 	align-items: center
 	gap: 8px
+	max-width: 240px
 	@media screen and (max-width: 860px)
 		right: 20px
 		bottom: 18px
+		max-width: calc(100% - 40px)
 
 .dot
 	width: 8px
@@ -182,6 +190,9 @@
 @media screen and (max-width: 640px)
 	.section
 		padding: 56px 0 64px
+	.headline
+		max-width: 100%
 	.footer
 		flex-direction: column
 		align-items: flex-start
+		gap: 12px

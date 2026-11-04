@@ -5,11 +5,8 @@ import React from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
-import { useDispatch } from 'react-redux';
 
-import { openModal } from '@/src/store/modal_reducer';
-
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 
@@ -47,13 +44,12 @@ const stripEnd = (value: string) => value.replace(/[.\u0589]+$/u, '');
 const LegalPage = ({ data, page }: Readonly<Props>) => {
     const locale = useLocale();
     const t = useTranslations();
-    const dispatch = useDispatch();
     const sections = (data.sections || []).filter((item) => item?.heading && item?.body);
     const updated = formatDate(data.updated_at, locale);
     const line2 = stripEnd(data.line_2 || '');
 
     return (
-        <section className={cn(styles.section, Inter.className)}>
+        <section className={cn(styles.section, designFont.ui)}>
             <div className={styles.wrap}>
                 <div className={styles.hero}>
                     <div className={styles.copy}>
@@ -61,7 +57,7 @@ const LegalPage = ({ data, page }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {data.eyebrow}
                         </p>
-                        <h1 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <h1 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(data.line_1)}</span>
                             <span className={styles.emphasis}>
                                 {keepWords(line2)}
@@ -70,14 +66,10 @@ const LegalPage = ({ data, page }: Readonly<Props>) => {
                         </h1>
                         {data.lead && <p className={styles.lead}>{data.lead}</p>}
                         <div className={styles.actions}>
-                            <button
-                                type="button"
-                                className={styles.primary}
-                                onClick={() => dispatch(openModal(true))}
-                            >
+                            <Link href={`/${locale}${Pages.DESIGN_START_LEARNING}`} className={styles.primary}>
                                 <span>{t('buttons.start-learning')}</span>
                                 <LuArrowUpRight aria-hidden />
-                            </button>
+                            </Link>
                             <Link href={`/${locale}${Pages.DESIGN_HOME}`} className={styles.secondary}>
                                 <span>{t('legal-page.back')}</span>
                                 <LuArrowRight aria-hidden />
@@ -110,11 +102,11 @@ const LegalPage = ({ data, page }: Readonly<Props>) => {
                 <ol className={styles.grid}>
                     {sections.map((section, index) => (
                         <li key={section._key} className={styles.cell}>
-                            <span className={cn(styles.number, InstrumentSerif.className)}>
+                            <span className={cn(styles.number, designFont.serif)}>
                                 {String(index + 1).padStart(2, '0')}
                             </span>
                             <div className={styles.body}>
-                                <h2 className={cn(styles.heading, InstrumentSerif.className)}>{section.heading}</h2>
+                                <h2 className={cn(styles.heading, designFont.serif)}>{section.heading}</h2>
                                 {section.body.split(/\n{2,}/).map((paragraph, paragraphIndex) => (
                                     <p key={`${section._key}-${paragraphIndex}`}>{paragraph}</p>
                                 ))}

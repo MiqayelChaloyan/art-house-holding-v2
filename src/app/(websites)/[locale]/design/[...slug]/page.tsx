@@ -35,7 +35,7 @@ export default async function Page({
         notFound()
     }
 
-    return (<Course locale={locale} course={course} headings={home?.courses_section} />);
+    return (<Course locale={locale} course={course} home={home} />);
 };
 
 

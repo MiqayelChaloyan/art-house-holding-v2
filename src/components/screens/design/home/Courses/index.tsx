@@ -4,7 +4,7 @@ import React from 'react';
 
 import Course from './Course';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
@@ -27,7 +27,7 @@ const Courses = ({ courses, section, numbered, page }: Readonly<Props>) => {
     };
 
     return (
-        <section id="design-courses" className={cn(styles.section, page && styles.page, Inter.className)}>
+        <section id="design-courses" className={cn(styles.section, page && styles.page, designFont.ui)}>
             <div className={styles.wrap}>
                 <header className={styles.header}>
                     <p className={styles.eyebrow}>
@@ -35,12 +35,12 @@ const Courses = ({ courses, section, numbered, page }: Readonly<Props>) => {
                         {copy.eyebrow}
                     </p>
                     {page ? (
-                        <h1 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <h1 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
                             <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h1>
                     ) : (
-                        <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <h2 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
                             <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h2>

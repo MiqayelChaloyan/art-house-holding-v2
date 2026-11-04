@@ -12,7 +12,7 @@ export const getHomeDetails = cache(async (locale: string): Promise<HOME_DETALIS
         tags: ['art-house-home'],
     });
 
-    return result[1];
+    return result[0];
 });
 
 export const getContacts = cache(async (locale: string): Promise<SOCIAL_QUERYResult> => {

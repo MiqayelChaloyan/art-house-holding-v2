@@ -7,7 +7,7 @@ import { useLocale } from 'next-intl';
 
 import NextImage from '@/src/components/components/image';
 
-import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
@@ -35,7 +35,7 @@ const Projects = ({ section }: Readonly<Props>) => {
     if (!projects.length) return null;
 
     return (
-        <section id="selected-work" className={cn(styles.section, Inter.className)}>
+        <section id="selected-work" className={cn(styles.section, designFont.ui)}>
             <div className={styles.wrap}>
                 <header className={styles.header}>
                     <div>
@@ -43,7 +43,7 @@ const Projects = ({ section }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {copy.eyebrow}
                         </p>
-                        <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                        <h2 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
                             <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h2>
@@ -76,7 +76,7 @@ const Projects = ({ section }: Readonly<Props>) => {
                                     {project.category && <span className={styles.chip}>{project.category}</span>}
                                     <span className={styles.meta}>
                                         {project.year && <span className={styles.year}>{project.year}</span>}
-                                        <span className={cn(styles.title, Montserrat.className)}>{project.title}</span>
+                                        <span className={cn(styles.title, designFont.medium)}>{project.title}</span>
                                     </span>
                                 </Link>
                             </li>

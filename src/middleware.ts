@@ -79,6 +79,16 @@ export default function middleware(request: NextRequest) {
     return redirectTo(request, normalizedPath);
   }
 
+  const designOrdersForm = pathname.match(/^\/(am|en|ru)\/design\/orders\/?$/);
+  if (designOrdersForm) {
+    const nextSearch = new URLSearchParams();
+    const course = request.nextUrl.searchParams.get('course');
+    if (course) {
+      nextSearch.set('course', course);
+    }
+    return redirectTo(request, `/${designOrdersForm[1]}/design/start-learning`, nextSearch);
+  }
+
   const portfolioRedirect = resolvePortfolioLegacyRedirect(pathname, nameParam);
   if (portfolioRedirect) {
     return redirectTo(request, portfolioRedirect);

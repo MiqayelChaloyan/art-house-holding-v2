@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { InstrumentSerif, Inter, JetBrainsMono, Montserrat } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
@@ -24,14 +24,14 @@ const Why = ({ section }: Readonly<Props>) => {
     const items = (section?.items || []).slice(0, 30);
 
     return (
-        <section id="why-art-house" className={cn(styles.section, Inter.className)}>
+        <section id="why-art-house" className={cn(styles.section, designFont.ui)}>
             <div className={styles.wrap}>
                 <header className={styles.header}>
                     <p className={styles.eyebrow}>
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                    <h2 className={cn(styles.headline, designFont.serif)}>
                         <span>{keepWords(copy.line1)}</span>
                         <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                     </h2>
@@ -40,10 +40,10 @@ const Why = ({ section }: Readonly<Props>) => {
                     {items.map((item) => (
                         <li key={item._key} className={styles.cell}>
                             <div className={styles.numberRow}>
-                                <span className={cn(styles.number, JetBrainsMono.className)}>{item.number}</span>
+                                <span className={cn(styles.number, designFont.mono)}>{item.number}</span>
                                 <span className={styles.rule} aria-hidden />
                             </div>
-                            <h3 className={cn(styles.title, Montserrat.className)}>{keepWords(item.title)}</h3>
+                            <h3 className={cn(styles.title, designFont.medium)}>{keepWords(item.title)}</h3>
                             <p className={styles.description}>{item.description}</p>
                         </li>
                     ))}

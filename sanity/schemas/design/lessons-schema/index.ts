@@ -6,7 +6,7 @@ const lessonsSchemaDesign = {
     name: 'design-lessons-select-option',
     type: 'document',
     title: 'Request form options',
-    description: 'Lesson and order names shown in the Design Studio request form.',
+    description: 'Course names shown in the Design Studio request form.',
     icon: ComposeIcon,
     id: 'design-lessons-select-option',
     fields: [
@@ -67,63 +67,6 @@ const lessonsSchemaDesign = {
                 }
             ]
         },
-        {
-            name: 'order_name',
-            type: 'array',
-            title: 'Orders Names (Պատվերների անվանումները)',
-            of: [
-                {
-                    name: 'Object',
-                    type: 'object',
-                    icon: ComposeIcon,
-                    fields: [
-                        {
-                            title: 'Order (Պատվերի անվանումը)',
-                            name: 'order_name',
-                            type: 'object',
-                            validation: (Rule: any) => Rule.required(),
-                            fields: [
-                                {
-                                    title: 'Հայերեն',
-                                    name: 'am',
-                                    type: 'string'
-                                },
-                                {
-                                    title: 'English',
-                                    name: 'en',
-                                    type: 'string'
-                                },
-                                {
-                                    title: 'Русский',
-                                    name: 'ru',
-                                    type: 'string'
-                                }
-                            ]
-                        },
-                        {
-                            name: 'slug',
-                            type: 'slug',
-                            description: "Պիտի եզակի լինի",
-                            maxLength: 9,
-                            options: {
-                                source: slugFromParent('order_name.en'),
-                            },
-                            validation: (Rule: RuleType) => Rule.required(),
-                        },
-                    ],
-                    preview: {
-                        select: {
-                            title: 'order_name.en'
-                        },
-                        prepare(selection: { title?: string }) {
-                            return {
-                                title: selection.title,
-                            };
-                        },
-                    },
-                }
-            ]
-        },
     ],
     preview: {
         select: {
@@ -132,7 +75,7 @@ const lessonsSchemaDesign = {
         prepare() {
             return {
                 title: 'Request form options',
-                subtitle: 'Design Studio · Դասընթացներ և պատվերներ',
+                subtitle: 'Design Studio · Course names',
             };
         },
     }

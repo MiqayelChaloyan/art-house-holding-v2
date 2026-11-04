@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import NextImage from '@/src/components/components/image';
 
-import { InstrumentSerif, Inter } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -67,7 +67,7 @@ const Voices = ({ section }: Readonly<Props>) => {
     return (
         <section
             id="student-voices"
-            className={cn(styles.section, Inter.className)}
+            className={cn(styles.section, designFont.ui)}
             onMouseEnter={() => { paused.current = true; }}
             onMouseLeave={() => {
                 paused.current = false;
@@ -80,7 +80,7 @@ const Voices = ({ section }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, InstrumentSerif.className)}>
+                    <h2 className={cn(styles.headline, designFont.serif)}>
                         <span>{keepWords(copy.line1)}</span>
                         <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                     </h2>
@@ -115,7 +115,7 @@ const Voices = ({ section }: Readonly<Props>) => {
                                         <path d="M11.2 21.2H0.8V12.4C0.8 8.08 1.84 4.72 3.92 2.32C6 0.88 8.4 0.16 11.12 0.16V5.2C9.52 5.36 8.32 6 7.52 7.12C6.72 8.24 6.32 9.84 6.32 11.92H11.2V21.2ZM27.2 21.2H16.8V12.4C16.8 8.08 17.84 4.72 19.92 2.32C22 0.88 24.4 0.16 27.12 0.16V5.2C25.52 5.36 24.32 6 23.52 7.12C22.72 8.24 22.32 9.84 22.32 11.92H27.2V21.2Z" fill="#ce2421" />
                                     </svg>
                                 </span>
-                                <blockquote className={cn(styles.quote, InstrumentSerif.className)}>“{voice.quote}”</blockquote>
+                                <blockquote className={cn(styles.quote, designFont.serif)}>“{voice.quote}”</blockquote>
                                 <div className={styles.footer}>
                                     <div>
                                         <p className={styles.name}>{voice.name}</p>

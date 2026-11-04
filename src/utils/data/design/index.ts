@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { ABOUT_US_DETAILS_QUERY, COURSE_ID_QUERY, COURSE_SLUG_QUERY, COURSES_QUERY, LESSONS_QUERY, PORTFOLIO_QUERY, PRICE_LIST_QUERY, SOCIAL_QUERY, BLOG_POSTS_QUERY, BLOG_SLUG_QUERY, BLOG_SIMILAR_POSTS_QUERY, LEGAL_PAGE_QUERY, ABOUT_PAGE_QUERY } from '@/sanity/services/design-service';
+import { ABOUT_US_DETAILS_QUERY, COURSE_SLUG_QUERY, COURSES_QUERY, LESSONS_QUERY, SOCIAL_QUERY, BLOG_POSTS_QUERY, BLOG_SLUG_QUERY, BLOG_SIMILAR_POSTS_QUERY, LEGAL_PAGE_QUERY, ABOUT_PAGE_QUERY } from '@/sanity/services/design-service';
 
 import { sanityFetch } from '@/src/api/sanity-fetch';
 import { createBlogFetchers } from '@/src/utils/data/blog/fetchers';
@@ -53,21 +53,6 @@ export async function getCourseBySlug(locale: string, slug: string): Promise<COU
     }
 };
 
-export async function getCourseById(locale: string, slug: string): Promise<COURSES_DESIGN_QUERYResult> {
-    try {
-        "use server";
-        const result = await sanityFetch<COURSES_DESIGN_QUERYResult[]>({
-            query: COURSE_ID_QUERY,
-            params: { language: locale, slug },
-            tags: ['design-courses'],
-        });
-
-        return result[0];
-    } catch (error) {
-        throw error;
-    }
-};
-
 export const getSelectOptions = cache(async (locale: string): Promise<SELECT_OPTIONS_DESIGN_QUERYResult> => {
     const result = await sanityFetch<SELECT_OPTIONS_DESIGN_QUERYResult[]>({
         query: LESSONS_QUERY,
@@ -106,29 +91,4 @@ export const getContacts = cache(async (locale: string): Promise<CONTACT_US_DESI
     });
 
     return result[0];
-});
-
-export async function getPriceList(locale: string): Promise<PRICE_LIST_DESIGN_QUERYResult> {
-    try {
-        "use server";
-        const result = await sanityFetch<PRICE_LIST_DESIGN_QUERYResult[]>({
-            query: PRICE_LIST_QUERY,
-            params: { language: locale },
-            tags: ['design-home', 'design-courses'],
-        });
-
-        return result[0];
-    } catch (error) {
-        throw error;
-    }
-};
-
-export const getPortfolioPage = cache(async (locale: string): Promise<PORTFOLIO_PAGE_DESIGN_QUERYResult | null> => {
-    const result = await sanityFetch<PORTFOLIO_PAGE_DESIGN_QUERYResult | null>({
-        query: PORTFOLIO_QUERY,
-        params: { language: locale },
-        tags: ['design-portfolios'],
-    });
-
-    return result;
 });

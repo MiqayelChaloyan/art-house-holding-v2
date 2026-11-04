@@ -54,7 +54,7 @@
 	line-height: 30px
 	letter-spacing: -0.48px
 	overflow-wrap: normal
-	word-break: keep-all
+	word-break: normal
 	a
 		color: #ffffff
 		text-decoration: none
@@ -108,6 +108,8 @@
 	line-height: 16px
 	color: #d9d9d9
 	white-space: nowrap
+	@media screen and (max-width: 640px)
+		white-space: normal
 
 .duration
 	flex: 1

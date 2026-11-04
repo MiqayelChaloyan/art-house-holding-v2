@@ -11,6 +11,7 @@
         "take-the-test": "Անցնել թեստ",
         "departments": "Բաժիններ",
         "orders": "Պատվերներ",
+        "start-learning": "Սկսել ուսումը",
         "portfolios": "Պորտֆոլիո",
         "our-team": "Մեր թիմը",
         "contact": "Կապ"
@@ -33,7 +34,9 @@
         "eyebrow": "Պորտֆոլիո",
         "line-1": "Ընտրված",
         "line-2": "աշխատանք.",
-        "empty": "Այս ծրագրում դեռ աշխատանքներ չկան."
+        "empty": "Այս ծրագրում դեռ աշխատանքներ չկան.",
+        "all": "Բոլորը",
+        "view-more": "Տեսնել ավելին"
     },
     "contact-page": {
         "eyebrow": "Կապ",
@@ -43,6 +46,13 @@
         "choose-course": "Ընտրել դասընթացը",
         "surname": "Ազգանուն",
         "phone": "Հեռախոսահամար"
+    },
+    "form-page": {
+        "eyebrow": "Սկսել ուսումը",
+        "line-1": "Սկսել",
+        "line-2": "ուսումը.",
+        "lead": "Լրացրեք հայտը, և մենք կկապվենք ձեզ հետ դասընթացի վերաբերյալ.",
+        "title": "Հայտ"
     },
     "legal-page": {
         "index": "Իրավական",
@@ -114,7 +124,6 @@
         "contact-us": "Կապ մեզ հետ",
         "promotions": "Ակցիաներ",
         "portfolios": "Պորտֆոլիոներ",
-        "orders": "Պատվերներ",
         "similar-posts": "Նման գրառումներ",
         "more-stories": "Ավելի շատ պատմություններ",
         "more-stories-description": "Ձեզ սպասում է ևս {count} հոդված",
@@ -129,29 +138,6 @@
         "skills": "Հմտություններ",
         "prev": "Նախորդ աշխատակից",
         "next": "Հաջորդ աշխատակից"
-    },
-    "courses-page": {
-        "eyebrow": "Դասընթացներ · Վեց ծրագիր",
-        "line-1": "Ծրագրեր",
-        "line-2": "լուրջ դիզայներների համար."
-    },
-    "course-page": {
-        "eyebrow": "դասընթաց",
-        "explore": "Դասընթացներ",
-        "portfolio": "Պորտֆոլիո",
-        "about-eyebrow": "դասընթացի մասին",
-        "about-title": "Ծրագրեր",
-        "about-emphasis": "լուրջ դիզայներների համար.",
-        "curriculum-eyebrow": "Ծրագիր",
-        "curriculum-title": "Ինչ եք",
-        "curriculum-emphasis": "սովորում.",
-        "portfolio-eyebrow": "Ընտրված աշխատանք",
-        "portfolio-title": "Ստուդիայից",
-        "portfolio-emphasis": "աշխատանքներ."
-    },
-    "studio": {
-        "explore": "Դասընթացներ",
-        "portfolio": "Դիտել պորտֆոլիոն"
     },
     "contact": {
         "tell": "Հեռ.",

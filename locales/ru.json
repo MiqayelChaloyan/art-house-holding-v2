@@ -11,6 +11,7 @@
         "take-the-test": "Пройди тест",
         "departments": "Разделы",
         "orders": "Заказы",
+        "start-learning": "Начать обучение",
         "portfolios": "Портфолио",
         "our-team": "Наша команда",
         "contact": "Контакт"
@@ -33,7 +34,9 @@
         "eyebrow": "Портфолио",
         "line-1": "Избранные",
         "line-2": "работы.",
-        "empty": "В этой программе пока нет работ."
+        "empty": "В этой программе пока нет работ.",
+        "all": "Все",
+        "view-more": "Смотреть ещё"
     },
     "contact-page": {
         "eyebrow": "Контакт",
@@ -43,6 +46,13 @@
         "choose-course": "Выберите курс",
         "surname": "Фамилия",
         "phone": "Номер телефона"
+    },
+    "form-page": {
+        "eyebrow": "Начать обучение",
+        "line-1": "Начать",
+        "line-2": "обучение.",
+        "lead": "Заполните форму, и мы свяжемся с вами по курсу.",
+        "title": "Заявка"
     },
     "legal-page": {
         "index": "Правовое",
@@ -114,7 +124,6 @@
         "contact-us": "Связаться с нами",
         "promotions": "Акции",
         "portfolios": "Портфолио",
-        "orders": "Заказы",
         "similar-posts": "Похожие статьи",
         "more-stories": "Больше историй",
         "more-stories-description": "Ещё {count} статей ждут вас",
@@ -129,29 +138,6 @@
         "skills": "Навыки",
         "prev": "Предыдущий сотрудник",
         "next": "Следующий сотрудник"
-    },
-    "courses-page": {
-        "eyebrow": "Курсы · Шесть программ",
-        "line-1": "Программы для",
-        "line-2": "серьёзных дизайнеров."
-    },
-    "course-page": {
-        "eyebrow": "курс",
-        "explore": "Все курсы",
-        "portfolio": "Портфолио",
-        "about-eyebrow": "о курсе",
-        "about-title": "Программы для",
-        "about-emphasis": "серьёзных дизайнеров.",
-        "curriculum-eyebrow": "Программа",
-        "curriculum-title": "Чему вы",
-        "curriculum-emphasis": "научитесь.",
-        "portfolio-eyebrow": "Избранные работы",
-        "portfolio-title": "Из",
-        "portfolio-emphasis": "студии."
-    },
-    "studio": {
-        "explore": "Смотреть курсы",
-        "portfolio": "Портфолио"
     },
     "contact": {
         "tell": "Телл.",

@@ -9,7 +9,7 @@ import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 
 import NextImage from '@/src/components/components/image';
 
-import { InstrumentSerif, Inter, Montserrat } from '@/src/constants/font';
+import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 import { Pages } from '@/src/constants/pages';
 
@@ -78,7 +78,7 @@ const Studio = ({ section }: Readonly<Props>) => {
     return (
         <section
             id="studio"
-            className={cn(styles.section, Inter.className)}
+            className={cn(styles.section, designFont.ui)}
             onMouseEnter={() => { paused.current = true; }}
             onMouseLeave={() => {
                 paused.current = false;
@@ -95,7 +95,7 @@ const Studio = ({ section }: Readonly<Props>) => {
                         styles.headline,
                         locale === 'am' && styles.headlineAm,
                         locale === 'ru' && styles.headlineRu,
-                        InstrumentSerif.className,
+                        designFont.serif,
                     )}>
                         <span>{keepWords(copy.line1)}</span>
                         <span>{keepWords(copy.line2)}</span>
@@ -191,7 +191,7 @@ const Studio = ({ section }: Readonly<Props>) => {
                                     },
                                 }}
                             >
-                                <StatValue value={item.value} className={cn(styles.value, Montserrat.className)} />
+                                <StatValue value={item.value} className={cn(styles.value, designFont.medium)} />
                                 <span className={styles.label}>{item.label}</span>
                             </motion.li>
                         ))}
