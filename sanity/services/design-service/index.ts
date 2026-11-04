@@ -12,14 +12,6 @@ const courseCardFields = `
 `;
 
 const coursePageFields = `
-    "about_section": about_section {
-        "text": text[$language],
-        "points": points[] {
-            _key,
-            "title": title[$language],
-            "text": text[$language],
-        },
-    },
     "topics_section": topics_section {
         "eyebrow": eyebrow[$language],
         "modules_label": modules_label[$language],
@@ -43,44 +35,33 @@ const coursePageFields = `
         "experience_label": experience_label[$language],
         "programs_label": programs_label[$language],
         "skills_label": skills_label[$language],
-        "items": items[] {
+        "items": items[defined(workerKey)]{
             _key,
-            worker_image,
-            behance_url,
-            "worker": worker[$language],
-            "profession": profession[$language],
-            "experience": experience[$language],
-            "bio": bio[$language],
-            "programs": programs[] { "label": label[$language] }.label,
-            "skills": skills[] { "label": label[$language] }.label,
+            "workerKey": workerKey,
+            ...(*[_type == "about-us-design"][0].workers[_key == ^.workerKey][0]{
+                worker_image,
+                behance_url,
+                "worker": worker[$language],
+                "profession": profession[$language],
+                "experience": experience[$language],
+                "bio": bio[$language],
+                "programs": programs[] { "label": label[$language] }.label,
+                "skills": skills[] { "label": label[$language] }.label,
+            }),
         },
     },
-    "price_section": coalesce(
-        price_section {
-            "eyebrow": eyebrow[$language],
-            "line_1": line_1[$language],
-            "line_2": line_2[$language],
-            "items": items[] {
-                _key,
-                "title": title[$language],
-                "subtitle": subtitle[$language],
-                "duration": duration[$language],
-                "amount": amount[$language],
-            },
+    "price_section": price_section {
+        "eyebrow": eyebrow[$language],
+        "line_1": line_1[$language],
+        "line_2": line_2[$language],
+        "items": items[] {
+            _key,
+            "title": title[$language],
+            "subtitle": subtitle[$language],
+            "duration": duration[$language],
+            "amount": amount[$language],
         },
-        *[_type == "course-price-design" && course._ref == ^._id][0] {
-            "eyebrow": eyebrow[$language],
-            "line_1": line_1[$language],
-            "line_2": line_2[$language],
-            "items": items[] {
-                _key,
-                "title": title[$language],
-                "subtitle": subtitle[$language],
-                "duration": duration[$language],
-                "amount": amount[$language],
-            },
-        }
-    ),
+    },
     "why_section": why_section {
         "eyebrow": eyebrow[$language],
         "line_1": line_1[$language],

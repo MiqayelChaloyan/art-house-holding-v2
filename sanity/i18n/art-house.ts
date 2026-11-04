@@ -16,7 +16,6 @@ export const artHouseEnglish = {
     'nav.courses': 'Courses',
     'nav.form-options': 'Request form options',
     'nav.price-list': 'Price list',
-    'nav.course-prices': 'Course prices',
     'nav.legal': 'Legal pages',
     'nav.privacy': 'Privacy',
     'nav.terms': 'Terms',

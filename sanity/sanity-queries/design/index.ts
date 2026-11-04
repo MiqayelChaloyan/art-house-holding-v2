@@ -66,17 +66,6 @@ interface COURSE_PRICE_ITEM {
     amount?: string;
 };
 
-interface COURSE_ABOUT_POINT {
-    _key: string;
-    title?: string;
-    text?: string;
-};
-
-interface COURSE_ABOUT_SECTION {
-    text?: string;
-    points?: COURSE_ABOUT_POINT[];
-};
-
 interface COURSE_TOPIC {
     _key: string;
     title?: string;
@@ -162,7 +151,6 @@ interface COURSES_DESIGN_QUERYResult {
     gallery_of_course: GALLERY[];
     portfolios: PORTFOLIO[];
     orders: ORDER[];
-    about_section?: COURSE_ABOUT_SECTION;
     topics_section?: COURSE_TOPICS_SECTION;
     topics?: COURSE_TOPIC[];
     condition_items?: COURSE_TOPIC[];

@@ -1,6 +1,7 @@
-import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon, UserIcon } from '@sanity/icons';
+import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
 import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
+import HomeTrainerInput from '@/sanity/components/HomeTrainerInput';
 
 const loc = (title: string, name: string, type: 'string' | 'text' = 'string', description?: string) => ({
     title,
@@ -24,7 +25,7 @@ export const coursesSchemaDesign = {
     icon: SparklesIcon,
     groups: [
         { name: 'card', title: '1. Course card' },
-        { name: 'about', title: '2. About the course' },
+        { name: 'guides', title: '2. Guides' },
         { name: 'topics', title: '3. Course topics' },
         { name: 'trainers', title: '4. Trainers' },
         { name: 'price', title: '5. Price list' },
@@ -158,32 +159,6 @@ export const coursesSchemaDesign = {
             },
         },
         {
-            name: 'about_section',
-            title: 'About the course',
-            type: 'object',
-            group: 'about',
-            description: 'The block next to the second gallery picture. The title is the course name.',
-            fields: [
-                loc('Text', 'text', 'text', 'The paragraph under the title.'),
-                {
-                    name: 'points',
-                    title: 'Points',
-                    type: 'array',
-                    description: 'Up to 4, for example What you’ll learn, Who it’s for, Skills you’ll gain, Career opportunities. If empty, the first four Guides are shown.',
-                    validation: (Rule: RuleType) => Rule.max(4),
-                    of: [{
-                        name: 'point',
-                        type: 'object',
-                        fields: [
-                            loc('Title', 'title'),
-                            loc('Text', 'text', 'text'),
-                        ],
-                        preview: { select: { title: 'title.en', subtitle: 'text.en' } },
-                    }],
-                },
-            ],
-        },
-        {
             name: 'topics_section',
             title: 'Course topics heading',
             type: 'object',
@@ -253,8 +228,8 @@ export const coursesSchemaDesign = {
             name: 'guides',
             type: 'array',
             title: 'Guides',
-            group: 'about',
-            description: 'Optional. The first four are shown in About the course when its points are empty.',
+            group: 'guides',
+            description: 'Shown next to the gallery on the course page. The first four items are listed under the course title.',
             of: [
                 {
                     name: 'Object',
@@ -288,63 +263,45 @@ export const coursesSchemaDesign = {
             title: 'Trainers',
             type: 'object',
             group: 'trainers',
-            description: 'The trainers block on this course page. If empty, the Design home staff is shown.',
+            description: 'Trainers for this course. Click Add and select people from Home page → Staff. Do not create trainers here — edit their profile on the Home page.',
             fields: [
                 loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title, for example Trainers.'),
                 loc('Headline italic', 'emphasis', 'string', 'Italic line under the course name, for example trainers.'),
-                loc('Experience label', 'experience_label'),
-                loc('Programs label', 'programs_label'),
-                loc('Skills label', 'skills_label'),
+                loc('Experience label', 'experience_label', 'string', 'Small word under the years, for example Experience.'),
+                loc('Programs label', 'programs_label', 'string', 'Heading above the program tags.'),
+                loc('Skills label', 'skills_label', 'string', 'Heading above the skill tags.'),
                 {
                     name: 'items',
                     title: 'Trainers',
                     type: 'array',
+                    description: 'Add item → choose a Home page trainer. Portrait, bio, and tags come from Home → Staff.',
                     of: [{
-                        name: 'trainer',
+                        name: 'trainerRef',
                         type: 'object',
-                        icon: UserIcon,
+                        components: { input: HomeTrainerInput },
                         fields: [
-                            loc('Full name', 'worker'),
-                            loc('Role', 'profession'),
                             {
-                                name: 'worker_image',
-                                title: 'Portrait',
-                                type: 'image',
-                                options: { hotspot: true },
-                                fields: [{ name: 'alt', title: 'Alternative text', type: 'string' }],
-                            },
-                            loc('Experience', 'experience', 'string', 'Short line on the card, for example 5+ YEAR.'),
-                            loc('Bio', 'bio', 'text', 'The paragraph on the profile card.'),
-                            {
-                                name: 'programs',
-                                title: 'Programs',
-                                type: 'array',
-                                of: [{
-                                    name: 'program',
-                                    type: 'object',
-                                    fields: [loc('Label', 'label')],
-                                    preview: { select: { title: 'label.en' } },
-                                }],
+                                name: 'workerKey',
+                                title: 'Home page trainer',
+                                type: 'string',
+                                description: 'Pick from Home page → Staff.',
+                                validation: (Rule: RuleType) => Rule.required(),
+                                hidden: true,
                             },
                             {
-                                name: 'skills',
-                                title: 'Skills',
-                                type: 'array',
-                                of: [{
-                                    name: 'skill',
-                                    type: 'object',
-                                    fields: [loc('Label', 'label')],
-                                    preview: { select: { title: 'label.en' } },
-                                }],
-                            },
-                            {
-                                name: 'behance_url',
-                                title: 'Behance link',
-                                type: 'url',
+                                name: 'label',
+                                title: 'Label',
+                                type: 'string',
+                                hidden: true,
+                                readOnly: true,
                             },
                         ],
                         preview: {
-                            select: { title: 'worker.en', subtitle: 'profession.en', media: 'worker_image' },
+                            select: { title: 'label', subtitle: 'workerKey' },
+                            prepare: ({ title, subtitle }: { title?: string; subtitle?: string }) => ({
+                                title: title || 'Select trainer',
+                                subtitle: title ? 'From Home → Staff' : subtitle,
+                            }),
                         },
                     }],
                 },
@@ -355,7 +312,7 @@ export const coursesSchemaDesign = {
             title: 'Price list',
             type: 'object',
             group: 'price',
-            description: 'The price rows on this course page. Each course has its own list.',
+            description: 'The price rows on this course page. Edit prices here — there is no separate Course prices list.',
             fields: [
                 ...headingFields,
                 {

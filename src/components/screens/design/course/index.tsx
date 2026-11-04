@@ -46,7 +46,6 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
         guides = [],
         name,
         intro: courseIntro,
-        about_section: about,
         topics_section: topicsHeading,
         topics: courseTopics,
         condition_items: conditionItems,
@@ -79,10 +78,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
         trainersEmphasis: trainersSection?.emphasis || headings?.trainers_emphasis || '',
     };
 
-    const aboutPoints = (about?.points || []).filter((point) => point.title || point.text);
-    const points = aboutPoints.length
-        ? aboutPoints
-        : guides.slice(0, 4).map((guide, index) => ({ _key: `guide-${index}`, title: guide, text: '' }));
+    const points = guides.slice(0, 4).map((guide, index) => ({ _key: `guide-${index}`, title: guide, text: '' }));
     const topics = (courseTopics || []).filter((topic) => topic.title);
     const fallbackTopics = (conditionItems || []).filter((item) => item.title);
     const topicItems = topics.length
@@ -170,18 +166,16 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                 )}
             </section>
 
-            {(aboutSlides.length > 0 || about?.text || points.length > 0) && (
+            {(aboutSlides.length > 0 || points.length > 0) && (
                 <section className={styles.about}>
                     {aboutSlides.length > 0 && <AboutSlider slides={aboutSlides} title={title} />}
                     <div className={styles.aboutCopy}>
                         <BlockHeading eyebrow={copy.aboutEyebrow} title={title} emphasis={copy.emphasis.replace(/\.$/, '')} />
-                        {about?.text && <p className={cn(styles.aboutText, designFont.medium)}>{about.text}</p>}
                         {points.length > 0 && (
                             <ul className={styles.points}>
                                 {points.map((point) => (
                                     <li key={point._key} className={styles.point}>
                                         {point.title && <h3 className={cn(styles.pointTitle, designFont.medium)}>{point.title}</h3>}
-                                        {point.text && <p className={styles.pointText}>{point.text}</p>}
                                     </li>
                                 ))}
                             </ul>

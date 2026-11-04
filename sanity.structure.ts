@@ -240,12 +240,6 @@ const structure = (S: Desk) => {
                                 type: 'courses-design',
                                 icon: BookIcon,
                             }),
-                            collection(S, {
-                                id: 'design-course-prices',
-                                title: t('nav.course-prices'),
-                                type: 'course-price-design',
-                                icon: BillIcon,
-                            }),
                         ],
                     }),
                     folder(S, {

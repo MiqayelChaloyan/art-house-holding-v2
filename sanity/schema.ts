@@ -21,7 +21,6 @@ import contactUsSchemaLanguage from './schemas/language/contact-us-schema';
 import aboutUsSchemaDesign from './schemas/design/about-us-schema';
 import contactUsSchemaDesign from './schemas/design/contact-us-schema';
 import coursesSchemaDesign from './schemas/design/courses-schema';
-import coursePriceSchemaDesign from './schemas/design/course-price-schema';
 import lessonsSchemaDesign from './schemas/design/lessons-schema';
 import legalPageSchemaDesign from './schemas/design/legal-schema';
 import aboutPageSchemaDesign from './schemas/design/about-page-schema';
@@ -50,7 +49,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   aboutUsSchemaDesign,
   contactUsSchemaDesign,
   coursesSchemaDesign,
-  coursePriceSchemaDesign,
   lessonsSchemaDesign,
   partnersSchema,
   legalPageSchemaDesign,
