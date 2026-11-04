@@ -1,5 +1,8 @@
 import { BillIcon } from '@sanity/icons';
+import type { Rule } from 'sanity';
+
 import { RuleType } from '@/sanity/ruleType';
+import { apiVersion } from '@/sanity/env';
 
 const loc = (title: string, name: string, type: 'string' | 'text' = 'string', description?: string) => ({
     title,
@@ -20,7 +23,18 @@ const coursePriceSchemaDesign = {
             title: 'Course',
             type: 'reference',
             to: [{ type: 'courses-design' }],
-            validation: (Rule: RuleType) => Rule.required(),
+            validation: (Rule: Rule) => Rule.required().custom(async (value, context) => {
+                const courseId = (value as { _ref?: string } | undefined)?._ref;
+                const documentId = context.document?._id?.replace(/^drafts\./, '');
+                if (!courseId || !documentId) return true;
+
+                const duplicates = await context.getClient({ apiVersion }).fetch<number>(
+                    'count(*[_type == "course-price-design" && course._ref == $courseId && !(_id in [$id, "drafts." + $id])])',
+                    { courseId, id: documentId },
+                );
+
+                return duplicates === 0 || 'This course already has a price list. Edit that one instead.';
+            }),
             options: { disableNew: true },
         },
         loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title, for example Price list.'),

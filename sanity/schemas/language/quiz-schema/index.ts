@@ -1,6 +1,7 @@
 import { ClipboardIcon } from '@sanity/icons';
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
+import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 import { ImagePath } from '@/src/types/general';
 
 const quizSchemaLanguage = {
@@ -63,7 +64,7 @@ const quizSchemaLanguage = {
                             description: "Must be unique",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('question'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },

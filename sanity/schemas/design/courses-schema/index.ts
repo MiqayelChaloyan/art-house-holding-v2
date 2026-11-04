@@ -1,5 +1,6 @@
 import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
+import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 
 const loc = (title: string, name: string, type: 'string' | 'text' = 'string', description?: string) => ({
     title,
@@ -156,8 +157,7 @@ export const coursesSchemaDesign = {
             name: 'conditions',
             type: 'array',
             title: 'Conditions',
-            description: 'You can add any number of conditions.',
-            validation: (Rule: RuleType) => Rule.required(),
+            description: 'Optional. The first four show as facts on the course page.',
             of: [
                 {
                     name: 'Object',
@@ -190,8 +190,7 @@ export const coursesSchemaDesign = {
             name: 'guides',
             type: 'array',
             title: 'Guides',
-            description: 'You can add any number of guidelines.',
-            validation: (Rule: RuleType) => Rule.required(),
+            description: 'Optional. Hidden on the course page when empty.',
             of: [
                 {
                     name: 'Object',
@@ -410,7 +409,7 @@ export const coursesSchemaDesign = {
                             type: 'slug',
                             description: 'slug-ը պիտի եզակի լինի',
                             options: {
-                                source: 'name',
+                                source: slugFromParent('author.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },
@@ -576,7 +575,7 @@ export const coursesSchemaDesign = {
                             type: 'slug',
                             description: 'slug-ը պիտի եզակի լինի',
                             options: {
-                                source: 'name',
+                                source: slugFromParent('author.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },

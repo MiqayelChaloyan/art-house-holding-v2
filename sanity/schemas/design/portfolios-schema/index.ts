@@ -1,9 +1,10 @@
 import { SparklesIcon } from '@sanity/icons';
 
-const localizedString = (title: string, name: string, type: 'string' | 'text' = 'string') => ({
+const localizedString = (title: string, name: string, type: 'string' | 'text' = 'string', description?: string) => ({
     title,
     name,
     type: type === 'text' ? 'localeText' : 'localeString',
+    ...(description ? { description } : {}),
 });
 
 export const portfolioSchemaDesign = {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Component, ReactNode, useCallback, useState } from 'react';
+import { Component, ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 import type { StudioThemeColorSchemeKey } from 'sanity';
 
@@ -11,6 +11,7 @@ import { ArianAMU, Inter } from '@/src/constants/font';
 import './studio.css';
 
 const SCHEME_KEY = 'sanityStudio:ui:colorScheme';
+const DEFAULT_SCHEME: StudioThemeColorSchemeKey = 'dark';
 
 const LoadingScreen = () => (
   <div
@@ -30,6 +31,9 @@ const LoadingScreen = () => (
 const Studio = dynamic(
   async () => {
     await import('@/sanity/components/slateGuard');
+    if (!window.localStorage.getItem(SCHEME_KEY)) {
+      window.localStorage.setItem(SCHEME_KEY, DEFAULT_SCHEME);
+    }
     const { Studio } = await import('sanity');
     return Studio;
   },
@@ -59,13 +63,6 @@ class SlateErrorBoundary extends Component<{ children: ReactNode }, { failed: bo
 }
 
 export default function StudioPage() {
-  const [scheme, setScheme] = useState<StudioThemeColorSchemeKey>('dark');
-
-  const onSchemeChange = useCallback((next: StudioThemeColorSchemeKey) => {
-    window.localStorage.setItem(SCHEME_KEY, next);
-    setScheme(next);
-  }, []);
-
   return (
     <div
       className={`${Inter.variable} ${ArianAMU.variable}`}
@@ -78,12 +75,7 @@ export default function StudioPage() {
       }}
     >
       <SlateErrorBoundary>
-        <Studio
-          config={config}
-          scheme={scheme}
-          onSchemeChange={onSchemeChange}
-          unstable_globalStyles
-        />
+        <Studio config={config} unstable_globalStyles />
       </SlateErrorBoundary>
     </div>
   );

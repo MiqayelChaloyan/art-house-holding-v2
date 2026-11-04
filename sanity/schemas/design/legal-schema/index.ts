@@ -1,7 +1,5 @@
 import { DocumentTextIcon } from '@sanity/icons';
 
-import { RuleType } from '@/sanity/ruleType';
-
 const localizedString = (title: string, name: string, type: 'string' | 'text' = 'string') => ({
     title,
     name,
@@ -27,7 +25,8 @@ const legalPageSchemaDesign = {
                 ],
                 layout: 'radio',
             },
-            validation: (Rule: RuleType) => Rule.required(),
+            description: 'Fixed per menu item. The website finds this page by its document ID, not by this field.',
+            readOnly: true,
         },
         localizedString('Eyebrow', 'eyebrow'),
         localizedString('Headline line 1', 'line_1'),

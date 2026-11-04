@@ -94,7 +94,7 @@ export const coursesSchemaEducationalCenter = {
             type: 'slug',
             description: 'Slug must be the name of the course in lowercase and must be unique. Write only between words with `-` or `_` symbols. Do not use these symbols `/`.',
             options: {
-                source: 'name',
+                source: 'course_name.en',
             },
             validation: (Rule: RuleType) => Rule.required(),
         },

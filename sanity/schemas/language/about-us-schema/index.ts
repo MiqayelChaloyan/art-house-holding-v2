@@ -2,6 +2,7 @@ import { HomeIcon } from '@sanity/icons';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
+import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 const aboutUsSchemaLanguage = {
     name: 'about-us-language',
     type: 'document',
@@ -230,7 +231,7 @@ const aboutUsSchemaLanguage = {
                                 name: 'slug',
                                 type: 'slug',
                                 options: {
-                                    source: 'name',
+                                    source: slugFromParent('alt'),
                                 },
                                 validation: (Rule: any) => Rule.required(),
                             },

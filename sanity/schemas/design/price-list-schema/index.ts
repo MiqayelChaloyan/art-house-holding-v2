@@ -1,4 +1,4 @@
-import { EarthGlobeIcon, CheckmarkIcon } from '@sanity/icons';
+import { BillIcon, CheckmarkIcon } from '@sanity/icons';
 import { BookIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
 
@@ -7,11 +7,7 @@ const priceListSchemaDesign = {
     type: 'document',
     title: 'Price list',
     description: 'Design Studio price list.',
-    icon: EarthGlobeIcon,
-    id: 'price-list-design',
-    initialValue: () => ({
-        publishedAt: new Date().toISOString()
-    }),
+    icon: BillIcon,
     fields: [
         {
             title: 'Informatie',

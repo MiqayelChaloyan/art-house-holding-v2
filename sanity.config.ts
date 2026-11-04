@@ -1,4 +1,5 @@
-import { defineConfig, buildLegacyTheme } from 'sanity';
+import { defineConfig } from 'sanity';
+import { buildTheme } from '@sanity/ui/theme';
 import { deskTool } from 'sanity/desk';
 import { schemaTypes } from './sanity/schema';
 import { visionTool } from '@sanity/vision';
@@ -38,14 +39,16 @@ const config = defineConfig(
     apiVersion,
     basePath,
     icon: BsDatabaseFillGear,
-    theme: buildLegacyTheme({
-      '--brand-primary': '#CE2421',
-      '--default-button-primary-color': '#CE2421',
-      '--state-info-color': '#CE2421',
-      '--state-danger-color': '#CE2421',
-      '--focus-color': '#CE2421',
-      '--font-family-base': 'var(--font-inter), var(--font-arian-amu), system-ui, sans-serif',
-      '--font-family-monospace': 'var(--font-inter), var(--font-arian-amu), ui-monospace, monospace',
+    theme: buildTheme({
+      color: {
+        base: { primary: { _hue: 'red' } },
+        button: {
+          default: { primary: { '*': { _hue: 'red' } } },
+          ghost: { primary: { '*': { _hue: 'red' } } },
+          bleed: { primary: { '*': { _hue: 'red' } } },
+        },
+        selectable: { primary: { _hue: 'red' } },
+      },
     }),
     schema: {
       types: schemaTypes,

@@ -1,5 +1,6 @@
 import { RocketIcon, ComposeIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
+import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 
 const lessonsSchemaDesign = {
     name: 'design-lessons-select-option',
@@ -48,7 +49,7 @@ const lessonsSchemaDesign = {
                             description: "Պիտի եզակի լինի",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('course_name.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },
@@ -105,7 +106,7 @@ const lessonsSchemaDesign = {
                             description: "Պիտի եզակի լինի",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('order_name.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },

@@ -392,7 +392,7 @@ export const ABOUT_PAGE_QUERY = `
 }`;
 
 export const LEGAL_PAGE_QUERY = `
-*[_type == "legal-page-design" && page == $page][0] {
+*[_type == "legal-page-design" && _id == "legal-" + $page + "-design"][0] {
     _id,
     page,
     "eyebrow": eyebrow[$language],

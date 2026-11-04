@@ -1,5 +1,6 @@
 import { EarthGlobeIcon, CalendarIcon, ClockIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
+import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 
 const coursesSchemaLanguage = {
     name: 'languages-select-option',
@@ -48,7 +49,7 @@ const coursesSchemaLanguage = {
                             description: "Must be unique",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('course_name.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },
@@ -105,7 +106,7 @@ const coursesSchemaLanguage = {
                             description: "Number of classes in weekly numbers (Դասերի քանակը շաբաթական' թվերով)",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('week_number_of_lessons.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },
@@ -162,7 +163,7 @@ const coursesSchemaLanguage = {
                             description: "96֊խմբային, 98֊անհատական, 146-ընտանեկան փաթեթ, 150-անհատական լեզվակիր մասնագետ",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('course_type.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },

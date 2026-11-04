@@ -1,5 +1,6 @@
 import { ComposeIcon, RocketIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
+import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
 
 const lessonsSchemaEducationCenter = {
     name: 'educational-lessons-select-option',
@@ -48,7 +49,7 @@ const lessonsSchemaEducationCenter = {
                             description: "Must be unique.",
                             maxLength: 9,
                             options: {
-                                source: 'name',
+                                source: slugFromParent('course_name.en'),
                             },
                             validation: (Rule: RuleType) => Rule.required(),
                         },

@@ -247,6 +247,13 @@ const structure = (S: Desk) => {
                                 documentId: 'portfolio-design',
                                 icon: ImagesIcon,
                             }),
+                            singleton(S, {
+                                id: 'design-price-list',
+                                title: t('nav.price-list'),
+                                type: 'price-list-design',
+                                documentId: 'price-list-design',
+                                icon: BillIcon,
+                            }),
                             collection(S, {
                                 id: 'design-course-prices',
                                 title: t('nav.course-prices'),
