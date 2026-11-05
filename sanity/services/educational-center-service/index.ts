@@ -42,6 +42,7 @@ export const HOME_DETALIS_QUERY =
         specialists_section_images,
         "title": title[$language],
         "course_name": course_name[$language],
+        "courseSlug": *[_type == "courses" && _id == ^.categories._ref][0].slug.current,
     },
     "our_rating_section": our_rating_section[] {
         _key,
@@ -52,6 +53,13 @@ export const HOME_DETALIS_QUERY =
         "user_name": user_name[$language],
     },
     ${blogSectionQueryFragment},
+}`;
+
+export const COURSES_NAV_QUERY =
+`*[_type == "courses"] | order(course_name[$language] asc) {
+    _id,
+    "slug": slug.current,
+    "course_name": course_name[$language],
 }`;
 
 export const COURSES_QUERY = 

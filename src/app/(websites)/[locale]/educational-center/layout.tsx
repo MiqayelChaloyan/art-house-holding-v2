@@ -20,7 +20,7 @@ import { Locale } from '@/src/locales';
 
 import { SITE_META_QUERY } from '@/sanity/services/educational-center-service';
 
-import { getContacts, getCourses, getSelectOptions } from '@/src/utils/data/educational-center';
+import { getContacts, getCoursesNav, getSelectOptions } from '@/src/utils/data/educational-center';
 import { getHomeDetails } from '@/src/utils/data/art-house';
 import { buildSiteMetadata, fetchSiteMetaEntry } from '@/src/utils/site-meta';
 
@@ -49,7 +49,7 @@ export default async function Layout({
 }: Readonly<RootLayoutProps>) {
     const [branches, courses, contacts, lessons, lessonsArmenianKeyword] = await Promise.all([
         getHomeDetails(locale),
-        getCourses(locale),
+        getCoursesNav(locale),
         getContacts(locale),
         getSelectOptions(locale),
         getSelectOptions('am'),

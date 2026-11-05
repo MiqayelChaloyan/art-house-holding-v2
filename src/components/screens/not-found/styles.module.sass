@@ -1,0 +1,146 @@
+.page
+	position: relative
+	display: flex
+	align-items: center
+	justify-content: center
+	min-height: 100svh
+	padding: 120px 0 96px
+	background: #090909
+	color: #ffffff
+	overflow: hidden
+
+.glow
+	position: absolute
+	inset: 0
+	pointer-events: none
+	background: radial-gradient(ellipse 55% 45% at 50% 38%, rgba(206, 36, 33, 0.14) 0%, transparent 68%)
+
+.wrap
+	position: relative
+	z-index: 1
+	width: min(1320px, calc(100% - 192px))
+	margin: 0 auto
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
+	@media screen and (max-width: 991px)
+		width: calc(100% - 40px)
+
+.code
+	position: absolute
+	top: -0.12em
+	left: -0.02em
+	margin: 0
+	font-family: var(--font-jetbrains), monospace
+	font-size: clamp(120px, 22vw, 280px)
+	font-weight: 400
+	line-height: 1
+	letter-spacing: -0.06em
+	color: rgba(255, 255, 255, 0.04)
+	user-select: none
+	pointer-events: none
+
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin: 0 0 20px
+	font-size: 11.2px
+	font-weight: 500
+	line-height: 16.8px
+	letter-spacing: 2.8px
+	text-transform: uppercase
+	color: #d9d9d9
+
+.mark
+	width: 40px
+	height: 1px
+	background: #ce2421
+	flex-shrink: 0
+
+.headline
+	position: relative
+	margin: 0
+	max-width: 900px
+	font-size: clamp(40px, 8vw, 96px)
+	font-weight: 400
+	line-height: 1.02
+	letter-spacing: -0.03em
+	overflow-wrap: normal
+	word-break: normal
+	> span
+		display: block
+
+.emphasis
+	font-style: italic
+	color: #9b9b9b
+
+.description
+	max-width: 520px
+	margin: 28px 0 0
+	font-size: 16px
+	line-height: 24px
+	color: #d9d9d9
+
+.actions
+	margin-top: 36px
+
+.primary
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	gap: 8px
+	height: 48px
+	padding: 0 22px
+	border-radius: 999px
+	background: #ce2421
+	color: #ffffff
+	font-size: 15px
+	font-weight: 500
+	text-decoration: none
+	transition: background-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)
+	&:hover
+		background: #e43330
+		transform: translateY(-1px)
+
+.explore
+	margin-top: 56px
+	padding-top: 32px
+	border-top: 1px solid #232323
+
+.exploreLabel
+	margin: 0 0 16px
+	font-size: 12px
+	font-weight: 500
+	line-height: 16px
+	letter-spacing: 0.14em
+	text-transform: uppercase
+	color: #9b9b9b
+
+.siteLinks
+	display: flex
+	flex-wrap: wrap
+	gap: 10px
+
+.siteLink
+	display: inline-flex
+	align-items: center
+	min-height: 36px
+	padding: 0 16px
+	border: 1px solid #3a3a3a
+	border-radius: 999px
+	color: #d9d9d9
+	font-size: 13px
+	line-height: 18px
+	text-decoration: none
+	transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease
+	&:hover
+		border-color: #ffffff
+		color: #ffffff
+		background: rgba(255, 255, 255, 0.06)
+
+@media screen and (max-width: 640px)
+	.page
+		padding: 96px 0 72px
+		align-items: flex-start
+	.code
+		font-size: clamp(96px, 36vw, 160px)

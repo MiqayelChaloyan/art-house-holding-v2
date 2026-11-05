@@ -1,0 +1,20 @@
+.block,
+.blockTall
+	width: 100%
+	background: linear-gradient(90deg, #141414 0%, #1c1c1c 50%, #141414 100%)
+	background-size: 200% 100%
+	animation: homeSectionShimmer 1.2s ease-in-out infinite
+
+.block
+	min-height: 280px
+	margin: 48px 0
+
+.blockTall
+	min-height: min(72vh, 720px)
+	margin: 0
+
+@keyframes homeSectionShimmer
+	0%
+		background-position: 100% 0
+	100%
+		background-position: -100% 0

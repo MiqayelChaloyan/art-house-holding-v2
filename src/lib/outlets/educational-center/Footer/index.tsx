@@ -24,7 +24,7 @@ import styles from './styles.module.sass';
 
 
 interface Props {
-    courses: COURSES_QUERYResult[];
+    courses: COURSES_NAV_QUERYResult[];
     socialData: CONTACT_US_QUERYResult;
     lessons: SELECT_OPTIONS_QUERYResult;
     lessonsArmenian: SELECT_OPTIONS_QUERYResult;
@@ -40,7 +40,7 @@ const Footer = ({
     const t = useTranslations();
     const locale = useLocale();
 
-    const matrix = courses?.reduce<COURSES_QUERYResult[][]>((acc, item: COURSES_QUERYResult, index: number) => {
+    const matrix = courses?.reduce<COURSES_NAV_QUERYResult[][]>((acc, item: COURSES_NAV_QUERYResult, index: number) => {
         const rowIndex = Math.floor(index / 6);
         if (!acc[rowIndex]) {
             acc[rowIndex] = [];

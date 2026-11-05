@@ -1,9 +1,9 @@
 'use server'
 
+import dynamic from 'next/dynamic';
+
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next';
-
-import Course from '@/src/components/screens/educational-center/course';
 
 import { Locale } from '@/src/locales';
 
@@ -12,6 +12,9 @@ import { urlForImage } from '@/sanity/imageUrlBuilder';
 import { ImagePath } from '@/src/types/general';
 import { generateMetadataDynamic } from '@/src/utils/default-metadata';
 import { getContacts, getCourse, getSelectOptions } from '@/src/utils/data/educational-center';
+
+
+const Course = dynamic(() => import('@/src/components/screens/educational-center/course'));
 
 
 interface Props {
@@ -24,10 +27,12 @@ interface Props {
 export default async function Page({
     params: { locale, slug }
 }: Readonly<Props>) {
-    const course = await getCourse(locale, slug[0]);
-    const contacts = await getContacts(locale);
-    const lessons = await getSelectOptions(locale);
-    const lessonsArmenianKeyword = await getSelectOptions('am');
+    const [course, contacts, lessons, lessonsArmenianKeyword] = await Promise.all([
+        getCourse(locale, slug[0]),
+        getContacts(locale),
+        getSelectOptions(locale),
+        getSelectOptions('am'),
+    ]);
 
     if (!course || !contacts || !lessons || !lessonsArmenianKeyword) {
         notFound()

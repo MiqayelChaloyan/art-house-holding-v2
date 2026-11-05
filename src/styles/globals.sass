@@ -25,8 +25,8 @@ $imagePath: '../../public/assets/images/language/back.avif'
 
 	--color-gradient: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 104.37%)
 
-	--selection-color: var(--color-white)
-	--selection-background: var(--color-white)
+	--selection-color: #090909
+	--selection-background: rgba(255, 255, 255, 0.88)
 
 	--text-color: var(--color-black)
 	--background: var(--color-white)
@@ -132,6 +132,10 @@ iframe
 	border: none
 
 ::selection
+	color: var(--selection-color)
+	background: var(--selection-background)
+
+::-moz-selection
 	color: var(--selection-color)
 	background: var(--selection-background)
 

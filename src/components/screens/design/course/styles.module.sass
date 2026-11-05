@@ -582,11 +582,17 @@ $price-divider-inset: 16px
 	line-height: 18px
 	cursor: pointer
 	transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease
-	&:hover,
-	&.chipActive
+	&:hover:not(.chipActive):not([aria-selected='true'])
 		border-color: #ffffff
 		color: #ffffff
 		background: rgba(255, 255, 255, 0.06)
+	&.chipActive,
+	&[aria-selected='true']
+		border-color: #ffffff
+		color: #090909
+		background: #ffffff
+		font-weight: 500
+		-webkit-text-fill-color: #090909
 
 .groupGrid
 	display: grid

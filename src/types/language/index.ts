@@ -36,6 +36,7 @@ export interface DAILY_LIFE_VIDEO {
     video: Video,
     news: string,
     languages: Ref,
+    languageSlug?: string | null,
 };
 
 export interface Video {

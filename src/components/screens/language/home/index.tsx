@@ -1,12 +1,16 @@
-'use client'
-
-import React from 'react';
+import dynamic from 'next/dynamic';
 
 import Main from './Main';
 import About from './About';
 import Promotions from './Promotions';
-import OurDailyLife from './OurDailyLife';
 import Partners from './Partners';
+
+import HomeSectionFallback from '@/src/components/screens/educational-center/home/HomeSectionFallback';
+
+
+const OurDailyLife = dynamic(() => import('./OurDailyLife'), {
+    loading: () => <HomeSectionFallback />,
+});
 
 
 interface Props {
@@ -26,4 +30,4 @@ const Home = ({ data, discounts, partners, locale }: Readonly<Props>) => (
     </>
 );
 
-export default React.memo(Home);
+export default Home;

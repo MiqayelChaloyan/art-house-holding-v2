@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { notFound, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import Container from '@/src/components/components/container';
@@ -12,13 +12,12 @@ import { MdPlayCircle } from 'react-icons/md';
 
 import { DAILY_LIFE_IMAGE, DAILY_LIFE_VIDEO, ReduxType } from '@/src/types/language';
 import { Arial, Vrdznagir } from '@/src/constants/font';
+import { Pages } from '@/src/constants/pages';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { onPlay, setPath } from '@/src/store/player_reducer';
 
-import { client } from '@/sanity/client';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
-import { LANGUAGE_ID_QUERY } from '@/sanity/services/language-service';
 import VideoPreview from '@/sanity/videoBuilder';
 
 import { ImagePath } from '@/src/types/general';
@@ -57,29 +56,20 @@ const DailyLifeImage = ({ item }: Image) => {
                 height={500}
             />
         </div>
-    )
+    );
 };
 
 
 const DailyLifeVideo = ({ item, locale }: Readonly<Video>) => {
     const [url, setUrl] = useState<string>('');
     const t = useTranslations('buttons');
-    const router = useRouter();
     const dispatch = useDispatch();
 
     const isPlay = useSelector((state: ReduxType) => state.player.isPlay);
     const light: ImagePath = urlForImage(item.video?.video_light);
-
-    const getResources = async () => {
-        const _id = item.languages._ref;
-
-        try {
-            const data = await client.fetch(LANGUAGE_ID_QUERY, { _id, language: locale }, { cache: 'no-store' });
-            router.push(`language/languages/${data.slug.current}`);
-        } catch (error) {
-            notFound();
-        }
-    };
+    const languageHref = item.languageSlug
+        ? `/${locale}${Pages.LANGUAGE_LANGUAGES}/${encodeURIComponent(item.languageSlug)}`
+        : null;
 
     const handlePlayVideo = (path: string) => {
         dispatch(onPlay(!isPlay));
@@ -106,8 +96,10 @@ const DailyLifeVideo = ({ item, locale }: Readonly<Video>) => {
                     height={500}
                 />
                 <button
+                    type="button"
                     className={styles.icon}
                     onClick={() => handlePlayVideo(url)}
+                    aria-label={t('view')}
                 >
                     <MdPlayCircle size={75} color={colors.white} />
                 </button>
@@ -117,16 +109,19 @@ const DailyLifeVideo = ({ item, locale }: Readonly<Video>) => {
                     {item.news}
                 </span>
                 <div className={styles.btn}>
-                    <button
-                        className={cn(styles.view, Arial.className)}
-                        onClick={getResources}
-                    >
-                        {t('view')}
-                    </button>
+                    {languageHref ? (
+                        <Link href={languageHref} className={cn(styles.view, Arial.className)}>
+                            {t('view')}
+                        </Link>
+                    ) : (
+                        <span className={cn(styles.view, Arial.className, styles.viewDisabled)}>
+                            {t('view')}
+                        </span>
+                    )}
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 
@@ -134,15 +129,16 @@ const OurDailyLife = ({ data, locale }: Readonly<Props>) => {
     const t = useTranslations('sections');
 
     const images: JSX.Element[] = data.our_daily_life.our_daily_life_images.map((item: DAILY_LIFE_IMAGE | any) =>
-        <DailyLifeImage key={item.slug.current} item={item} />
-    );
+        <DailyLifeImage key={item._key || item.slug?.current} item={item} />);
 
     const videos: JSX.Element[] = data.our_daily_life.about_our_daily.map((item: DAILY_LIFE_VIDEO | any) =>
-        <DailyLifeVideo key={item._key} item={item} locale={locale} />
-    );
+        <DailyLifeVideo key={item._key} item={item} locale={locale} />);
 
-    const mixData = images.reduce((acc: any, image: any, index: number) => {
-        acc.push(videos[index], image);
+    const mixData = images.reduce((acc: JSX.Element[], image: JSX.Element, index: number) => {
+        if (videos[index]) {
+            acc.push(videos[index]);
+        }
+        acc.push(image);
         return acc;
     }, []);
 
@@ -165,7 +161,7 @@ const OurDailyLife = ({ data, locale }: Readonly<Props>) => {
                 </div>
             </Container>
         </section>
-    )
+    );
 };
 
 export default React.memo(OurDailyLife);

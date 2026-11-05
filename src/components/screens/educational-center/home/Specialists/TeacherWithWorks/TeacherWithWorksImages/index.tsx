@@ -1,18 +1,17 @@
 'use client'
 
 import React from 'react';
-import Image from 'next/image';
-import { notFound, useRouter } from 'next/navigation';
+
+import Link from 'next/link';
 import { useLocale } from 'next-intl';
 
 import NextImage from '@/src/components/components/image';
 
 import Button from '@/src/lib/ui/Button';
+import { Pages } from '@/src/constants/pages';
 import { ArianAMU } from '@/src/constants/font';
 
-import { client } from '@/sanity/client';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
-import { COURSE_ID_QUERY } from '@/sanity/services/educational-center-service';
 
 import { ImagePath } from '@/src/types/general';
 
@@ -26,9 +25,11 @@ interface Props {
 };
 
 const TeacherWithWorksImages = ({ specialist }: Readonly<Props>) => {
-    const router = useRouter();
-    const localActive = useLocale();
+    const locale = useLocale();
     const path: ImagePath = urlForImage(specialist.specialists_section_image);
+    const courseHref = specialist.courseSlug
+        ? `/${locale}${Pages.EDUCATIONAL_HOME}/${specialist.courseSlug}`
+        : null;
 
     const imageGallery = specialist?.specialists_section_images.map((image: any, index: number) => {
         const path: ImagePath = urlForImage(image);
@@ -45,17 +46,6 @@ const TeacherWithWorksImages = ({ specialist }: Readonly<Props>) => {
             />
         );
     });
-
-    const getResources = async () => {
-        const _id = specialist.categories._ref;
-
-        try {
-            const data = await client.fetch(COURSE_ID_QUERY, { language: localActive, _id }, { cache: 'no-store' });
-            router.push(`educational-center/${data?.slug}`);
-        } catch (error) {
-            notFound()
-        }
-    };
 
     return (
         <div className={styles['teacher-with-works-images']}>
@@ -78,11 +68,19 @@ const TeacherWithWorksImages = ({ specialist }: Readonly<Props>) => {
                         {specialist?.title}
                     </h2>
                    </div>
-                    <Button
-                        className={cn(styles.button, ArianAMU.className)}
-                        text={specialist?.course_name}
-                        onClick={getResources}
-                    />
+                    {courseHref ? (
+                        <Link href={courseHref} className={styles.courseLink}>
+                            <Button
+                                className={cn(styles.button, ArianAMU.className)}
+                                text={specialist?.course_name}
+                            />
+                        </Link>
+                    ) : (
+                        <Button
+                            className={cn(styles.button, ArianAMU.className)}
+                            text={specialist?.course_name}
+                        />
+                    )}
                 </div>
                 <div className={styles.gallery}>
                     {imageGallery}

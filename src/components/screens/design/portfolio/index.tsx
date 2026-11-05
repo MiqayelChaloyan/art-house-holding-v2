@@ -39,27 +39,39 @@ interface Props {
     data: COURSES_DESIGN_QUERYResult;
 };
 
+const resolvePortfolioKey = (
+    searchParams: ReturnType<typeof useSearchParams>,
+    portfolios: PORTFOLIO[] | undefined,
+) => {
+    const fromUrl = getPortfolioItemKey(searchParams);
+    if (fromUrl) return fromUrl;
+
+    if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('name');
+        if (stored) return stored;
+    }
+
+    return portfolios?.[0]?._key ?? null;
+};
+
 const Home = ({ data }: Readonly<Props>) => {
     const searchParams = useSearchParams();
-    const first = data.portfolios?.[0];
-    const [portfolio, setPortfolio] = useState<PORTFOLIO[]>(first ? [first] : []);
+    const [portfolio, setPortfolio] = useState<PORTFOLIO[]>(() => {
+        const key = resolvePortfolioKey(searchParams, data.portfolios);
+        const match = data.portfolios?.find((item) => item._key === key);
+        if (match) return [match];
+        return data.portfolios?.[0] ? [data.portfolios[0]] : [];
+    });
 
     useEffect(() => {
-        let nameFromParams = getPortfolioItemKey(searchParams);
+        const key = resolvePortfolioKey(searchParams, data.portfolios);
+        if (!key) return;
 
-        if (!nameFromParams) {
-            nameFromParams = localStorage.getItem('name');
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('name', key);
         }
 
-        if (!nameFromParams && data.portfolios?.length) {
-            nameFromParams = data.portfolios[0]._key;
-        }
-
-        if (nameFromParams) {
-            localStorage.setItem('name', nameFromParams);
-        }
-
-        const filtered = data.portfolios?.filter((item) => item._key === nameFromParams) || [];
+        const filtered = data.portfolios?.filter((item) => item._key === key) || [];
         if (filtered.length) {
             setPortfolio(filtered);
         }

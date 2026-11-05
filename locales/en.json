@@ -97,6 +97,17 @@
         "error-retry": "Try again",
         "error-home": "Go home"
     },
+    "not-found-page": {
+        "eyebrow": "404",
+        "line-1": "This page",
+        "line-2": "is missing.",
+        "description": "The link may be outdated or the address was typed incorrectly. Return home or choose one of our studios.",
+        "home": "Art House Home",
+        "explore": "Explore our websites",
+        "design": "Design Studio",
+        "language": "Language Studio",
+        "educational": "Educational Center"
+    },
     "buttons": {
         "contact-us": "Contact Us",
         "view-more": "View more",

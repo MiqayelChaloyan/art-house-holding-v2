@@ -11,6 +11,10 @@ import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { swiperOptions } from './options';
 
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+import 'swiper/css/navigation';
+
 import './styles.css';
 
 

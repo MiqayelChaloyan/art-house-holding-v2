@@ -101,27 +101,26 @@
 	transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease
 	@media screen and (max-width: 640px)
 		flex: 0 0 auto
-	&:hover
+	&:hover:not(.chipActive):not([aria-selected='true'])
 		border-color: #ffffff
 		color: #ffffff
 		background: rgba(255, 255, 255, 0.06)
 
 .chipAll
-	border-color: transparent
-	padding-left: 8px
-	padding-right: 8px
-	&.chipActive
-		border-color: transparent
-		background: transparent
-		color: #ffffff
+	padding-left: 12px
+	padding-right: 12px
 
-.chipActive
+.chipActive,
+.chip[aria-selected='true']
 	border-color: #ffffff
-	color: #ffffff
-	background: rgba(255, 255, 255, 0.08)
+	color: #090909
+	background: #ffffff
+	font-weight: 500
+	-webkit-text-fill-color: #090909
 	&:hover
-		color: #ffffff
-		background: rgba(255, 255, 255, 0.1)
+		color: #090909
+		background: #ffffff
+		border-color: #ffffff
 
 .grid
 	display: grid

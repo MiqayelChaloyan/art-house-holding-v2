@@ -19,7 +19,7 @@ import styles from './styles.module.sass';
 
 interface Props {
     locale: string;
-    courses: COURSES_QUERYResult[];
+    courses: COURSES_NAV_QUERYResult[];
 };
 
 const CoursesModal = ({ locale, courses }: Readonly<Props>) => {

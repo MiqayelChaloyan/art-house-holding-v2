@@ -1,45 +1,28 @@
-import Link from 'next/link';
+import { headers } from 'next/headers';
 
-import Container from '@/src/components/components/container';
+import NotFoundView from '@/src/components/screens/not-found/NotFoundView';
+import { NOT_FOUND_COPY, resolveNotFoundLocale } from '@/src/components/screens/not-found/copy';
 
-import { ArianAMU } from '@/src/constants/font';
-import { Pages } from '@/src/constants/pages';
+import { designFont, Inter } from '@/src/constants/font';
 
 import cn from 'classnames';
 
 import '@/src/styles/globals.sass';
 
-import styles from './(websites)/[...not-found]/styles.module.sass';
 
 export default function NotFound() {
+    const headerList = headers();
+    const pathname = headerList.get('x-pathname') || '';
+    const localeMatch = pathname.match(/^\/(en|am|ru)(\/|$)/);
+    const locale = resolveNotFoundLocale(localeMatch?.[1]);
+
     return (
-        <html lang="en">
+        <html lang={locale}>
             <head>
-                <title>Page Not found</title>
+                <title>404 — Art House</title>
             </head>
-            <body className={cn(styles.link, ArianAMU.className)}>
-                <Container className="container">
-                    <div className={styles.not_found}>
-                        <div className={styles.left}>
-                            <h2 className={styles.title}>404</h2>
-                            <h2 className={styles.subtitle}>
-                                <span>Lost</span> in Space
-                            </h2>
-                            <p className={styles.warning}>
-                                You have reached the edge of the universe. The page you
-                                requested could not be found. Don&apos;t worry and return to the previous page.
-                            </p>
-                            <div>
-                                <Link href={Pages.HOME} prefetch={false} className={styles.button}>
-                                    GO HOME
-                                </Link>
-                            </div>
-                        </div>
-                        <div className={styles.right}>
-                            <div className={styles.astronautas} />
-                        </div>
-                    </div>
-                </Container>
+            <body className={cn(Inter.className, designFont.vars, designFont.ui)}>
+                <NotFoundView locale={locale} copy={NOT_FOUND_COPY[locale]} />
             </body>
         </html>
     );

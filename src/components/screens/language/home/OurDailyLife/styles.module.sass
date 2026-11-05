@@ -279,6 +279,10 @@
         justify-content: flex-start
 
 .view
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    text-decoration: none
     background-color: #006ED2
     border-radius: 20px
     width: 110px
@@ -289,6 +293,11 @@
     transition: .2s all
     &:hover
         background-color: #F9CC48
+        color: #fff
+
+.viewDisabled
+    opacity: 0.45
+    pointer-events: none
     /* @3xl */
     @media screen and (max-width: 1920px)
         font-size: 16px

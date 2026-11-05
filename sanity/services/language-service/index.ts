@@ -19,6 +19,7 @@ export const ABOUT_US_DETAILS_QUERY = `
             languages,
             video,
             "news": news[$language],
+            "languageSlug": *[_type == "about-language" && _id == ^.languages._ref][0].slug.current,
         },
     },
     ${blogSectionQueryFragment},

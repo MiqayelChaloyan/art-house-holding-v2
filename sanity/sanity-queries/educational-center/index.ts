@@ -71,9 +71,16 @@ interface SPECIALIST {
     _key: string;
     title: string;
     course_name: string;
+    courseSlug?: string | null;
     specialists_section_image: Asset;
     categories: { _ref: string, _type: 'reference' },   
     specialists_section_images: Asset[];
+};
+
+interface COURSES_NAV_QUERYResult {
+    _id: string;
+    course_name: string;
+    slug: string;
 };
 
 interface OUR_RATING {
