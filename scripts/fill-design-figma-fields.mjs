@@ -26,6 +26,18 @@ const locText = (am, en, ru) => ({ am, en, ru });
 const emptyLoc = (value) => !value || (!value.am && !value.en && !value.ru);
 const key = () => Math.random().toString(36).slice(2, 10);
 
+const hasImageAsset = (image) => Boolean(image?.asset?._ref || image?.asset?._id);
+
+const cardImageFromGallery = (gallery) => {
+    const first = (gallery || []).find((item) => hasImageAsset(item));
+    if (!first) return undefined;
+    return {
+        _type: 'image',
+        asset: first.asset,
+        ...(first.alt ? { alt: first.alt } : {}),
+    };
+};
+
 const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -54,6 +66,72 @@ const priceDefaults = [
         amount: loc('280 000 AMD', '280 000 AMD', '280 000 AMD'),
     },
 ];
+
+const aboutReasonDefaults = [
+    {
+        title: loc('Ինչ կսովորեք', "What you'll learn", 'Чему вы научитесь'),
+        description: locText(
+            'Տիպոգրաֆիա, իդենտիկություն, խմբագրական համակարգեր, պատկերային արհեստ և արտադրական կարգապահություն։',
+            'Typography, identity, editorial systems, image craft, and the production discipline behind them.',
+            'Типографика, айдентика, редакционные системы, работа с образом и производственная дисциплина.',
+        ),
+    },
+    {
+        title: loc('Ում համար է', "Who it's for", 'Для кого'),
+        description: locText(
+            'Սկսնակներ, մասնագիտություն փոխողներ և ինքնուսուցված դիզայներներ, որոնք պատրաստ են կարգապահությամբ զարգացնել վարպետությունը։',
+            'Beginners, career-changers, and self-taught designers ready to sharpen craft with rigor.',
+            'Начинающие, сменившие профессию и самоучки, готовые прокачать craft с дисциплиной.',
+        ),
+    },
+    {
+        title: loc('Ձեռք բերելիք հմտություններ', "Skills you'll gain", 'Навыки'),
+        description: locText(
+            'Համակարգային մտածողություն, տիպոգրաֆիական վերահսկում, բրենդի կառուցում, ներկայացում և case study գրելու հմտություն։',
+            'Systems thinking, typographic control, brand construction, presentation and case-study writing.',
+            'Системное мышление, типографический контроль, построение бренда, презентация и case study.',
+        ),
+    },
+    {
+        title: loc('Կարիերայի հնարավորություններ', 'Career opportunities', 'Карьерные возможности'),
+        description: locText(
+            'Junior դիզայներ, բրենդ դիզայներ, in-house ստուդիայի դերեր և անկախ հաճախորդային աշխատանք։',
+            'Junior designer, brand designer, in-house studio roles, and independent client work.',
+            'Junior designer, brand designer, in-house роли и работа с клиентами напрямую.',
+        ),
+    },
+];
+
+const aboutDescriptionFor = (course) => {
+    const nameAm = course.course_name?.am || course.name;
+    const nameEn = course.course_name?.en || course.name;
+    const nameRu = course.course_name?.ru || course.name;
+    return locText(
+        `${nameAm} ծրագիրը ստեղծված է նրանց համար, ովքեր ցանկանում են անցնել դեկորատիվ լուծումներից դեպի պրոֆեսիոնալ պրակտիկա։ Տասն երկու շաբաթ աշխատող ստուդիայի մեջ՝ դիզայնի այն բնագավառները, որոնք բաժանում են պրոֆեսիոնալ աշխատանքը զարդարանքից։`,
+        `The ${nameEn} program is built for people who want to stop making things that look nice and start making things that hold up. Twelve weeks inside a working studio, learning the disciplines that separate professional practice from decoration.`,
+        `Программа «${nameRu}» для тех, кто хочет перейти от «красиво» к работе, которая выдерживает проверку. Двенадцать недель в рабочей студии — дисциплины, отделяющие профессиональную практику от декора.`,
+    );
+};
+
+const mergeAboutSection = (current, course) => {
+    const next = { ...(current || {}) };
+    if (emptyLoc(next.description)) {
+        next.description = !emptyLoc(course.intro) ? course.intro : aboutDescriptionFor(course);
+    }
+    if (!next.reasons?.length) {
+        if (next.highlights?.length) {
+            next.reasons = next.highlights.map((row) => ({
+                _key: row._key || key(),
+                title: loc('', '', ''),
+                description: row.description || locText('', '', ''),
+            }));
+        } else {
+            next.reasons = withKeys(aboutReasonDefaults);
+        }
+    }
+    delete next.highlights;
+    return next;
+};
 
 const whyDefaults = [
     {
@@ -170,8 +248,54 @@ const mergeSection = (current, headings, listKey, listValue) => {
     return next;
 };
 
+const selectedWorkDescriptionDefault = locText(
+    'Կարճ հատված հաճախորդների աշխատանքներից՝ բրենդինգ, խմբագրական, տարածական և թվային ուղղություններով.',
+    'A short excerpt from client engagements across branding, editorial, spatial and digital work.',
+    'Короткий фрагмент клиентских проектов: брендинг, editorial, пространственный и цифровой дизайн.',
+);
+
+const buildPortfolioPicks = (courseDoc, limit = 4) => (courseDoc.portfolios || [])
+    .filter((row) => row?._key)
+    .slice(0, limit)
+    .map((row) => ({
+        _key: key(),
+        _type: 'pick',
+        course: { _type: 'reference', _ref: courseDoc._id },
+        portfolio_key: row._key,
+    }));
+
+const mergeSelectedWorkSection = (current, homeProjectsSection, courseDoc) => {
+    const next = { ...(current || {}) };
+    if (emptyLoc(next.description)) {
+        next.description = homeProjectsSection?.description || selectedWorkDescriptionDefault;
+    }
+    delete next.projects;
+    if (!next.portfolio_picks?.length) {
+        const picks = buildPortfolioPicks(courseDoc);
+        if (picks.length) next.portfolio_picks = picks;
+    }
+    return next;
+};
+
 const [home] = await client.fetch(`*[_type == "about-us-design"]`);
-const courses = await client.fetch(`*[_type == "courses-design"]`);
+const courses = await client.fetch(`*[_type == "courses-design"] {
+    _id,
+    name,
+    portfolios[]{ _key },
+    selected_work_section,
+    duration,
+    level,
+    card_description,
+    card_image,
+    gallery_of_course,
+    intro,
+    course_name,
+    about_section,
+    price_section,
+    why_section,
+    groups_section,
+    faq_section,
+}`);
 const [contact] = await client.fetch(`*[_type == "design-contact-us"]`);
 const [portfolio] = await client.fetch(`*[_type == "portfolio-design"]`);
 
@@ -224,9 +348,22 @@ for (const course of courses) {
             course.course_name?.ru || course.name,
         );
     }
-    if (!course.card_image && match?.card_image) {
-        next.card_image = match.card_image;
+    if (!hasImageAsset(course.card_image)) {
+        const fromGallery = cardImageFromGallery(course.gallery_of_course);
+        if (fromGallery) {
+            next.card_image = fromGallery;
+        } else if (hasImageAsset(match?.card_image)) {
+            next.card_image = match.card_image;
+        }
     }
+
+    next.about_section = mergeAboutSection(course.about_section, course);
+
+    next.selected_work_section = mergeSelectedWorkSection(
+        course.selected_work_section,
+        home?.projects_section,
+        course,
+    );
 
     next.price_section = mergeSection(course.price_section, {
         eyebrow: loc('Գնացուցակ', 'Price list', 'Прайс-лист'),

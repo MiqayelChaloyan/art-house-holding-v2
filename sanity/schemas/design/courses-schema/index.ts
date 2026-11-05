@@ -1,6 +1,7 @@
 import { SparklesIcon, BulbOutlineIcon, CheckmarkIcon, ImagesIcon, ClipboardImageIcon } from '@sanity/icons';
 import { RuleType } from '@/sanity/ruleType';
 import { slugFromParent } from '@/sanity/schemas/shared/slugSource';
+import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import HomeTrainerInput from '@/sanity/components/HomeTrainerInput';
 
 const loc = (title: string, name: string, type: 'string' | 'text' = 'string', description?: string) => ({
@@ -9,12 +10,6 @@ const loc = (title: string, name: string, type: 'string' | 'text' = 'string', de
     type: type === 'text' ? 'localeText' : 'localeString',
     ...(description ? { description } : {}),
 });
-
-const headingFields = [
-    loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title.'),
-    loc('Headline line 1', 'line_1'),
-    loc('Headline line 2 (italic)', 'line_2'),
-];
 
 export const coursesSchemaDesign = {
     name: 'courses-design',
@@ -25,13 +20,15 @@ export const coursesSchemaDesign = {
     icon: SparklesIcon,
     groups: [
         { name: 'card', title: '1. Course card' },
-        { name: 'guides', title: '2. Guides' },
+        { name: 'guides', title: '2. About the course' },
         { name: 'topics', title: '3. Course topics' },
         { name: 'trainers', title: '4. Trainers' },
         { name: 'price', title: '5. Price list' },
         { name: 'why', title: '6. Why this course' },
         { name: 'groups', title: '7. Upcoming groups' },
         { name: 'faq', title: '8. FAQ' },
+        { name: 'blog', title: '9. Blog' },
+        { name: 'selectedWork', title: '10. Selected work' },
         { name: 'portfolio', title: 'Portfolios' },
         { name: 'orders', title: 'Orders' },
         { name: 'og', title: 'Social share' },
@@ -159,20 +156,6 @@ export const coursesSchemaDesign = {
             },
         },
         {
-            name: 'topics_section',
-            title: 'Course topics heading',
-            type: 'object',
-            group: 'topics',
-            description: 'The heading above the topics list on this course page. If empty, Home → Courses curriculum fields are used.',
-            fields: [
-                loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title, for example Curriculum.'),
-                loc('Modules label', 'modules_label', 'string', 'Word after the topic count, for example modules. Shown as Curriculum · 7 modules.'),
-                loc('Headline line 1', 'title', 'string', 'For example Course.'),
-                loc('Headline italic', 'emphasis', 'string', 'Italic second word, for example topics.'),
-                loc('Text', 'description', 'text', 'Short paragraph to the right of the title.'),
-            ],
-        },
-        {
             name: 'topics',
             title: 'Course topics',
             type: 'array',
@@ -225,37 +208,30 @@ export const coursesSchemaDesign = {
             ],
         },
         {
-            name: 'guides',
-            type: 'array',
-            title: 'Guides',
+            name: 'about_section',
+            title: 'About block',
+            type: 'object',
             group: 'guides',
-            description: 'Shown next to the gallery on the course page. The first four items are listed under the course title.',
-            of: [
+            description: 'Text next to the gallery on the course page. The small “About the Course” label is in locales; description and reasons are edited here in each language.',
+            fields: [
+                loc('Description', 'description', 'text', 'The paragraph under the course name in the About block.'),
                 {
-                    name: 'Object',
-                    type: 'object',
-                    icon: CheckmarkIcon,
-                    fields: [
-                        {
-                            title: 'Հայերեն',
-                            name: 'am',
-                            type: 'string',
-                            validation: (Rule: RuleType) => Rule.required(),
-                        },
-                        {
-                            title: 'English',
-                            name: 'en',
-                            type: 'string',
-                            validation: (Rule: RuleType) => Rule.required(),
-                        },
-                        {
-                            title: 'Русский',
-                            name: 'ru',
-                            type: 'string',
-                            validation: (Rule: RuleType) => Rule.required(),
-                        }
-                    ]
-                }
+                    name: 'reasons',
+                    title: 'Reasons',
+                    type: 'array',
+                    description: 'Up to four rows (title + text), for example what you\'ll learn, who it\'s for, skills, and career paths.',
+                    validation: (Rule: RuleType) => Rule.max(4),
+                    of: [{
+                        name: 'reason',
+                        type: 'object',
+                        icon: CheckmarkIcon,
+                        fields: [
+                            loc('Title', 'title'),
+                            loc('Description', 'description', 'text'),
+                        ],
+                        preview: { select: { title: 'title.en', subtitle: 'description.en' } },
+                    }],
+                },
             ],
         },
         {
@@ -263,13 +239,8 @@ export const coursesSchemaDesign = {
             title: 'Trainers',
             type: 'object',
             group: 'trainers',
-            description: 'Trainers for this course. Click Add and select people from Home page → Staff. Do not create trainers here — edit their profile on the Home page.',
+            description: 'Trainers for this course. Click Add and select people from Home → Staff. Section title and card labels come from locales (design-course-sections, staff-section).',
             fields: [
-                loc('Eyebrow', 'eyebrow', 'string', 'Small line above the title, for example Trainers.'),
-                loc('Headline italic', 'emphasis', 'string', 'Italic line under the course name, for example trainers.'),
-                loc('Experience label', 'experience_label', 'string', 'Small word under the years, for example Experience.'),
-                loc('Programs label', 'programs_label', 'string', 'Heading above the program tags.'),
-                loc('Skills label', 'skills_label', 'string', 'Heading above the skill tags.'),
                 {
                     name: 'items',
                     title: 'Trainers',
@@ -312,9 +283,8 @@ export const coursesSchemaDesign = {
             title: 'Price list',
             type: 'object',
             group: 'price',
-            description: 'The price rows on this course page. Edit prices here — there is no separate Course prices list.',
+            description: 'The price rows on this course page. Section title is in locales/design-course-sections.',
             fields: [
-                ...headingFields,
                 {
                     name: 'items',
                     title: 'Prices',
@@ -341,9 +311,8 @@ export const coursesSchemaDesign = {
             title: 'Why this course',
             type: 'object',
             group: 'why',
-            description: 'The six requirement cards under Why This Course.',
+            description: 'The six requirement cards under Why This Course. Section title is in locales/design-course-sections.',
             fields: [
-                ...headingFields,
                 {
                     name: 'items',
                     title: 'Requirements',
@@ -368,16 +337,8 @@ export const coursesSchemaDesign = {
             title: 'Upcoming groups',
             type: 'object',
             group: 'groups',
-            description: 'The group cards with start date, schedule, time, duration, and price.',
+            description: 'The group cards with start date, schedule, time, duration, and price. Section title and filter chips are in locales/design-course-sections.',
             fields: [
-                ...headingFields,
-                loc('Enroll button', 'enroll_label', 'string', 'The button on each group card.'),
-                loc('All filter', 'filter_all', 'string', 'The first filter chip.'),
-                loc('Start date label', 'start_date_label'),
-                loc('Schedule label', 'schedule_label'),
-                loc('Time label', 'time_label'),
-                loc('Duration label', 'duration_label'),
-                loc('Price label', 'price_label'),
                 {
                     name: 'groups',
                     title: 'Groups',
@@ -418,9 +379,8 @@ export const coursesSchemaDesign = {
             title: 'FAQ',
             type: 'object',
             group: 'faq',
-            description: 'The numbered questions at the bottom of the About Course page.',
+            description: 'The numbered questions at the bottom of the About Course page. Section title is in locales/design-course-sections.',
             fields: [
-                ...headingFields,
                 {
                     name: 'items',
                     title: 'Questions',
@@ -435,6 +395,68 @@ export const coursesSchemaDesign = {
                             select: { title: 'question.en' },
                         },
                     }],
+                },
+            ],
+        },
+        {
+            name: 'selected_work_section',
+            title: 'Selected work block',
+            type: 'object',
+            group: 'selectedWork',
+            description: 'Selected Work grid on this course page. Pick portfolio rows from this course or any other design course (Portfolios tab). Title lines are in locales/projects-section.',
+            fields: [
+                loc('Description', 'description', 'text', 'Short text beside the title. Optional — Home description is used when empty.'),
+                {
+                    name: 'portfolio_picks',
+                    title: 'Portfolio works',
+                    type: 'array',
+                    description: 'Up to 10. Choose a course, then the portfolio row _key from that course\'s Portfolios tab. The first card is the large tile.',
+                    components: { input: ArrayMaxItems },
+                    validation: (Rule: RuleType) => Rule.max(10),
+                    of: [{
+                        name: 'pick',
+                        type: 'object',
+                        fields: [
+                            {
+                                name: 'course',
+                                title: 'Course',
+                                type: 'reference',
+                                to: [{ type: 'courses-design' }],
+                                validation: (Rule: RuleType) => Rule.required(),
+                                options: { disableNew: true },
+                            },
+                            {
+                                name: 'portfolio_key',
+                                title: 'Portfolio row key',
+                                type: 'string',
+                                description: 'The _key of the portfolio entry on the chosen course (visible in Sanity when you expand Portfolios).',
+                                validation: (Rule: RuleType) => Rule.required(),
+                            },
+                        ],
+                        preview: {
+                            select: { courseName: 'course.name', portfolioKey: 'portfolio_key' },
+                            prepare: ({ courseName, portfolioKey }: { courseName?: string; portfolioKey?: string }) => ({
+                                title: courseName || 'Course',
+                                subtitle: portfolioKey ? `Portfolio ${portfolioKey}` : 'Pick portfolio key',
+                            }),
+                        },
+                    }],
+                },
+            ],
+        },
+        {
+            name: 'blog_posts',
+            title: 'Blog posts on course page',
+            type: 'array',
+            group: 'blog',
+            description: 'Choose up to 3 existing Design blog posts for the Blog section on this course page. Headings are in locales/design-blog-section.',
+            components: { input: ArrayMaxItems },
+            validation: (Rule: RuleType) => Rule.max(3),
+            of: [
+                {
+                    type: 'reference',
+                    to: [{ type: 'design-blog-post' }],
+                    options: { disableNew: true },
                 },
             ],
         },

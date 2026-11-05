@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -24,21 +24,41 @@ interface Props {
 
 const PAGE_SIZE = 9;
 
+const resolveFilterSlug = (courses: COURSES_DESIGN_QUERYResult[], raw: string | null) => {
+    if (!raw) return null;
+    const decoded = decodeURIComponent(raw).replace(/_/g, ' ');
+    const bySlug = courses.find((course) => course.slug === decoded);
+    if (bySlug) return bySlug.slug;
+    const byName = courses.find((course) => course.name === decoded);
+    if (byName?.slug) return byName.slug;
+    return null;
+};
+
 const Portfolios = ({ courses }: Readonly<Props>) => {
     const t = useTranslations('portfolios-page');
     const searchParams = useSearchParams();
     const locale = useLocale();
-    const property = searchParams.get('name');
-    const decodedProperty = property ? decodeURIComponent(property).replace(/_/g, ' ') : '';
+    const queryCourse = searchParams.get('course') || searchParams.get('name');
+    const [activeCourseSlug, setActiveCourseSlug] = useState<string | null>(() => (
+        resolveFilterSlug(courses, queryCourse)
+    ));
     const [visible, setVisible] = useState(PAGE_SIZE);
 
     useEffect(() => {
+        setActiveCourseSlug(resolveFilterSlug(courses, queryCourse));
+    }, [courses, queryCourse]);
+
+    const setCourseFilter = useCallback((slug: string | null) => {
+        setActiveCourseSlug(slug);
         setVisible(PAGE_SIZE);
-    }, [decodedProperty]);
+        const base = `/${locale}${Pages.DESIGN_PORTFOLIOS}`;
+        const nextUrl = slug ? `${base}?course=${encodeURIComponent(slug)}` : base;
+        window.history.replaceState(null, '', nextUrl);
+    }, [locale]);
 
     const items = useMemo(() => {
-        const selected = decodedProperty
-            ? courses.filter((course) => course.name === decodedProperty)
+        const selected = activeCourseSlug
+            ? courses.filter((course) => course.slug === activeCourseSlug)
             : courses;
 
         return selected.flatMap((course) => (
@@ -47,7 +67,7 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                 project,
             }))
         ));
-    }, [courses, decodedProperty]);
+    }, [courses, activeCourseSlug]);
 
     const shown = items.slice(0, visible);
 
@@ -65,27 +85,31 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                             <span className={styles.emphasis}>{keepWords(t('line-2'))}</span>
                         </h1>
                     </header>
-                    <nav className={styles.filters} aria-label={t('eyebrow')}>
-                        <Link
-                            href={`/${locale}${Pages.DESIGN_PORTFOLIOS}`}
-                            scroll={false}
-                            className={cn(styles.chip, styles.chipAll, !decodedProperty && styles.chipActive)}
+                    <nav className={styles.filters} role="tablist" aria-label={t('eyebrow')}>
+                        <button
+                            type="button"
+                            role="tab"
+                            aria-selected={!activeCourseSlug}
+                            className={cn(styles.chip, styles.chipAll, !activeCourseSlug && styles.chipActive)}
+                            onClick={() => setCourseFilter(null)}
                         >
                             {t('all')}
-                        </Link>
-                        {courses.map((course) => (
-                            <Link
-                                key={course._id}
-                                href={{
-                                    pathname: `/${locale}${Pages.DESIGN_PORTFOLIOS}`,
-                                    query: { name: course.name },
-                                }}
-                                scroll={false}
-                                className={cn(styles.chip, decodedProperty === course.name && styles.chipActive)}
-                            >
-                                {course.course_name || course.name}
-                            </Link>
-                        ))}
+                        </button>
+                        {courses.map((course) => {
+                            const isActive = activeCourseSlug === course.slug;
+                            return (
+                                <button
+                                    key={course._id}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={isActive}
+                                    className={cn(styles.chip, isActive && styles.chipActive)}
+                                    onClick={() => setCourseFilter(course.slug)}
+                                >
+                                    {course.course_name || course.name}
+                                </button>
+                            );
+                        })}
                     </nav>
                 </div>
 

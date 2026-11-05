@@ -143,12 +143,12 @@
         "line-3": "Դիպլոմ"
     },
     "projects-section": {
-        "eyebrow": "Պորտֆոլիո",
+        "eyebrow": "Ընտրված աշխատանքներ",
         "line-1": "Նախագծեր",
         "line-2": "ստուդիայի հատակից."
     },
     "design-blog-section": {
-        "eyebrow": "Art House Design Studio",
+        "eyebrow": "Բլոգ",
         "line-1": "Բլոգ և",
         "line-2": "նորություններ"
     },
@@ -158,6 +158,63 @@
         "line-2": "մեր ուսանողները։",
         "emphasis-word": "",
         "slides": "Կարծիքներ"
+    },
+    "design-courses-page": {
+        "eyebrow": "Դասընթացներ · {count} ծրագիր",
+        "line-1": "Մեր",
+        "line-2": "դասընթացները."
+    },
+    "design-course-sections": {
+        "detail-eyebrow": "Դասընթաց",
+        "detail-emphasis": "դասընթացներ.",
+        "explore-label": "Դասընթացներ",
+        "about": {
+            "eyebrow": "Դասընթացի մասին"
+        },
+        "portfolio-label": "Պորտֆոլիո",
+        "curriculum": {
+            "eyebrow": "Ուսումնական պլան · {count} մոդուլ",
+            "eyebrow-prefix": "Ուսումնական պլան",
+            "modules-label": "մոդուլ",
+            "line-1": "Դասընթացի",
+            "line-2": "թեմաներ.",
+            "description": "Յուրաքանչյուր մոդուլ ինքնուրույն ստուդիական միավոր է՝ դաս, կենդանի ցուցադրություն, բրիֆ և քննարկում։ Մոդուլները հանգույց են հանդիսանում վերջնական պորտֆոլիոյի համար։"
+        },
+        "price": {
+            "eyebrow": "Գնացուցակ",
+            "line-1": "Գին",
+            "line-2": "ցանկ."
+        },
+        "why": {
+            "eyebrow": "Ինչու այս դասընթացը",
+            "line-1": "Ինչու ընտրել",
+            "line-2": "այս դասընթացը."
+        },
+        "groups": {
+            "eyebrow": "Առաջիկա խմբեր",
+            "line-1": "Առաջիկա",
+            "line-2": "դասընթացներ.",
+            "filter-all": "Բոլորը",
+            "filter-morning": "Առավոտյան",
+            "filter-evening": "Երեկյան",
+            "filter-online": "Օնլայն",
+            "filter-offline": "Օֆլայն",
+            "start-date-label": "Մեկնարկ",
+            "schedule-label": "Գրաֆիկ",
+            "time-label": "Ժամ",
+            "duration-label": "Տևողություն",
+            "price-label": "Գին",
+            "enroll-label": "Գրանցվել"
+        },
+        "faq": {
+            "eyebrow": "ՀՏՀ",
+            "line-1": "Հաճախ տրվող",
+            "line-2": "հարցեր."
+        },
+        "trainers": {
+            "eyebrow": "Դասատուներ",
+            "emphasis": "դասատուներ."
+        }
     },
     "staff-section": {
         "line-1": "Մեր",

@@ -51,7 +51,7 @@ export async function generateMetadata({
     // Distinguishes this page from /design/orders/<slug>, which describes the same course.
     const ogTitle = `${data.course_name} | ${data.portfolios[0]?.author} | ${t('portfolios')}`;
     const ogImage = data.portfolios[0]?.image;
-    const ogDescription = data?.guides[0];
+    const ogDescription = data?.about_section?.description || data?.intro;
 
     const path: ImagePath = urlForImage(ogImage);
     const icon = null;

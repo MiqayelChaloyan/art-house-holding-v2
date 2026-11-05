@@ -3,8 +3,15 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LuArrowUpRight } from 'react-icons/lu';
+
+import { designCourseCountWord } from '@/src/utils/design-course-count-word';
+import {
+    mapCoursePortfoliosToProjects,
+    mapPortfolioPicksToProjects,
+} from '@/src/utils/design-selected-work-from-portfolios';
 
 import NextImage from '@/src/components/components/image';
 import GoogleMaps from '@/src/components/components/map';
@@ -30,23 +37,20 @@ interface Props {
 };
 
 const GROUP_FILTERS = ['morning', 'evening', 'online', 'offline'] as const;
+type GroupFilter = typeof GROUP_FILTERS[number];
 
-const DEFAULT_MODULES_LABEL: Record<string, string> = {
-    am: 'մոդուլ',
-    en: 'modules',
-    ru: 'модулей',
-};
+const asText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
 const Course = ({ locale, course, home }: Readonly<Props>) => {
+    const t = useTranslations('design-course-sections');
     const {
         _id,
         gallery_of_course,
         course_name,
         conditions = [],
-        guides = [],
+        about_section: aboutSection,
         name,
         intro: courseIntro,
-        topics_section: topicsHeading,
         topics: courseTopics,
         condition_items: conditionItems,
         trainers_section: trainersSection,
@@ -54,9 +58,11 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
         why_section: why,
         groups_section: groups,
         faq_section: faq,
+        blog_posts: courseBlogPosts,
+        selected_work_section: courseSelectedWork,
+        portfolios: coursePortfolios = [],
+        slug: courseSlug,
     } = course;
-
-    const headings = home?.courses_section;
     const portrait = gallery_of_course?.[0];
     const image = portrait ? urlForImage(portrait, 1040) : undefined;
     const gallery = (gallery_of_course || []).filter((item) => item?.asset);
@@ -64,34 +70,58 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
     const intro = courseIntro || '';
     const title = course_name || name;
     const copy = {
-        eyebrow: headings?.detail_eyebrow || '',
-        emphasis: headings?.detail_emphasis || '',
-        explore: headings?.explore_label || '',
-        portfolio: headings?.portfolio_label || '',
-        aboutEyebrow: headings?.about_eyebrow || '',
-        curriculumEyebrow: topicsHeading?.eyebrow || headings?.curriculum_eyebrow || '',
-        curriculumModulesLabel: topicsHeading?.modules_label || headings?.curriculum_modules_label || DEFAULT_MODULES_LABEL[locale] || 'modules',
-        curriculumTitle: topicsHeading?.title || headings?.curriculum_title || '',
-        curriculumEmphasis: topicsHeading?.emphasis || headings?.curriculum_emphasis || '',
-        curriculumDescription: topicsHeading?.description || headings?.curriculum_description || '',
-        trainersEyebrow: trainersSection?.eyebrow || headings?.trainers_eyebrow || '',
-        trainersEmphasis: trainersSection?.emphasis || headings?.trainers_emphasis || '',
+        eyebrow: t('detail-eyebrow'),
+        emphasis: t('detail-emphasis'),
+        explore: t('explore-label'),
+        portfolio: t('portfolio-label'),
+        aboutEyebrow: t('about.eyebrow'),
+        curriculumTitle: t('curriculum.line-1'),
+        curriculumEmphasis: t('curriculum.line-2'),
+        curriculumDescription: t('curriculum.description'),
+        trainersEyebrow: t('trainers.eyebrow'),
+        trainersEmphasis: t('trainers.emphasis'),
     };
 
-    const points = guides.slice(0, 4).map((guide, index) => ({ _key: `guide-${index}`, title: guide, text: '' }));
-    const topics = (courseTopics || []).filter((topic) => topic.title);
-    const fallbackTopics = (conditionItems || []).filter((item) => item.title);
-    const topicItems = topics.length
-        ? topics
-        : fallbackTopics.length
-            ? fallbackTopics
-            : conditions.map((condition, index) => ({ _key: `condition-${index}`, title: condition, description: '' }));
-    const modulesPart = copy.curriculumModulesLabel && topicItems.length
-        ? `${topicItems.length} ${copy.curriculumModulesLabel}`
-        : '';
-    const curriculumEyebrow = copy.curriculumEyebrow.includes('·')
-        ? copy.curriculumEyebrow
-        : [copy.curriculumEyebrow, modulesPart].filter(Boolean).join(' · ');
+    const aboutDescription = asText(aboutSection?.description);
+    const aboutReasons = useMemo(
+        () => (aboutSection?.reasons || [])
+            .map((row, index) => ({
+                _key: row._key || `about-reason-${index}`,
+                title: asText(row.title),
+                text: asText(row.description),
+            }))
+            .filter((row) => row.title || row.text)
+            .slice(0, 4),
+        [aboutSection?.reasons],
+    );
+    const topicItems = useMemo(() => {
+        const topics = (courseTopics || []).filter((topic) => asText(topic.title));
+        if (topics.length) return topics;
+        const fallbackTopics = (conditionItems || []).filter((item) => asText(item.title));
+        if (fallbackTopics.length) return fallbackTopics;
+        return conditions
+            .map((condition) => asText(condition))
+            .filter(Boolean)
+            .map((condition, index) => ({
+                _key: `condition-${index}`,
+                title: condition,
+                description: '',
+            }));
+    }, [courseTopics, conditionItems, conditions]);
+    const topicAccordionItems = useMemo(
+        () => topicItems.map((topic, index) => ({
+            key: topic._key || `topic-${index}`,
+            label: topic.title || '',
+            body: asText(topic.description) || topic.title || '',
+        })),
+        [topicItems],
+    );
+    const curriculumModuleCount = topicItems.length;
+    const curriculumEyebrow = curriculumModuleCount > 0
+        ? t('curriculum.eyebrow', { count: designCourseCountWord(curriculumModuleCount, locale) })
+        : t('curriculum.eyebrow-prefix');
+
+    const groupFilterLabel = (mode: GroupFilter) => t(`groups.filter-${mode}` as 'groups.filter-morning');
     const trainers = useMemo(() => {
         const fromCourse = (trainersSection?.items || []).filter((member) => member.worker_image?.asset);
         if (fromCourse.length) return fromCourse;
@@ -101,12 +131,61 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
 
         return (home?.workers || []).filter((member) => member.worker_image?.asset);
     }, [trainersSection?.items, home?.workers, _id]);
-    const selectedPosts = (home?.blog_section?.posts || []).filter((post) => post?.slug && post?.title);
+    const selectedPosts = useMemo(() => {
+        const fromCourse = (courseBlogPosts || []).filter((post) => post?.slug && post?.title);
+        if (fromCourse.length) return fromCourse;
+        return (home?.blog_section?.posts || []).filter((post) => post?.slug && post?.title);
+    }, [courseBlogPosts, home?.blog_section?.posts]);
+    const projectsSection = useMemo((): PROJECTS_SECTION | undefined => {
+        const description = courseSelectedWork?.description
+            || home?.projects_section?.description
+            || '';
+        const fromPicks = mapPortfolioPicksToProjects(courseSelectedWork?.portfolio_picks);
+        if (fromPicks.length) {
+            return { description, projects: fromPicks };
+        }
+        const courseLabel = title;
+        const fromOwnPortfolios = mapCoursePortfoliosToProjects(
+            coursePortfolios,
+            courseSlug || name,
+            courseLabel,
+        );
+        if (fromOwnPortfolios.length) {
+            return { description, projects: fromOwnPortfolios };
+        }
+        return home?.projects_section;
+    }, [
+        courseSelectedWork,
+        coursePortfolios,
+        courseSlug,
+        name,
+        title,
+        home?.projects_section,
+    ]);
 
     const priceItems = (prices?.items || []).filter((item) => item.title || item.amount);
     const whyItems = (why?.items || []).filter((item) => item.title || item.description);
     const groupItems = useMemo(() => groups?.groups || [], [groups?.groups]);
-    const faqItems = (faq?.items || []).filter((item) => item.question);
+    const faqItems = useMemo(
+        () => (faq?.items || []).filter((item) => item.question),
+        [faq?.items],
+    );
+    const faqAccordionItems = useMemo(
+        () => faqItems.map((item) => ({
+            key: item._key,
+            label: item.question || '',
+            body: item.answer,
+        })),
+        [faqItems],
+    );
+    const trainersHeading = useMemo(
+        () => ({
+            eyebrow: copy.trainersEyebrow,
+            title,
+            emphasis: copy.trainersEmphasis,
+        }),
+        [copy.trainersEyebrow, copy.trainersEmphasis, title],
+    );
     const [groupFilter, setGroupFilter] = useState('all');
     const [openTopic, setOpenTopic] = useState<string | null>(null);
     const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -166,16 +245,22 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                 )}
             </section>
 
-            {(aboutSlides.length > 0 || points.length > 0) && (
+            {(aboutSlides.length > 0 || aboutDescription || aboutReasons.length > 0) && (
                 <section className={styles.about}>
                     {aboutSlides.length > 0 && <AboutSlider slides={aboutSlides} title={title} />}
                     <div className={styles.aboutCopy}>
-                        <BlockHeading eyebrow={copy.aboutEyebrow} title={title} emphasis={copy.emphasis.replace(/\.$/, '')} />
-                        {points.length > 0 && (
+                        <BlockHeading eyebrow={copy.aboutEyebrow} title={title} emphasis={copy.emphasis} />
+                        {aboutDescription && (
+                            <p className={cn(styles.aboutText, designFont.medium)}>{aboutDescription}</p>
+                        )}
+                        {aboutReasons.length > 0 && (
                             <ul className={styles.points}>
-                                {points.map((point) => (
+                                {aboutReasons.map((point) => (
                                     <li key={point._key} className={styles.point}>
-                                        {point.title && <h3 className={cn(styles.pointTitle, designFont.medium)}>{point.title}</h3>}
+                                        {point.title && (
+                                            <h3 className={cn(styles.pointTitle, designFont.medium)}>{point.title}</h3>
+                                        )}
+                                        {point.text && <p className={styles.pointText}>{point.text}</p>}
                                     </li>
                                 ))}
                             </ul>
@@ -191,11 +276,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                         {copy.curriculumDescription && <p className={styles.splitText}>{copy.curriculumDescription}</p>}
                     </div>
                     <Accordion
-                        items={topicItems.map((topic, index) => ({
-                            key: topic._key || `topic-${index}`,
-                            label: topic.title || '',
-                            body: topic.description?.trim() || topic.title || '',
-                        }))}
+                        items={topicAccordionItems}
                         open={openTopic}
                         onToggle={setOpenTopic}
                     />
@@ -206,19 +287,14 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                 <div className={styles.trainers}>
                     <Staff
                         workers={trainers}
-                        labels={{
-                            experience_label: trainersSection?.experience_label,
-                            programs_label: trainersSection?.programs_label,
-                            skills_label: trainersSection?.skills_label,
-                        }}
-                        heading={{ eyebrow: copy.trainersEyebrow, title, emphasis: copy.trainersEmphasis }}
+                        heading={trainersHeading}
                     />
                 </div>
             )}
 
             {priceItems.length > 0 && (
                 <section className={styles.block}>
-                    <BlockHeading eyebrow={prices?.eyebrow} title={prices?.line_1} emphasis={prices?.line_2} inline />
+                    <BlockHeading eyebrow={t('price.eyebrow')} title={t('price.line-1')} emphasis={t('price.line-2')} inline />
                     <ul className={styles.priceGrid}>
                         {priceItems.map((item) => (
                             <li key={item._key} className={styles.priceCard}>
@@ -237,7 +313,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
 
             {whyItems.length > 0 && (
                 <section className={styles.block}>
-                    <BlockHeading eyebrow={why?.eyebrow} title={why?.line_1} emphasis={why?.line_2} />
+                    <BlockHeading eyebrow={t('why.eyebrow')} title={t('why.line-1')} emphasis={t('why.line-2')} />
                     <ul className={styles.whyGrid}>
                         {whyItems.map((item) => (
                             <li key={item._key} className={styles.whyItem}>
@@ -252,29 +328,26 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
 
             {groupItems.length > 0 && (
                 <section className={styles.block}>
-                    <BlockHeading eyebrow={groups?.eyebrow} title={groups?.line_1} emphasis={groups?.line_2} inline />
-                    {(groups?.filter_all || groupModes.length > 0) && (
+                    <BlockHeading eyebrow={t('groups.eyebrow')} title={t('groups.line-1')} emphasis={t('groups.line-2')} inline />
+                    {groupModes.length > 0 && (
                         <div className={styles.filters} role="tablist">
                             <button
                                 type="button"
                                 className={cn(styles.chip, groupFilter === 'all' && styles.chipActive)}
                                 onClick={() => setGroupFilter('all')}
                             >
-                                {groups?.filter_all || 'All'}
+                                {t('groups.filter-all')}
                             </button>
-                            {groupModes.map((mode) => {
-                                const label = groupItems.find((item) => item.mode === mode)?.shift || mode;
-                                return (
-                                    <button
-                                        key={mode}
-                                        type="button"
-                                        className={cn(styles.chip, groupFilter === mode && styles.chipActive)}
-                                        onClick={() => setGroupFilter(mode)}
-                                    >
-                                        {label}
-                                    </button>
-                                );
-                            })}
+                            {groupModes.map((mode) => (
+                                <button
+                                    key={mode}
+                                    type="button"
+                                    className={cn(styles.chip, groupFilter === mode && styles.chipActive)}
+                                    onClick={() => setGroupFilter(mode)}
+                                >
+                                    {groupFilterLabel(mode)}
+                                </button>
+                            ))}
                         </div>
                     )}
                     <ul className={styles.groupGrid}>
@@ -283,41 +356,39 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                                 {item.shift && <span className={styles.groupBadge}>{item.shift}</span>}
                                 {item.start_date && (
                                     <div className={styles.groupDate}>
-                                        {groups?.start_date_label && <span>{groups.start_date_label}</span>}
+                                        <span>{t('groups.start-date-label')}</span>
                                         <p className={cn(designFont.medium)}>{item.start_date}</p>
                                     </div>
                                 )}
                                 <dl className={styles.groupMeta}>
                                     {item.schedule && (
                                         <div>
-                                            <dt>{groups?.schedule_label}</dt>
+                                            <dt>{t('groups.schedule-label')}</dt>
                                             <dd>{item.schedule}</dd>
                                         </div>
                                     )}
                                     {item.time && (
                                         <div>
-                                            <dt>{groups?.time_label}</dt>
+                                            <dt>{t('groups.time-label')}</dt>
                                             <dd>{item.time}</dd>
                                         </div>
                                     )}
                                     {item.duration && (
                                         <div>
-                                            <dt>{groups?.duration_label}</dt>
+                                            <dt>{t('groups.duration-label')}</dt>
                                             <dd>{item.duration}</dd>
                                         </div>
                                     )}
                                 </dl>
                                 <div className={styles.groupFooter}>
                                     <div>
-                                        {groups?.price_label && <span>{groups.price_label}</span>}
+                                        <span>{t('groups.price-label')}</span>
                                         {item.price && <p className={cn(designFont.medium)}>{item.price}</p>}
                                     </div>
-                                    {groups?.enroll_label && (
-                                        <Link href={enrollHref} className={styles.enroll}>
-                                            {groups.enroll_label}
-                                            <LuArrowUpRight aria-hidden />
-                                        </Link>
-                                    )}
+                                    <Link href={enrollHref} className={styles.enroll}>
+                                        {t('groups.enroll-label')}
+                                        <LuArrowUpRight aria-hidden />
+                                    </Link>
                                 </div>
                             </li>
                         ))}
@@ -327,9 +398,9 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
 
             {faqItems.length > 0 && (
                 <section className={styles.block}>
-                    <BlockHeading eyebrow={faq?.eyebrow} title={faq?.line_1} emphasis={faq?.line_2} />
+                    <BlockHeading eyebrow={t('faq.eyebrow')} title={t('faq.line-1')} emphasis={t('faq.line-2')} />
                     <Accordion
-                        items={faqItems.map((item) => ({ key: item._key, label: item.question || '', body: item.answer }))}
+                        items={faqAccordionItems}
                         open={openFaq}
                         onToggle={setOpenFaq}
                     />
@@ -337,7 +408,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
             )}
 
             <div className={styles.shared}>
-                <Projects section={home?.projects_section} />
+                <Projects section={projectsSection} />
                 <Blog posts={selectedPosts} layout="cards" />
             </div>
 
@@ -449,23 +520,16 @@ const Accordion = ({
                         <span className={cn(styles.accordionLabel, designFont.medium)}>{item.label}</span>
                         <span className={styles.accordionToggle} aria-hidden>{isOpen ? '–' : '+'}</span>
                     </button>
-                    <motion.div
+                    <div
                         id={panelId}
                         className={styles.accordionPanel}
                         role="region"
-                        aria-hidden={!isOpen}
-                        initial={false}
-                        animate={isOpen ? 'open' : 'closed'}
-                        variants={{
-                            open: { height: 'auto', opacity: 1 },
-                            closed: { height: 0, opacity: 0 },
-                        }}
-                        transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
+                        hidden={!isOpen}
                     >
                         <div className={styles.accordionPanelInner}>
                             <p className={styles.accordionBody}>{item.body}</p>
                         </div>
-                    </motion.div>
+                    </div>
                 </li>
             );
         })}

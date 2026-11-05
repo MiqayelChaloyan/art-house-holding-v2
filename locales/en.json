@@ -143,12 +143,12 @@
         "line-3": "Diploma"
     },
     "projects-section": {
-        "eyebrow": "Portfolio",
+        "eyebrow": "Selected Work",
         "line-1": "Projects from",
         "line-2": "the studio floor."
     },
     "design-blog-section": {
-        "eyebrow": "Art House Design Studio",
+        "eyebrow": "Blog",
         "line-1": "Blog and",
         "line-2": "news"
     },
@@ -158,6 +158,63 @@
         "line-2": "actually say.",
         "emphasis-word": "actually",
         "slides": "Testimonials"
+    },
+    "design-courses-page": {
+        "eyebrow": "Courses · {count} Programs",
+        "line-1": "Our",
+        "line-2": "courses."
+    },
+    "design-course-sections": {
+        "detail-eyebrow": "Course",
+        "detail-emphasis": "courses.",
+        "explore-label": "Explore courses",
+        "about": {
+            "eyebrow": "About the Course"
+        },
+        "portfolio-label": "Portfolio",
+        "curriculum": {
+            "eyebrow": "Curriculum · {count} Modules",
+            "eyebrow-prefix": "Curriculum",
+            "modules-label": "Modules",
+            "line-1": "Course",
+            "line-2": "topics.",
+            "description": "Every module is a self-contained studio unit — lecture, live demo, brief, and critique. Modules build on each other toward the final portfolio."
+        },
+        "price": {
+            "eyebrow": "Price list",
+            "line-1": "Price",
+            "line-2": "list."
+        },
+        "why": {
+            "eyebrow": "Why this course",
+            "line-1": "Why choose this",
+            "line-2": "course."
+        },
+        "groups": {
+            "eyebrow": "Upcoming groups",
+            "line-1": "Upcoming",
+            "line-2": "courses.",
+            "filter-all": "All",
+            "filter-morning": "Morning",
+            "filter-evening": "Evening",
+            "filter-online": "Online",
+            "filter-offline": "Offline",
+            "start-date-label": "Start date",
+            "schedule-label": "Schedule",
+            "time-label": "Time",
+            "duration-label": "Duration",
+            "price-label": "Price",
+            "enroll-label": "Enroll"
+        },
+        "faq": {
+            "eyebrow": "FAQ",
+            "line-1": "Frequently asked",
+            "line-2": "questions."
+        },
+        "trainers": {
+            "eyebrow": "Trainers",
+            "emphasis": "trainers."
+        }
     },
     "staff-section": {
         "line-1": "Our",

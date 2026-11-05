@@ -2,6 +2,10 @@
 
 import React from 'react';
 
+import { useLocale, useTranslations } from 'next-intl';
+
+import { designCourseCountWord, DESIGN_COURSE_COUNT_MAX } from '@/src/utils/design-course-count-word';
+
 import Course from './Course';
 
 import { designFont } from '@/src/constants/font';
@@ -20,11 +24,23 @@ interface Props {
 };
 
 const Courses = ({ courses, section, numbered, page }: Readonly<Props>) => {
-    const copy = {
-        eyebrow: section?.eyebrow || '',
-        line1: section?.line_1 || '',
-        line2: section?.line_2 || '',
-    };
+    const locale = useLocale();
+    const pageT = useTranslations('design-courses-page');
+    const courseCount = courses?.length ?? 0;
+    const countWord = designCourseCountWord(courseCount, locale);
+    const listLimit = page ? DESIGN_COURSE_COUNT_MAX : 10;
+
+    const copy = page
+        ? {
+            eyebrow: pageT('eyebrow', { count: countWord }),
+            line1: pageT('line-1'),
+            line2: pageT('line-2'),
+        }
+        : {
+            eyebrow: section?.eyebrow || '',
+            line1: section?.line_1 || '',
+            line2: section?.line_2 || '',
+        };
 
     return (
         <section id="design-courses" className={cn(styles.section, page && styles.page, designFont.ui)}>
@@ -47,7 +63,7 @@ const Courses = ({ courses, section, numbered, page }: Readonly<Props>) => {
                     )}
                 </header>
                 <ul className={styles.grid}>
-                    {courses?.slice(0, 10).map((course, index) => (
+                    {courses?.slice(0, listLimit).map((course, index) => (
                         <li key={course._key || ('slug' in course ? course.slug : index)}>
                             <Course course={course} index={numbered ? index : undefined} />
                         </li>

@@ -52,12 +52,6 @@ interface ORDER {
     title_images_array: WORK[];
 };
 
-interface COURSE_HEADING_BLOCK {
-    eyebrow?: string;
-    line_1?: string;
-    line_2?: string;
-};
-
 interface COURSE_PRICE_ITEM {
     _key: string;
     title?: string;
@@ -72,15 +66,18 @@ interface COURSE_TOPIC {
     description?: string;
 };
 
-interface COURSE_TOPICS_SECTION {
-    eyebrow?: string;
-    modules_label?: string;
+interface COURSE_ABOUT_REASON {
+    _key: string;
     title?: string;
-    emphasis?: string;
     description?: string;
 };
 
-interface COURSE_PRICE_SECTION extends COURSE_HEADING_BLOCK {
+interface COURSE_ABOUT_SECTION {
+    description?: string;
+    reasons?: COURSE_ABOUT_REASON[];
+};
+
+interface COURSE_PRICE_SECTION {
     items?: COURSE_PRICE_ITEM[];
 };
 
@@ -90,7 +87,7 @@ interface COURSE_WHY_ITEM {
     description?: string;
 };
 
-interface COURSE_WHY_SECTION extends COURSE_HEADING_BLOCK {
+interface COURSE_WHY_SECTION {
     items?: COURSE_WHY_ITEM[];
 };
 
@@ -105,14 +102,7 @@ interface COURSE_GROUP {
     price?: string;
 };
 
-interface COURSE_GROUPS_SECTION extends COURSE_HEADING_BLOCK {
-    enroll_label?: string;
-    filter_all?: string;
-    start_date_label?: string;
-    schedule_label?: string;
-    time_label?: string;
-    duration_label?: string;
-    price_label?: string;
+interface COURSE_GROUPS_SECTION {
     groups?: COURSE_GROUP[];
 };
 
@@ -122,16 +112,11 @@ interface COURSE_FAQ_ITEM {
     answer?: string;
 };
 
-interface COURSE_FAQ_SECTION extends COURSE_HEADING_BLOCK {
+interface COURSE_FAQ_SECTION {
     items?: COURSE_FAQ_ITEM[];
 };
 
 interface COURSE_TRAINERS_SECTION {
-    eyebrow?: string;
-    emphasis?: string;
-    experience_label?: string;
-    programs_label?: string;
-    skills_label?: string;
     items?: WORKER[];
 };
 
@@ -147,11 +132,10 @@ interface COURSES_DESIGN_QUERYResult {
     card_description?: string;
     card_image?: Asset;
     conditions: string[];
-    guides: string[];
+    about_section?: COURSE_ABOUT_SECTION;
     gallery_of_course: GALLERY[];
     portfolios: PORTFOLIO[];
     orders: ORDER[];
-    topics_section?: COURSE_TOPICS_SECTION;
     topics?: COURSE_TOPIC[];
     condition_items?: COURSE_TOPIC[];
     trainers_section?: COURSE_TRAINERS_SECTION;
@@ -159,6 +143,8 @@ interface COURSES_DESIGN_QUERYResult {
     why_section?: COURSE_WHY_SECTION;
     groups_section?: COURSE_GROUPS_SECTION;
     faq_section?: COURSE_FAQ_SECTION;
+    blog_posts?: BLOG_POST[];
+    selected_work_section?: SELECTED_WORK_SECTION;
     keywords?: string[];
     ogDescription?: string;
     ogImage?: Asset;
@@ -168,21 +154,6 @@ interface COURSES_SECTION {
     eyebrow: string;
     line_1: string;
     line_2: string;
-    page_eyebrow?: string;
-    page_line_1?: string;
-    page_line_2?: string;
-    detail_eyebrow?: string;
-    detail_emphasis?: string;
-    explore_label?: string;
-    portfolio_label?: string;
-    about_eyebrow?: string;
-    curriculum_eyebrow?: string;
-    curriculum_modules_label?: string;
-    curriculum_title?: string;
-    curriculum_emphasis?: string;
-    curriculum_description?: string;
-    trainers_eyebrow?: string;
-    trainers_emphasis?: string;
 };
 
 interface WHY_ITEM {
@@ -222,6 +193,24 @@ interface PROJECT_ITEM {
 interface PROJECTS_SECTION {
     description: string;
     projects: PROJECT_ITEM[];
+};
+
+interface SELECTED_WORK_PORTFOLIO_PICK {
+    _key: string;
+    portfolio_key?: string;
+    courseSlug?: string;
+    courseLabel?: string;
+    portfolio?: {
+        _key: string;
+        image?: Asset;
+        author?: string;
+        title?: string;
+    };
+};
+
+interface SELECTED_WORK_SECTION {
+    description?: string;
+    portfolio_picks?: SELECTED_WORK_PORTFOLIO_PICK[];
 };
 
 interface VOICE_ITEM {

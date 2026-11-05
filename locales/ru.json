@@ -143,12 +143,12 @@
         "line-3": "диплом"
     },
     "projects-section": {
-        "eyebrow": "Портфолио",
+        "eyebrow": "Избранные работы",
         "line-1": "Проекты",
         "line-2": "со студийного пола."
     },
     "design-blog-section": {
-        "eyebrow": "Design Studio Art House",
+        "eyebrow": "Блог",
         "line-1": "Блог и",
         "line-2": "новости"
     },
@@ -158,6 +158,63 @@
         "line-2": "говорят на самом деле.",
         "emphasis-word": "на самом деле",
         "slides": "Отзывы"
+    },
+    "design-courses-page": {
+        "eyebrow": "Курсы · {count} программ",
+        "line-1": "Наши",
+        "line-2": "курсы."
+    },
+    "design-course-sections": {
+        "detail-eyebrow": "Курс",
+        "detail-emphasis": "курсы.",
+        "explore-label": "Смотреть курсы",
+        "about": {
+            "eyebrow": "О курсе"
+        },
+        "portfolio-label": "Портфолио",
+        "curriculum": {
+            "eyebrow": "Программа · {count} модулей",
+            "eyebrow-prefix": "Программа",
+            "modules-label": "модулей",
+            "line-1": "Темы",
+            "line-2": "курса.",
+            "description": "Каждый модуль — отдельная студийная единица: лекция, живая демонстрация, бриф и разбор. Модули выстраиваются друг за другом к финальному портфолио."
+        },
+        "price": {
+            "eyebrow": "Прайс-лист",
+            "line-1": "Прайс",
+            "line-2": "лист."
+        },
+        "why": {
+            "eyebrow": "Почему этот курс",
+            "line-1": "Почему стоит выбрать",
+            "line-2": "этот курс."
+        },
+        "groups": {
+            "eyebrow": "Ближайшие группы",
+            "line-1": "Ближайшие",
+            "line-2": "курсы.",
+            "filter-all": "Все",
+            "filter-morning": "Утро",
+            "filter-evening": "Вечер",
+            "filter-online": "Онлайн",
+            "filter-offline": "Офлайн",
+            "start-date-label": "Дата старта",
+            "schedule-label": "Расписание",
+            "time-label": "Время",
+            "duration-label": "Длительность",
+            "price-label": "Цена",
+            "enroll-label": "Записаться"
+        },
+        "faq": {
+            "eyebrow": "FAQ",
+            "line-1": "Часто задаваемые",
+            "line-2": "вопросы."
+        },
+        "trainers": {
+            "eyebrow": "Преподаватели",
+            "emphasis": "преподаватели."
+        }
     },
     "staff-section": {
         "line-1": "Наша",
