@@ -16,6 +16,31 @@ import cn from 'classnames';
 import styles from './styles.module.sass';
 
 
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const renderVoicesSecondLine = (text: string, emphasisWord: string) => {
+    if (!text) return null;
+
+    if (!emphasisWord) {
+        return keepWords(text);
+    }
+
+    const match = text.match(new RegExp(`^(.*?)(${escapeRegExp(emphasisWord)})(.*)$`, 'iu'));
+    if (!match) {
+        return keepWords(text);
+    }
+
+    const [, before, emphasis, after] = match;
+
+    return (
+        <>
+            {before ? keepWords(before) : null}
+            <span className={styles.emphasis}>{emphasis}</span>
+            {after ? keepWords(after) : null}
+        </>
+    );
+};
+
 interface Props {
     section?: VOICES_SECTION;
 };
@@ -26,9 +51,9 @@ const Voices = ({ section }: Readonly<Props>) => {
     const t = useTranslations('voices-section');
 
     const copy = {
-        eyebrow: section?.eyebrow || '',
-        line1: section?.line_1 || '',
-        line2: section?.line_2 || '',
+        eyebrow: t('eyebrow'),
+        line1: t('line-1'),
+        line2: t('line-2'),
     };
 
     const items = useMemo(
@@ -82,7 +107,7 @@ const Voices = ({ section }: Readonly<Props>) => {
                     </p>
                     <h2 className={cn(styles.headline, designFont.serif)}>
                         <span>{keepWords(copy.line1)}</span>
-                        <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                        <span>{renderVoicesSecondLine(copy.line2, t('emphasis-word'))}</span>
                     </h2>
                 </header>
 
@@ -111,13 +136,18 @@ const Voices = ({ section }: Readonly<Props>) => {
                             </div>
                             <div className={styles.body}>
                                 <span className={styles.quoteMark} aria-hidden>
-                                    <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
-                                        <path d="M11.2 21.2H0.8V12.4C0.8 8.08 1.84 4.72 3.92 2.32C6 0.88 8.4 0.16 11.12 0.16V5.2C9.52 5.36 8.32 6 7.52 7.12C6.72 8.24 6.32 9.84 6.32 11.92H11.2V21.2ZM27.2 21.2H16.8V12.4C16.8 8.08 17.84 4.72 19.92 2.32C22 0.88 24.4 0.16 27.12 0.16V5.2C25.52 5.36 24.32 6 23.52 7.12C22.72 8.24 22.32 9.84 22.32 11.92H27.2V21.2Z" fill="#ce2421" />
+                                    <svg viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                                        <path
+                                            d="M11.8 29.2H2.8V17.6C2.8 11.8 4.28 7.36 7.24 4.24C10.2 1.96 13.52 1 17.2 1V7.6C14.96 7.88 13.28 8.96 12.16 10.84C11.04 12.72 10.48 15.08 10.48 17.92H11.8V29.2ZM29.8 29.2H20.8V17.6C20.8 11.8 22.28 7.36 25.24 4.24C28.2 1.96 31.52 1 35.2 1V7.6C32.96 7.88 31.28 8.96 30.16 10.84C29.04 12.72 28.48 15.08 28.48 17.92H29.8V29.2Z"
+                                            stroke="#CE2421"
+                                            strokeWidth="2.4"
+                                            strokeLinejoin="round"
+                                        />
                                     </svg>
                                 </span>
-                                <blockquote className={cn(styles.quote, designFont.serif)}>“{voice.quote}”</blockquote>
+                                <blockquote className={cn(styles.quote, designFont.serif)}>{voice.quote}</blockquote>
                                 <div className={styles.footer}>
-                                    <div>
+                                    <div className={styles.meta}>
                                         <p className={styles.name}>{voice.name}</p>
                                         <p className={styles.role}>{voice.role}</p>
                                     </div>
@@ -126,26 +156,25 @@ const Voices = ({ section }: Readonly<Props>) => {
                                             <span key={starIndex} className={starIndex < rating ? styles.starOn : styles.starOff}>★</span>
                                         ))}
                                     </div>
+                                    {count > 1 && (
+                                        <div className={styles.dots} role="tablist" aria-label={t('slides')}>
+                                            {items.map((item, dotIndex) => (
+                                                <button
+                                                    key={item._key}
+                                                    type="button"
+                                                    role="tab"
+                                                    aria-selected={dotIndex === activeIndex}
+                                                    aria-label={item.name}
+                                                    className={cn(styles.dot, dotIndex === activeIndex && styles.dotActive)}
+                                                    onClick={() => goTo(dotIndex)}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
                     </AnimatePresence>
-
-                    {count > 1 && (
-                        <div className={styles.dots} role="tablist" aria-label={t('slides')}>
-                            {items.map((item, dotIndex) => (
-                                <button
-                                    key={item._key}
-                                    type="button"
-                                    role="tab"
-                                    aria-selected={dotIndex === activeIndex}
-                                    aria-label={item.name}
-                                    className={cn(styles.dot, dotIndex === activeIndex && styles.dotActive)}
-                                    onClick={() => goTo(dotIndex)}
-                                />
-                            ))}
-                        </div>
-                    )}
                 </div>
             </div>
         </section>

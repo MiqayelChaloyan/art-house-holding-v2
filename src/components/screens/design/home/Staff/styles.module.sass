@@ -1,15 +1,26 @@
+$staff-frame-border: 2px solid rgba(255, 255, 255, 0.22)
+
 .section
 	position: relative
 	background: #090909
 	color: #ffffff
 	padding: 131px 0 96px
 	overflow-x: clip
+	&::before
+		content: ''
+		position: absolute
+		inset: 0
+		pointer-events: none
+		background: radial-gradient(ellipse 42% 58% at 54% 52%, rgba(206, 36, 33, 0.09) 0%, rgba(206, 36, 33, 0.04) 42%, transparent 68%)
+		z-index: 0
 	@media screen and (max-width: 980px)
 		padding: 80px 0 72px
 	@media screen and (max-width: 640px)
 		padding: 56px 0 64px
 
 .wrap
+	position: relative
+	z-index: 1
 	width: 100%
 	width: min(1320px, calc(100% - 192px))
 	margin: 0 auto
@@ -20,12 +31,12 @@
 
 .stage
 	display: grid
-	grid-template-columns: minmax(0, 1fr) 420px
-	column-gap: 88px
+	grid-template-columns: minmax(0, 1fr) 471px
+	column-gap: 72px
 	align-items: start
 	@media screen and (max-width: 1100px)
-		grid-template-columns: minmax(0, 1fr) 400px
-		column-gap: 48px
+		grid-template-columns: minmax(0, 1fr) 471px
+		column-gap: 40px
 	@media screen and (max-width: 980px)
 		grid-template-columns: 1fr
 		row-gap: 36px
@@ -127,9 +138,17 @@
 	z-index: 2
 	overflow: hidden
 	border-radius: 28px
+	border: $staff-frame-border
 	background: #101010
 	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4)
+	transform-origin: center center
 	will-change: transform, opacity
+
+.portraitFrame
+	width: 100%
+	height: 100%
+	overflow: hidden
+	transform-origin: center center
 
 .portrait
 	width: 100% !important
@@ -138,115 +157,172 @@
 	object-position: center top
 
 .panel
-	width: 100%
-	max-width: 471px
+	position: relative
+	display: flex
+	flex-direction: column
+	box-sizing: border-box
+	width: 471px
+	max-width: 100%
+	height: 888px
 	min-height: 888px
 	justify-self: end
-	border: 1px solid rgba(255, 255, 255, 0.1)
+	border: $staff-frame-border
 	border-radius: 36px
-	background: #101010
+	background: #0a0a0a
+	box-shadow: none
 	overflow: hidden
 	@media screen and (max-width: 1100px)
+		width: 100%
+		max-width: 471px
+		height: 720px
 		min-height: 720px
 	@media screen and (max-width: 980px)
+		width: 100%
 		max-width: none
-		justify-self: stretch
+		height: auto
 		min-height: 0
+		justify-self: stretch
 
 .panelInner
+	position: absolute
+	inset: 0
 	display: flex
 	flex-direction: column
 	align-items: stretch
-	min-height: 888px
-	padding: 22px 24px 22px
-	@media screen and (max-width: 1100px)
-		min-height: 760px
-	@media screen and (max-width: 980px)
-		min-height: 0
-
-.panelHead
-	position: relative
-	display: flex
-	justify-content: center
+	box-sizing: border-box
 	width: 100%
-	padding: 8px 0 12px
-	margin-bottom: 8px
+	height: 100%
+	min-height: 0
+	overflow: hidden
+	background: #0a0a0a
+	@media screen and (max-width: 980px)
+		position: relative
+		inset: auto
+		height: auto
+		overflow: visible
+
+.panelHero
+	position: relative
+	flex: 0 0 40%
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: flex-end
+	width: 100%
+	min-height: 320px
+	max-height: 360px
+	padding: 20px 22px 28px
+	background: #090909
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+	@media screen and (max-width: 1100px)
+		min-height: 260px
+		max-height: 300px
+	@media screen and (max-width: 980px)
+		flex: none
+		min-height: 280px
+		max-height: none
+
+.panelBody
+	display: flex
+	flex: 1
+	flex-direction: column
+	align-items: stretch
+	min-height: 0
+	padding: 22px 22px 24px
+	overflow-x: hidden
+	overflow-y: auto
+	background: #141414
+	scrollbar-width: thin
+	scrollbar-color: rgba(255, 255, 255, 0.2) transparent
+	&::-webkit-scrollbar
+		width: 4px
+	&::-webkit-scrollbar-thumb
+		border-radius: 99px
+		background: rgba(255, 255, 255, 0.2)
 
 .experience
 	position: absolute
-	top: 2px
-	left: 2px
+	top: 20px
+	left: 22px
 	display: flex
 	flex-direction: column
-	gap: 1px
+	gap: 2px
 	margin: 0
+	text-align: left
 	font-size: 11px
 	line-height: 14px
-	letter-spacing: 0.04em
-	color: rgba(255, 255, 255, 0.45)
+	letter-spacing: 0.02em
+	color: rgba(255, 255, 255, 0.5)
 	span
-		font-size: 13px
+		font-size: 12px
 		font-weight: 500
-		letter-spacing: 0.04em
+		line-height: 14px
+		letter-spacing: 0.06em
 		text-transform: uppercase
 		color: #ffffff
 	small
 		font-size: 11px
 		font-weight: 400
+		line-height: 14px
 		letter-spacing: 0
-		text-transform: none
-		color: rgba(255, 255, 255, 0.42)
+		text-transform: capitalize
+		color: rgba(255, 255, 255, 0.55)
 
 .avatarWrap
+	box-sizing: border-box
 	overflow: hidden
-	width: min(262px, 70%)
+	width: min(268px, 86%)
 	aspect-ratio: 1
 	height: auto
-	margin: 18px auto 0
-	border: 1px solid rgba(255, 255, 255, 0.12)
+	margin: 0 auto
+	border: $staff-frame-border
 	border-radius: 999px
-	background: #141414
+	background: #050505
+	box-shadow: none
 
 .avatar
+	display: block
 	width: 100% !important
 	height: 100% !important
 	object-fit: cover
 	object-position: center top
+	border-radius: 999px
 
 .identity
 	width: 100%
-	margin: 8px 0 16px
+	margin: 0 0 18px
 	text-align: center
 
 .name
-	margin: 0 0 6px
-	font-size: 18px
+	margin: 0
+	font-size: 17px
 	font-weight: 600
-	line-height: 24px
-	letter-spacing: 0.12em
+	line-height: 22px
+	letter-spacing: 0.1em
 	text-transform: uppercase
+	color: #ffffff
 
 .role
-	margin: 0
-	font-size: 13px
-	line-height: 18px
-	color: rgba(255, 255, 255, 0.48)
+	margin: 8px 0 0
+	font-size: 12px
+	line-height: 17px
+	color: rgba(255, 255, 255, 0.45)
 
 .bio
 	display: flex
 	gap: 10px
 	width: 100%
-	margin: 0 0 20px
-	font-size: 13px
-	line-height: 20px
-	color: rgba(255, 255, 255, 0.58)
+	margin: 0 0 22px
+	font-size: 12px
+	line-height: 19px
+	color: rgba(255, 255, 255, 0.82)
 	text-align: left
 
 .bullet
 	flex-shrink: 0
-	width: 7px
-	height: 7px
-	margin-top: 6px
+	width: 6px
+	height: 6px
+	margin-top: 7px
 	border-radius: 999px
 	background: #ce2421
 
@@ -254,12 +330,15 @@
 	width: 100%
 	margin-bottom: 16px
 
+.groupLast
+	margin-bottom: 0
+
 .groupLabel
-	margin: 0 0 10px
-	font-size: 12px
-	line-height: 16px
+	margin: 0 0 12px
+	font-size: 11px
+	line-height: 15px
 	text-align: left
-	color: rgba(255, 255, 255, 0.38)
+	color: rgba(255, 255, 255, 0.35)
 
 .tags
 	display: flex
@@ -271,28 +350,39 @@
 	list-style: none
 	li
 		padding: 8px 14px
-		border: 1px solid rgba(255, 255, 255, 0.08)
+		border: 0
 		border-radius: 999px
-		font-size: 12px
-		line-height: 16px
-		color: rgba(255, 255, 255, 0.78)
-		background: rgba(255, 255, 255, 0.04)
+		font-size: 11px
+		font-weight: 400
+		line-height: 15px
+		color: rgba(255, 255, 255, 0.9)
+		background: #2a2a2a
+
+.panelFooter
+	display: flex
+	justify-content: center
+	align-items: center
+	width: 100%
+	margin-top: auto
+	padding-top: 20px
+	padding-bottom: 2px
 
 .behance
 	display: inline-flex
+	flex-shrink: 0
 	align-items: center
 	justify-content: center
-	align-self: center
-	width: 42px
-	height: 42px
-	margin-top: auto
-	border: 1px solid rgba(255, 255, 255, 0.16)
+	width: 40px
+	height: 40px
+	border: 1px solid rgba(255, 255, 255, 0.22)
 	border-radius: 999px
 	color: #ffffff
-	font-size: 16px
-	font-weight: 600
 	text-decoration: none
+	background: transparent
 	transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease
+	svg
+		width: 20px
+		height: 20px
 	&:hover
 		background: rgba(255, 255, 255, 0.1)
 		border-color: rgba(255, 255, 255, 0.4)

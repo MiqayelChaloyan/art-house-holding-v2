@@ -50,11 +50,7 @@ export const createBlogSimilarPostsQuery = (documentType: string) => `
     "category": category[$language],
 }`;
 
-export const blogSectionQueryFragment = `
-    "blog_section": blog_section {
-        "eyebrow": eyebrow[$language],
-        "section_title": section_title[$language],
-        "section_subtitle": section_subtitle[$language],
+const designBlogPostsSelection = `
         "posts": posts[]-> {
             _id,
             "slug": slug.current,
@@ -63,5 +59,17 @@ export const blogSectionQueryFragment = `
             "title": title[$language],
             "excerpt": excerpt[$language],
             "category": category[$language],
-        },
+        }`;
+
+export const blogSectionQueryFragment = `
+    "blog_section": blog_section {
+        "eyebrow": eyebrow[$language],
+        "section_title": section_title[$language],
+        "section_subtitle": section_subtitle[$language],
+        ${designBlogPostsSelection},
+    }`;
+
+export const designBlogSectionQueryFragment = `
+    "blog_section": blog_section {
+        ${designBlogPostsSelection},
     }`;

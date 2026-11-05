@@ -206,13 +206,10 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                 <div className={styles.trainers}>
                     <Staff
                         workers={trainers}
-                        section={{
-                            line_1: home?.staff_section?.line_1 || '',
-                            line_2: home?.staff_section?.line_2 || '',
-                            line_3: home?.staff_section?.line_3 || '',
-                            experience_label: trainersSection?.experience_label || home?.staff_section?.experience_label,
-                            programs_label: trainersSection?.programs_label || home?.staff_section?.programs_label,
-                            skills_label: trainersSection?.skills_label || home?.staff_section?.skills_label,
+                        labels={{
+                            experience_label: trainersSection?.experience_label,
+                            programs_label: trainersSection?.programs_label,
+                            skills_label: trainersSection?.skills_label,
                         }}
                         heading={{ eyebrow: copy.trainersEyebrow, title, emphasis: copy.trainersEmphasis }}
                     />
@@ -341,7 +338,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
 
             <div className={styles.shared}>
                 <Projects section={home?.projects_section} />
-                <Blog section={home?.blog_section} posts={selectedPosts} layout="cards" />
+                <Blog posts={selectedPosts} layout="cards" />
             </div>
 
             <section className={cn(styles.block, styles.map)}>

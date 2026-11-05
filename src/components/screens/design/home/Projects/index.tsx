@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import NextImage from '@/src/components/components/image';
 
@@ -23,11 +23,12 @@ interface Props {
 
 const Projects = ({ section }: Readonly<Props>) => {
     const locale = useLocale();
+    const t = useTranslations('projects-section');
 
     const copy = {
-        eyebrow: section?.eyebrow || '',
-        line1: section?.line_1 || '',
-        line2: section?.line_2 || '',
+        eyebrow: t('eyebrow'),
+        line1: t('line-1'),
+        line2: t('line-2'),
         description: section?.description || '',
     };
 

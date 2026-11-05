@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import NextImage from '@/src/components/components/image';
 
 import { designFont } from '@/src/constants/font';
@@ -18,10 +20,12 @@ interface Props {
 };
 
 const Certificates = ({ section }: Readonly<Props>) => {
+    const t = useTranslations('certificates-section');
+
     const copy = {
-        line1: section?.line_1 || '',
-        line2: section?.line_2 || '',
-        line3: section?.line_3 || '',
+        line1: t('line-1'),
+        line2: t('line-2'),
+        line3: t('line-3'),
     };
 
     const sources = (section?.images || [])

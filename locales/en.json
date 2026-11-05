@@ -22,7 +22,9 @@
         "partners": "Partners"
     },
     "footer-design": {
-        "tagline": "A creative design studio and educational center. Studio work by day, academy by evening — one culture, one standard.",
+        "tagline-line-1": "A creative design studio and educational center.",
+        "tagline-line-2": "Studio work by day, academy by evening —",
+        "tagline-line-3": "one culture, one standard.",
         "navigate": "Navigate",
         "social": "Social",
         "contact": "Contact",
@@ -37,6 +39,12 @@
         "empty": "No projects in this program yet.",
         "all": "All",
         "view-more": "View more"
+    },
+    "why-section": {
+        "eyebrow": "Why Art House",
+        "line-1": "A rigorous studio",
+        "line-2": "inside an academy.",
+        "emphasis-word": "academy"
     },
     "contact-page": {
         "eyebrow": "Contact",
@@ -129,15 +137,38 @@
         "more-stories-description": "{count} more articles waiting for you",
         "explore-all-stories": "Explore all stories"
     },
+    "certificates-section": {
+        "line-1": "Certificate",
+        "line-2": "and",
+        "line-3": "Diploma"
+    },
+    "projects-section": {
+        "eyebrow": "Portfolio",
+        "line-1": "Projects from",
+        "line-2": "the studio floor."
+    },
+    "design-blog-section": {
+        "eyebrow": "Art House Design Studio",
+        "line-1": "Blog and",
+        "line-2": "news"
+    },
     "voices-section": {
+        "eyebrow": "Student voices",
+        "line-1": "What our students",
+        "line-2": "actually say.",
+        "emphasis-word": "actually",
         "slides": "Testimonials"
     },
     "staff-section": {
+        "line-1": "Our",
+        "line-2": "creative",
+        "line-3": "Staff",
         "experience-label": "Experience",
         "programs": "Programs",
         "skills": "Skills",
         "prev": "Previous team member",
-        "next": "Next team member"
+        "next": "Next team member",
+        "view-behance": "View {name} on Behance"
     },
     "contact": {
         "tell": "Tell.",

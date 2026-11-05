@@ -73,7 +73,7 @@ const contactUsSchemaDesign = {
         },
         { ...localizedString('Brand line 1', 'brand_line_1', 'string', 'First line next to the logo, for example ART HOUSE.'), group: 'brand' },
         { ...localizedString('Brand line 2', 'brand_line_2', 'string', 'Second line next to the logo, for example DESIGN STUDIO.'), group: 'brand' },
-        { ...localizedString('Footer tagline', 'tagline', 'text', 'The short paragraph under the footer logo.'), group: 'brand' },
+        { ...localizedString('Footer tagline', 'tagline', 'text', 'Optional. Up to three lines under the footer logo, separated by line breaks. If empty, locales/footer-design tagline-line-1–3 are used.'), group: 'brand' },
         {
             name: 'social_links',
             type: 'array',
@@ -108,8 +108,8 @@ const contactUsSchemaDesign = {
             type: 'array',
             title: 'Map links',
             group: 'social',
-            description: 'Google, Yandex, and 2GIS logos shown under the footer social links.',
-            validation: (Rule: RuleType) => Rule.max(3),
+            description: 'Map provider logos under footer social links. Up to 10. Four or more show in a 3×3 grid in the footer.',
+            validation: (Rule: RuleType) => Rule.max(10),
             components: { input: ArrayMaxItems },
             of: [
                 {

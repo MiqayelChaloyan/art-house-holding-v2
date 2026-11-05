@@ -4,7 +4,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { SiBehance } from 'react-icons/si';
 
 import NextImage from '@/src/components/components/image';
 
@@ -19,7 +20,11 @@ import styles from './styles.module.sass';
 
 interface Props {
     workers: WORKER[];
-    section?: STAFF_SECTION;
+    labels?: {
+        experience_label?: string;
+        programs_label?: string;
+        skills_label?: string;
+    };
     heading?: {
         eyebrow?: string;
         title?: string;
@@ -28,18 +33,47 @@ interface Props {
 };
 
 const HOLD_MS = 5200;
+const SLIDE_MS = 0.55;
+const PORTRAIT_MS = 0.78;
+const SLIDE_EASE = [0.4, 0, 0.2, 1] as const;
+const PORTRAIT_EASE = [0.22, 1, 0.36, 1] as const;
 
-const Staff = ({ workers, section, heading }: Readonly<Props>) => {
+const portraitSlide = {
+    enter: (direction: number) => ({
+        x: direction > 0 ? '14%' : '-14%',
+        opacity: 0,
+        scale: 0.96,
+    }),
+    center: {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+    },
+    exit: (direction: number) => ({
+        x: direction > 0 ? '-14%' : '14%',
+        opacity: 0,
+        scale: 0.98,
+    }),
+};
+
+const portraitZoom = {
+    enter: { scale: 1.06 },
+    center: { scale: 1 },
+    exit: { scale: 1.02 },
+};
+
+const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
     const t = useTranslations('staff-section');
+    const reduceMotion = useReducedMotion();
     const team = useMemo(() => workers.filter((member) => member.worker_image?.asset), [workers]);
 
     const copy = {
-        line1: section?.line_1 || '',
-        line2: section?.line_2 || '',
-        line3: section?.line_3 || '',
-        experience: section?.experience_label || '',
-        programs: section?.programs_label || '',
-        skills: section?.skills_label || '',
+        line1: t('line-1'),
+        line2: t('line-2'),
+        line3: t('line-3'),
+        experience: labels?.experience_label || t('experience-label'),
+        programs: labels?.programs_label || t('programs'),
+        skills: labels?.skills_label || t('skills'),
     };
 
     const [[index, direction], setPage] = useState([0, 1]);
@@ -79,6 +113,13 @@ const Staff = ({ workers, section, heading }: Readonly<Props>) => {
     const skills = member.skills?.length ? member.skills : [];
     const experience = member.experience || '';
     const bio = member.bio || member.profession;
+
+    const portraitTransition = reduceMotion
+        ? { duration: 0.01 }
+        : { duration: PORTRAIT_MS, ease: PORTRAIT_EASE };
+    const zoomTransition = reduceMotion
+        ? { duration: 0.01 }
+        : { duration: PORTRAIT_MS + 0.15, ease: PORTRAIT_EASE };
 
     return (
         <section
@@ -139,21 +180,32 @@ const Staff = ({ workers, section, heading }: Readonly<Props>) => {
                                     key={member._key}
                                     className={styles.sheet}
                                     custom={direction}
-                                    initial={{ x: direction > 0 ? 56 : -56, opacity: 0, scale: 0.96 }}
-                                    animate={{ x: 0, opacity: 1, scale: 1 }}
-                                    exit={{ x: direction > 0 ? -56 : 56, opacity: 0, scale: 0.96 }}
-                                    transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                                    variants={portraitSlide}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={portraitTransition}
                                 >
                                     {portrait?.src && (
-                                        <NextImage
-                                            src={portrait.src}
-                                            alt={member.worker_image.alt || member.worker}
-                                            className={styles.portrait}
-                                            width={portrait.width}
-                                            height={portrait.height}
-                                            sizes="(max-width: 980px) 90vw, 480px"
-                                            loading="eager"
-                                        />
+                                        <motion.div
+                                            className={styles.portraitFrame}
+                                            variants={portraitZoom}
+                                            initial="enter"
+                                            animate="center"
+                                            exit="exit"
+                                            transition={zoomTransition}
+                                        >
+                                            <NextImage
+                                                key={`${member._key}-portrait`}
+                                                src={portrait.src}
+                                                alt={member.worker_image.alt || member.worker}
+                                                className={styles.portrait}
+                                                width={portrait.width}
+                                                height={portrait.height}
+                                                sizes="(max-width: 980px) 90vw, 480px"
+                                                loading="eager"
+                                            />
+                                        </motion.div>
                                     )}
                                 </motion.div>
                             </AnimatePresence>
@@ -161,16 +213,17 @@ const Staff = ({ workers, section, heading }: Readonly<Props>) => {
                     </div>
 
                     <article className={styles.panel}>
-                        <AnimatePresence mode="wait" initial={false}>
+                        <AnimatePresence initial={false} custom={direction}>
                             <motion.div
                                 key={member._key}
                                 className={styles.panelInner}
-                                initial={{ opacity: 0, y: 28 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+                                custom={direction}
+                                initial={{ opacity: 0, x: direction > 0 ? 40 : -40 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: direction > 0 ? -40 : 40 }}
+                                transition={{ duration: SLIDE_MS, ease: SLIDE_EASE }}
                             >
-                                <div className={styles.panelHead}>
+                                <div className={styles.panelHero}>
                                     {experience && (
                                         <p className={styles.experience}>
                                             <span>{experience}</span>
@@ -180,6 +233,7 @@ const Staff = ({ workers, section, heading }: Readonly<Props>) => {
                                     <div className={styles.avatarWrap}>
                                         {avatar?.src && (
                                             <NextImage
+                                                key={`${member._key}-avatar`}
                                                 src={avatar.src}
                                                 alt=""
                                                 className={styles.avatar}
@@ -193,43 +247,53 @@ const Staff = ({ workers, section, heading }: Readonly<Props>) => {
                                     </div>
                                 </div>
 
-                                <div className={styles.identity}>
-                                    <h3 className={styles.name}>{member.worker}</h3>
-                                    <p className={styles.role}>{member.profession}</p>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.identity}>
+                                        <h3 className={styles.name}>{member.worker}</h3>
+                                        <p className={styles.role}>{member.profession}</p>
+                                    </div>
+
+                                    <p className={styles.bio}>
+                                        <span className={styles.bullet} aria-hidden />
+                                        {bio}
+                                    </p>
+
+                                    {programs.length > 0 && (
+                                        <div className={styles.group}>
+                                            <p className={styles.groupLabel}>{copy.programs}</p>
+                                            <ul className={styles.tags}>
+                                                {programs.map((item) => (
+                                                    <li key={item}>{item}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {skills.length > 0 && (
+                                        <div className={cn(styles.group, styles.groupLast)}>
+                                            <p className={styles.groupLabel}>{copy.skills}</p>
+                                            <ul className={styles.tags}>
+                                                {skills.map((item) => (
+                                                    <li key={item}>{item}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {member.behance_url && (
+                                        <footer className={styles.panelFooter}>
+                                            <Link
+                                                href={member.behance_url}
+                                                className={styles.behance}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={t('view-behance', { name: member.worker })}
+                                            >
+                                                <SiBehance aria-hidden />
+                                            </Link>
+                                        </footer>
+                                    )}
                                 </div>
-
-                                <p className={styles.bio}>
-                                    <span className={styles.bullet} aria-hidden />
-                                    {bio}
-                                </p>
-
-                                {programs.length > 0 && (
-                                    <div className={styles.group}>
-                                        <p className={styles.groupLabel}>{copy.programs}</p>
-                                        <ul className={styles.tags}>
-                                            {programs.map((item) => (
-                                                <li key={item}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {skills.length > 0 && (
-                                    <div className={styles.group}>
-                                        <p className={styles.groupLabel}>{copy.skills}</p>
-                                        <ul className={styles.tags}>
-                                            {skills.map((item) => (
-                                                <li key={item}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {member.behance_url && (
-                                    <Link href={member.behance_url} className={styles.behance} target="_blank" rel="noreferrer">
-                                        Bē
-                                    </Link>
-                                )}
                             </motion.div>
                         </AnimatePresence>
                     </article>

@@ -57,7 +57,7 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
             </Link>
             <div className={styles.body}>
                 <div className={styles.titleRow}>
-                    <h3 className={cn(styles.title, designFont.serif)}>
+                    <h3 className={cn(styles.title, designFont.ui)}>
                         <Link href={href}>{keepWords(courseName)}</Link>
                     </h3>
                     <Link href={href} className={styles.iconBtn} aria-label={courseName}>

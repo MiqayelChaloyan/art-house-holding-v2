@@ -39,12 +39,17 @@ const legalLinks = [
 const Footer = ({ socialData }: Readonly<Props>) => {
     const locale = useLocale();
     const t = useTranslations();
+    const footerT = useTranslations('footer-design');
     const year = new Date().getFullYear();
     const address = socialData?.address || t('address.address');
     const mapsQuery = encodeURIComponent(address);
     const logo = socialData?.logo ? urlForImage(socialData.logo, 240) : undefined;
     const brandName = [socialData?.brand_line_1, socialData?.brand_line_2].filter(Boolean).join(' ') || 'Art House';
-    const tagline = socialData?.tagline || t('footer-design.tagline');
+    const taglineLines = [
+        footerT('tagline-line-1'),
+        footerT('tagline-line-2'),
+        footerT('tagline-line-3'),
+    ];
 
     const socials = (socialData?.social_links || [])
         .filter((host) => host.social_name && host.social_link)
@@ -64,7 +69,8 @@ const Footer = ({ socialData }: Readonly<Props>) => {
         { _key: 'yandex', name: 'Yandex', link: `https://yandex.com/maps/?text=${mapsQuery}` },
         { _key: 'gis', name: '2GIS', link: `https://2gis.am/yerevan/search/${mapsQuery}` },
     ];
-    const mapItems = maps.length ? maps : fallbackMaps;
+    const mapItems = (maps.length ? maps : fallbackMaps).slice(0, 10);
+    const mapsGrid = mapItems.length > 3;
 
     return (
         <footer id="site-footer" className={cn(styles.footer, designFont.ui)}>
@@ -82,86 +88,90 @@ const Footer = ({ socialData }: Readonly<Props>) => {
                             />
                             )}
                         </Link>
-                        {tagline && (
-                        <p className={styles.tagline}>{tagline}</p>
-                        )}
+                        <p className={styles.tagline}>
+                            {taglineLines.map((line, index) => (
+                                <span key={index}>{line}</span>
+                            ))}
+                        </p>
                         <Link href={`/${locale}${Pages.DESIGN_START_LEARNING}`} className={styles.cta}>
                             <span>{t('buttons.start-learning')}</span>
                             <LuArrowUpRight aria-hidden />
                         </Link>
                     </div>
 
-                    <nav className={styles.col} aria-label={t('footer-design.navigate')}>
-                        <p className={styles.label}>{t('footer-design.navigate')}</p>
-                        <ul className={styles.links}>
-                            {navigationLinks.map((link) => (
-                                <li key={link.label}>
-                                    <Link href={`/${locale}${link.path}${link.hash ?? ''}`}>
-                                        {t(`navigation.${link.label}`)}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
+                    <div className={styles.linkCols}>
+                        <nav className={styles.col} aria-label={t('footer-design.navigate')}>
+                            <p className={styles.label}>{t('footer-design.navigate')}</p>
+                            <ul className={styles.links}>
+                                {navigationLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link href={`/${locale}${link.path}${link.hash ?? ''}`}>
+                                            {t(`navigation.${link.label}`)}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
 
-                    <div className={styles.col}>
-                        <p className={styles.label}>{t('footer-design.social')}</p>
-                        <ul className={styles.links}>
-                            {socials.map((host) => (
-                                <li key={host._key}>
-                                    <Link href={host.href} target="_blank" rel="noreferrer">
-                                        {host.social_name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className={styles.maps}>
-                            {mapItems.map((item) => {
-                                const mark = item.image ? urlForImage(item.image, 96) : undefined;
+                        <div className={styles.col}>
+                            <p className={styles.label}>{t('footer-design.social')}</p>
+                            <ul className={styles.links}>
+                                {socials.map((host) => (
+                                    <li key={host._key}>
+                                        <Link href={host.href} target="_blank" rel="noreferrer">
+                                            {host.social_name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className={cn(styles.maps, mapsGrid && styles.mapsGrid)}>
+                                {mapItems.map((item) => {
+                                    const mark = item.image ? urlForImage(item.image, 96) : undefined;
 
-                                return (
-                                    <Link key={item._key} href={item.link} target="_blank" rel="noreferrer">
-                                        {mark?.src ? (
-                                            <NextImage
-                                                src={mark.src}
-                                                alt={item.image?.alt || item.name}
-                                                className={styles.mapLogo}
-                                                width={mark.width}
-                                                height={mark.height}
-                                            />
-                                        ) : (
-                                            <>
-                                                <span className={styles.mapMark}>{item.name[0]}</span>
-                                                {item.name}
-                                            </>
-                                        )}
-                                    </Link>
-                                );
-                            })}
+                                    return (
+                                        <Link key={item._key} href={item.link} target="_blank" rel="noreferrer">
+                                            {mark?.src ? (
+                                                <NextImage
+                                                    src={mark.src}
+                                                    alt={item.image?.alt || item.name}
+                                                    className={styles.mapLogo}
+                                                    width={mark.width}
+                                                    height={mark.height}
+                                                />
+                                            ) : (
+                                                <>
+                                                    <span className={styles.mapMark}>{item.name[0]}</span>
+                                                    {item.name}
+                                                </>
+                                            )}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={styles.col}>
-                        <p className={styles.label}>{t('footer-design.contact')}</p>
-                        <ul className={styles.links}>
-                            {socialData?.email && (
-                                <li>
-                                    <Link href={`mailto:${socialData.email}`}>{socialData.email}</Link>
-                                </li>
-                            )}
-                            {(socialData?.phone_numbers || []).map((number) => (
-                                <li key={number}>
-                                    <Link href={`tel:${number.replace(/\s/g, '')}`}>{number}</Link>
-                                </li>
-                            ))}
-                            {address && <li className={styles.address}>{address}</li>}
-                        </ul>
-                        <div className={styles.langs}>
-                            <LocalSwitcher
-                                variant="codes"
-                                activeColor={colors.white}
-                                color="rgba(255, 255, 255, 0.55)"
-                            />
+                        <div className={cn(styles.col, styles.colContact)}>
+                            <p className={styles.label}>{t('footer-design.contact')}</p>
+                            <ul className={styles.links}>
+                                {socialData?.email && (
+                                    <li>
+                                        <Link href={`mailto:${socialData.email}`}>{socialData.email}</Link>
+                                    </li>
+                                )}
+                                {(socialData?.phone_numbers || []).map((number) => (
+                                    <li key={number}>
+                                        <Link href={`tel:${number.replace(/\s/g, '')}`}>{number}</Link>
+                                    </li>
+                                ))}
+                                {address && <li className={styles.address}>{address}</li>}
+                            </ul>
+                            <div className={styles.langs}>
+                                <LocalSwitcher
+                                    variant="codes"
+                                    activeColor={colors.white}
+                                    color="rgba(255, 255, 255, 0.55)"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,9 @@
         "partners": "Գործընկերներ"
     },
     "footer-design": {
-        "tagline": "Ստեղծագործ դիզայն ստուդիա և կրթական կենտրոն։ Ցերեկը ստուդիա, երեկոյան՝ ակադեմիա՝ մեկ մշակույթ, մեկ ստանդարտ։",
+        "tagline-line-1": "Ստեղծագործ դիզայն ստուդիա և կրթական կենտրոն։",
+        "tagline-line-2": "Ցերեկը ստուդիա, երեկոյան՝ ակադեմիա՝",
+        "tagline-line-3": "մեկ մշակույթ, մեկ ստանդարտ։",
         "navigate": "Նավարկում",
         "social": "Սոցիալական",
         "contact": "Կապ",
@@ -37,6 +39,12 @@
         "empty": "Այս ծրագրում դեռ աշխատանքներ չկան.",
         "all": "Բոլորը",
         "view-more": "Տեսնել ավելին"
+    },
+    "why-section": {
+        "eyebrow": "Ինչու Art House",
+        "line-1": "Խիստ ստուդիա",
+        "line-2": "ակադեմիայի ներսում.",
+        "emphasis-word": "ակադեմիայի"
     },
     "contact-page": {
         "eyebrow": "Կապ",
@@ -129,15 +137,38 @@
         "more-stories-description": "Ձեզ սպասում է ևս {count} հոդված",
         "explore-all-stories": "Բացահայտել բոլոր պատմությունները"
     },
+    "certificates-section": {
+        "line-1": "Վկայական",
+        "line-2": "և",
+        "line-3": "Դիպլոմ"
+    },
+    "projects-section": {
+        "eyebrow": "Պորտֆոլիո",
+        "line-1": "Նախագծեր",
+        "line-2": "ստուդիայի հատակից."
+    },
+    "design-blog-section": {
+        "eyebrow": "Art House Design Studio",
+        "line-1": "Բլոգ և",
+        "line-2": "նորություններ"
+    },
     "voices-section": {
+        "eyebrow": "Ուսանողների կարծիքներ",
+        "line-1": "Ինչ են ասում",
+        "line-2": "մեր ուսանողները։",
+        "emphasis-word": "",
         "slides": "Կարծիքներ"
     },
     "staff-section": {
+        "line-1": "Մեր",
+        "line-2": "ստեղծարար",
+        "line-3": "թիմը",
         "experience-label": "Փորձ",
         "programs": "Ծրագրեր",
         "skills": "Հմտություններ",
         "prev": "Նախորդ աշխատակից",
-        "next": "Հաջորդ աշխատակից"
+        "next": "Հաջորդ աշխատակից",
+        "view-behance": "Դիտել {name}-ի Behance-ը"
     },
     "contact": {
         "tell": "Հեռ.",

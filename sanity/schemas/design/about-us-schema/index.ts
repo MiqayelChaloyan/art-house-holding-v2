@@ -2,8 +2,6 @@ import { ClipboardIcon, HomeIcon, UserIcon } from '@sanity/icons';
 
 import ArrayMaxItems from '@/src/helpers/ArrayMaxItems';
 import { RuleType } from '@/sanity/ruleType';
-import { blogSectionFields } from '@/sanity/schemas/shared/blogSectionFields';
-
 const localizedString = (
     title: string,
     name: string,
@@ -269,11 +267,8 @@ export const aboutUsSchemaDesign = {
             title: 'Reasons block',
             type: 'object',
             group: 'reasons',
-            description: 'The grid after the courses. Add up to 30 reasons. They wrap three across.',
+            description: 'The grid after the courses. Add up to 30 reasons. They wrap three across. The small label and headline come from locale files (why-section in locales/), not Sanity.',
             fields: [
-                smallLabel(),
-                localizedString('Headline line 1', 'line_1'),
-                localizedString('Headline line 2 (italic)', 'line_2'),
                 {
                     name: 'items',
                     title: 'Reasons',
@@ -426,11 +421,8 @@ export const aboutUsSchemaDesign = {
             title: 'Projects block',
             type: 'object',
             group: 'projects',
-            description: 'The project grid. The first project is the large card. You can add up to 10.',
+            description: 'The project grid. Section title lines are in locales/projects-section. The first project is the large card. You can add up to 10.',
             fields: [
-                smallLabel(),
-                localizedString('Headline line 1', 'line_1'),
-                localizedString('Headline line 2 (italic)', 'line_2'),
                 localizedString('Description', 'description', 'text'),
                 {
                     name: 'projects',
@@ -474,30 +466,12 @@ export const aboutUsSchemaDesign = {
             ],
         },
         {
-            name: 'staff_section',
-            title: 'Staff heading',
-            type: 'object',
-            group: 'staff',
-            description: 'The three lines of the title next to the team. The people are in the Staff members list on this same tab.',
-            fields: [
-                localizedString('Headline line 1', 'line_1'),
-                localizedString('Headline line 2 (italic)', 'line_2'),
-                localizedString('Headline line 3', 'line_3'),
-                localizedString('Experience label', 'experience_label', 'string', 'Small word under the years, for example Experience.'),
-                localizedString('Programs label', 'programs_label', 'string', 'Heading above the program tags.'),
-                localizedString('Skills label', 'skills_label', 'string', 'Heading above the skill tags.'),
-            ],
-        },
-        {
             name: 'certificates_section',
             title: 'Certificates block',
             type: 'object',
             group: 'certificates',
-            description: 'The title and the certificate pictures after the staff block. Add up to 10 pictures.',
+            description: 'Certificate pictures after the staff block. Title lines are in locales/certificates-section. Add up to 10 pictures.',
             fields: [
-                localizedString('Headline line 1', 'line_1'),
-                localizedString('Headline line 2 (italic)', 'line_2'),
-                localizedString('Headline line 3', 'line_3'),
                 {
                     name: 'images',
                     title: 'Certificate pictures',
@@ -534,7 +508,7 @@ export const aboutUsSchemaDesign = {
             type: 'array',
             title: 'Staff members',
             group: 'staff',
-            description: 'The people in the staff slider. Drag to change who appears first.',
+            description: 'The people in the staff slider. Drag to change who appears first. Section title lines and default labels are in locales/staff-section.json keys.',
             validation: (Rule: RuleType) => Rule.required(),
             of: [
                 {
@@ -637,8 +611,11 @@ export const aboutUsSchemaDesign = {
                         {
                             name: 'behance_url',
                             title: 'Behance link',
-                            description: 'Optional link to this person’s Behance profile.',
+                            description: 'Full Behance profile URL (https://…). When set, a clickable Behance icon appears next to the person’s name on the site.',
                             type: 'url',
+                            validation: (Rule: RuleType) => Rule.uri({
+                                scheme: ['http', 'https'],
+                            }),
                         },
                         {
                             name: 'courses',
@@ -663,12 +640,12 @@ export const aboutUsSchemaDesign = {
             ],
         },
         {
-            ...blogSectionFields,
+            name: 'blog_section',
+            type: 'object',
             title: 'Blog block',
             group: 'blog',
-            description: 'The heading and four existing Design Studio posts. Pick them from the list. Do not create new posts here.',
+            description: 'Four existing Design Studio posts for the home page. Heading lines are in locales/design-blog-section. Pick posts from the list. Do not create new posts here.',
             fields: [
-                ...blogSectionFields.fields,
                 {
                     name: 'posts',
                     title: 'Posts on the home page',
@@ -691,11 +668,8 @@ export const aboutUsSchemaDesign = {
             title: 'Voices block',
             type: 'object',
             group: 'voices',
-            description: 'Student quotes near the bottom of the page. Add 3 to 30 quotes.',
+            description: 'Student quotes near the bottom of the page. Title lines are in locales/voices-section. Add 3 to 30 quotes.',
             fields: [
-                smallLabel(),
-                localizedString('Headline line 1', 'line_1'),
-                localizedString('Headline line 2 (italic)', 'line_2'),
                 {
                     name: 'items',
                     title: 'Quotes',

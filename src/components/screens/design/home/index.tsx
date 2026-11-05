@@ -27,10 +27,10 @@ const Home = ({ data }: Readonly<Props>) => {
             <Studio section={data.studio_section} />
             <Courses courses={data.courses} section={data.courses_section} />
             <Why section={data.why_section} />
-            <Staff workers={data.workers} section={data.staff_section} />
+            <Staff workers={data.workers} />
             <Certificates section={data.certificates_section} />
             <Projects section={data.projects_section} />
-            <Blog section={data.blog_section} posts={selectedPosts} />
+            <Blog posts={selectedPosts} />
             <Voices section={data.voices_section} />
             <Partners clients={data.clients} />
         </>

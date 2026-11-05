@@ -21,14 +21,14 @@ import styles from './styles.module.sass';
 
 
 interface Props {
-    section?: BLOG_SECTION;
     posts: BLOG_POST[];
     layout?: 'featured' | 'cards';
 };
 
-const Blog = ({ section, posts, layout = 'featured' }: Readonly<Props>) => {
+const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
     const locale = useLocale();
     const t = useTranslations('buttons');
+    const sectionT = useTranslations('design-blog-section');
     const config = BLOG_SITE_CONFIG.design;
 
     const items = posts.filter((post) => post?.slug && post?.title).slice(0, layout === 'cards' ? 3 : 4);
@@ -36,9 +36,9 @@ const Blog = ({ section, posts, layout = 'featured' }: Readonly<Props>) => {
 
     const [featured, ...rest] = items;
     const copy = {
-        eyebrow: section?.eyebrow || '',
-        line1: section?.section_title || '',
-        line2: section?.section_subtitle || '',
+        eyebrow: sectionT('eyebrow'),
+        line1: sectionT('line-1'),
+        line2: sectionT('line-2'),
     };
 
     const hrefFor = (slug: string) => `/${locale}${config.blogHome}/${slug}`;

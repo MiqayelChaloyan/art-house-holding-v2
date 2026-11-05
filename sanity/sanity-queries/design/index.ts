@@ -193,9 +193,6 @@ interface WHY_ITEM {
 };
 
 interface WHY_SECTION {
-    eyebrow: string;
-    line_1: string;
-    line_2: string;
     items: WHY_ITEM[];
 };
 
@@ -223,20 +220,8 @@ interface PROJECT_ITEM {
 };
 
 interface PROJECTS_SECTION {
-    eyebrow: string;
-    line_1: string;
-    line_2: string;
     description: string;
     projects: PROJECT_ITEM[];
-};
-
-interface STAFF_SECTION {
-    line_1: string;
-    line_2: string;
-    line_3: string;
-    experience_label?: string;
-    programs_label?: string;
-    skills_label?: string;
 };
 
 interface VOICE_ITEM {
@@ -249,16 +234,10 @@ interface VOICE_ITEM {
 };
 
 interface VOICES_SECTION {
-    eyebrow: string;
-    line_1: string;
-    line_2: string;
     items: VOICE_ITEM[];
 };
 
 interface CERTIFICATES_SECTION {
-    line_1: string;
-    line_2: string;
-    line_3: string;
     images?: { _key: string; image: Asset }[];
 };
 
@@ -330,7 +309,6 @@ interface HOME_DETALIS_DESIGN_QUERYResult {
     courses_section?: COURSES_SECTION;
     why_section?: WHY_SECTION;
     projects_section?: PROJECTS_SECTION;
-    staff_section?: STAFF_SECTION;
     certificates_section?: CERTIFICATES_SECTION;
     voices_section?: VOICES_SECTION;
     courses: HOME_COURSES[];

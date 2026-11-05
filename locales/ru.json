@@ -22,7 +22,9 @@
         "partners": "Коллеги"
     },
     "footer-design": {
-        "tagline": "Креативная дизайн-студия и образовательный центр. Днём студия, вечером академия — одна культура, один стандарт.",
+        "tagline-line-1": "Креативная дизайн-студия и образовательный центр.",
+        "tagline-line-2": "Днём студия, вечером академия —",
+        "tagline-line-3": "одна культура, один стандарт.",
         "navigate": "Навигация",
         "social": "Соцсети",
         "contact": "Контакты",
@@ -37,6 +39,12 @@
         "empty": "В этой программе пока нет работ.",
         "all": "Все",
         "view-more": "Смотреть ещё"
+    },
+    "why-section": {
+        "eyebrow": "Почему Art House",
+        "line-1": "Строгая студия",
+        "line-2": "внутри академии.",
+        "emphasis-word": "академии"
     },
     "contact-page": {
         "eyebrow": "Контакт",
@@ -129,15 +137,38 @@
         "more-stories-description": "Ещё {count} статей ждут вас",
         "explore-all-stories": "Смотреть все статьи"
     },
+    "certificates-section": {
+        "line-1": "Сертификат",
+        "line-2": "и",
+        "line-3": "диплом"
+    },
+    "projects-section": {
+        "eyebrow": "Портфолио",
+        "line-1": "Проекты",
+        "line-2": "со студийного пола."
+    },
+    "design-blog-section": {
+        "eyebrow": "Design Studio Art House",
+        "line-1": "Блог и",
+        "line-2": "новости"
+    },
     "voices-section": {
+        "eyebrow": "Голоса студентов",
+        "line-1": "Что наши студенты",
+        "line-2": "говорят на самом деле.",
+        "emphasis-word": "на самом деле",
         "slides": "Отзывы"
     },
     "staff-section": {
+        "line-1": "Наша",
+        "line-2": "креативная",
+        "line-3": "команда",
         "experience-label": "Опыт",
         "programs": "Программы",
         "skills": "Навыки",
         "prev": "Предыдущий сотрудник",
-        "next": "Следующий сотрудник"
+        "next": "Следующий сотрудник",
+        "view-behance": "Профиль {name} на Behance"
     },
     "contact": {
         "tell": "Телл.",

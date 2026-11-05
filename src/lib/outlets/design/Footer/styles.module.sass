@@ -16,17 +16,48 @@
 		width: calc(100% - 40px)
 
 .grid
-	display: grid
-	grid-template-columns: minmax(240px, 1.35fr) repeat(3, minmax(140px, 1fr))
-	gap: 40px 32px
+	display: flex
+	align-items: flex-start
+	justify-content: space-between
+	gap: clamp(40px, 6vw, 96px)
+	width: 100%
 	padding-bottom: 56px
 	@media screen and (max-width: 980px)
-		grid-template-columns: 1fr 1fr
+		flex-direction: column
+		align-items: stretch
+		gap: 40px
 	@media screen and (max-width: 640px)
-		grid-template-columns: 1fr
+		gap: 32px
 
 .brand
-	max-width: 320px
+	flex: 0 1 417px
+	max-width: 417px
+	min-width: 0
+
+.linkCols
+	display: grid
+	grid-template-columns: 148px 148px minmax(220px, max-content)
+	column-gap: clamp(48px, 5.5vw, 80px)
+	align-items: start
+	flex: 0 1 auto
+	@media screen and (max-width: 980px)
+		width: 100%
+		grid-template-columns: 148px 148px 1fr
+		column-gap: clamp(28px, 4vw, 44px)
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+		row-gap: 28px
+
+.linkCols > .col:nth-child(1),
+.linkCols > .col:nth-child(2)
+	width: 148px
+	max-width: 148px
+
+.colContact
+	min-width: 220px
+	max-width: 300px
+	@media screen and (max-width: 980px)
+		max-width: none
 
 .logo
 	display: inline-flex
@@ -44,6 +75,12 @@
 	font-size: 16px
 	line-height: 26px
 	color: #d9d9d9
+
+.tagline span
+	display: block
+	white-space: nowrap
+	@media screen and (max-width: 480px)
+		white-space: normal
 
 .cta
 	display: inline-flex
@@ -143,6 +180,21 @@
 		&:hover
 			color: #ffffff
 
+.mapsGrid
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 10px 8px
+	width: 100%
+	a
+		justify-content: center
+		flex-direction: column
+		gap: 4px
+		min-width: 0
+		font-size: 10px
+		line-height: 12px
+		text-align: center
+		word-break: break-word
+
 .mapMark
 	display: inline-flex
 	align-items: center
@@ -158,6 +210,15 @@
 	width: auto !important
 	height: 16px !important
 	object-fit: contain
+
+.mapsGrid .mapLogo
+	height: 14px !important
+	max-width: 100%
+
+.mapsGrid .mapMark
+	width: 14px
+	height: 14px
+	font-size: 9px
 
 .langs
 	margin-top: 22px

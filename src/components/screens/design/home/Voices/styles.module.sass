@@ -58,32 +58,34 @@
 	position: relative
 	overflow: hidden
 	min-height: 473px
-	padding: 57px
+	padding: 48px 56px 52px
 	border: 1px solid #232323
 	border-radius: 24px
-	background: #111111
+	background: #121212
 	@media screen and (max-width: 860px)
 		min-height: 0
 		padding: 24px 20px 56px
 
 .slide
 	display: grid
-	grid-template-columns: 359px minmax(0, 1fr)
-	gap: 28px 48px
-	align-items: center
+	grid-template-columns: min(359px, 34vw) minmax(0, 1fr)
+	gap: 40px 56px
+	align-items: stretch
 	@media screen and (max-width: 860px)
 		grid-template-columns: 1fr
+		gap: 24px
+		align-items: start
 
 .photo
-	width: min(359px, 100%)
+	width: 100%
+	max-width: 359px
 	height: auto
 	aspect-ratio: 1
 	overflow: hidden
-	border-radius: 0
+	border-radius: 20px
 	background: #1a1a1a
 	@media screen and (max-width: 860px)
-		width: min(160px, 42vw)
-		height: auto
+		max-width: min(160px, 42vw)
 
 .image
 	width: 100% !important
@@ -94,23 +96,31 @@
 .body
 	display: flex
 	flex-direction: column
-	min-height: 220px
-	padding: 4px 72px 0 0
+	justify-content: flex-start
+	align-items: flex-start
+	min-height: 100%
+	padding: 0
 	@media screen and (max-width: 860px)
 		min-height: 0
-		padding-right: 0
 
 .quoteMark
-	display: flex
-	margin-bottom: 12px
+	display: block
+	flex-shrink: 0
+	line-height: 0
+	margin: 0 0 14px
+
+.quoteMark svg
+	display: block
+	width: 36px
+	height: auto
 
 .quote
 	margin: 0
-	max-width: 720px
-	font-size: clamp(22px, 2.6vw, 39.3px)
+	max-width: 680px
+	font-size: clamp(22px, 2.35vw, 36px)
 	font-weight: 400
-	line-height: 1.2
-	letter-spacing: -0.981px
+	line-height: 1.22
+	letter-spacing: -0.72px
 	color: #ffffff
 	overflow-wrap: normal
 	@media screen and (max-width: 640px)
@@ -118,34 +128,41 @@
 		line-height: 26px
 
 .footer
-	display: flex
-	align-items: flex-end
-	justify-content: space-between
-	gap: 16px
+	display: grid
+	grid-template-columns: auto 1fr auto
+	align-items: end
+	column-gap: clamp(16px, 3vw, 32px)
+	width: 100%
 	margin-top: auto
-	padding-top: 22px
-	border-top: 1px solid rgba(255, 255, 255, 0.08)
+	padding-top: 28px
+	border-top: 1px solid rgba(255, 255, 255, 0.1)
+
+.meta
+	justify-self: start
+	min-width: 0
 
 .name
 	margin: 0
 	font-size: 16px
 	font-weight: 600
 	line-height: 22px
+	color: #ffffff
 
 .role
-	margin: 2px 0 0
-	font-size: 12px
-	line-height: 16px
-	color: rgba(255, 255, 255, 0.45)
+	margin: 4px 0 0
+	font-size: 13px
+	line-height: 18px
+	color: rgba(255, 255, 255, 0.42)
 
 .stars
 	display: flex
-	gap: 4px
-	margin-right: 88px
-	font-size: 14px
-	letter-spacing: 1px
-	@media screen and (max-width: 860px)
-		margin-right: 0
+	justify-self: center
+	align-self: end
+	gap: 6px
+	margin: 0 0 2px
+	font-size: 18px
+	line-height: 1
+	letter-spacing: 0.5px
 
 .starOn
 	color: #ce2421
@@ -154,20 +171,14 @@
 	color: rgba(255, 255, 255, 0.18)
 
 .dots
-	position: absolute
-	right: 40px
-	bottom: 40px
-	z-index: 2
 	display: flex
-	flex-wrap: wrap
+	flex-shrink: 0
+	flex-wrap: nowrap
 	justify-content: flex-end
 	align-items: center
-	gap: 8px
-	max-width: 240px
-	@media screen and (max-width: 860px)
-		right: 20px
-		bottom: 18px
-		max-width: calc(100% - 40px)
+	align-self: end
+	gap: 10px
+	margin: 0 0 2px
 
 .dot
 	width: 8px
@@ -175,17 +186,17 @@
 	padding: 0
 	border: 0
 	border-radius: 99px
-	background: rgba(255, 255, 255, 0.28)
+	background: rgba(255, 255, 255, 0.22)
 	cursor: pointer
 	transition: width 0.35s ease, background-color 0.35s ease
 	&:hover
-		background: rgba(255, 255, 255, 0.55)
+		background: rgba(255, 255, 255, 0.4)
 
 .dotActive
-	width: 32px
+	width: 36px
 	height: 8px
 	border-radius: 99px
-	background: #ffffff
+	background: #ce2421
 
 @media screen and (max-width: 640px)
 	.section
@@ -193,6 +204,9 @@
 	.headline
 		max-width: 100%
 	.footer
-		flex-direction: column
-		align-items: flex-start
-		gap: 12px
+		grid-template-columns: 1fr
+		row-gap: 14px
+	.stars
+		justify-self: start
+	.dots
+		justify-self: start

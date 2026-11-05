@@ -30,10 +30,15 @@ const ListPage = ({ siteKey, posts, section }: Readonly<Props>) => {
     const config = BLOG_SITE_CONFIG[siteKey];
     const t = useTranslations('navigation');
     const textsT = useTranslations('texts');
-    const sectionTitle = section?.section_title || (siteKey === 'design' ? '' : t('blog'));
-    const sectionSubtitle = section?.section_subtitle;
+    const designBlogT = useTranslations('design-blog-section');
+    const sectionTitle = siteKey === 'design'
+        ? designBlogT('line-1')
+        : (section?.section_title || t('blog'));
+    const sectionSubtitle = siteKey === 'design'
+        ? designBlogT('line-2')
+        : section?.section_subtitle;
     const eyebrow = siteKey === 'design'
-        ? (section?.eyebrow || '')
+        ? designBlogT('eyebrow')
         : (config.heroEyebrowKey ? textsT(config.heroEyebrowKey) : '');
     const blogAccent = BLOG_ACCENT[siteKey];
 

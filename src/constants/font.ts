@@ -1,5 +1,4 @@
 import localFont from 'next/font/local';
-import { Montserrat as MontserratGoogle } from 'next/font/google';
 
 const ArianAMU = localFont({
     src: '../../public/font/arnamu.ttf',
@@ -36,13 +35,22 @@ const InstrumentSerif = localFont({
     adjustFontFallback: false,
     variable: '--font-instrument-serif',
 });
-const Montserrat = MontserratGoogle({
-    subsets: ['latin', 'cyrillic'],
-    weight: ['400', '500'],
-    style: ['normal', 'italic'],
+const MontserratArm = localFont({
+    src: [
+        {
+            path: '../../public/font/Montserratarm-Regular.otf',
+            weight: '400',
+            style: 'normal',
+        },
+        {
+            path: '../../public/font/Montserratarm-Medium.otf',
+            weight: '500',
+            style: 'normal',
+        },
+    ],
     display: 'swap',
     preload: true,
-    variable: '--font-montserrat',
+    variable: '--font-montserrat-arm',
 });
 const JetBrainsMono = localFont({
     src: '../../public/font/JetBrainsMono-Regular.ttf',
@@ -53,7 +61,7 @@ const JetBrainsMono = localFont({
 });
 
 const designFont = {
-    vars: `${InstrumentSerif.variable} ${Montserrat.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
+    vars: `${InstrumentSerif.variable} ${MontserratArm.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
     ui: 'designFontUi',
     serif: 'designFontSerif',
     medium: 'designFontMedium',
@@ -69,7 +77,7 @@ export {
     Belleza,
     MMArmenU,
     InstrumentSerif,
-    Montserrat,
+    MontserratArm,
     JetBrainsMono,
     designFont,
 };

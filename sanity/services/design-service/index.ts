@@ -1,4 +1,4 @@
-import { createBlogPostsQuery, createBlogSlugQuery, createBlogSimilarPostsQuery, blogSectionQueryFragment } from '../blog-queries';
+import { createBlogPostsQuery, createBlogSlugQuery, createBlogSimilarPostsQuery, designBlogSectionQueryFragment } from '../blog-queries';
 
 export const BLOG_POSTS_QUERY = createBlogPostsQuery('design-blog-post');
 export const BLOG_SLUG_QUERY = createBlogSlugQuery('design-blog-post');
@@ -154,9 +154,6 @@ export const ABOUT_US_DETAILS_QUERY = `
         "trainers_emphasis": trainers_emphasis[$language],
     },
     "why_section": why_section {
-        "eyebrow": eyebrow[$language],
-        "line_1": line_1[$language],
-        "line_2": line_2[$language],
         "items": items[0...30] {
             _key,
             number,
@@ -178,9 +175,6 @@ export const ABOUT_US_DETAILS_QUERY = `
         "level": level[$language],
     },
     "projects_section": projects_section {
-        "eyebrow": eyebrow[$language],
-        "line_1": line_1[$language],
-        "line_2": line_2[$language],
         "description": description[$language],
         "projects": projects[0...10] {
             _key,
@@ -191,18 +185,7 @@ export const ABOUT_US_DETAILS_QUERY = `
             "category": category[$language],
         },
     },
-    "staff_section": staff_section {
-        "line_1": line_1[$language],
-        "line_2": line_2[$language],
-        "line_3": line_3[$language],
-        "experience_label": experience_label[$language],
-        "programs_label": programs_label[$language],
-        "skills_label": skills_label[$language],
-    },
     "certificates_section": certificates_section {
-        "line_1": line_1[$language],
-        "line_2": line_2[$language],
-        "line_3": line_3[$language],
         "images": images[0...10] {
             _key,
             image,
@@ -225,9 +208,6 @@ export const ABOUT_US_DETAILS_QUERY = `
         "name": coalesce(name[$language], name),
     },
     "voices_section": voices_section {
-        "eyebrow": eyebrow[$language],
-        "line_1": line_1[$language],
-        "line_2": line_2[$language],
         "items": items[] {
             _key,
             rating,
@@ -237,7 +217,7 @@ export const ABOUT_US_DETAILS_QUERY = `
             "quote": quote[$language],
         },
     },
-    ${blogSectionQueryFragment},
+    ${designBlogSectionQueryFragment},
 }`;
 
 export const COURSES_QUERY = `

@@ -4,7 +4,7 @@ import React from 'react';
 
 import NextImage from '@/src/components/components/image';
 
-import { designFont } from '@/src/constants/font';
+import { Inter } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import { SlideItem as Props } from '@/src/types/design';
@@ -38,10 +38,10 @@ const SlideItem = ({
             <div className={styles.overlay} />
             <div className={styles.container}>
                 <div className={styles.contact}>
-                    <h2 className={cn(styles.company_name, designFont.serif)}>
+                    <h2 className={cn(styles.company_name, Inter.className)}>
                         {keepWords(company_name)}
                     </h2>
-                    <h1 className={cn(styles.title, designFont.serif)}>
+                    <h1 className={cn(styles.title, Inter.className)}>
                         {keepWords(title)}
                     </h1>
                 </div>
