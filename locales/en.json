@@ -187,8 +187,9 @@
         },
         "why": {
             "eyebrow": "Why this course",
-            "line-1": "Why choose this",
-            "line-2": "course."
+            "line-1": "Why choose",
+            "line-2": "this ",
+            "line-2-emphasis": "course."
         },
         "groups": {
             "eyebrow": "Upcoming groups",

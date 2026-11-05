@@ -33,33 +33,23 @@ interface Props {
 };
 
 const HOLD_MS = 5200;
-const SLIDE_MS = 0.55;
-const PORTRAIT_MS = 0.78;
-const SLIDE_EASE = [0.4, 0, 0.2, 1] as const;
-const PORTRAIT_EASE = [0.22, 1, 0.36, 1] as const;
+const SLIDE_MS = 0.72;
+const SLIDE_EASE = [0.22, 1, 0.36, 1] as const;
 
-const portraitSlide = {
+/** Shared left (portrait) + right (panel) slide — same direction, distance, and timing. */
+const staffSlide = {
     enter: (direction: number) => ({
-        x: direction > 0 ? '14%' : '-14%',
+        x: direction > 0 ? '11%' : '-11%',
         opacity: 0,
-        scale: 0.96,
     }),
     center: {
         x: 0,
         opacity: 1,
-        scale: 1,
     },
     exit: (direction: number) => ({
-        x: direction > 0 ? '-14%' : '14%',
+        x: direction > 0 ? '-11%' : '11%',
         opacity: 0,
-        scale: 0.98,
     }),
-};
-
-const portraitZoom = {
-    enter: { scale: 1.06 },
-    center: { scale: 1 },
-    exit: { scale: 1.02 },
 };
 
 const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
@@ -114,12 +104,9 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
     const experience = member.experience || '';
     const bio = member.bio || member.profession;
 
-    const portraitTransition = reduceMotion
+    const slideTransition = reduceMotion
         ? { duration: 0.01 }
-        : { duration: PORTRAIT_MS, ease: PORTRAIT_EASE };
-    const zoomTransition = reduceMotion
-        ? { duration: 0.01 }
-        : { duration: PORTRAIT_MS + 0.15, ease: PORTRAIT_EASE };
+        : { duration: SLIDE_MS, ease: SLIDE_EASE };
 
     return (
         <section
@@ -180,21 +167,14 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
                                     key={member._key}
                                     className={styles.sheet}
                                     custom={direction}
-                                    variants={portraitSlide}
+                                    variants={staffSlide}
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
-                                    transition={portraitTransition}
+                                    transition={slideTransition}
                                 >
                                     {portrait?.src && (
-                                        <motion.div
-                                            className={styles.portraitFrame}
-                                            variants={portraitZoom}
-                                            initial="enter"
-                                            animate="center"
-                                            exit="exit"
-                                            transition={zoomTransition}
-                                        >
+                                        <div className={styles.portraitFrame}>
                                             <NextImage
                                                 key={`${member._key}-portrait`}
                                                 src={portrait.src}
@@ -205,7 +185,7 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
                                                 sizes="(max-width: 980px) 90vw, 480px"
                                                 loading="eager"
                                             />
-                                        </motion.div>
+                                        </div>
                                     )}
                                 </motion.div>
                             </AnimatePresence>
@@ -218,10 +198,11 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
                                 key={member._key}
                                 className={styles.panelInner}
                                 custom={direction}
-                                initial={{ opacity: 0, x: direction > 0 ? 40 : -40 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: direction > 0 ? -40 : 40 }}
-                                transition={{ duration: SLIDE_MS, ease: SLIDE_EASE }}
+                                variants={staffSlide}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                transition={slideTransition}
                             >
                                 <div className={styles.panelHero}>
                                     {experience && (

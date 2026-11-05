@@ -56,14 +56,16 @@ const setIfEmpty = (patch, current, path, next) => {
 
 const priceDefaults = [
     {
-        title: loc('Խմբային', 'Group', 'Группа'),
-        subtitle: loc('Շաբաթական 3 պարապմունք', '3 lessons a week', '3 занятия в неделю'),
-        amount: loc('180 000 AMD', '180 000 AMD', '180 000 AMD'),
+        title: loc('Անհատական դասընթացներ', 'Individual courses', 'Индивидуальные курсы'),
+        subtitle: loc('Առցանց / Դասարան', 'Online/Offline', 'Онлайн/Офлайн'),
+        duration: loc('4 ամիս', '4 month', '4 месяца'),
+        amount: loc('100.000 AMD', '100.000AMD', '100.000 AMD'),
     },
     {
-        title: loc('Անհատական', 'Individual', 'Индивидуально'),
-        subtitle: loc('Անհատական գրաֆիկ', 'Flexible schedule', 'Гибкий график'),
-        amount: loc('280 000 AMD', '280 000 AMD', '280 000 AMD'),
+        title: loc('Խմբային դասընթացներ', 'Group courses', 'Групповые курсы'),
+        subtitle: loc('Առցանց / Դասարան', 'Online/Offline', 'Онлайн/Офлайн'),
+        duration: loc('4 ամիս', '4 month', '4 месяца'),
+        amount: loc('50.000 AMD', '50.000AMD', '50.000 AMD'),
     },
 ];
 

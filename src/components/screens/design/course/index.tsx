@@ -298,13 +298,25 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                     <ul className={styles.priceGrid}>
                         {priceItems.map((item) => (
                             <li key={item._key} className={styles.priceCard}>
-                                <span className={styles.priceDot} aria-hidden />
-                                <div className={styles.priceName}>
-                                    {item.title && <p className={cn(styles.priceTitle, designFont.medium)}>{item.title}</p>}
-                                    {item.subtitle && <p className={styles.priceSub}>{item.subtitle}</p>}
+                                <div className={styles.priceColMain}>
+                                    <span className={styles.priceDot} aria-hidden />
+                                    <div className={styles.priceName}>
+                                        {item.title && (
+                                            <p className={cn(styles.priceTitle, designFont.medium)}>{item.title}</p>
+                                        )}
+                                        {item.subtitle && <p className={styles.priceSub}>{item.subtitle}</p>}
+                                    </div>
                                 </div>
-                                {item.duration && <p className={cn(styles.priceDuration, designFont.medium)}>{item.duration}</p>}
-                                {item.amount && <p className={cn(styles.priceAmount, designFont.medium)}>{item.amount}</p>}
+                                <div className={styles.priceColDuration}>
+                                    {item.duration && (
+                                        <p className={cn(styles.priceDuration, designFont.medium)}>{item.duration}</p>
+                                    )}
+                                </div>
+                                <div className={styles.priceColAmount}>
+                                    {item.amount && (
+                                        <p className={cn(styles.priceAmount, designFont.medium)}>{item.amount}</p>
+                                    )}
+                                </div>
                             </li>
                         ))}
                     </ul>
@@ -313,7 +325,12 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
 
             {whyItems.length > 0 && (
                 <section className={styles.block}>
-                    <BlockHeading eyebrow={t('why.eyebrow')} title={t('why.line-1')} emphasis={t('why.line-2')} />
+                    <BlockHeading
+                        eyebrow={t('why.eyebrow')}
+                        title={t('why.line-1')}
+                        line2Prefix={t('why.line-2')}
+                        emphasis={t('why.line-2-emphasis')}
+                    />
                     <ul className={styles.whyGrid}>
                         {whyItems.map((item) => (
                             <li key={item._key} className={styles.whyItem}>
@@ -540,14 +557,19 @@ const BlockHeading = ({
     eyebrow,
     title,
     emphasis,
+    line2Prefix,
     inline = false,
 }: {
     eyebrow?: string;
     title?: string;
     emphasis?: string;
+    /** Second heading line before emphasis (e.g. "this " + emphasis "course."). */
+    line2Prefix?: string;
     inline?: boolean;
 }) => {
-    if (!eyebrow && !title && !emphasis) return null;
+    if (!eyebrow && !title && !emphasis && !line2Prefix) return null;
+
+    const splitSecondLine = line2Prefix !== undefined;
 
     return (
         <header className={styles.blockHead}>
@@ -557,10 +579,17 @@ const BlockHeading = ({
                     {eyebrow}
                 </p>
             )}
-            {(title || emphasis) && (
+            {(title || emphasis || line2Prefix) && (
                 <h2 className={cn(styles.sectionTitle, inline && styles.sectionTitleInline, designFont.serif)}>
-                    {title && <span>{keepWords(title)}</span>}
-                    {emphasis && <span className={styles.emphasis}>{keepWords(emphasis)}</span>}
+                    {title && <span>{splitSecondLine ? title : keepWords(title)}</span>}
+                    {splitSecondLine ? (
+                        <span>
+                            {line2Prefix}
+                            {emphasis && <em className={styles.emphasis}>{emphasis}</em>}
+                        </span>
+                    ) : (
+                        emphasis && <span className={styles.emphasis}>{keepWords(emphasis)}</span>
+                    )}
                 </h2>
             )}
         </header>
