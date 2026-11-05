@@ -22,6 +22,7 @@
 .heroImage
 	position: absolute
 	inset: 0
+	z-index: 0
 	width: 100% !important
 	height: 100% !important
 	object-fit: cover
@@ -30,11 +31,13 @@
 	content: ''
 	position: absolute
 	inset: 0
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45))
+	z-index: 1
+	pointer-events: none
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.58) 48%, rgba(0, 0, 0, 0.5) 100%)
 
 .heroCopy
 	position: relative
-	z-index: 1
+	z-index: 2
 	max-width: 760px
 	padding: 24px
 	text-align: center
@@ -76,6 +79,10 @@
 	@media screen and (max-width: 640px)
 		margin-bottom: 20px
 
+.emphasis
+	font-style: italic
+	color: #9b9b9b
+
 .rail
 	overflow: hidden
 	padding-left: max(20px, calc((100% - min(1320px, calc(100% - 192px))) / 2))
@@ -94,16 +101,40 @@
 
 .shot
 	flex: 0 0 418px
+	display: flex
+	align-items: center
+	justify-content: center
 	aspect-ratio: 418 / 313
+	padding: 40px 48px
 	overflow: hidden
-	background: #141414
+	border-radius: 32px
+	background: #1a1c1e
+	text-decoration: none
+	transition: background-color 0.35s ease
 	@media screen and (max-width: 980px)
 		flex-basis: min(418px, 70vw)
+		padding: 32px 36px
+		border-radius: 28px
 	@media screen and (max-width: 640px)
 		flex-basis: min(418px, 78vw)
+		padding: 24px 28px
+		border-radius: 24px
+
+.shotFrame
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 100%
+	height: 100%
+	min-height: 0
+	min-width: 0
 
 .shotImage
-	width: 100% !important
-	height: 100% !important
-	object-fit: cover
+	width: auto !important
+	height: auto !important
+	max-width: 100%
+	max-height: 100%
+	object-fit: contain
+	border-radius: 8px
+	box-shadow: 0 16px 48px rgba(0, 0, 0, 0.42)
 	pointer-events: none

@@ -38,7 +38,8 @@
         "line-2": "работы.",
         "empty": "В этой программе пока нет работ.",
         "all": "Все",
-        "view-more": "Смотреть ещё"
+        "view-more": "Смотреть ещё",
+        "loading-more": "Загрузка…"
     },
     "why-section": {
         "eyebrow": "Почему Art House",

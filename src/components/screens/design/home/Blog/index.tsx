@@ -4,7 +4,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { LuArrowRight } from 'react-icons/lu';
+import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 
 import NextImage from '@/src/components/components/image';
 
@@ -88,7 +88,10 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
                                         <span className={styles.cardTitle}>{post.title}</span>
                                         <span className={styles.readMore}>
                                             {t('read-more')}
-                                            <LuArrowRight aria-hidden />
+                                            <span className={styles.readMoreIcon} aria-hidden>
+                                                <LuArrowRight className={styles.arrowOut} />
+                                                <LuArrowUpRight className={styles.arrowIn} />
+                                            </span>
                                         </span>
                                     </Link>
                                 </li>

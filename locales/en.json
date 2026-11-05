@@ -38,7 +38,8 @@
         "line-2": "work.",
         "empty": "No projects in this program yet.",
         "all": "All",
-        "view-more": "View more"
+        "view-more": "View more",
+        "loading-more": "Loading…"
     },
     "why-section": {
         "eyebrow": "Why Art House",

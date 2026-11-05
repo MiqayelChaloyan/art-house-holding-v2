@@ -68,9 +68,16 @@ const Share = ({ shareUrl, title, keywords, config }: Readonly<Props>) => {
                             target='_blank'
                             rel='noopener noreferrer'
                             aria-label={`${t('share-post')} ${name}`}
-                            className={styles.iconLink}
+                            className={cn(
+                                styles.iconLink,
+                                config.key === 'design' && styles[`icon${name}`],
+                            )}
                         >
-                            <Icon width={22} height={22} fill='currentColor' />
+                            <Icon
+                                width={config.key === 'design' ? 20 : 22}
+                                height={config.key === 'design' ? 20 : 22}
+                                fill='currentColor'
+                            />
                         </Link>
                     ))}
                 </div>

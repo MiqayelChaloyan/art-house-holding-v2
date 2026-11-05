@@ -19,6 +19,22 @@ import cn from 'classnames';
 import styles from './styles.module.sass';
 
 
+const renderGalleryTitle = (title: string) => {
+    const trimmed = title.trim();
+    const splitAt = trimmed.indexOf(' ');
+
+    if (splitAt <= 0) {
+        return keepWords(trimmed);
+    }
+
+    return (
+        <>
+            {keepWords(trimmed.slice(0, splitAt))}{' '}
+            <em className={styles.emphasis}>{keepWords(trimmed.slice(splitAt + 1))}</em>
+        </>
+    );
+};
+
 interface Props {
     data: COURSES_DESIGN_QUERYResult;
 };
@@ -86,7 +102,7 @@ const GalleryRow = ({ works }: { works: WORK }) => {
     const [emblaRef] = useEmblaCarousel({
         align: 'start',
         dragFree: true,
-        containScroll: false,
+        containScroll: 'trimSnaps',
     });
     const shots = (works.images || []).filter((image) => urlForImage(image, 900)?.src);
 
@@ -95,7 +111,9 @@ const GalleryRow = ({ works }: { works: WORK }) => {
     return (
         <section className={styles.section}>
             {works.title && (
-                <h2 className={cn(styles.sectionTitle, designFont.serif)}>{keepWords(works.title)}</h2>
+                <h2 className={cn(styles.sectionTitle, designFont.serif)}>
+                    {renderGalleryTitle(works.title)}
+                </h2>
             )}
             {shots.length > 0 && (
                 <div className={styles.rail} ref={emblaRef}>
@@ -112,14 +130,16 @@ const GalleryRow = ({ works }: { works: WORK }) => {
                                         href={path.src}
                                         className={styles.shot}
                                     >
-                                        <NextImage
-                                            src={path.src}
-                                            alt={image.alt || works.title || ''}
-                                            className={styles.shotImage}
-                                            width={path.width}
-                                            height={path.height}
-                                            sizes="418px"
-                                        />
+                                        <span className={styles.shotFrame}>
+                                            <NextImage
+                                                src={path.src}
+                                                alt={image.alt || works.title || ''}
+                                                className={styles.shotImage}
+                                                width={path.width}
+                                                height={path.height}
+                                                sizes="418px"
+                                            />
+                                        </span>
                                     </a>
                                 );
                             })}

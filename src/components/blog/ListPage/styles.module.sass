@@ -283,8 +283,10 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
     color: #9b9b9b
 
 .section[data-variant='design'] .grid
-    gap: 60px 29px
-    padding-top: 60px
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    gap: 24px
+    padding-top: 48px
+    align-items: stretch
 
 @media screen and (max-width: 768px)
     .section[data-variant='design'] .title,

@@ -15,6 +15,8 @@ import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
 
+import PortfolioCardSkeleton from './PortfolioCardSkeleton';
+
 import styles from './styles.module.sass';
 
 
@@ -23,6 +25,7 @@ interface Props {
 };
 
 const PAGE_SIZE = 9;
+const LOAD_MORE_MS = 720;
 
 const resolveFilterSlug = (courses: COURSES_DESIGN_QUERYResult[], raw: string | null) => {
     if (!raw) return null;
@@ -43,14 +46,17 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
         resolveFilterSlug(courses, queryCourse)
     ));
     const [visible, setVisible] = useState(PAGE_SIZE);
+    const [loadingMore, setLoadingMore] = useState(false);
 
     useEffect(() => {
         setActiveCourseSlug(resolveFilterSlug(courses, queryCourse));
+        setLoadingMore(false);
     }, [courses, queryCourse]);
 
     const setCourseFilter = useCallback((slug: string | null) => {
         setActiveCourseSlug(slug);
         setVisible(PAGE_SIZE);
+        setLoadingMore(false);
         const base = `/${locale}${Pages.DESIGN_PORTFOLIOS}`;
         const nextUrl = slug ? `${base}?course=${encodeURIComponent(slug)}` : base;
         window.history.replaceState(null, '', nextUrl);
@@ -70,6 +76,16 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
     }, [courses, activeCourseSlug]);
 
     const shown = items.slice(0, visible);
+    const skeletonCount = Math.min(PAGE_SIZE, Math.max(0, items.length - visible));
+
+    const loadMore = useCallback(() => {
+        if (loadingMore || visible >= items.length) return;
+        setLoadingMore(true);
+        window.setTimeout(() => {
+            setVisible((count) => Math.min(count + PAGE_SIZE, items.length));
+            setLoadingMore(false);
+        }, LOAD_MORE_MS);
+    }, [items.length, loadingMore, visible]);
 
     return (
         <section className={cn(styles.section, designFont.ui)}>
@@ -116,13 +132,13 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                 {shown.length === 0 ? (
                     <p className={styles.empty}>{t('empty')}</p>
                 ) : (
-                    <ul className={styles.grid}>
+                    <ul className={styles.grid} aria-busy={loadingMore}>
                         {shown.map(({ course, project }) => {
                             const image = project.image ? urlForImage(project.image, 900) : undefined;
                             const href = `/${locale}${Pages.DESIGN_PORTFOLIOS}/${encodeURIComponent(course.slug)}#${encodeURIComponent(project._key)}`;
 
                             return (
-                                <li key={project._key}>
+                                <li key={project._key} className={styles.gridItem}>
                                     <Link href={href} className={styles.card}>
                                         <span className={styles.media}>
                                             {image?.src && (
@@ -146,12 +162,21 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                                 </li>
                             );
                         })}
+                        {loadingMore && skeletonCount > 0 && Array.from({ length: skeletonCount }, (_, index) => (
+                            <PortfolioCardSkeleton key={`portfolio-skeleton-${index}`} index={index} />
+                        ))}
                     </ul>
                 )}
 
                 {visible < items.length && (
-                    <button type="button" className={styles.more} onClick={() => setVisible((count) => count + PAGE_SIZE)}>
-                        {t('view-more')}
+                    <button
+                        type="button"
+                        className={cn(styles.more, loadingMore && styles.moreLoading)}
+                        onClick={loadMore}
+                        disabled={loadingMore}
+                        aria-busy={loadingMore}
+                    >
+                        {loadingMore ? t('loading-more') : t('view-more')}
                     </button>
                 )}
             </div>
