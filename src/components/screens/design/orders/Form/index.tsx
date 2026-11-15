@@ -118,7 +118,7 @@ const OrderForm = ({ lessons, lessonsArmenian, selectedSlug }: Readonly<Props>) 
     return (
         <div className={cn(styles.panel, designFont.ui)}>
             <Snackbar open={open} handleChange={() => setOpen(false)} info={info} />
-            <h2 className={cn(styles.title, designFont.serif)}>{tPage('title')}</h2>
+            <h2 className={styles.title}>{tPage('title')}</h2>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <InputField
                     className={styles.field}

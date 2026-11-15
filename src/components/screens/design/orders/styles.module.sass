@@ -16,10 +16,10 @@
 
 .grid
 	display: grid
-	grid-template-columns: minmax(0, 1fr) minmax(280px, 560px)
-	column-gap: 80px
+	grid-template-columns: minmax(0, 1fr) auto
+	column-gap: 64px
 	align-items: start
-	@media screen and (max-width: 980px)
+	@media screen and (max-width: 860px)
 		grid-template-columns: 1fr
 		row-gap: 40px
 
