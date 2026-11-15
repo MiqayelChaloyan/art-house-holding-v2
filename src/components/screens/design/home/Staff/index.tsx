@@ -230,8 +230,10 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
 
                                 <div className={styles.panelBody}>
                                     <div className={styles.identity}>
-                                        <h3 className={styles.name}>{member.worker}</h3>
-                                        <p className={styles.role}>{member.profession}</p>
+                                        <h3 className={cn(styles.name, designFont.semiBold)}>
+                                            {member.worker}
+                                        </h3>
+                                        <p className={cn(styles.role, designFont.light)}>{member.profession}</p>
                                     </div>
 
                                     <p className={styles.bio}>

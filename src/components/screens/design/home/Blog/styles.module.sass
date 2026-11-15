@@ -21,6 +21,7 @@
 	align-items: center
 	gap: 14px
 	margin: 0 0 14px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 	font-size: 11.2px
 	font-weight: 500
 	line-height: 16.8px
@@ -38,6 +39,7 @@
 .headline
 	margin: 0
 	max-width: 100%
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	font-size: clamp(36px, 4.8vw, 72px)
 	font-weight: 400
 	line-height: 1
@@ -49,6 +51,7 @@
 		display: block
 
 .emphasis
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	font-style: italic
 	font-weight: 400
 	color: #7a7a7a
@@ -113,6 +116,7 @@
 
 .item
 	display: grid
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	grid-template-columns: 201px minmax(0, 1fr)
 	gap: 16px
 	align-items: center
@@ -155,10 +159,28 @@
 	font-size: 12px
 	line-height: 16px
 	color: rgba(255, 255, 255, 0.45)
+	time
+		display: inline-flex
+		align-items: center
+		min-height: 16px
+		font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+		font-size: 12px
+		font-weight: 400
+		font-style: normal
+		line-height: 16px
+		letter-spacing: 0
 
 .category
+	display: inline-flex
+	align-items: center
+	min-height: 16px
 	color: #ce2421
-	font-weight: 500
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 12px
+	font-weight: 400
+	font-style: normal
+	line-height: 16px
+	letter-spacing: 0
 
 .sep
 	width: 3px
@@ -168,10 +190,13 @@
 	background: rgba(255, 255, 255, 0.35)
 
 .itemTitle
+	min-height: 25px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 	font-size: 18px
 	font-weight: 500
+	font-style: normal
 	line-height: 25px
-	letter-spacing: -0.02em
+	letter-spacing: -0.4px
 	color: rgba(255, 255, 255, 0.92)
 	overflow-wrap: normal
 	.item:hover &
@@ -180,6 +205,7 @@
 .featuredCopy
 	grid-column: 1
 	grid-row: 2
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	display: flex
 	flex-direction: column
 	gap: 10px
@@ -191,6 +217,7 @@
 
 .featuredTitle
 	max-width: 575px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 	font-size: 32px
 	font-weight: 500
 	line-height: 1.15
@@ -208,25 +235,32 @@
 .cards
 	display: grid
 	grid-template-columns: repeat(3, minmax(0, 1fr))
-	gap: 24px
+	justify-content: start
+	gap: 32px
 	align-items: stretch
 	margin: 0
 	padding: 0
 	list-style: none
 	> li
 		display: flex
+		width: 100%
+		max-width: 418px
 		min-width: 0
 	@media screen and (max-width: 980px)
-		grid-template-columns: 1fr 1fr
+		grid-template-columns: repeat(2, minmax(0, 1fr))
 	@media screen and (max-width: 640px)
 		grid-template-columns: 1fr
 		gap: 32px
+		> li
+			max-width: none
 
 $blog-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
 
 .card
 	display: flex
 	flex-direction: column
+	width: 100%
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	height: 100%
 	color: inherit
 	text-decoration: none
@@ -238,10 +272,19 @@ $blog-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
 .cardMedia
 	position: relative
 	display: block
+	flex: 0 0 auto
+	width: 100%
 	overflow: hidden
-	aspect-ratio: 3 / 2
-	border: 1px solid #232323
-	border-radius: 16px
+	aspect-ratio: 418 / 313
+	border: 0
+	border-radius: 24px
+	img
+		position: absolute !important
+		inset: 0 !important
+		width: 100% !important
+		height: 100% !important
+		max-width: none !important
+		object-fit: cover !important
 	background: #121212
 	isolation: isolate
 	transition: border-color 0.45s ease, box-shadow 0.55s $blog-card-ease
@@ -263,11 +306,13 @@ $blog-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
 			opacity: 1
 
 .cardImage
-	position: relative
+	position: absolute !important
+	inset: 0 !important
 	z-index: 0
 	width: 100% !important
 	height: 100% !important
-	object-fit: cover
+	max-width: none !important
+	object-fit: cover !important
 	transform-origin: center center
 	transition: transform 0.7s $blog-card-ease, filter 0.55s ease
 	@media (hover: hover)
@@ -284,6 +329,8 @@ $blog-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
 	font-weight: 500
 	line-height: 16px
 	color: rgba(255, 255, 255, 0.45)
+	time
+		font-weight: 400
 	transition: color 0.4s ease
 	@media (hover: hover)
 		.card:hover &
@@ -305,11 +352,14 @@ $blog-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
 	flex-shrink: 0
 
 .cardTitle
+	min-height: 50px
 	margin-top: 12px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 	font-size: 18px
 	font-weight: 500
-	line-height: 26px
-	letter-spacing: -0.02em
+	font-style: normal
+	line-height: 25px
+	letter-spacing: -0.4px
 	color: rgba(255, 255, 255, 0.92)
 	transition: color 0.4s ease, transform 0.5s $blog-card-ease
 	@media (hover: hover)

@@ -152,10 +152,10 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                                                 />
                                             )}
                                         </span>
-                                        <span className={cn(styles.author, designFont.medium)}>
+                                        <span className={styles.author}>
                                             {project.author}
                                         </span>
-                                        <span className={cn(styles.course, designFont.medium)}>
+                                        <span className={styles.course}>
                                             {course.course_name}
                                         </span>
                                     </Link>

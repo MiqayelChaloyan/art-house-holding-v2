@@ -47,6 +47,15 @@ interface Props {
 
 const HOLD_MS = 5600;
 
+const StarIcon = ({ className }: { className: string }) => (
+    <svg className={className} viewBox="0 0 16 16" width="16" height="16" aria-hidden>
+        <path
+            fill="currentColor"
+            d="M8 1.15l1.82 4.02 4.38.46-3.28 2.92 1 4.28L8 10.62l-3.92 2.21 1-4.28L1.8 5.63l4.38-.46L8 1.15z"
+        />
+    </svg>
+);
+
 const Voices = ({ section }: Readonly<Props>) => {
     const t = useTranslations('voices-section');
 
@@ -153,7 +162,10 @@ const Voices = ({ section }: Readonly<Props>) => {
                                     </div>
                                     <div className={styles.stars} aria-label={`${rating} / 5`}>
                                         {Array.from({ length: 5 }).map((_, starIndex) => (
-                                            <span key={starIndex} className={starIndex < rating ? styles.starOn : styles.starOff}>★</span>
+                                            <StarIcon
+                                                key={starIndex}
+                                                className={starIndex < rating ? styles.starOn : styles.starOff}
+                                            />
                                         ))}
                                     </div>
                                     {count > 1 && (

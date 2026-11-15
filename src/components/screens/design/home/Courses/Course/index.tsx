@@ -9,7 +9,6 @@ import { LuArrowUpRight } from 'react-icons/lu';
 import NextImage from '@/src/components/components/image';
 
 import { designFont } from '@/src/constants/font';
-import { keepWords } from '@/src/components/screens/design/keepWords';
 
 import cn from 'classnames';
 
@@ -42,7 +41,7 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
         <article className={styles.card}>
             <Link href={href} className={styles.media} aria-label={courseName}>
                 {typeof index === 'number' && (
-                    <span className={styles.badge}>N°{String(index + 1).padStart(2, '0')}</span>
+                    <span className={cn(styles.badge, designFont.mono)}>N°{String(index + 1).padStart(2, '0')}</span>
                 )}
                 {image?.src && (
                     <NextImage
@@ -57,8 +56,8 @@ const Course = ({ course, index }: Readonly<CourseProps>) => {
             </Link>
             <div className={styles.body}>
                 <div className={styles.titleRow}>
-                    <h3 className={cn(styles.title, designFont.ui)}>
-                        <Link href={href}>{keepWords(courseName)}</Link>
+                    <h3 className={styles.title}>
+                        <Link href={href}>{courseName}</Link>
                     </h3>
                     <Link href={href} className={styles.iconBtn} aria-label={courseName}>
                         <LuArrowUpRight aria-hidden />

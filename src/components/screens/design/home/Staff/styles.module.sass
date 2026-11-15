@@ -1,4 +1,4 @@
-$staff-frame-border: 2px solid rgba(255, 255, 255, 0.22)
+$staff-frame-border: 3px solid rgba(255, 255, 255, 0.22)
 
 .section
 	position: relative
@@ -242,30 +242,36 @@ $staff-frame-border: 2px solid rgba(255, 255, 255, 0.22)
 
 .experience
 	position: absolute
-	top: 20px
-	left: 22px
+	top: 22px
+	left: 24px
 	display: flex
 	flex-direction: column
-	gap: 2px
+	align-items: flex-start
+	justify-content: center
+	gap: 0
 	margin: 0
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 12px
+	font-weight: 400
+	font-style: normal
+	line-height: 16px
+	letter-spacing: 0
 	text-align: left
-	font-size: 11px
-	line-height: 14px
-	letter-spacing: 0.02em
-	color: rgba(255, 255, 255, 0.5)
-	span
+	color: rgba(255, 255, 255, 0.55)
+	span,
+	small
+		display: flex
+		align-items: center
 		font-size: 12px
-		font-weight: 500
-		line-height: 14px
-		letter-spacing: 0.06em
+		font-weight: 400
+		font-style: normal
+		line-height: 16px
+		letter-spacing: 0
+	span
 		text-transform: uppercase
 		color: #ffffff
 	small
-		font-size: 11px
-		font-weight: 400
-		line-height: 14px
-		letter-spacing: 0
-		text-transform: capitalize
+		text-transform: none
 		color: rgba(255, 255, 255, 0.55)
 
 .avatarWrap
@@ -275,7 +281,7 @@ $staff-frame-border: 2px solid rgba(255, 255, 255, 0.22)
 	aspect-ratio: 1
 	height: auto
 	margin: 0 auto
-	border: $staff-frame-border
+	border: 3px solid rgba(255, 255, 255, 0.22)
 	border-radius: 999px
 	background: #050505
 	box-shadow: none
@@ -289,74 +295,117 @@ $staff-frame-border: 2px solid rgba(255, 255, 255, 0.22)
 	border-radius: 999px
 
 .identity
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
 	width: 100%
-	margin: 0 0 18px
+	margin: 0 0 14px
 	text-align: center
 
 .name
+	width: 100%
 	margin: 0
-	font-size: 17px
+	font-size: 26px
 	font-weight: 600
-	line-height: 22px
-	letter-spacing: 0.1em
+	font-style: normal
+	line-height: 32px
+	letter-spacing: 0
+	text-align: center
 	text-transform: uppercase
+	white-space: normal
+	overflow-wrap: anywhere
 	color: #ffffff
 
 .role
-	margin: 8px 0 0
-	font-size: 12px
-	line-height: 17px
-	color: rgba(255, 255, 255, 0.45)
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 100%
+	margin: 6px 0 0
+	font-size: 15.47px
+	font-weight: 300
+	font-style: normal
+	line-height: 22px
+	letter-spacing: 0
+	text-align: center
+	white-space: normal
+	overflow-wrap: anywhere
+	color: rgba(255, 255, 255, 0.55)
 
 .bio
 	display: flex
+	align-items: flex-start
 	gap: 10px
 	width: 100%
 	margin: 0 0 22px
-	font-size: 12px
-	line-height: 19px
-	color: rgba(255, 255, 255, 0.82)
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 13px
+	font-weight: 500
+	font-style: normal
+	line-height: 22.4px
+	letter-spacing: 0
+	color: rgba(255, 255, 255, 0.92)
 	text-align: left
 
 .bullet
 	flex-shrink: 0
-	width: 6px
-	height: 6px
-	margin-top: 7px
+	width: 7px
+	height: 7px
+	margin-top: 8px
 	border-radius: 999px
 	background: #ce2421
 
 .group
 	width: 100%
-	margin-bottom: 16px
+	margin-bottom: 18px
 
 .groupLast
 	margin-bottom: 0
 
 .groupLabel
-	margin: 0 0 12px
-	font-size: 11px
-	line-height: 15px
+	display: flex
+	align-items: center
+	justify-content: flex-start
+	width: 100%
+	margin: 0 0 10px
+	padding-left: 17px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 14px
+	font-weight: 500
+	font-style: normal
+	line-height: 22.4px
+	letter-spacing: 0
 	text-align: left
-	color: rgba(255, 255, 255, 0.35)
+	color: rgba(255, 255, 255, 0.42)
 
 .tags
 	display: flex
-	flex-wrap: wrap
+	flex-flow: row wrap
+	align-items: center
 	justify-content: flex-start
-	gap: 8px
+	gap: 10px
 	margin: 0
 	padding: 0
 	list-style: none
 	li
-		padding: 8px 14px
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		box-sizing: border-box
+		width: fit-content
+		max-width: 100%
+		min-height: 32px
+		padding: 6px 16px
 		border: 0
-		border-radius: 999px
-		font-size: 11px
-		font-weight: 400
-		line-height: 15px
-		color: rgba(255, 255, 255, 0.9)
-		background: #2a2a2a
+		border-radius: 30px
+		font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+		font-size: 13px
+		font-weight: 500
+		line-height: 18px
+		letter-spacing: 0
+		color: #ffffff
+		background: #3a3a3a
 
 .panelFooter
 	display: flex
@@ -372,20 +421,19 @@ $staff-frame-border: 2px solid rgba(255, 255, 255, 0.22)
 	flex-shrink: 0
 	align-items: center
 	justify-content: center
-	width: 40px
-	height: 40px
-	border: 1px solid rgba(255, 255, 255, 0.22)
+	width: 44px
+	height: 44px
+	border: 0
 	border-radius: 999px
-	color: #ffffff
+	color: #111111
 	text-decoration: none
-	background: transparent
-	transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease
+	background: #ffffff
+	transition: background-color 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease
 	svg
-		width: 20px
-		height: 20px
+		width: 22px
+		height: 22px
 	&:hover
-		background: rgba(255, 255, 255, 0.1)
-		border-color: rgba(255, 255, 255, 0.4)
+		background: #f2f2f2
 		transform: translateY(-2px)
 		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28)
 

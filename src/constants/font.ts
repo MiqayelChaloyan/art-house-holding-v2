@@ -52,6 +52,38 @@ const MontserratArm = localFont({
     preload: true,
     variable: '--font-montserrat-arm',
 });
+const MontserratRegular = localFont({
+    src: '../../public/font/Montserrat-Regular.ttf',
+    weight: '400',
+    style: 'normal',
+    display: 'swap',
+    preload: false,
+    variable: '--font-montserrat-regular',
+});
+const MontserratLight = localFont({
+    src: '../../public/font/Montserrat-Light.ttf',
+    weight: '300',
+    style: 'normal',
+    display: 'swap',
+    preload: false,
+    variable: '--font-montserrat-light',
+});
+const MontserratMedium = localFont({
+    src: '../../public/font/Montserrat-Medium.ttf',
+    weight: '500',
+    style: 'normal',
+    display: 'swap',
+    preload: false,
+    variable: '--font-montserrat-medium',
+});
+const MontserratSemiBold = localFont({
+    src: '../../public/font/Montserrat-SemiBold.ttf',
+    weight: '600',
+    style: 'normal',
+    display: 'swap',
+    preload: false,
+    variable: '--font-montserrat-semibold',
+});
 const JetBrainsMono = localFont({
     src: '../../public/font/JetBrainsMono-Regular.ttf',
     weight: '400',
@@ -61,10 +93,12 @@ const JetBrainsMono = localFont({
 });
 
 const designFont = {
-    vars: `${InstrumentSerif.variable} ${MontserratArm.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
+    vars: `${InstrumentSerif.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratLight.variable} ${MontserratMedium.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
     ui: 'designFontUi',
     serif: 'designFontSerif',
     medium: 'designFontMedium',
+    light: 'designFontLight',
+    semiBold: 'designFontSemiBold',
     mono: 'designFontMono',
 };
 
@@ -78,6 +112,10 @@ export {
     MMArmenU,
     InstrumentSerif,
     MontserratArm,
+    MontserratRegular,
+    MontserratLight,
+    MontserratMedium,
+    MontserratSemiBold,
     JetBrainsMono,
     designFont,
 };

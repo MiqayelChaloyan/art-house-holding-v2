@@ -34,8 +34,8 @@
     },
     "portfolios-page": {
         "eyebrow": "Portfolio",
-        "line-1": "Selected",
-        "line-2": "work.",
+        "line-1": "Student",
+        "line-2": "works.",
         "empty": "No projects in this program yet.",
         "all": "All",
         "view-more": "View more",
@@ -157,12 +157,13 @@
     "projects-section": {
         "eyebrow": "Selected Work",
         "line-1": "Projects from",
-        "line-2": "the studio floor."
+        "line-2": "the studio floor.",
+        "emphasis": "studio floor."
     },
     "design-blog-section": {
         "eyebrow": "Blog",
         "line-1": "Blog and",
-        "line-2": "news"
+        "line-2": "news."
     },
     "voices-section": {
         "eyebrow": "Student voices",

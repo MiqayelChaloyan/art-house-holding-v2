@@ -15,9 +15,10 @@
 
 .top
 	display: flex
-	align-items: flex-end
+	align-items: center
 	justify-content: space-between
 	gap: 32px
+	width: 100%
 	margin-bottom: 60px
 	@media screen and (max-width: 980px)
 		flex-direction: column
@@ -64,11 +65,15 @@
 
 .filters
 	display: flex
+	flex: 1
 	flex-wrap: wrap
+	align-items: center
 	justify-content: flex-end
 	gap: 10px
-	max-width: 880px
+	width: 100%
+	max-width: none
 	@media screen and (max-width: 980px)
+		flex: none
 		justify-content: flex-start
 		max-width: 100%
 	@media screen and (max-width: 640px)
@@ -85,15 +90,22 @@
 .chip
 	display: inline-flex
 	align-items: center
-	min-height: 32px
-	padding: 0 16px
-	border: 1px solid #3a3a3a
-	border-radius: 999px
+	justify-content: center
+	box-sizing: border-box
+	width: fit-content
+	height: 36px
+	min-height: 36px
+	padding: 0 17px
+	border: 0.8px solid #3a3a3a
+	border-radius: 18.5px
 	background: transparent
 	color: #d9d9d9
-	font: inherit
-	font-size: 13px
-	line-height: 18px
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 12px
+	font-weight: 400
+	font-style: normal
+	line-height: 16px
+	letter-spacing: 0
 	text-decoration: none
 	cursor: pointer
 	white-space: nowrap
@@ -107,15 +119,28 @@
 		background: rgba(255, 255, 255, 0.06)
 
 .chipAll
-	padding-left: 12px
-	padding-right: 12px
+	height: auto
+	min-height: 0
+	padding: 0 4px 0 0
+	border: 0
+	border-radius: 0
+	background: transparent
+	color: #ffffff
+	&:hover,
+	&.chipActive,
+	&[aria-selected='true'],
+	&:hover:not(.chipActive):not([aria-selected='true'])
+		border: 0
+		background: transparent
+		color: #ffffff
+		-webkit-text-fill-color: #ffffff
 
-.chipActive,
-.chip[aria-selected='true']
+.chipActive:not(.chipAll),
+.chip[aria-selected='true']:not(.chipAll)
 	border-color: #ffffff
 	color: #090909
 	background: #ffffff
-	font-weight: 500
+	font-weight: 400
 	-webkit-text-fill-color: #090909
 	&:hover
 		color: #090909
@@ -124,7 +149,8 @@
 
 .grid
 	display: grid
-	grid-template-columns: repeat(3, minmax(0, 1fr))
+	grid-template-columns: repeat(3, minmax(0, 418px))
+	justify-content: start
 	gap: 60px 29px
 	margin: 0
 	padding: 0
@@ -144,9 +170,11 @@
 .media
 	display: block
 	overflow: hidden
+	width: 100%
+	max-width: 418px
 	aspect-ratio: 418 / 313
 	background: #141414
-	border-radius: 16px
+	border-radius: 24px
 
 .image
 	width: 100% !important
@@ -157,17 +185,29 @@
 		transform: scale(1.04)
 
 .author
+	display: flex
+	align-items: center
+	min-height: 50.4px
 	margin-top: 16px
-	font-size: 18px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 28px
 	font-weight: 500
-	line-height: 24px
+	font-style: normal
+	line-height: 50.4px
+	letter-spacing: -1.2px
 	color: #ffffff
 
 .course
-	margin-top: 4px
-	font-size: 14px
+	display: flex
+	align-items: center
+	min-height: 26px
+	margin-top: 0
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 16px
 	font-weight: 400
-	line-height: 20px
+	font-style: normal
+	line-height: 26px
+	letter-spacing: 0
 	color: #9b9b9b
 
 .empty
@@ -203,9 +243,11 @@
 
 .skeletonMedia
 	overflow: hidden
+	width: 100%
+	max-width: 418px
 	aspect-ratio: 418 / 313
 	border: 1px solid #232323
-	border-radius: 16px
+	border-radius: 24px
 	background: #141414
 
 .skeletonMediaFill

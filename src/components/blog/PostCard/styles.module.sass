@@ -211,9 +211,28 @@ $design-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
     line-height: 16px
     color: rgba(255, 255, 255, 0.45)
     transition: color 0.4s ease
+    time
+        display: inline-flex
+        align-items: center
+        min-height: 16px
+        font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+        font-size: 12px
+        font-weight: 400
+        font-style: normal
+        line-height: 16px
+        letter-spacing: 0
 
 [data-variant='design'] .metaCategory
+    display: inline-flex
+    align-items: center
+    min-height: 16px
     color: #ce2421
+    font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+    font-size: 12px
+    font-weight: 400
+    font-style: normal
+    line-height: 16px
+    letter-spacing: 0
     transition: color 0.35s ease
 
 [data-variant='design'] .metaDot
@@ -225,11 +244,14 @@ $design-card-ease: cubic-bezier(0.22, 1, 0.36, 1)
     flex-shrink: 0
 
 [data-variant='design'] .title
+    min-height: 25px
     margin-top: 12px
+    font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
     font-weight: 500
+    font-style: normal
     font-size: 18px
-    line-height: 26px
-    letter-spacing: -0.02em
+    line-height: 25px
+    letter-spacing: -0.4px
     color: rgba(255, 255, 255, 0.92)
     -webkit-line-clamp: 3
     transition: color 0.4s ease, transform 0.5s $design-card-ease

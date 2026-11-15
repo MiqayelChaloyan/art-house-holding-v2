@@ -212,7 +212,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                         <span>{keepWords(title)}</span>
                         {copy.emphasis && <span className={styles.emphasis}>{keepWords(copy.emphasis)}</span>}
                     </h1>
-                    {intro && <p className={cn(styles.intro, designFont.medium)}>{intro}</p>}
+                    {intro && <p className={styles.intro}>{intro}</p>}
                     {(copy.explore || copy.portfolio) && (
                         <div className={styles.actions}>
                             {copy.explore && (
@@ -276,6 +276,8 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                         {copy.curriculumDescription && <p className={styles.splitText}>{copy.curriculumDescription}</p>}
                     </div>
                     <Accordion
+                        className={styles.topics}
+                        numbered
                         items={topicAccordionItems}
                         open={openTopic}
                         onToggle={setOpenTopic}
@@ -302,19 +304,19 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                                     <span className={styles.priceDot} aria-hidden />
                                     <div className={styles.priceName}>
                                         {item.title && (
-                                            <p className={cn(styles.priceTitle, designFont.medium)}>{item.title}</p>
+                                            <p className={styles.priceTitle}>{item.title}</p>
                                         )}
                                         {item.subtitle && <p className={styles.priceSub}>{item.subtitle}</p>}
                                     </div>
                                 </div>
                                 <div className={styles.priceColDuration}>
                                     {item.duration && (
-                                        <p className={cn(styles.priceDuration, designFont.medium)}>{item.duration}</p>
+                                        <p className={styles.priceDuration}>{item.duration}</p>
                                     )}
                                 </div>
                                 <div className={styles.priceColAmount}>
                                     {item.amount && (
-                                        <p className={cn(styles.priceAmount, designFont.medium)}>{item.amount}</p>
+                                        <p className={styles.priceAmount}>{item.amount}</p>
                                     )}
                                 </div>
                             </li>
@@ -335,7 +337,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                         {whyItems.map((item) => (
                             <li key={item._key} className={styles.whyItem}>
                                 <span className={styles.whyIcon} aria-hidden />
-                                {item.title && <h3 className={cn(styles.whyTitle, designFont.medium)}>{item.title}</h3>}
+                                {item.title && <h3 className={styles.whyTitle}>{item.title}</h3>}
                                 {item.description && <p className={styles.whyText}>{item.description}</p>}
                             </li>
                         ))}
@@ -350,7 +352,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                         <div className={styles.filters} role="tablist">
                             <button
                                 type="button"
-                                className={cn(styles.chip, groupFilter === 'all' && styles.chipActive)}
+                                className={cn(styles.chip, styles.chipAll, groupFilter === 'all' && styles.chipActive)}
                                 onClick={() => setGroupFilter('all')}
                             >
                                 {t('groups.filter-all')}
@@ -374,7 +376,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                                 {item.start_date && (
                                     <div className={styles.groupDate}>
                                         <span>{t('groups.start-date-label')}</span>
-                                        <p className={cn(designFont.medium)}>{item.start_date}</p>
+                                        <p>{item.start_date}</p>
                                     </div>
                                 )}
                                 <dl className={styles.groupMeta}>
@@ -400,7 +402,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                                 <div className={styles.groupFooter}>
                                     <div>
                                         <span>{t('groups.price-label')}</span>
-                                        {item.price && <p className={cn(designFont.medium)}>{item.price}</p>}
+                                        {item.price && <p>{item.price}</p>}
                                     </div>
                                     <Link href={enrollHref} className={styles.enroll}>
                                         {t('groups.enroll-label')}
@@ -417,6 +419,8 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                 <section className={styles.block}>
                     <BlockHeading eyebrow={t('faq.eyebrow')} title={t('faq.line-1')} emphasis={t('faq.line-2')} />
                     <Accordion
+                        className={styles.faq}
+                        numbered
                         items={faqAccordionItems}
                         open={openFaq}
                         onToggle={setOpenFaq}
@@ -516,13 +520,17 @@ const Accordion = ({
     items,
     open,
     onToggle,
+    className,
+    numbered = false,
 }: {
     items: { key: string; label: string; body?: string }[];
     open: string | null;
     onToggle: (key: string | null) => void;
+    className?: string;
+    numbered?: boolean;
 }) => (
-    <ul className={styles.accordion}>
-        {items.map((item) => {
+    <ul className={cn(styles.accordion, className)}>
+        {items.map((item, index) => {
             const isOpen = open === item.key;
             const panelId = `accordion-panel-${item.key}`;
             return (
@@ -534,7 +542,12 @@ const Accordion = ({
                         aria-controls={panelId}
                         onClick={() => onToggle(isOpen ? null : item.key)}
                     >
-                        <span className={cn(styles.accordionLabel, designFont.medium)}>{item.label}</span>
+                        <span className={styles.accordionMain}>
+                            {numbered && (
+                                <span className={styles.topicIndex}>{String(index + 1).padStart(2, '0')}</span>
+                            )}
+                            <span className={cn(styles.accordionLabel, designFont.medium)}>{item.label}</span>
+                        </span>
                         <span className={styles.accordionToggle} aria-hidden>{isOpen ? '–' : '+'}</span>
                     </button>
                     <div

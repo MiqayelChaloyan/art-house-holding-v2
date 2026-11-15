@@ -21,6 +21,22 @@ interface Props {
     section?: PROJECTS_SECTION;
 };
 
+const renderStudioLine = (text: string, emphasis: string) => {
+    const index = emphasis ? text.indexOf(emphasis) : -1;
+    if (index < 0) return keepWords(text);
+
+    const before = text.slice(0, index);
+    const after = text.slice(index + emphasis.length);
+
+    return (
+        <>
+            {before ? keepWords(before) : null}
+            <span className={styles.emphasis}>{keepWords(emphasis)}</span>
+            {after ? keepWords(after) : null}
+        </>
+    );
+};
+
 const Projects = ({ section }: Readonly<Props>) => {
     const locale = useLocale();
     const t = useTranslations('projects-section');
@@ -29,6 +45,7 @@ const Projects = ({ section }: Readonly<Props>) => {
         eyebrow: t('eyebrow'),
         line1: t('line-1'),
         line2: t('line-2'),
+        emphasis: t('emphasis'),
         description: section?.description || '',
     };
 
@@ -46,7 +63,7 @@ const Projects = ({ section }: Readonly<Props>) => {
                         </p>
                         <h2 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
-                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                            <span>{renderStudioLine(copy.line2, copy.emphasis)}</span>
                         </h2>
                     </div>
                     <p className={styles.lede}>{copy.description}</p>

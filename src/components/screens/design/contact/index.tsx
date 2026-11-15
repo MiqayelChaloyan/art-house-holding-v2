@@ -3,7 +3,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
-import { MdAccessTime, MdEmail, MdLocalPhone, MdLocationOn } from 'react-icons/md';
 
 import Snackbar from '@/src/components/components/snackbar';
 
@@ -18,6 +17,8 @@ import { sendContactUsDesign } from '@/src/api';
 import { ContactUsResponse } from '@/src/types/general';
 
 import cn from 'classnames';
+
+import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from './icons';
 
 import styles from './styles.module.sass';
 
@@ -146,25 +147,25 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                         <ul className={styles.details}>
                             {phones.map((number) => (
                                 <li key={number}>
-                                    <MdLocalPhone aria-hidden />
+                                    <PhoneIcon />
                                     <a href={`tel:${number.replace(/\s/g, '')}`}>{formatPhone(number)}</a>
                                 </li>
                             ))}
                             {copy.hours && (
                                 <li>
-                                    <MdAccessTime aria-hidden />
+                                    <ClockIcon />
                                     <span>{copy.hours}</span>
                                 </li>
                             )}
                             {email && (
                                 <li>
-                                    <MdEmail aria-hidden />
+                                    <MailIcon />
                                     <a href={`mailto:${email}`}>{email}</a>
                                 </li>
                             )}
                             {address && (
                                 <li>
-                                    <MdLocationOn aria-hidden />
+                                    <PinIcon />
                                     <a
                                         href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                                         target="_blank"
@@ -179,7 +180,7 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
 
                     <div className={styles.panel}>
                         {copy.formTitle && (
-                        <h2 className={cn(styles.feedback, designFont.serif)}>{copy.formTitle}</h2>
+                        <h2 className={styles.feedback}>{copy.formTitle}</h2>
                         )}
                         <form className={styles.form} onSubmit={handleSubmit}>
                             <InputField

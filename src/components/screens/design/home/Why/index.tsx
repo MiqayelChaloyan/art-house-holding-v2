@@ -73,7 +73,7 @@ const Why = ({ section }: Readonly<Props>) => {
                                 <span className={cn(styles.number, designFont.mono)}>{item.number}</span>
                                 <span className={styles.rule} aria-hidden />
                             </div>
-                            <h3 className={cn(styles.title, designFont.medium)}>{keepWords(item.title)}</h3>
+                            <h3 className={styles.title}>{item.title}</h3>
                             <p className={styles.description}>{item.description}</p>
                         </li>
                     ))}

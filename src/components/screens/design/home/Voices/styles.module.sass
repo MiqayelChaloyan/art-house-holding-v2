@@ -142,27 +142,45 @@
 	min-width: 0
 
 .name
+	display: flex
+	align-items: center
+	min-height: 32px
 	margin: 0
-	font-size: 16px
-	font-weight: 600
-	line-height: 22px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 24px
+	font-weight: 500
+	font-style: normal
+	line-height: 32px
+	letter-spacing: -0.48px
 	color: #ffffff
 
 .role
+	display: flex
+	align-items: center
+	min-height: 20px
 	margin: 4px 0 0
-	font-size: 13px
-	line-height: 18px
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 14px
+	font-weight: 400
+	font-style: normal
+	line-height: 20px
+	letter-spacing: 0
 	color: rgba(255, 255, 255, 0.42)
 
 .stars
 	display: flex
 	justify-self: center
 	align-self: end
+	align-items: center
 	gap: 6px
 	margin: 0 0 2px
-	font-size: 18px
-	line-height: 1
-	letter-spacing: 0.5px
+
+.starOn,
+.starOff
+	display: block
+	width: 16px
+	height: 16px
+	flex-shrink: 0
 
 .starOn
 	color: #ce2421

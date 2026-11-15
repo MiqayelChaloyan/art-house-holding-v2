@@ -55,7 +55,7 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {copy.eyebrow}
                         </p>
-                        <h2 className={cn(styles.headline, designFont.serif)}>
+                        <h2 className={styles.headline}>
                             <span>{keepWords(copy.line1)}</span>
                             <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                         </h2>
@@ -72,9 +72,10 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
                                                     src={image.src}
                                                     alt={post.featuredImage?.alt || post.title}
                                                     className={styles.cardImage}
-                                                    width={image.width}
-                                                    height={image.height}
-                                                    sizes="(max-width: 860px) 100vw, 420px"
+                                                    width={418}
+                                                    height={313}
+                                                    sizes="418px"
+                                                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                                                 />
                                             )}
                                         </span>
@@ -111,7 +112,7 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={cn(styles.headline, designFont.serif)}>
+                    <h2 className={styles.headline}>
                         <span>{keepWords(copy.line1)}</span>
                         <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
                     </h2>

@@ -64,11 +64,15 @@
 		letter-spacing: -0.02em
 
 .intro
+	min-height: 29.25px
 	max-width: 530px
 	margin: 28px 0 0
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	font-size: 18px
-	font-weight: 500
+	font-weight: 400
+	font-style: normal
 	line-height: 29.25px
+	letter-spacing: 0
 	color: #d9d9d9
 
 .actions
@@ -313,8 +317,12 @@
 	max-width: 340px
 	margin: 0
 	padding-top: 34px
-	font-size: 13px
-	line-height: 20px
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 14px
+	font-weight: 400
+	font-style: normal
+	line-height: 22.75px
+	letter-spacing: 0
 	color: #9b9b9b
 	@media screen and (max-width: 860px)
 		padding-top: 0
@@ -353,6 +361,25 @@
 		min-height: 64px
 		padding: 16px 20px
 
+.accordionMain
+	display: flex
+	align-items: center
+	gap: 28px
+	min-width: 0
+
+.topicIndex
+	flex-shrink: 0
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 28px
+	font-weight: 500
+	font-style: normal
+	line-height: 37.5px
+	letter-spacing: -0.6px
+	color: #f2f2f2
+	@media screen and (max-width: 640px)
+		font-size: 22px
+		line-height: 30px
+
 .accordionLabel
 	font-size: 17px
 	font-weight: 500
@@ -360,6 +387,23 @@
 	@media screen and (max-width: 640px)
 		font-size: 16px
 		line-height: 24px
+
+.topics,
+.faq
+	.accordionButton
+		min-height: 88px
+	.accordionLabel
+		min-height: 37.5px
+		font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+		font-size: 28px
+		font-weight: 500
+		font-style: normal
+		line-height: 37.5px
+		letter-spacing: -0.6px
+		@media screen and (max-width: 640px)
+			font-size: 22px
+			line-height: 30px
+			min-height: 30px
 
 .accordionToggle
 	display: inline-flex
@@ -492,31 +536,31 @@ $price-divider-inset: 16px
 .priceName
 	min-width: 0
 
-.priceTitle
-	margin: 0
-	font-size: 15px
-	font-weight: 500
-	line-height: 20px
-	letter-spacing: 0.01em
-	color: #f5f5f5
-
-.priceSub
-	margin: 1px 0 0
-	font-size: 12px
-	font-weight: 400
-	line-height: 16px
-	color: #8c8c8c
-
+.priceTitle,
 .priceDuration,
 .priceAmount
+	display: flex
+	align-items: center
+	min-height: 37.5px
 	margin: 0
-	font-size: 15px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 20px
 	font-weight: 500
-	line-height: 20px
+	font-style: normal
+	line-height: 37.5px
+	letter-spacing: -0.6px
 	color: #f5f5f5
 	white-space: nowrap
 	@media screen and (max-width: 640px)
 		white-space: normal
+
+.priceSub
+	margin: 1px 0 0
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 12px
+	font-weight: 400
+	line-height: 16px
+	color: #8c8c8c
 
 .whyGrid
 	display: grid
@@ -554,15 +598,24 @@ $price-divider-inset: 16px
 		margin-bottom: 24px
 
 .whyTitle
+	min-height: 37.5px
 	margin: 0 0 10px
-	font-size: 18px
+	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-size: 20px
 	font-weight: 500
-	line-height: 24px
+	font-style: normal
+	line-height: 37.5px
+	letter-spacing: -0.6px
 
 .whyText
+	min-height: 22.75px
 	margin: 0
-	font-size: 13px
-	line-height: 20px
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 14px
+	font-weight: 400
+	font-style: normal
+	line-height: 22.75px
+	letter-spacing: 0
 	color: #9b9b9b
 
 .filters
@@ -572,27 +625,48 @@ $price-divider-inset: 16px
 	margin: 0 0 32px
 
 .chip
-	min-height: 32px
-	padding: 6px 16px
-	border: 1px solid #2f2f2f
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	box-sizing: border-box
+	height: 40px
+	padding: 0 18px
+	border: 1px solid #3a3a3a
 	border-radius: 999px
 	background: transparent
-	color: #d9d9d9
-	font-size: 13px
-	line-height: 18px
+	color: #ffffff
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 16px
+	font-weight: 400
+	font-style: normal
+	line-height: 16px
+	letter-spacing: 0
 	cursor: pointer
 	transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease
-	&:hover:not(.chipActive):not([aria-selected='true'])
+	&:hover:not(.chipActive):not(.chipAll):not([aria-selected='true'])
 		border-color: #ffffff
 		color: #ffffff
-		background: rgba(255, 255, 255, 0.06)
-	&.chipActive,
-	&[aria-selected='true']
+	&.chipActive:not(.chipAll),
+	&[aria-selected='true']:not(.chipAll)
 		border-color: #ffffff
 		color: #090909
 		background: #ffffff
-		font-weight: 500
 		-webkit-text-fill-color: #090909
+
+.chipAll
+	height: auto
+	padding: 0 4px 0 0
+	border: 0
+	border-radius: 0
+	background: transparent
+	color: #ffffff
+	&:hover,
+	&.chipActive,
+	&[aria-selected='true']
+		border: 0
+		background: transparent
+		color: #ffffff
+		-webkit-text-fill-color: #ffffff
 
 .groupGrid
 	display: grid
@@ -614,6 +688,7 @@ $price-divider-inset: 16px
 	background: #141414
 	border: 1px solid #1f1f1f
 	border-radius: 16px
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 
 .groupBadge
 	align-self: flex-start
@@ -637,7 +712,9 @@ $price-divider-inset: 16px
 		color: #9b9b9b
 	p
 		margin: 0
+		font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 		font-size: 22px
+		font-weight: 500
 		line-height: 28px
 
 .groupMeta
@@ -676,7 +753,9 @@ $price-divider-inset: 16px
 		color: #9b9b9b
 	p
 		margin: 0
+		font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 		font-size: 20px
+		font-weight: 500
 		line-height: 26px
 		overflow-wrap: normal
 
@@ -727,6 +806,7 @@ $price-divider-inset: 16px
 	.intro
 		font-size: 16px
 		line-height: 26px
+		min-height: 26px
 	.groupCard
 		min-height: 0
 		padding: 24px 20px
