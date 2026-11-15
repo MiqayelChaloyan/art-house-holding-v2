@@ -46,6 +46,7 @@ const nextConfig = {
   
     images: {
       unoptimized: process.env.NODE_ENV === 'development',
+      formats: ['image/avif', 'image/webp'],
       dangerouslyAllowSVG: true,
       contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
       remotePatterns: [
@@ -57,13 +58,6 @@ const nextConfig = {
       ],
     },
     compiler: {
-      relay: {
-        src: './',
-        artifactDirectory: './__generated__',
-        language: 'typescript',
-        eagerEsModules: false,
-        styledComponents: true,
-      },
       removeConsole: process.env.NEXT_NODE_ENV === "production"
     },
     async headers() {

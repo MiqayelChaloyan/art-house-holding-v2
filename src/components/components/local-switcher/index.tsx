@@ -58,15 +58,11 @@ export default function LocalSwitcher({
   const pathname = usePathname();
 
   const onSelectChange = (locale: string) => {
-    let pathParts = '';
-
-    if (pathname) {
-      pathParts = pathname.slice(3);
-    }
-
+    const pathParts = pathname.replace(/^\/(am|en|ru)(?=\/|$)/, '') || '';
+    const search = typeof window === 'undefined' ? '' : window.location.search;
 
     startTransition(() => {
-      router.replace(`/${locale}${pathParts}`, { scroll: false });
+      router.replace(`/${locale}${pathParts}${search}`, { scroll: false });
     });
   };
 
