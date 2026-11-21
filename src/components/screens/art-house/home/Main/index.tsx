@@ -7,6 +7,8 @@ import { useTranslations } from 'next-intl';
 import Container from '@/src/components/components/container';
 import { ArianAMU } from '@/src/constants/font';
 
+import Clock from './Clock';
+
 import cn from 'classnames';
 
 import styles from './styles.module.sass';
@@ -20,7 +22,9 @@ const Main = () => {
             <Container className='container'>
                 <div className={styles.row}>
                     <div className={styles.column}>
-                        <div className={styles.watch} />
+                        <div className={styles.watch}>
+                            <Clock />
+                        </div>
                     </div>
                     <div className={styles.column}>
                         <div className={styles.art_house_logo} />

@@ -1,0 +1,262 @@
+@keyframes shimmer
+	0%
+		background-position: 200% 0
+	100%
+		background-position: -200% 0
+
+.page
+	min-height: 100svh
+	background: #f7f9fc
+	color: #111111
+
+.bar
+	display: block
+	flex-shrink: 0
+	border-radius: 8px
+	background: linear-gradient(90deg, #e4e8ef 25%, #eef2f8 37%, #e4e8ef 63%)
+	background-size: 200% 100%
+	animation: shimmer 1.4s ease-in-out infinite
+	@media (prefers-reduced-motion: reduce)
+		animation: none
+
+.barMuted
+	background: linear-gradient(90deg, #eceff5 25%, #f5f7fb 37%, #eceff5 63%)
+	background-size: 200% 100%
+
+.barYellow
+	background: linear-gradient(90deg, rgba(249, 204, 72, 0.45) 25%, rgba(249, 204, 72, 0.7) 37%, rgba(249, 204, 72, 0.45) 63%)
+	background-size: 200% 100%
+
+.barBlue
+	background: linear-gradient(90deg, rgba(0, 110, 210, 0.28) 25%, rgba(0, 110, 210, 0.45) 37%, rgba(0, 110, 210, 0.28) 63%)
+	background-size: 200% 100%
+
+.wrap
+	width: min(1180px, calc(100% - 80px))
+	margin: 0 auto
+	@media screen and (max-width: 768px)
+		width: calc(100% - 32px)
+
+.hero
+	display: flex
+	align-items: center
+	justify-content: center
+	min-height: min(52vh, 460px)
+	padding: 100px 24px 40px
+
+.heroBanner
+	width: min(860px, 100%)
+	aspect-ratio: 16 / 7
+	border-radius: 24px
+
+.about
+	padding: 24px 0 72px
+
+.aboutSplit
+	display: grid
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+	gap: 40px
+	align-items: center
+	@media screen and (max-width: 991px)
+		grid-template-columns: 1fr
+
+.aboutTitle
+	width: min(220px, 55%)
+	height: 36px
+	margin-bottom: 20px
+
+.copy
+	display: flex
+	flex-direction: column
+	gap: 12px
+
+.line
+	width: 100%
+	height: 14px
+	border-radius: 999px
+
+.lineShort
+	width: 62%
+
+.actions
+	display: flex
+	flex-wrap: wrap
+	gap: 12px
+	margin-top: 20px
+
+.pill
+	width: 148px
+	height: 44px
+	border-radius: 999px
+
+.collage
+	display: grid
+	grid-template-columns: 1.1fr 0.9fr
+	grid-template-rows: 120px 140px
+	gap: 14px
+	@media screen and (max-width: 640px)
+		grid-template-rows: 100px 120px
+
+.collageMain
+	grid-row: 1 / 3
+	border-radius: 18px
+	height: 100%
+
+.collageTop,
+.collageBottom
+	border-radius: 18px
+	height: 100%
+
+.grid
+	display: grid
+	grid-template-columns: repeat(4, minmax(0, 1fr))
+	gap: 20px
+	padding: 40px 0 72px
+	@media screen and (max-width: 1100px)
+		grid-template-columns: repeat(3, minmax(0, 1fr))
+	@media screen and (max-width: 768px)
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.character
+	aspect-ratio: 3 / 4
+	border-radius: 28px
+
+.promoGrid
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 20px
+	padding: 100px 0 72px
+	@media screen and (max-width: 991px)
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+
+.promoCard
+	aspect-ratio: 4 / 3
+	border-radius: 20px
+
+.partners
+	padding: 100px 0 72px
+
+.partnerGrid
+	display: grid
+	grid-template-columns: repeat(4, minmax(0, 1fr))
+	gap: 20px
+	@media screen and (max-width: 991px)
+		grid-template-columns: repeat(3, minmax(0, 1fr))
+	@media screen and (max-width: 640px)
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.partner
+	aspect-ratio: 1.35
+	border-radius: 16px
+
+.price
+	padding: 100px 0 72px
+
+.priceTitle
+	width: min(240px, 50%)
+	height: 36px
+	margin: 0 auto 32px
+
+.rows
+	display: flex
+	flex-direction: column
+	gap: 14px
+	max-width: 760px
+	margin: 0 auto
+
+.row
+	display: flex
+	align-items: center
+	justify-content: space-between
+	gap: 16px
+	padding: 14px 0
+	border-bottom: 1px solid #e5e9f0
+
+.rowLabel
+	width: min(240px, 60%)
+	height: 16px
+
+.rowIcon
+	width: 36px
+	height: 36px
+	border-radius: 10px
+
+.formPage
+	display: flex
+	align-items: center
+	justify-content: center
+	min-height: calc(100svh - 120px)
+	padding: 100px 20px 60px
+
+.formPanel
+	width: min(720px, 100%)
+	padding: 36px 28px 28px
+	border-radius: 28px
+	background: #f9cc48
+	box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12)
+
+.formTitle
+	width: 220px
+	height: 24px
+	margin: 0 auto 28px
+	border-radius: 999px
+	background: rgba(255, 255, 255, 0.55)
+
+.fields
+	display: grid
+	grid-template-columns: repeat(2, minmax(0, 1fr))
+	gap: 14px
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+
+.field
+	height: 48px
+	border-radius: 999px
+	background: rgba(255, 255, 255, 0.85)
+
+.fieldWide
+	grid-column: 1 / -1
+
+.submit
+	width: 160px
+	height: 48px
+	margin: 22px auto 0
+	border-radius: 999px
+
+.quiz
+	padding: 100px 0 72px
+
+.quizTitle
+	width: min(280px, 60%)
+	height: 32px
+	margin: 0 auto 32px
+
+.quizGrid
+	display: grid
+	grid-template-columns: repeat(4, minmax(0, 1fr))
+	gap: 18px
+	@media screen and (max-width: 991px)
+		grid-template-columns: repeat(3, minmax(0, 1fr))
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+
+.quizCard
+	height: 88px
+	border-radius: 18px
+
+.languageDetail
+	padding: 100px 0 72px
+
+.detailSplit
+	display: grid
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+	gap: 36px
+	@media screen and (max-width: 991px)
+		grid-template-columns: 1fr
+
+.detailMedia
+	width: 100%
+	aspect-ratio: 4 / 3
+	border-radius: 20px

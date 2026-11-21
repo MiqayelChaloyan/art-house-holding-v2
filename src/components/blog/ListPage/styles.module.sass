@@ -287,6 +287,9 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
 .section[data-variant='design'] .designTitle
     max-width: none
     font-family: var(--font-instrument-serif), serif !important
+    :global(html[lang="am"]) &,
+    :global(html[lang="ru"]) &
+        font-family: var(--font-hanragitaran), var(--font-instrument-serif), var(--font-montserrat-arm), serif !important
     > span
         display: block
         white-space: nowrap
@@ -301,6 +304,10 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
     gap: 24px
     padding-top: 48px
     align-items: stretch
+    @media screen and (max-width: 991px)
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    @media screen and (max-width: 640px)
+        grid-template-columns: minmax(0, 1fr)
 
 @media screen and (max-width: 768px)
     .section[data-variant='design'] .title,

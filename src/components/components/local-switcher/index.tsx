@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useTransition } from 'react';
+import React, { useCallback, useEffect, useTransition } from 'react';
 
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
+import { PrefetchKind } from 'next/dist/client/components/router-reducer/router-reducer-types';
 
 import NextImage from '@/src/components/components/image';
 
@@ -57,12 +58,32 @@ export default function LocalSwitcher({
   const localActive = useLocale();
   const pathname = usePathname();
 
-  const onSelectChange = (locale: string) => {
+  const hrefFor = useCallback((locale: string) => {
     const pathParts = pathname.replace(/^\/(am|en|ru)(?=\/|$)/, '') || '';
     const search = typeof window === 'undefined' ? '' : window.location.search;
+    return `/${locale}${pathParts}${search}`;
+  }, [pathname]);
 
+  const prefetchLocale = useCallback((locale: string) => {
+    if (locale === localActive) return;
+    router.prefetch(hrefFor(locale), { kind: PrefetchKind.FULL });
+  }, [hrefFor, localActive, router]);
+
+  useEffect(() => {
+    if (variant !== 'codes') return undefined;
+
+    const run = () => localeCodes.forEach(({ key }) => prefetchLocale(key));
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(run, { timeout: 2000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(run, 600);
+    return () => window.clearTimeout(id);
+  }, [prefetchLocale, variant]);
+
+  const onSelectChange = (locale: string) => {
     startTransition(() => {
-      router.replace(`/${locale}${pathParts}${search}`, { scroll: false });
+      router.replace(hrefFor(locale), { scroll: false });
     });
   };
 
@@ -77,6 +98,8 @@ export default function LocalSwitcher({
               className={cn(styles.code, { [styles.codeActive]: localActive === locale.key })}
               style={{ color: localActive === locale.key ? activeColor : color }}
               onClick={() => onSelectChange(locale.key)}
+              onPointerEnter={() => prefetchLocale(locale.key)}
+              onFocus={() => prefetchLocale(locale.key)}
               disabled={isPending}
               aria-current={localActive === locale.key ? 'true' : undefined}
             >

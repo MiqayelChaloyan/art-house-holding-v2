@@ -9,7 +9,7 @@ import HomeSectionFallback from '@/src/components/screens/educational-center/hom
 
 
 const OurDailyLife = dynamic(() => import('./OurDailyLife'), {
-    loading: () => <HomeSectionFallback />,
+    loading: () => <HomeSectionFallback light />,
 });
 
 

@@ -109,6 +109,20 @@
         "language": "Language Studio",
         "educational": "Educational Center"
     },
+    "coming-soon-page": {
+        "eyebrow": "Coming soon",
+        "line-1": "Something new",
+        "line-2": "is on its way.",
+        "description": "We are crafting a new experience at Art House. Follow us to be the first to know when it goes live.",
+        "status": "In progress",
+        "follow": "Follow us",
+        "home": "Back to home",
+        "explore": "Explore our websites",
+        "design": "Design Studio",
+        "language": "Language Studio",
+        "educational": "Educational Center",
+        "badge": "Art House • Coming soon • "
+    },
     "buttons": {
         "contact-us": "Contact Us",
         "view-more": "View more",

@@ -1,9 +1,18 @@
+@keyframes shimmer
+	0%
+		background-position: 200% 0
+	100%
+		background-position: -200% 0
+
 .block,
 .blockTall
 	width: 100%
+	border-radius: 0
 	background: linear-gradient(90deg, #141414 0%, #1c1c1c 50%, #141414 100%)
 	background-size: 200% 100%
-	animation: homeSectionShimmer 1.2s ease-in-out infinite
+	animation: shimmer 1.2s ease-in-out infinite
+	@media (prefers-reduced-motion: reduce)
+		animation: none
 
 .block
 	min-height: 280px
@@ -13,8 +22,6 @@
 	min-height: min(72vh, 720px)
 	margin: 0
 
-@keyframes homeSectionShimmer
-	0%
-		background-position: 100% 0
-	100%
-		background-position: -100% 0
+.blockLight
+	background: linear-gradient(90deg, #e8e8e8 0%, #f2f2f2 50%, #e8e8e8 100%)
+	background-size: 200% 100%

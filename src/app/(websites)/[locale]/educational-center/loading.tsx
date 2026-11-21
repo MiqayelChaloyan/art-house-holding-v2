@@ -1,5 +1,5 @@
-import HomeSectionFallback from '@/src/components/screens/educational-center/home/HomeSectionFallback';
+import EducationalSkeleton from '@/src/components/screens/educational-center/skeleton';
 
 export default function Loading() {
-    return <HomeSectionFallback tall />;
+    return <EducationalSkeleton variant="home" />;
 }

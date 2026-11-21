@@ -1,0 +1,294 @@
+@keyframes designShimmer
+	0%
+		background-position: 200% 0
+	100%
+		background-position: -200% 0
+
+.section
+	min-height: calc(100vh - 102px)
+	padding: 68px 0 96px
+	background: #090909
+	@media screen and (max-width: 991px)
+		min-height: calc(100vh - 72px)
+	@media screen and (max-width: 640px)
+		padding: 40px 0 64px
+
+.wrap
+	width: min(1320px, calc(100% - 192px))
+	margin: 0 auto
+	@media screen and (max-width: 1200px)
+		width: calc(100% - 80px)
+	@media screen and (max-width: 991px)
+		width: calc(100% - 40px)
+
+.bar
+	display: block
+	flex-shrink: 0
+	border-radius: 8px
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 25%, rgba(255, 255, 255, 0.14) 37%, rgba(255, 255, 255, 0.07) 63%)
+	background-size: 200% 100%
+	animation: designShimmer 1.4s ease-in-out infinite
+	@media (prefers-reduced-motion: reduce)
+		animation: none
+
+.muted
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.09) 37%, rgba(255, 255, 255, 0.04) 63%)
+	background-size: 200% 100%
+
+.heading
+	display: flex
+	flex-direction: column
+	gap: 14px
+	margin-bottom: 40px
+
+.eyebrow
+	display: flex
+	align-items: center
+	gap: 12px
+	margin-bottom: 4px
+
+.mark
+	width: 40px
+	height: 1px
+	background: #ce2421
+
+.eyebrowText
+	width: 120px
+	height: 10px
+	border-radius: 999px
+
+.titleLine
+	width: min(380px, 80%)
+	height: clamp(36px, 4.8vw, 66px)
+	border-radius: 12px
+
+.titleLineShort
+	width: min(300px, 64%)
+
+.subtitle
+	width: min(220px, 50%)
+	height: 20px
+
+.paragraph
+	display: flex
+	flex-direction: column
+	gap: 12px
+	max-width: 520px
+	margin-bottom: 36px
+
+.textLine
+	width: 100%
+	height: 14px
+	border-radius: 999px
+
+.textLineShort
+	width: 62%
+
+.actions
+	display: flex
+	flex-wrap: wrap
+	gap: 16px
+
+.pill
+	width: 168px
+	height: 52px
+	border-radius: 999px
+
+.pillPrimary
+	background: linear-gradient(90deg, rgba(206, 36, 33, 0.35) 25%, rgba(206, 36, 33, 0.55) 37%, rgba(206, 36, 33, 0.35) 63%)
+	background-size: 200% 100%
+
+.split
+	display: grid
+	grid-template-columns: minmax(0, 640px) minmax(240px, 518px)
+	align-items: start
+	justify-content: space-between
+	gap: 48px
+	@media screen and (max-width: 980px)
+		grid-template-columns: 1fr
+		gap: 32px
+
+.copy
+	min-width: 0
+
+.visual
+	display: flex
+	flex-direction: column
+	gap: 16px
+
+.photo
+	width: 100%
+	aspect-ratio: 520 / 650
+	border-radius: 24px
+
+.stats
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 12px
+
+.stat
+	height: 84px
+	border-radius: 16px
+
+.portrait
+	width: 100%
+	aspect-ratio: 518 / 640
+	border-radius: 24px
+
+.block
+	margin-top: 112px
+	@media screen and (max-width: 640px)
+		margin-top: 72px
+
+.cards
+	display: grid
+	grid-template-columns: repeat(3, minmax(0, 1fr))
+	gap: 40px 24px
+	@media screen and (max-width: 1100px)
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+	@media screen and (max-width: 640px)
+		grid-template-columns: 1fr
+		gap: 32px
+
+.card
+	display: flex
+	flex-direction: column
+	gap: 14px
+	min-width: 0
+
+.cardMedia
+	width: 100%
+	aspect-ratio: 418 / 313
+	border-radius: 24px
+
+.cardMediaTall
+	aspect-ratio: 418 / 520
+
+.cardTitle
+	width: 72%
+	height: 26px
+
+.cardMeta
+	width: 44%
+	height: 14px
+	border-radius: 999px
+
+.chips
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	gap: 10px
+	margin: -12px 0 48px
+	@media screen and (max-width: 640px)
+		flex-wrap: nowrap
+		overflow: hidden
+
+.chipAll
+	width: 28px
+	height: 14px
+	border-radius: 999px
+
+.chip
+	width: 112px
+	height: 36px
+	border-radius: 18.5px
+
+.wide
+	width: 100%
+	aspect-ratio: 16 / 7
+	margin-bottom: 48px
+	border-radius: 24px
+	@media screen and (max-width: 640px)
+		aspect-ratio: 4 / 3
+
+.rows
+	border: 1px solid #1c1c1c
+	border-radius: 24px
+	overflow: hidden
+
+.row
+	display: flex
+	align-items: center
+	gap: 20px
+	padding: 26px 28px
+	& + &
+		border-top: 1px solid #1c1c1c
+	@media screen and (max-width: 640px)
+		padding: 20px
+
+.rowIndex
+	width: 28px
+	height: 22px
+
+.rowLabel
+	width: min(320px, 55%)
+	height: 22px
+
+.rowIcon
+	width: 32px
+	height: 32px
+	margin-left: auto
+	border-radius: 50%
+
+.contact
+	display: grid
+	grid-template-columns: minmax(0, 1fr) auto
+	column-gap: 64px
+	@media screen and (max-width: 860px)
+		grid-template-columns: 1fr
+		row-gap: 40px
+
+.details
+	display: flex
+	flex-direction: column
+	gap: 18px
+
+.detail
+	display: flex
+	align-items: center
+	gap: 14px
+
+.detailIcon
+	width: 26px
+	height: 26px
+	border-radius: 50%
+	background: rgba(206, 36, 33, 0.35)
+
+.detailText
+	width: min(300px, 70%)
+	height: 18px
+	border-radius: 999px
+
+.panel
+	display: flex
+	flex-direction: column
+	gap: 12px
+	width: 420px
+	margin-right: 150px
+	padding-top: 52px
+	@media screen and (max-width: 1100px)
+		width: 360px
+		margin-right: 72px
+	@media screen and (max-width: 991px)
+		margin-right: 24px
+	@media screen and (max-width: 860px)
+		width: 100%
+		margin: 0
+		padding-top: 0
+
+.panelTitle
+	width: 160px
+	height: 28px
+	margin: 0 auto 22px
+
+.field
+	width: 100%
+	height: 50px
+	border-radius: 999px
+
+.submit
+	width: 100%
+	height: 50px
+	border-radius: 999px
+	background: linear-gradient(90deg, rgba(206, 36, 33, 0.35) 25%, rgba(206, 36, 33, 0.55) 37%, rgba(206, 36, 33, 0.35) 63%)
+	background-size: 200% 100%

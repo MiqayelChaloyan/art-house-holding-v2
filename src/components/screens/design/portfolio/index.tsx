@@ -99,7 +99,7 @@ const Home = ({ data }: Readonly<Props>) => {
                 )}
                 <div className={styles.heroCopy}>
                     <h1 className={cn(styles.author, designFont.serif)}>{keepWords(current.author)}</h1>
-                    <p className={cn(styles.course, designFont.medium)}>{data.course_name}</p>
+                    <p className={styles.course}>{data.course_name}</p>
                 </div>
             </header>
 
