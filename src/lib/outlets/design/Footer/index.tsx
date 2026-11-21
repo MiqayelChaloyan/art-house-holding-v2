@@ -43,7 +43,7 @@ const Footer = ({ socialData }: Readonly<Props>) => {
     const year = new Date().getFullYear();
     const address = socialData?.address || t('address.address');
     const mapsQuery = encodeURIComponent(address);
-    const logo = socialData?.logo ? urlForImage(socialData.logo, 240) : undefined;
+    const logo = socialData?.logo ? urlForImage(socialData.logo, 480) : undefined;
     const brandName = [socialData?.brand_line_1, socialData?.brand_line_2].filter(Boolean).join(' ') || 'Art House';
     const taglineLines = [
         footerT('tagline-line-1'),
@@ -77,7 +77,7 @@ const Footer = ({ socialData }: Readonly<Props>) => {
             <div className={styles.wrap}>
                 <div className={styles.grid}>
                     <div className={styles.brand}>
-                        <Link href={`/${locale}${Pages.DESIGN_HOME}`} className={styles.logo} aria-label={brandName}>
+                        <Link href={`/${locale}${Pages.DESIGN_HOME}`} className={cn(styles.logo, styles.logoMark)} aria-label={brandName}>
                             {logo?.src && (
                             <NextImage
                                 src={logo.src}

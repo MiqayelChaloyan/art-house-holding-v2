@@ -67,7 +67,7 @@ const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
     const formPath = `/${locale}${Pages.DESIGN_START_LEARNING}`;
 
     const homePath = `/${locale}${Pages.DESIGN_HOME}`;
-    const logo = brand?.logo ? urlForImage(brand.logo, 240) : undefined;
+    const logo = brand?.logo ? urlForImage(brand.logo, 480) : undefined;
     const brandLine1 = brand?.brand_line_1 || '';
     const brandLine2 = brand?.brand_line_2 || '';
     const brandName = [brandLine1, brandLine2].filter(Boolean).join(' ') || 'Art House';
@@ -96,12 +96,6 @@ const Header = ({ typePosition, locale, brand }: Readonly<IHeaderProps>) => {
                             height={logo.height}
                             priority
                         />
-                    </span>
-                    )}
-                    {(brandLine1 || brandLine2) && (
-                    <span className={styles.brandText}>
-                        {brandLine1 && <span>{brandLine1}</span>}
-                        {brandLine2 && <span>{brandLine2}</span>}
                     </span>
                     )}
                 </Link>

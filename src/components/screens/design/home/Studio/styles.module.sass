@@ -35,8 +35,10 @@
 	align-items: center
 	gap: 14px
 	margin: 0 0 22px
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	font-size: 9.2px
-	font-weight: 500
+	font-weight: 400
+	font-style: normal
 	line-height: 14.8px
 	letter-spacing: 2.8px
 	text-transform: uppercase
@@ -66,11 +68,25 @@
 		min-width: 0
 		max-width: 100%
 
-.headlineAm,
+.headlineAm
+	font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
+	font-size: clamp(42px, 5.4vw, 78px)
+	line-height: 0.96
+	letter-spacing: 0
+	overflow-wrap: normal
+	word-break: normal
+	> span
+		white-space: nowrap
+
 .headlineRu
-	font-size: clamp(24px, min(6.2vw, 7.2cqi), 52px)
-	letter-spacing: -0.03em
-	overflow-wrap: break-word
+	font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
+	font-size: clamp(36px, 4.6vw, 72px)
+	line-height: 0.96
+	letter-spacing: 0
+	overflow-wrap: normal
+	word-break: normal
+	> span
+		white-space: nowrap
 
 .word
 	white-space: nowrap
@@ -87,12 +103,14 @@
 	color: #ce2421
 
 .description
-	max-width: 547px
-	margin: 37px 0 0
-	font-size: 18px
+	max-width: 520px
+	margin: 28px 0 0
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
+	font-size: 16px
 	font-weight: 400
-	line-height: 29.25px
-	color: #d9d9d9
+	font-style: normal
+	line-height: 26px
+	color: #c8c8c8
 
 .actions
 	display: flex

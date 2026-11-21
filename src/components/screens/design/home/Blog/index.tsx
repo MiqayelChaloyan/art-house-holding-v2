@@ -12,6 +12,7 @@ import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { TitleLine } from '@/src/components/screens/design/titlePeriod';
 import { BLOG_SITE_CONFIG } from '@/src/components/blog/config';
 import { formatCardDate } from '@/src/utils/format-date';
 
@@ -39,6 +40,7 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
         eyebrow: sectionT('eyebrow'),
         line1: sectionT('line-1'),
         line2: sectionT('line-2'),
+        emphasis: sectionT('emphasis'),
     };
 
     const hrefFor = (slug: string) => `/${locale}${config.blogHome}/${slug}`;
@@ -55,9 +57,11 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
                             <span className={styles.mark} aria-hidden />
                             {copy.eyebrow}
                         </p>
-                        <h2 className={styles.headline}>
+                        <h2 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
-                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                            <span>
+                                <TitleLine line={copy.line2} emphasis={copy.emphasis} emphasisClassName={styles.emphasis} />
+                            </span>
                         </h2>
                     </header>
                     <ul className={styles.cards}>
@@ -112,9 +116,11 @@ const Blog = ({ posts, layout = 'featured' }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {copy.eyebrow}
                     </p>
-                    <h2 className={styles.headline}>
+                    <h2 className={cn(styles.headline, designFont.serif)}>
                         <span>{keepWords(copy.line1)}</span>
-                        <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                        <span>
+                            <TitleLine line={copy.line2} emphasis={copy.emphasis} emphasisClassName={styles.emphasis} />
+                        </span>
                     </h2>
                 </header>
 

@@ -67,11 +67,22 @@
 	display: inline-flex
 	margin-bottom: 18px
 
+.logoMark
+	width: 230px
+	height: 54px
+	@media screen and (max-width: 640px)
+		width: 180px
+		height: 42px
+
 .logoImage
-	width: 66px !important
-	height: 42px !important
+	width: 230px !important
+	height: 54px !important
+	max-width: none
 	object-fit: contain
 	object-position: left center
+	@media screen and (max-width: 640px)
+		width: 180px !important
+		height: 42px !important
 
 .tagline
 	margin: 0 0 28px

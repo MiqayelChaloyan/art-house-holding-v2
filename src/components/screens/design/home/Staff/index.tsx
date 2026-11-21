@@ -11,6 +11,7 @@ import NextImage from '@/src/components/components/image';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -58,6 +59,7 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
     const team = useMemo(() => workers.filter((member) => member.worker_image?.asset), [workers]);
 
     const copy = {
+        eyebrow: t('eyebrow'),
         line1: t('line-1'),
         line2: t('line-2'),
         line3: t('line-3'),
@@ -101,6 +103,8 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
     const avatar = urlForImage(member.worker_image, 524);
     const programs = member.programs?.length ? member.programs : [];
     const skills = member.skills?.length ? member.skills : [];
+    const line3 = copy.line3.replace(/[․.]$/, '');
+    const line3Period = copy.line3.slice(line3.length);
     const experience = member.experience || '';
     const bio = member.bio || member.profession;
 
@@ -129,22 +133,34 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
                                         {heading.eyebrow}
                                     </p>
                                 )}
-                                <h2 className={cn(styles.headline, designFont.serif)}>
+                                <h2 className={cn(styles.headline, styles.courseHeadline, designFont.serif)}>
                                     <span>{keepWords(heading.title || '')}</span>
                                     {heading.emphasis && (
-                                        <em className={styles.emphasis}>{keepWords(heading.emphasis)}</em>
+                                        <em className={styles.emphasis}>
+                                            {keepWords(splitTitlePeriod(heading.emphasis).body)}
+                                            <TitlePeriod mark={splitTitlePeriod(heading.emphasis).period} />
+                                        </em>
                                     )}
                                 </h2>
                             </header>
                         ) : (
-                            <h2 className={cn(styles.headline, designFont.serif)}>
-                                <span className={styles.lead}>
-                                    {keepWords(copy.line1)}
-                                    {' '}
-                                    <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
-                                </span>
-                                <span>{keepWords(copy.line3)}</span>
-                            </h2>
+                            <header>
+                                <p className={styles.eyebrow}>
+                                    <span className={styles.mark} aria-hidden />
+                                    {copy.eyebrow}
+                                </p>
+                                <h2 className={cn(styles.headline, designFont.serif)}>
+                                    <span className={styles.lead}>
+                                        {keepWords(copy.line1)}
+                                        {' '}
+                                        <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
+                                    </span>
+                                    <span>
+                                        {keepWords(line3)}
+                                        {line3Period && <span className={styles.period}>{line3Period}</span>}
+                                    </span>
+                                </h2>
+                            </header>
                         )}
 
                         <div

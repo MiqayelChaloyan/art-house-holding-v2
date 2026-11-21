@@ -32,8 +32,8 @@ export const BLOG_SITE_CONFIG: Record<BlogSiteKey, BlogSiteConfig> = {
         blogHome: Pages.DESIGN_BLOG_HOME,
         siteHome: Pages.DESIGN_HOME,
         sectionId: 'blog',
-        titleFont: { className: designFont.serif },
-        bodyFont: { className: designFont.ui },
+        titleFont: { className: designFont.regular },
+        bodyFont: { className: designFont.regular },
         heroEyebrowKey: 'design-studio-title',
     },
     language: {

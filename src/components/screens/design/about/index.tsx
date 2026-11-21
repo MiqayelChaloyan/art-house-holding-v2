@@ -7,6 +7,7 @@ import Partners from '@/src/components/screens/design/home/Partners';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -23,7 +24,7 @@ const About = ({ data, clients }: Readonly<Props>) => {
     const image = data.image?.asset ? urlForImage(data.image, 1040) : undefined;
     const sections = (data.sections || []).filter((item) => item?.heading && item?.body);
     const line1 = data.line_1 || '';
-    const line2 = data.line_2 || '';
+    const line2 = splitTitlePeriod(data.line_2 || '');
 
     return (
         <>
@@ -37,15 +38,18 @@ const About = ({ data, clients }: Readonly<Props>) => {
                             </p>
                             <h1 className={cn(styles.headline, designFont.serif)}>
                                 <span>{keepWords(line1)}</span>
-                                <span className={styles.emphasis}>{keepWords(line2)}</span>
+                                <span className={styles.emphasis}>
+                                    {keepWords(line2.body)}
+                                    <TitlePeriod mark={line2.period} />
+                                </span>
                             </h1>
-                            {data.intro && <p className={cn(styles.intro, designFont.medium)}>{data.intro}</p>}
+                            {data.intro && <p className={styles.intro}>{data.intro}</p>}
                         </div>
                         {image?.src && (
                             <figure className={styles.portrait}>
                                 <NextImage
                                     src={image.src}
-                                    alt={data.image?.alt || line2}
+                                    alt={data.image?.alt || line2.body}
                                     className={styles.image}
                                     width={image.width}
                                     height={image.height}
@@ -57,7 +61,7 @@ const About = ({ data, clients }: Readonly<Props>) => {
                     </div>
 
                     {sections.length > 0 && (
-                        <div className={cn(styles.blocks, designFont.medium)}>
+                        <div className={styles.blocks}>
                             {sections.map((item) => (
                                 <article key={item._key} className={styles.block}>
                                     <h2>{item.heading}</h2>

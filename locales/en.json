@@ -34,7 +34,7 @@
     },
     "portfolios-page": {
         "eyebrow": "Portfolio",
-        "line-1": "Student",
+        "line-1": "Students",
         "line-2": "works.",
         "empty": "No projects in this program yet.",
         "all": "All",
@@ -51,6 +51,7 @@
         "eyebrow": "Contact",
         "line-1": "Contact",
         "line-2": "with us.",
+        "emphasis": "with",
         "feedback": "Feedback",
         "choose-course": "Choose Course",
         "surname": "Surname",
@@ -150,6 +151,7 @@
         "explore-all-stories": "Explore all stories"
     },
     "certificates-section": {
+        "eyebrow": "students works",
         "line-1": "Certificate",
         "line-2": "and",
         "line-3": "Diploma"
@@ -162,8 +164,9 @@
     },
     "design-blog-section": {
         "eyebrow": "Blog",
-        "line-1": "Blog and",
-        "line-2": "news."
+        "line-1": "Blog",
+        "line-2": "and News.",
+        "emphasis": "and"
     },
     "voices-section": {
         "eyebrow": "Student voices",
@@ -182,7 +185,9 @@
         "detail-emphasis": "courses.",
         "explore-label": "Explore courses",
         "about": {
-            "eyebrow": "About the Course"
+            "eyebrow": "About the Course",
+            "line-1": "About",
+            "line-2": "the course."
         },
         "portfolio-label": "Portfolio",
         "curriculum": {
@@ -231,6 +236,7 @@
         }
     },
     "staff-section": {
+        "eyebrow": "our staff",
         "line-1": "Our",
         "line-2": "creative",
         "line-3": "Staff",

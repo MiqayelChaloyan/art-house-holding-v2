@@ -9,6 +9,9 @@ import BlogBackLink from '@/src/components/blog/BackLink';
 import { BLOG_SITE_CONFIG, BlogSiteKey } from '@/src/components/blog/config';
 import PostCard from '@/src/components/blog/PostCard';
 
+import { TitleLine } from '@/src/components/screens/design/titlePeriod';
+import { designFont } from '@/src/constants/font';
+
 import cn from 'classnames';
 
 import styles from './styles.module.sass';
@@ -37,6 +40,7 @@ const ListPage = ({ siteKey, posts, section }: Readonly<Props>) => {
     const sectionSubtitle = siteKey === 'design'
         ? designBlogT('line-2')
         : section?.section_subtitle;
+    const sectionEmphasis = siteKey === 'design' ? designBlogT('emphasis') : '';
     const eyebrow = siteKey === 'design'
         ? designBlogT('eyebrow')
         : (config.heroEyebrowKey ? textsT(config.heroEyebrowKey) : '');
@@ -63,15 +67,32 @@ const ListPage = ({ siteKey, posts, section }: Readonly<Props>) => {
                                 {eyebrow}
                             </span>
                         )}
-                        {sectionTitle && (
-                            <h1 className={cn(styles.title, config.titleFont.className)}>
-                                {sectionTitle}
+                        {siteKey === 'design' && sectionTitle ? (
+                            <h1 className={cn(styles.title, styles.designTitle, designFont.serif)}>
+                                <span>{sectionTitle}</span>
+                                {sectionSubtitle && (
+                                    <span>
+                                        <TitleLine
+                                            line={sectionSubtitle}
+                                            emphasis={sectionEmphasis}
+                                            emphasisClassName={styles.designEmphasis}
+                                        />
+                                    </span>
+                                )}
                             </h1>
-                        )}
-                        {sectionSubtitle && (
-                            <p className={cn(styles.subtitle, siteKey === 'design' ? config.titleFont.className : config.bodyFont.className)}>
-                                {sectionSubtitle}
-                            </p>
+                        ) : (
+                            <>
+                                {sectionTitle && (
+                                    <h1 className={cn(styles.title, config.titleFont.className)}>
+                                        {sectionTitle}
+                                    </h1>
+                                )}
+                                {sectionSubtitle && (
+                                    <p className={cn(styles.subtitle, config.bodyFont.className)}>
+                                        {sectionSubtitle}
+                                    </p>
+                                )}
+                            </>
                         )}
                     </div>
                 </Container>

@@ -34,8 +34,8 @@
     },
     "portfolios-page": {
         "eyebrow": "Портфолио",
-        "line-1": "Студенческие",
-        "line-2": "работы.",
+        "line-1": "Работы",
+        "line-2": "студентов.",
         "empty": "В этой программе пока нет работ.",
         "all": "Все",
         "view-more": "Смотреть ещё",
@@ -43,14 +43,15 @@
     },
     "why-section": {
         "eyebrow": "Почему Art House",
-        "line-1": "Строгая студия",
-        "line-2": "внутри академии.",
-        "emphasis-word": "академии"
+        "line-1": "Почему",
+        "line-2": "именно мы?",
+        "emphasis-word": "именно мы"
     },
     "contact-page": {
         "eyebrow": "Контакт",
-        "line-1": "Свяжитесь",
+        "line-1": "Связь",
         "line-2": "с нами.",
+        "emphasis": "нами",
         "feedback": "Обратная связь",
         "choose-course": "Выберите курс",
         "surname": "Фамилия",
@@ -150,26 +151,28 @@
         "explore-all-stories": "Смотреть все статьи"
     },
     "certificates-section": {
+        "eyebrow": "работы студентов",
         "line-1": "Сертификат",
         "line-2": "и",
         "line-3": "диплом"
     },
     "projects-section": {
-        "eyebrow": "Избранные работы",
-        "line-1": "Проекты",
-        "line-2": "со студийного пола.",
-        "emphasis": "студийного пола."
+        "eyebrow": "работы студентов",
+        "line-1": "Работы",
+        "line-2": "студентов.",
+        "emphasis": "студентов"
     },
     "design-blog-section": {
         "eyebrow": "Блог",
-        "line-1": "Блог и",
-        "line-2": "новости."
+        "line-1": "Блог",
+        "line-2": "и новости.",
+        "emphasis": "новости"
     },
     "voices-section": {
         "eyebrow": "Голоса студентов",
-        "line-1": "Что наши студенты",
-        "line-2": "говорят на самом деле.",
-        "emphasis-word": "на самом деле",
+        "line-1": "Что говорят",
+        "line-2": "наши студенты?",
+        "emphasis-word": "студенты",
         "slides": "Отзывы"
     },
     "design-courses-page": {
@@ -182,7 +185,9 @@
         "detail-emphasis": "курсы.",
         "explore-label": "Смотреть курсы",
         "about": {
-            "eyebrow": "О курсе"
+            "eyebrow": "О курсе",
+            "line-1": "О",
+            "line-2": "курсе."
         },
         "portfolio-label": "Портфолио",
         "curriculum": {
@@ -195,8 +200,8 @@
         },
         "price": {
             "eyebrow": "Прайс-лист",
-            "line-1": "Прайс",
-            "line-2": "лист."
+            "line-1": "Цена",
+            "line-2": "курса."
         },
         "why": {
             "eyebrow": "Почему этот курс",
@@ -206,7 +211,7 @@
         },
         "groups": {
             "eyebrow": "Ближайшие группы",
-            "line-1": "Ближайшие",
+            "line-1": "Предстоящие",
             "line-2": "курсы.",
             "filter-all": "Все",
             "filter-morning": "Утро",
@@ -227,13 +232,15 @@
         },
         "trainers": {
             "eyebrow": "Преподаватели",
+            "line-1": "Руководители",
             "emphasis": "преподаватели."
         }
     },
     "staff-section": {
+        "eyebrow": "наша команда",
         "line-1": "Наша",
         "line-2": "креативная",
-        "line-3": "команда",
+        "line-3": "команда.",
         "experience-label": "Опыт",
         "programs": "Программы",
         "skills": "Навыки",

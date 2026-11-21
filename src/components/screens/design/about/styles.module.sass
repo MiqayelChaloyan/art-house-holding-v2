@@ -55,7 +55,22 @@
 		display: block
 	:global(html[lang="am"]) &,
 	:global(html[lang="ru"]) &
-		font-size: clamp(28px, 5.6vw, 56px)
+		font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
+		font-weight: 400
+		font-style: italic
+		font-size: 120px
+		line-height: 114px
+		letter-spacing: -3px
+		@media screen and (max-width: 991px)
+			font-size: clamp(48px, 12vw, 80px)
+			line-height: 0.95
+			letter-spacing: -1.5px
+
+	:global(html[lang="am"]) &
+		> span:first-child
+			color: #9b9b9b
+		.emphasis
+			color: #ffffff
 
 .emphasis
 	font-style: italic
@@ -65,8 +80,10 @@
 .intro
 	max-width: 588px
 	margin: 25px 0 0
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	font-size: 18px
 	font-weight: 400
+	font-style: normal
 	line-height: 29.25px
 	color: #d9d9d9
 
@@ -98,14 +115,18 @@
 .block
 	h2
 		margin: 0 0 4px
+		font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
 		font-size: 24px
 		font-weight: 500
+		font-style: normal
 		line-height: 29.25px
 		color: #ffffff
 	p
 		margin: 0
+		font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 		font-size: 18px
 		font-weight: 400
+		font-style: normal
 		line-height: 29.25px
 		text-align: justify
 		color: #d9d9d9

@@ -56,6 +56,30 @@
 	font-style: italic
 	color: #7a7a7a
 
+.pageTitle
+	:global(html[lang="am"]) &,
+	:global(html[lang="ru"]) &
+		font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
+		font-weight: 400
+		font-style: normal
+		font-size: 72px
+		line-height: 72px
+		letter-spacing: -1.8px
+		> span
+			display: flex
+			align-items: center
+			min-height: 72px
+		.emphasis
+			font-style: italic
+			font-weight: 400
+			color: #9b9b9b
+		@media screen and (max-width: 640px)
+			font-size: clamp(36px, 10vw, 52px)
+			line-height: 1
+			letter-spacing: -1px
+			> span
+				min-height: 0
+
 .grid
 	display: grid
 	grid-template-columns: repeat(3, minmax(0, 1fr))

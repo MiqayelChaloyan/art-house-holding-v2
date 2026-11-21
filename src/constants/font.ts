@@ -35,6 +35,16 @@ const InstrumentSerif = localFont({
     adjustFontFallback: false,
     variable: '--font-instrument-serif',
 });
+const Hanragitaran = localFont({
+    src: [
+        { path: '../../public/font/FMBF_Hanragitaran.ttf', weight: '400', style: 'normal' },
+        { path: '../../public/font/FMBF_Hanragitaran_i.ttf', weight: '400', style: 'italic' },
+    ],
+    display: 'swap',
+    preload: false,
+    adjustFontFallback: false,
+    variable: '--font-hanragitaran',
+});
 const MontserratArm = localFont({
     src: [
         {
@@ -93,8 +103,9 @@ const JetBrainsMono = localFont({
 });
 
 const designFont = {
-    vars: `${InstrumentSerif.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratLight.variable} ${MontserratMedium.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
+    vars: `${InstrumentSerif.variable} ${Hanragitaran.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratLight.variable} ${MontserratMedium.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
     ui: 'designFontUi',
+    regular: 'designFontRegular',
     serif: 'designFontSerif',
     medium: 'designFontMedium',
     light: 'designFontLight',
@@ -111,6 +122,7 @@ export {
     Belleza,
     MMArmenU,
     InstrumentSerif,
+    Hanragitaran,
     MontserratArm,
     MontserratRegular,
     MontserratLight,

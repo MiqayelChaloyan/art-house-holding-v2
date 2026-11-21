@@ -97,13 +97,39 @@ const Studio = ({ section }: Readonly<Props>) => {
                         locale === 'ru' && styles.headlineRu,
                         designFont.serif,
                     )}>
-                        <span>{keepWords(copy.line1)}</span>
-                        <span>{keepWords(copy.line2)}</span>
-                        <span className={styles.emphasis}>{keepWords(copy.line3)}</span>
-                        <span>
-                            {keepWords(copy.line4)}
-                            <span className={styles.dot}>.</span>
-                        </span>
+                        {locale === 'am' ? (
+                            <>
+                                <span>Որտեղ</span>
+                                <span>կրեատիվությունը</span>
+                                <span>հանդիպում է</span>
+                                <span className={styles.emphasis}>պրոֆեսիոնալ</span>
+                                <span>
+                                    դիզայնին
+                                    <span className={styles.dot}>.</span>
+                                </span>
+                            </>
+                        ) : locale === 'ru' ? (
+                            <>
+                                <span>Там, где</span>
+                                <span>Творчество</span>
+                                <span>Встречается с</span>
+                                <span className={styles.emphasis}>Профессиональным</span>
+                                <span>
+                                    Дизайном
+                                    <span className={styles.dot}>.</span>
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <span>{keepWords(copy.line1)}</span>
+                                <span>{keepWords(copy.line2)}</span>
+                                <span className={styles.emphasis}>{keepWords(copy.line3)}</span>
+                                <span>
+                                    {keepWords(copy.line4)}
+                                    <span className={styles.dot}>.</span>
+                                </span>
+                            </>
+                        )}
                     </h2>
                     <p className={styles.description}>{copy.description}</p>
                     {(copy.explore || copy.portfolio) && (

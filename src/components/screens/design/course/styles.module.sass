@@ -56,12 +56,12 @@
 	letter-spacing: -0.025em
 	overflow-wrap: break-word
 	word-break: normal
-	span
+	> span
 		display: block
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
-		font-size: clamp(28px, 5.6vw, 56px)
-		letter-spacing: -0.02em
+	:global(.designTitlePeriod)
+		display: inline
+		color: #ce2421
+		font-style: normal
 
 .intro
 	min-height: 29.25px
@@ -270,21 +270,32 @@
 	line-height: 1.05
 	letter-spacing: -0.025em
 	overflow-wrap: normal
-	span
+	> span
 		display: block
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
-		font-size: clamp(28px, 5vw, 48px)
+	:global(.designTitlePeriod)
+		display: inline
+		color: #ce2421
+		font-style: normal
 
 .sectionTitleInline
 	max-width: none
+	white-space: nowrap
 	span
 		display: inline
 	span + span
 		margin-left: 0.22em
+	:global(html[lang="am"]) &,
+	:global(html[lang="ru"]) &
+		font-size: clamp(36px, 4.8vw, 72px)
 
 .about .sectionTitle
 	margin-bottom: 24px
+	:global(html[lang="am"]) &,
+	:global(html[lang="ru"]) &
+		font-size: clamp(36px, 4.8vw, 72px)
+
+.lineTogether
+	white-space: nowrap
 
 .emphasis
 	font-style: italic

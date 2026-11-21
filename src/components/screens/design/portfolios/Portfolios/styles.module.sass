@@ -15,14 +15,11 @@
 
 .top
 	display: flex
-	align-items: center
-	justify-content: space-between
-	gap: 32px
+	flex-direction: column
+	align-items: flex-start
+	gap: 28px
 	width: 100%
-	margin-bottom: 60px
-	@media screen and (max-width: 980px)
-		flex-direction: column
-		align-items: flex-start
+	margin-bottom: 48px
 
 .eyebrow
 	display: flex
@@ -53,11 +50,30 @@
 	word-break: normal
 	@media screen and (max-width: 640px)
 		max-width: 100%
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
-		font-size: clamp(28px, 5vw, 48px)
 	> span
 		display: block
+		white-space: nowrap
+	:global(html[lang="am"]) &,
+	:global(html[lang="ru"]) &
+		font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
+		font-weight: 400
+		font-style: normal
+		font-size: 72px
+		line-height: 72px
+		letter-spacing: -1.8px
+		> span
+			display: flex
+			align-items: center
+			min-height: 72px
+		.emphasis
+			font-style: normal
+			font-weight: 400
+		@media screen and (max-width: 640px)
+			font-size: clamp(36px, 10vw, 52px)
+			line-height: 1
+			letter-spacing: -1px
+			> span
+				min-height: 0
 
 .emphasis
 	font-style: italic
@@ -65,17 +81,12 @@
 
 .filters
 	display: flex
-	flex: 1
 	flex-wrap: wrap
 	align-items: center
-	justify-content: flex-end
+	justify-content: flex-start
 	gap: 10px
 	width: 100%
 	max-width: none
-	@media screen and (max-width: 980px)
-		flex: none
-		justify-content: flex-start
-		max-width: 100%
 	@media screen and (max-width: 640px)
 		flex-wrap: nowrap
 		justify-content: flex-start
@@ -189,9 +200,9 @@
 	align-items: center
 	min-height: 50.4px
 	margin-top: 16px
-	font-family: var(--font-montserrat-medium), var(--font-montserrat-arm), sans-serif
+	font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif
 	font-size: 28px
-	font-weight: 500
+	font-weight: 400
 	font-style: normal
 	line-height: 50.4px
 	letter-spacing: -1.2px

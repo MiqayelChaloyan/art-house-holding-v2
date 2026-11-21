@@ -22,6 +22,7 @@ import Blog from '@/src/components/screens/design/home/Blog';
 import { Pages } from '@/src/constants/pages';
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -71,10 +72,11 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
     const title = course_name || name;
     const copy = {
         eyebrow: t('detail-eyebrow'),
-        emphasis: t('detail-emphasis'),
         explore: t('explore-label'),
         portfolio: t('portfolio-label'),
         aboutEyebrow: t('about.eyebrow'),
+        aboutTitle: t('about.line-1'),
+        aboutEmphasis: t('about.line-2'),
         curriculumTitle: t('curriculum.line-1'),
         curriculumEmphasis: t('curriculum.line-2'),
         curriculumDescription: t('curriculum.description'),
@@ -178,14 +180,21 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
         })),
         [faqItems],
     );
-    const trainersHeading = useMemo(
-        () => ({
+    const trainersHeading = useMemo(() => {
+        const courseLine = title.replace(/[.․։]\s*$/, '');
+        if (locale === 'ru') {
+            return {
+                eyebrow: copy.trainersEyebrow,
+                title: t('trainers.line-1'),
+                emphasis: `${courseLine}.`,
+            };
+        }
+        return {
             eyebrow: copy.trainersEyebrow,
-            title,
+            title: courseLine,
             emphasis: copy.trainersEmphasis,
-        }),
-        [copy.trainersEyebrow, copy.trainersEmphasis, title],
-    );
+        };
+    }, [copy.trainersEyebrow, copy.trainersEmphasis, locale, t, title]);
     const [groupFilter, setGroupFilter] = useState('all');
     const [openTopic, setOpenTopic] = useState<string | null>(null);
     const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -208,10 +217,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                         <span className={styles.mark} aria-hidden />
                         {[copy.eyebrow, title].filter(Boolean).join(' / ')}
                     </p>
-                    <h1 className={cn(styles.headline, designFont.serif)}>
-                        <span>{keepWords(title)}</span>
-                        {copy.emphasis && <span className={styles.emphasis}>{keepWords(copy.emphasis)}</span>}
-                    </h1>
+                    <CourseTitle title={title} />
                     {intro && <p className={styles.intro}>{intro}</p>}
                     {(copy.explore || copy.portfolio) && (
                         <div className={styles.actions}>
@@ -249,7 +255,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
                 <section className={styles.about}>
                     {aboutSlides.length > 0 && <AboutSlider slides={aboutSlides} title={title} />}
                     <div className={styles.aboutCopy}>
-                        <BlockHeading eyebrow={copy.aboutEyebrow} title={title} emphasis={copy.emphasis} />
+                        <BlockHeading eyebrow={copy.aboutEyebrow} title={copy.aboutTitle} emphasis={copy.aboutEmphasis} />
                         {aboutDescription && (
                             <p className={cn(styles.aboutText, designFont.medium)}>{aboutDescription}</p>
                         )}
@@ -566,6 +572,31 @@ const Accordion = ({
     </ul>
 );
 
+const CourseTitle = ({ title }: { title: string }) => {
+    const ended = splitTitlePeriod(title);
+    const words = ended.body.trim().split(/\s+/).filter(Boolean);
+    const stacked = words.length > 1;
+    const lead = stacked ? words.slice(0, -1).join(' ') : ended.body;
+    const last = stacked ? words[words.length - 1] : '';
+
+    return (
+        <h1 className={cn(styles.headline, designFont.serif)}>
+            {lead && (
+                <span>
+                    {keepWords(lead)}
+                    {!last && <TitlePeriod mark={ended.period} />}
+                </span>
+            )}
+            {last && (
+                <span className={styles.emphasis}>
+                    {keepWords(last)}
+                    <TitlePeriod mark={ended.period} />
+                </span>
+            )}
+        </h1>
+    );
+};
+
 const BlockHeading = ({
     eyebrow,
     title,
@@ -583,6 +614,7 @@ const BlockHeading = ({
     if (!eyebrow && !title && !emphasis && !line2Prefix) return null;
 
     const splitSecondLine = line2Prefix !== undefined;
+    const ended = splitTitlePeriod(emphasis || '');
 
     return (
         <header className={styles.blockHead}>
@@ -596,12 +628,18 @@ const BlockHeading = ({
                 <h2 className={cn(styles.sectionTitle, inline && styles.sectionTitleInline, designFont.serif)}>
                     {title && <span>{splitSecondLine ? title : keepWords(title)}</span>}
                     {splitSecondLine ? (
-                        <span>
+                        <span className={styles.lineTogether}>
                             {line2Prefix}
-                            {emphasis && <em className={styles.emphasis}>{emphasis}</em>}
+                            {ended.body && <em className={styles.emphasis}>{ended.body}</em>}
+                            <TitlePeriod mark={ended.period} />
                         </span>
                     ) : (
-                        emphasis && <span className={styles.emphasis}>{keepWords(emphasis)}</span>
+                        emphasis && (
+                            <span className={styles.emphasis}>
+                                {keepWords(ended.body)}
+                                <TitlePeriod mark={ended.period} />
+                            </span>
+                        )
                     )}
                 </h2>
             )}

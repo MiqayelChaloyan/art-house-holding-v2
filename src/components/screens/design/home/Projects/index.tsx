@@ -9,6 +9,7 @@ import NextImage from '@/src/components/components/image';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -22,17 +23,28 @@ interface Props {
 };
 
 const renderStudioLine = (text: string, emphasis: string) => {
-    const index = emphasis ? text.indexOf(emphasis) : -1;
-    if (index < 0) return keepWords(text);
+    const { body, period } = splitTitlePeriod(text);
+    const phrase = emphasis.replace(/[.․։]\s*$/, '');
+    const index = phrase ? body.indexOf(phrase) : -1;
 
-    const before = text.slice(0, index);
-    const after = text.slice(index + emphasis.length);
+    if (index < 0) {
+        return (
+            <>
+                {keepWords(body)}
+                <TitlePeriod mark={period} />
+            </>
+        );
+    }
+
+    const before = body.slice(0, index);
+    const after = body.slice(index + phrase.length);
 
     return (
         <>
             {before ? keepWords(before) : null}
-            <span className={styles.emphasis}>{keepWords(emphasis)}</span>
+            <span className={styles.emphasis}>{keepWords(phrase)}</span>
             {after ? keepWords(after) : null}
+            <TitlePeriod mark={period} />
         </>
     );
 };

@@ -54,7 +54,7 @@ export default async function Layout({
     };
 
     return (
-        <div className={`${designFont.vars} ${designFont.ui}`}>
+        <div className={`${designFont.vars} ${designFont.ui} designSite`}>
             <Header typePosition='fixed' locale={locale} brand={contacts} />
             <div className='design-container'>
                 <GoBack locale={locale} theme={colors.studioRed} />

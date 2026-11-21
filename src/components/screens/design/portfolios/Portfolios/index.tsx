@@ -10,6 +10,7 @@ import NextImage from '@/src/components/components/image';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 import { Pages } from '@/src/constants/pages';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
@@ -98,7 +99,10 @@ const Portfolios = ({ courses }: Readonly<Props>) => {
                         </p>
                         <h1 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(t('line-1'))}</span>
-                            <span className={styles.emphasis}>{keepWords(t('line-2'))}</span>
+                            <span className={styles.emphasis}>
+                                {keepWords(splitTitlePeriod(t('line-2')).body)}
+                                <TitlePeriod mark={splitTitlePeriod(t('line-2')).period} />
+                            </span>
                         </h1>
                     </header>
                     <nav className={styles.filters} role="tablist" aria-label={t('eyebrow')}>

@@ -11,6 +11,7 @@ import InputNumber from '@/src/lib/ui/InputNumber';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { TitleLine } from '@/src/components/screens/design/titlePeriod';
 import { TRAINING_CENTERS } from '@/src/constants';
 
 import { sendContactUsDesign } from '@/src/api';
@@ -56,8 +57,9 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     const tPage = useTranslations('contact-page');
     const copy = {
         eyebrow: contacts?.eyebrow || tPage('eyebrow'),
-        line1: contacts?.line_1 || tPage('line-1'),
-        line2: contacts?.line_2 || tPage('line-2'),
+        line1: tPage('line-1'),
+        line2: tPage('line-2'),
+        emphasis: tPage('emphasis'),
         formTitle: contacts?.form_title || tPage('feedback'),
         hours: contacts?.hours || '',
     };
@@ -72,10 +74,12 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
     });
 
     const phones = (contacts?.phone_numbers || []).filter(Boolean);
+    const phoneRows = phones.length > 3
+        ? [phones.slice(0, 3), phones.slice(3)]
+        : [phones];
     const email = contacts?.email;
     const address = contacts?.address || '';
     const mapsQuery = encodeURIComponent(address);
-
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setValues((prev) => ({ ...prev, [name]: value }));
@@ -142,15 +146,32 @@ const Contact = ({ lessons, lessonsArmenian, contacts }: Readonly<Props>) => {
                         </p>
                         <h1 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
-                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                            <span className={styles.lineTogether}>
+                                <TitleLine
+                                    line={copy.line2}
+                                    emphasis={copy.emphasis}
+                                    emphasisClassName={styles.emphasis}
+                                />
+                            </span>
                         </h1>
                         <ul className={styles.details}>
-                            {phones.map((number) => (
-                                <li key={number}>
+                            {phones.length > 0 && (
+                                <li>
                                     <PhoneIcon />
-                                    <a href={`tel:${number.replace(/\s/g, '')}`}>{formatPhone(number)}</a>
+                                    <span className={styles.phones}>
+                                        {phoneRows.map((row, rowIndex) => (
+                                            <span key={rowIndex} className={styles.phoneLine}>
+                                                {row.map((number, index) => (
+                                                    <React.Fragment key={`${number}-${index}`}>
+                                                        {index > 0 && ', '}
+                                                        <a href={`tel:${number.replace(/\s/g, '')}`}>{formatPhone(number)}</a>
+                                                    </React.Fragment>
+                                                ))}
+                                            </span>
+                                        ))}
+                                    </span>
                                 </li>
-                            ))}
+                            )}
                             {copy.hours && (
                                 <li>
                                     <ClockIcon />

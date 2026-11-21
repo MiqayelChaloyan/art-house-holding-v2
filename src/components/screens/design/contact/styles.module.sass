@@ -54,11 +54,11 @@
 	color: #ffffff
 	overflow-wrap: normal
 	word-break: normal
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
-		font-size: clamp(32px, 6vw, 64px)
 	> span
 		display: block
+
+.lineTogether
+	white-space: nowrap
 
 .emphasis
 	font-style: italic
@@ -91,6 +91,13 @@
 			overflow-wrap: normal
 			color: inherit
 			text-decoration: none
+		.phones
+			display: flex
+			flex-direction: column
+		.phoneLine
+			display: block
+			a
+				white-space: nowrap
 		a:hover
 			opacity: 0.8
 
@@ -124,6 +131,14 @@
 	line-height: 72px
 	letter-spacing: -1.8px
 	color: #ffffff
+	:global(html[lang="am"] .designSite) &
+		font-family: var(--font-montserrat-arm), sans-serif !important
+		font-weight: 400
+		font-style: normal
+	:global(html[lang="ru"] .designSite) &
+		font-family: var(--font-montserrat-regular), var(--font-montserrat-arm), sans-serif !important
+		font-weight: 400
+		font-style: normal
 
 .form
 	display: flex

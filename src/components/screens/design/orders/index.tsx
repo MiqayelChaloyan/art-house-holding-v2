@@ -8,6 +8,7 @@ import OrderForm from './Form';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 
 import cn from 'classnames';
 
@@ -34,7 +35,10 @@ const Home = ({ lessons, lessonsArmenian, selectedSlug }: Readonly<Props>) => {
                         </p>
                         <h1 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(t('line-1'))}</span>
-                            <span className={styles.emphasis}>{keepWords(t('line-2'))}</span>
+                            <span className={styles.emphasis}>
+                                {keepWords(splitTitlePeriod(t('line-2')).body)}
+                                <TitlePeriod mark={splitTitlePeriod(t('line-2')).period} />
+                            </span>
                         </h1>
                         <p className={styles.lead}>{t('lead')}</p>
                     </div>

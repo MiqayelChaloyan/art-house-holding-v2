@@ -23,10 +23,14 @@ const Certificates = ({ section }: Readonly<Props>) => {
     const t = useTranslations('certificates-section');
 
     const copy = {
+        eyebrow: t('eyebrow'),
         line1: t('line-1'),
         line2: t('line-2'),
         line3: t('line-3'),
     };
+
+    const line3 = copy.line3.replace(/[․.]$/, '');
+    const line3Period = copy.line3.slice(line3.length);
 
     const sources = (section?.images || [])
         .filter((item) => item?.image?.asset)
@@ -38,13 +42,20 @@ const Certificates = ({ section }: Readonly<Props>) => {
     return (
         <section id="certificates" className={cn(styles.section, designFont.ui)}>
             <div className={styles.wrap}>
+                    <p className={styles.eyebrow}>
+                        <span className={styles.mark} aria-hidden />
+                        {copy.eyebrow}
+                    </p>
                     <h2 className={cn(styles.headline, designFont.serif)}>
                     <span className={styles.lead}>
                         {keepWords(copy.line1)}
                         {' '}
                         <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
                     </span>
-                    <span>{keepWords(copy.line3)}</span>
+                    <span>
+                        <em className={styles.emphasis}>{keepWords(line3)}</em>
+                        {line3Period && <span className={styles.period}>{line3Period}</span>}
+                    </span>
                 </h2>
                 <div className={styles.grid}>
                     {sources.map((source) => {

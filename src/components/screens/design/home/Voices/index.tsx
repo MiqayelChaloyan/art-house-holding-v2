@@ -9,6 +9,7 @@ import NextImage from '@/src/components/components/image';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod, withRedQuestion } from '@/src/components/screens/design/titlePeriod';
 import { urlForImage } from '@/sanity/imageUrlBuilder';
 
 import cn from 'classnames';
@@ -21,13 +22,29 @@ const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\
 const renderVoicesSecondLine = (text: string, emphasisWord: string) => {
     if (!text) return null;
 
-    if (!emphasisWord) {
-        return keepWords(text);
+    const question = text.match(/(\?)\s*$/);
+    const source = question && question.index !== undefined ? text.slice(0, question.index) : text;
+    const { body, period } = splitTitlePeriod(source);
+    const mark = question ? '?' : period;
+    const word = emphasisWord.replace(/[.․։?]\s*$/, '');
+
+    if (!word) {
+        return (
+            <>
+                {keepWords(body)}
+                <TitlePeriod mark={mark} />
+            </>
+        );
     }
 
-    const match = text.match(new RegExp(`^(.*?)(${escapeRegExp(emphasisWord)})(.*)$`, 'iu'));
+    const match = body.match(new RegExp(`^(.*?)(${escapeRegExp(word)})(.*)$`, 'iu'));
     if (!match) {
-        return keepWords(text);
+        return (
+            <>
+                {keepWords(body)}
+                <TitlePeriod mark={mark} />
+            </>
+        );
     }
 
     const [, before, emphasis, after] = match;
@@ -37,6 +54,7 @@ const renderVoicesSecondLine = (text: string, emphasisWord: string) => {
             {before ? keepWords(before) : null}
             <span className={styles.emphasis}>{emphasis}</span>
             {after ? keepWords(after) : null}
+            <TitlePeriod mark={mark} />
         </>
     );
 };
@@ -115,7 +133,7 @@ const Voices = ({ section }: Readonly<Props>) => {
                         {copy.eyebrow}
                     </p>
                     <h2 className={cn(styles.headline, designFont.serif)}>
-                        <span>{keepWords(copy.line1)}</span>
+                        <span>{withRedQuestion(copy.line1)}</span>
                         <span>{renderVoicesSecondLine(copy.line2, t('emphasis-word'))}</span>
                     </h2>
                 </header>

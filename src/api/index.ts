@@ -102,23 +102,27 @@ export const sendContactUsDesign = async (contactUs: FormSmall) => {
     try {
         const emailResponse = await sendEmail(contactUs);
 
-        const apiResponse = await axios.post(BASE_URL, null, {
-            params: { contactUs },
-            timeout: 10000
-        });
-
-        if (emailResponse.success && apiResponse.status === 200) {
-            return { status: 200 };
-        } else {
-            const error = !emailResponse.success 
-                ? emailResponse.error 
-                : 'API request failed';
-            return { status: 500, error };
+        if (!emailResponse.success) {
+            return { status: 500, error: emailResponse.error || 'Email request failed' };
         }
+
+        try {
+            await axios.post(BASE_URL, null, {
+                params: { contactUs },
+                timeout: 8000,
+            });
+        } catch (crmError) {
+            console.error(
+                'Design contact CRM request failed:',
+                crmError instanceof Error ? crmError.message : crmError,
+            );
+        }
+
+        return { status: 200 };
     } catch (error) {
-        return { 
-            status: 500, 
-            error: error instanceof Error ? error.message : 'Unknown error' 
+        return {
+            status: 500,
+            error: error instanceof Error ? error.message : 'Unknown error',
         };
     }
 };

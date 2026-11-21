@@ -10,6 +10,7 @@ import Course from './Course';
 
 import { designFont } from '@/src/constants/font';
 import { keepWords } from '@/src/components/screens/design/keepWords';
+import { splitTitlePeriod, TitlePeriod } from '@/src/components/screens/design/titlePeriod';
 
 import cn from 'classnames';
 
@@ -51,14 +52,20 @@ const Courses = ({ courses, section, numbered, page }: Readonly<Props>) => {
                         {copy.eyebrow}
                     </p>
                     {page ? (
-                        <h1 className={cn(styles.headline, designFont.serif)}>
+                        <h1 className={cn(styles.headline, styles.pageTitle, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
-                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                            <span className={styles.emphasis}>
+                                {keepWords(splitTitlePeriod(copy.line2).body)}
+                                <TitlePeriod mark={splitTitlePeriod(copy.line2).period} />
+                            </span>
                         </h1>
                     ) : (
                         <h2 className={cn(styles.headline, designFont.serif)}>
                             <span>{keepWords(copy.line1)}</span>
-                            <span className={styles.emphasis}>{keepWords(copy.line2)}</span>
+                            <span className={styles.emphasis}>
+                                {keepWords(splitTitlePeriod(copy.line2).body)}
+                                <TitlePeriod mark={splitTitlePeriod(copy.line2).period} />
+                            </span>
                         </h2>
                     )}
                 </header>
