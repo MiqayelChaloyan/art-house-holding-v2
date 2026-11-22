@@ -1,11 +1,5 @@
-import dynamic from 'next/dynamic';
+import HomeClient from './HomeClient';
 
-import HomeSectionFallback from './HomeSectionFallback';
-
-
-const HomeClient = dynamic(() => import('./HomeClient'), {
-    loading: () => <HomeSectionFallback tall />,
-});
 
 interface Props {
     data: HOME_DETALIS_QUERYResult;

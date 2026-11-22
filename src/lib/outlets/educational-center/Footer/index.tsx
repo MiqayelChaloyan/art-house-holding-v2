@@ -83,7 +83,7 @@ const Footer = ({
                 <div className={styles.google_map}>
                     <GoogleMaps
                         width='100%'
-                        height='100%'
+                        height='600px'
                     />
                     <p className={cn(styles.address, Arial.className)}>
                         {t('texts.address')}: {socialData?.address || t('address.address')}

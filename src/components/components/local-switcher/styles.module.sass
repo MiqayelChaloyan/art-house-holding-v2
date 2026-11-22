@@ -1,12 +1,26 @@
+.prefetch
+    position: absolute
+    width: 0
+    height: 0
+    overflow: hidden
+    pointer-events: none
+
 .switcher
     border: 2px
     display: flex
     justify-content: center
+    position: relative
+    a.language
+        text-decoration: none
+        color: inherit
 
 .codes
     display: flex
     align-items: center
     gap: 6px
+    position: relative
+    a.code
+        text-decoration: none
 
 .code
     border: 0

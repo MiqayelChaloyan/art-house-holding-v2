@@ -1,9 +1,9 @@
 'use server'
 
-import dynamic from 'next/dynamic';
-
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next';
+
+import DLanguage from '@/src/components/screens/language/languages/Language';
 
 import { Locale } from '@/src/locales';
 
@@ -17,11 +17,6 @@ import 'swiper/css/pagination';
 
 import { generateMetadataDynamic } from '@/src/utils/default-metadata';
 import { getCourseBySlug } from '@/src/utils/data/language';
-
-
-const DLanguage = dynamic(() =>
-    import('@/src/components/screens/language/languages/Language'),
-);
 
 interface Props {
     params: {

@@ -1,19 +1,15 @@
 'use server'
 
 import { notFound } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import { type Metadata } from 'next';
+
+import Component from '@/src/components/screens/language/languages';
 
 import { Locale } from '@/src/locales';
 import { Pages } from '@/src/constants/pages';
 import { SITE_META_QUERY } from '@/sanity/services/language-service';
 import { buildSectionPageMetadata } from '@/src/utils/page-metadata';
 import { getCourses } from '@/src/utils/data/language';
-
-
-const Component = dynamic(() =>
-    import('@/src/components/screens/language/languages'),
-);
 
 interface Props {
     params: {

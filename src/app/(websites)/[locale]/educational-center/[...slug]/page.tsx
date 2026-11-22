@@ -1,9 +1,9 @@
 'use server'
 
-import dynamic from 'next/dynamic';
-
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next';
+
+import Course from '@/src/components/screens/educational-center/course';
 
 import { Locale } from '@/src/locales';
 
@@ -12,9 +12,6 @@ import { urlForImage } from '@/sanity/imageUrlBuilder';
 import { ImagePath } from '@/src/types/general';
 import { generateMetadataDynamic } from '@/src/utils/default-metadata';
 import { getContacts, getCourse, getSelectOptions } from '@/src/utils/data/educational-center';
-
-
-const Course = dynamic(() => import('@/src/components/screens/educational-center/course'));
 
 
 interface Props {

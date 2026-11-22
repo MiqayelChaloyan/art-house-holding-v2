@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 
-import dynamic from 'next/dynamic';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '@/src/store/modal_reducer';
 
@@ -11,17 +10,8 @@ import About from './About';
 import CookingCourses from './CookingCourses';
 import News from './News';
 import Progress from './Progress';
-
-import HomeSectionFallback from './HomeSectionFallback';
-
-
-const Specialists = dynamic(() => import('./Specialists'), {
-    loading: () => <HomeSectionFallback />,
-});
-
-const OurRating = dynamic(() => import('./OurRating'), {
-    loading: () => <HomeSectionFallback />,
-});
+import Specialists from './Specialists';
+import OurRating from './OurRating';
 
 
 interface Props {
