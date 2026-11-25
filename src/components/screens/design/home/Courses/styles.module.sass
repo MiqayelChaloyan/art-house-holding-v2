@@ -55,8 +55,9 @@
 .emphasis
 	font-style: italic
 	color: #7a7a7a
-	:global(.designTitlePeriod)
-		color: #ffffff
+	:global(html[lang="en"] .designSite) &
+		:global(.designTitlePeriod)
+			color: #ffffff
 
 .pageTitle
 	:global(html[lang="am"]) &,
