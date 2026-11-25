@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next';
 
@@ -38,39 +39,55 @@ const localeStrings: {
     en: 'design studio'
 };
 
-export default async function Layout({
+async function DesignHeader({ locale }: { locale: string }) {
+    const contacts = await getContacts(locale);
+    if (!contacts) notFound();
+    return <Header typePosition="fixed" locale={locale} brand={contacts} />;
+}
+
+async function DesignFloating({ locale }: { locale: string }) {
+    const branches = await getHomeDetails(locale);
+    if (!branches) notFound();
+    return (
+        <FloatingMenu
+            website={localeStrings[locale]}
+            branches={branches}
+            theme={colors.studioRed}
+            hover={colors.studioRedDark}
+        />
+    );
+}
+
+async function DesignFooter({ locale }: { locale: string }) {
+    const contacts = await getContacts(locale);
+    if (!contacts) notFound();
+    return <Footer socialData={contacts} />;
+}
+
+export default function Layout({
     children,
     params: { locale },
 }: Readonly<RootLayoutProps>) {
-    const [contacts, branches] = await Promise.all([
-        getContacts(locale),
-        getHomeDetails(locale),
-    ]);
-
-    if (!branches || !contacts) {
-        notFound()
-    };
-
     return (
         <div className={`${designFont.vars} ${designFont.ui} designSite`}>
-            <Header typePosition='fixed' locale={locale} brand={contacts} />
-            <div className='design-container'>
+            <Suspense fallback={<Header typePosition="fixed" locale={locale} />}>
+                <DesignHeader locale={locale} />
+            </Suspense>
+            <div className="design-container">
                 <GoBack locale={locale} theme={colors.studioRed} />
                 <ScrollToTopButton theme={colors.studioRed} />
-                <FloatingMenu
-                    website={localeStrings[locale]}
-                    branches={branches}
-                    theme={colors.studioRed}
-                    hover={colors.studioRedDark}
-                />
+                <Suspense fallback={null}>
+                    <DesignFloating locale={locale} />
+                </Suspense>
                 {children}
-                <Footer socialData={contacts} />
+                <Suspense fallback={null}>
+                    <DesignFooter locale={locale} />
+                </Suspense>
             </div>
             <PlayerModal />
         </div>
     );
 };
-
 
 export async function generateMetadata({
     params: { locale },

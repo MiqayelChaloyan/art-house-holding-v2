@@ -13,7 +13,8 @@ const Inter = localFont({
         { path: '../../public/font/Inter.ttf', weight: '100 900', style: 'italic' },
     ],
     display: 'swap',
-    preload: true,
+    // Shared body font — keep available, but don't fight design headline preloads.
+    preload: false,
     variable: '--font-inter',
 });
 const Arial = localFont({
@@ -31,8 +32,7 @@ const InstrumentSerif = localFont({
         { path: '../../public/font/InstrumentSerif-Italic.ttf', weight: '400', style: 'italic' },
     ],
     display: 'swap',
-    preload: false,
-    adjustFontFallback: false,
+    preload: true,
     variable: '--font-instrument-serif',
 });
 const Hanragitaran = localFont({
@@ -42,7 +42,6 @@ const Hanragitaran = localFont({
     ],
     display: 'swap',
     preload: true,
-    adjustFontFallback: false,
     variable: '--font-hanragitaran',
 });
 const PTSerif = localFont({
@@ -52,7 +51,6 @@ const PTSerif = localFont({
     ],
     display: 'swap',
     preload: true,
-    adjustFontFallback: false,
     variable: '--font-pt-serif',
 });
 const MontserratArm = localFont({
@@ -77,7 +75,7 @@ const MontserratRegular = localFont({
     weight: '400',
     style: 'normal',
     display: 'swap',
-    preload: false,
+    preload: true,
     variable: '--font-montserrat-regular',
 });
 const MontserratLight = localFont({
@@ -93,7 +91,7 @@ const MontserratMedium = localFont({
     weight: '500',
     style: 'normal',
     display: 'swap',
-    preload: false,
+    preload: true,
     variable: '--font-montserrat-medium',
 });
 const MontserratSemiBold = localFont({
@@ -112,8 +110,9 @@ const JetBrainsMono = localFont({
     variable: '--font-jetbrains',
 });
 
+/** Critical design vars only — keeps first-paint CSS font work smaller. */
 const designFont = {
-    vars: `${InstrumentSerif.variable} ${Hanragitaran.variable} ${PTSerif.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratLight.variable} ${MontserratMedium.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
+    vars: `${InstrumentSerif.variable} ${Hanragitaran.variable} ${PTSerif.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratMedium.variable} ${MontserratLight.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
     ui: 'designFontUi',
     regular: 'designFontRegular',
     serif: 'designFontSerif',
