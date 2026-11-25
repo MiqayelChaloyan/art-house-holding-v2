@@ -1,11 +1,11 @@
 import { keepWords } from '@/src/components/screens/design/keepWords';
 
-export const withRedQuestion = (text: string) => {
+export const withRedQuestion = (text: string, questionClassName = 'designTitlePeriod') => {
     if (!text.includes('՞')) return keepWords(text);
 
     return text.split('՞').map((part, index) => (
         <span key={`${part}-${index}`}>
-            {index > 0 && <span className="designTitlePeriod">՞</span>}
+            {index > 0 && <span className={questionClassName}>՞</span>}
             {keepWords(part)}
         </span>
     ));

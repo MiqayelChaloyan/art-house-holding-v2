@@ -287,9 +287,18 @@ $languageHeroBg: '../../../../public/assets/images/language/background.png'
 .section[data-variant='design'] .designTitle
     max-width: none
     font-family: var(--font-instrument-serif), serif !important
-    :global(html[lang="am"]) &,
-    :global(html[lang="ru"]) &
+    :global(html[lang="am"]) &
         font-family: var(--font-hanragitaran), var(--font-instrument-serif), var(--font-montserrat-arm), serif !important
+    :global(html[lang="ru"]) &
+        font-family: var(--font-pt-serif), var(--font-instrument-serif), serif !important
+        font-weight: 400
+        font-style: normal
+        font-size: 72px
+        line-height: 72px
+        letter-spacing: -1.8px
+        .designEmphasis
+            font-style: italic
+            font-weight: 400
     > span
         display: block
         white-space: nowrap

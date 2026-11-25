@@ -79,14 +79,27 @@
 		white-space: nowrap
 
 .headlineRu
-	font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
-	font-size: clamp(36px, 4.6vw, 72px)
-	line-height: 0.96
-	letter-spacing: 0
+	font-family: var(--font-pt-serif), var(--font-instrument-serif), serif
+	font-weight: 400
+	font-style: normal
+	font-size: 72px
+	line-height: 72px
+	letter-spacing: -1.8px
 	overflow-wrap: normal
 	word-break: normal
 	> span
+		display: flex
+		align-items: center
+		min-height: 72px
 		white-space: nowrap
+	.emphasis
+		font-style: italic
+		font-weight: 400
+	@media screen and (max-width: 640px)
+		font-size: clamp(36px, 10vw, 52px)
+		line-height: 1
+		> span
+			min-height: 0
 
 .word
 	white-space: nowrap

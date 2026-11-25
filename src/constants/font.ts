@@ -45,6 +45,16 @@ const Hanragitaran = localFont({
     adjustFontFallback: false,
     variable: '--font-hanragitaran',
 });
+const PTSerif = localFont({
+    src: [
+        { path: '../../public/font/PTSerif-Regular.ttf', weight: '400', style: 'normal' },
+        { path: '../../public/font/PTSerif-Italic.ttf', weight: '400', style: 'italic' },
+    ],
+    display: 'swap',
+    preload: false,
+    adjustFontFallback: false,
+    variable: '--font-pt-serif',
+});
 const MontserratArm = localFont({
     src: [
         {
@@ -103,7 +113,7 @@ const JetBrainsMono = localFont({
 });
 
 const designFont = {
-    vars: `${InstrumentSerif.variable} ${Hanragitaran.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratLight.variable} ${MontserratMedium.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
+    vars: `${InstrumentSerif.variable} ${Hanragitaran.variable} ${PTSerif.variable} ${MontserratArm.variable} ${MontserratRegular.variable} ${MontserratLight.variable} ${MontserratMedium.variable} ${MontserratSemiBold.variable} ${Arial.variable} ${JetBrainsMono.variable}`,
     ui: 'designFontUi',
     regular: 'designFontRegular',
     serif: 'designFontSerif',
@@ -123,6 +133,7 @@ export {
     MMArmenU,
     InstrumentSerif,
     Hanragitaran,
+    PTSerif,
     MontserratArm,
     MontserratRegular,
     MontserratLight,

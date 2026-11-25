@@ -80,7 +80,7 @@ const Why = ({ section }: Readonly<Props>) => {
                         {copy.eyebrow}
                     </p>
                     <h2 className={cn(styles.headline, designFont.serif)}>
-                        <span>{withRedQuestion(copy.line1)}</span>
+                        <span>{withRedQuestion(copy.line1, styles.questionMark)}</span>
                         <span>{renderWhySecondLine(copy.line2, copy.emphasisWord)}</span>
                     </h2>
                 </header>

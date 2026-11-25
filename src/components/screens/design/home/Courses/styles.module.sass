@@ -59,7 +59,6 @@
 .pageTitle
 	:global(html[lang="am"]) &,
 	:global(html[lang="ru"]) &
-		font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
 		font-weight: 400
 		font-style: normal
 		font-size: 72px
@@ -79,6 +78,10 @@
 			letter-spacing: -1px
 			> span
 				min-height: 0
+	:global(html[lang="am"]) &
+		font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
+	:global(html[lang="ru"]) &
+		font-family: var(--font-pt-serif), var(--font-instrument-serif), serif
 
 .grid
 	display: grid

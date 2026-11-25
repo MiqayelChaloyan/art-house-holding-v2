@@ -267,6 +267,7 @@
 	max-width: 520px
 	font-size: clamp(36px, 4.8vw, 72px)
 	font-weight: 400
+	font-style: normal
 	line-height: 1.05
 	letter-spacing: -0.025em
 	overflow-wrap: normal
@@ -276,6 +277,23 @@
 		display: inline
 		color: #ce2421
 		font-style: normal
+	:global(html[lang="ru"]) &
+		font-family: var(--font-pt-serif), var(--font-instrument-serif), serif
+		font-size: 72px
+		line-height: 72px
+		letter-spacing: -1.8px
+		> span
+			display: flex
+			align-items: center
+			min-height: 72px
+		.emphasis
+			font-style: italic
+			font-weight: 400
+		@media screen and (max-width: 640px)
+			font-size: clamp(36px, 10vw, 52px)
+			line-height: 1
+			> span
+				min-height: 0
 
 .sectionTitleInline
 	max-width: none
@@ -286,15 +304,22 @@
 		display: inline
 	span + span
 		margin-left: 0.22em
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
+	:global(html[lang="am"]) &
 		font-size: clamp(36px, 4.8vw, 72px)
+	:global(html[lang="ru"]) &
+		font-size: 72px
+		line-height: 72px
+		> span
+			display: inline
+			min-height: 0
 
 .about .sectionTitle
 	margin-bottom: 24px
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
+	:global(html[lang="am"]) &
 		font-size: clamp(36px, 4.8vw, 72px)
+	:global(html[lang="ru"]) &
+		font-size: 72px
+		line-height: 72px
 
 .lineTogether
 	white-space: nowrap

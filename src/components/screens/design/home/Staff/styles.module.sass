@@ -63,25 +63,49 @@ $staff-frame-border: 3px solid rgba(255, 255, 255, 0.22)
 	color: #ffffff
 	overflow-wrap: normal
 	word-break: normal
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
+	:global(html[lang="am"]) &
 		font-family: var(--font-hanragitaran), var(--font-instrument-serif), serif
 		font-size: clamp(36px, 4.8vw, 72px)
 		font-weight: 400
 		font-style: normal
 		line-height: 1
 		letter-spacing: -1.8px
+	:global(html[lang="ru"]) &
+		font-family: var(--font-pt-serif), var(--font-instrument-serif), serif
+		font-size: 72px
+		font-weight: 400
+		font-style: normal
+		line-height: 72px
+		letter-spacing: -1.8px
+		> span:not(.lead)
+			display: flex
+			align-items: center
+			min-height: 72px
+		.emphasis
+			font-style: italic
+			font-weight: 400
+		@media screen and (max-width: 640px)
+			font-size: clamp(36px, 10vw, 52px)
+			line-height: 1
+			> span:not(.lead)
+				min-height: 0
 
 .courseHeadline
-	:global(html[lang="am"]) &,
-	:global(html[lang="ru"]) &
+	:global(html[lang="am"]) &
 		font-size: clamp(40px, 4.6vw, 72px)
+	:global(html[lang="ru"]) &
+		font-size: 72px
+		line-height: 72px
 
 .lead
 	display: block
+	white-space: nowrap
+	.emphasis
+		display: inline
+		font-style: italic
 
 .headline > span:last-child,
-.headline > span:first-child,
+.headline > span:first-child:not(.lead),
 .headline > em
 	display: block
 
