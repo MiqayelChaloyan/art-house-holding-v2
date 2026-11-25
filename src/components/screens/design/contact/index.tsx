@@ -296,15 +296,23 @@ const CourseSelect = ({
             <ul className={styles.dropdown} role="listbox">
                 {lessons.map((lesson) => {
                     const selected = value === lesson.course_name;
+                    const choose = () => {
+                        onSelect(lesson);
+                        setIsOpen(false);
+                    };
                     return (
                         <li
                             key={String(lesson.slug)}
                             role="option"
+                            tabIndex={isOpen ? 0 : -1}
                             aria-selected={selected}
                             className={cn(selected && styles.optionSelected)}
-                            onClick={() => {
-                                onSelect(lesson);
-                                setIsOpen(false);
+                            onClick={choose}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                    event.preventDefault();
+                                    choose();
+                                }
                             }}
                         >
                             {lesson.course_name}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import NextImage from '@/src/components/components/image';
 
@@ -20,6 +20,7 @@ interface Props {
 };
 
 const Certificates = ({ section }: Readonly<Props>) => {
+    const locale = useLocale();
     const t = useTranslations('certificates-section');
 
     const copy = {
@@ -31,6 +32,7 @@ const Certificates = ({ section }: Readonly<Props>) => {
 
     const line3 = copy.line3.replace(/[․.]$/, '');
     const line3Period = copy.line3.slice(line3.length);
+    const diplomaClass = locale === 'en' ? styles.diploma : styles.emphasis;
 
     const sources = (section?.images || [])
         .filter((item) => item?.image?.asset)
@@ -53,7 +55,7 @@ const Certificates = ({ section }: Readonly<Props>) => {
                         <em className={styles.emphasis}>{keepWords(copy.line2)}</em>
                     </span>
                     <span>
-                        <em className={styles.emphasis}>{keepWords(line3)}</em>
+                        <em className={diplomaClass}>{keepWords(line3)}</em>
                         {line3Period && <span className={styles.period}>{line3Period}</span>}
                     </span>
                 </h2>

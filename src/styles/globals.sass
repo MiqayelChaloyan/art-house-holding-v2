@@ -277,23 +277,15 @@ html[lang="ru"] .designSite [data-variant="design"] h1
 
 html[lang="ru"] .designSite h1.designFontSerif,
 html[lang="ru"] .designSite h2.designFontSerif
-	font-size: 72px
-	line-height: 72px
 	letter-spacing: -1.8px
 	font-style: normal
 
 html[lang="ru"] .designSite h1.designFontSerif em,
-html[lang="ru"] .designSite h1.designFontSerif .emphasis,
 html[lang="ru"] .designSite h2.designFontSerif em,
-html[lang="ru"] .designSite h2.designFontSerif .emphasis
+html[lang="ru"] .designSite h1.designFontSerif [class*="emphasis"],
+html[lang="ru"] .designSite h2.designFontSerif [class*="emphasis"]
 	font-style: italic
 	font-weight: 400
-
-@media screen and (max-width: 640px)
-	html[lang="ru"] .designSite h1.designFontSerif,
-	html[lang="ru"] .designSite h2.designFontSerif
-		font-size: clamp(36px, 10vw, 52px)
-		line-height: 1
 
 .designFontMedium
 	font-family: var(--font-montserrat-arm), var(--font-arial), sans-serif

@@ -77,21 +77,28 @@
 		font-family: var(--font-pt-serif), var(--font-instrument-serif), serif
 		font-weight: 400
 		font-style: normal
-		font-size: 72px
-		line-height: 72px
-		letter-spacing: -1.8px
-		.emphasis
-			font-style: italic
-			font-weight: 400
+		font-size: 120px
+		line-height: 114px
+		letter-spacing: -3px
+		> span:first-child
 			color: #9b9b9b
+			font-style: italic
+			white-space: nowrap
+		.emphasis
+			font-style: normal
+			font-weight: 400
+			color: #ffffff
+			white-space: nowrap
+			flex-wrap: nowrap
 		> span
 			display: flex
+			flex-wrap: nowrap
 			align-items: center
-			min-height: 72px
+			min-height: 114px
 		@media screen and (max-width: 991px)
-			font-size: clamp(36px, 10vw, 52px)
-			line-height: 1
-			letter-spacing: -1px
+			font-size: clamp(48px, 12vw, 80px)
+			line-height: 0.95
+			letter-spacing: -1.5px
 			> span
 				min-height: 0
 

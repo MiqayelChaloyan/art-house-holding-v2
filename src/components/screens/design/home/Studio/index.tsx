@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 
@@ -34,6 +34,7 @@ const HOLD_MS = 5200;
 
 const Studio = ({ section }: Readonly<Props>) => {
     const locale = useLocale();
+    const t = useTranslations('studio-section');
 
     const copy = {
         eyebrow: section?.eyebrow || '',
@@ -45,6 +46,16 @@ const Studio = ({ section }: Readonly<Props>) => {
         explore: section?.explore_label || '',
         portfolio: section?.portfolio_label || '',
     };
+
+    const localizedHeadline = locale === 'am' || locale === 'ru'
+        ? {
+            line1: t('line-1'),
+            line2: t('line-2'),
+            line3: t('line-3'),
+            emphasis: t('emphasis'),
+            line4: t('line-4'),
+        }
+        : null;
 
     const stats = (section?.stats || []).map((item) => ({
         key: item._key,
@@ -97,25 +108,14 @@ const Studio = ({ section }: Readonly<Props>) => {
                         locale === 'ru' && styles.headlineRu,
                         designFont.serif,
                     )}>
-                        {locale === 'am' ? (
+                        {localizedHeadline ? (
                             <>
-                                <span>Որտեղ</span>
-                                <span>կրեատիվությունը</span>
-                                <span>հանդիպում է</span>
-                                <span className={styles.emphasis}>պրոֆեսիոնալ</span>
+                                <span>{localizedHeadline.line1}</span>
+                                <span>{localizedHeadline.line2}</span>
+                                <span>{localizedHeadline.line3}</span>
+                                <span className={styles.emphasis}>{localizedHeadline.emphasis}</span>
                                 <span>
-                                    դիզայնին
-                                    <span className={styles.dot}>.</span>
-                                </span>
-                            </>
-                        ) : locale === 'ru' ? (
-                            <>
-                                <span>Там, где</span>
-                                <span>Творчество</span>
-                                <span>Встречается с</span>
-                                <span className={styles.emphasis}>Профессиональным</span>
-                                <span>
-                                    Дизайном
+                                    {localizedHeadline.line4}
                                     <span className={styles.dot}>.</span>
                                 </span>
                             </>
@@ -123,7 +123,7 @@ const Studio = ({ section }: Readonly<Props>) => {
                             <>
                                 <span>{keepWords(copy.line1)}</span>
                                 <span>{keepWords(copy.line2)}</span>
-                                <span className={styles.emphasis}>{keepWords(copy.line3)}</span>
+                                <span className={styles.emphasis}>{keepWords(copy.line3.toLocaleLowerCase(locale))}</span>
                                 <span>
                                     {keepWords(copy.line4)}
                                     <span className={styles.dot}>.</span>

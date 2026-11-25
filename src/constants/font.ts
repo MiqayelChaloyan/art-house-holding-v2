@@ -41,7 +41,7 @@ const Hanragitaran = localFont({
         { path: '../../public/font/FMBF_Hanragitaran_i.ttf', weight: '400', style: 'italic' },
     ],
     display: 'swap',
-    preload: false,
+    preload: true,
     adjustFontFallback: false,
     variable: '--font-hanragitaran',
 });
@@ -51,7 +51,7 @@ const PTSerif = localFont({
         { path: '../../public/font/PTSerif-Italic.ttf', weight: '400', style: 'italic' },
     ],
     display: 'swap',
-    preload: false,
+    preload: true,
     adjustFontFallback: false,
     variable: '--font-pt-serif',
 });

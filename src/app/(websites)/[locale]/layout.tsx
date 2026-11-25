@@ -1,7 +1,6 @@
-'use server';
-
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
+import LocaleNavBridge from '@/src/components/components/locale-nav-bridge';
 import { StoreProvider } from '@/src/store/StoreProvider';
 
 import { Inter } from '@/src/constants/font';
@@ -27,6 +26,7 @@ function RootLayout({
       <body className={Inter.className} suppressHydrationWarning>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <StoreProvider>
+            <LocaleNavBridge />
             {children}
           </StoreProvider>
         </NextIntlClientProvider>

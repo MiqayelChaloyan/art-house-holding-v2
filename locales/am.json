@@ -47,6 +47,10 @@
         "line-2": "մենք.",
         "emphasis-word": "մենք"
     },
+    "about-page": {
+        "line-1": "Art",
+        "line-2": "House-ի մասին."
+    },
     "contact-page": {
         "eyebrow": "Կապ",
         "line-1": "Կապ",
@@ -246,8 +250,21 @@
         },
         "trainers": {
             "eyebrow": "Դասատուներ",
+            "line-1": "Ղեկավարներ",
             "emphasis": "Դասընթացավարները."
+        },
+        "projects": {
+            "line-1": "Նախագծեր",
+            "line-2": "ստուդիայից.",
+            "emphasis": "ստուդիայից."
         }
+    },
+    "studio-section": {
+        "line-1": "Որտեղ",
+        "line-2": "կրեատիվությունը",
+        "line-3": "հանդիպում է",
+        "emphasis": "պրոֆեսիոնալ",
+        "line-4": "դիզայնին"
     },
     "staff-section": {
         "eyebrow": "մեր թիմը",
@@ -259,6 +276,7 @@
         "skills": "Հմտություններ",
         "prev": "Նախորդ աշխատակից",
         "next": "Հաջորդ աշխատակից",
+        "list": "Թիմի անդամներ",
         "view-behance": "Դիտել {name}-ի Behance-ը"
     },
     "contact": {

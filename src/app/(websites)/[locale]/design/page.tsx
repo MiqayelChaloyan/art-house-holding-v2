@@ -1,5 +1,3 @@
-'use server'
-
 import Home from '@/src/components/screens/design/home';
 
 import { notFound } from 'next/navigation';

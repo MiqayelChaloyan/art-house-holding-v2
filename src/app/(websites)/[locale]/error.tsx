@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import styles from './error.module.sass';
 
@@ -13,6 +13,7 @@ interface Props {
 
 export default function Error({ reset }: Readonly<Props>) {
     const t = useTranslations('texts');
+    const locale = useLocale();
 
     return (
         <section className={styles.error} role="alert" aria-live="polite">
@@ -22,7 +23,7 @@ export default function Error({ reset }: Readonly<Props>) {
                 <button type="button" onClick={reset}>
                     {t('error-retry')}
                 </button>
-                <Link href="/">{t('error-home')}</Link>
+                <Link href={`/${locale}`}>{t('error-home')}</Link>
             </div>
         </section>
     );

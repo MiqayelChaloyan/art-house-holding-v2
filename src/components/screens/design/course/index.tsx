@@ -435,7 +435,7 @@ const Course = ({ locale, course, home }: Readonly<Props>) => {
             )}
 
             <div className={styles.shared}>
-                <Projects section={projectsSection} />
+                <Projects section={projectsSection} variant="course" />
                 <Blog posts={selectedPosts} layout="cards" />
             </div>
 
@@ -626,12 +626,19 @@ const BlockHeading = ({
             )}
             {(title || emphasis || line2Prefix) && (
                 <h2 className={cn(styles.sectionTitle, inline && styles.sectionTitleInline, designFont.serif)}>
-                    {title && <span>{splitSecondLine ? title : keepWords(title)}</span>}
+                    {title && (
+                        <span className={styles.lineTogether}>
+                            {title}
+                        </span>
+                    )}
                     {splitSecondLine ? (
                         <span className={styles.lineTogether}>
-                            {line2Prefix}
-                            {ended.body && <em className={styles.emphasis}>{ended.body}</em>}
-                            <TitlePeriod mark={ended.period} />
+                            <span>
+                                {line2Prefix?.trimEnd()}
+                                {ended.body ? `\u00A0` : ''}
+                                {ended.body && <em className={styles.emphasis}>{ended.body}</em>}
+                                <TitlePeriod mark={ended.period} />
+                            </span>
                         </span>
                     ) : (
                         emphasis && (

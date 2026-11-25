@@ -20,6 +20,8 @@ import styles from './styles.module.sass';
 
 interface Props {
     section?: PROJECTS_SECTION;
+    /** Course page uses its own title copy; home keeps projects-section. */
+    variant?: 'home' | 'course';
 };
 
 const renderStudioLine = (text: string, emphasis: string) => {
@@ -49,15 +51,16 @@ const renderStudioLine = (text: string, emphasis: string) => {
     );
 };
 
-const Projects = ({ section }: Readonly<Props>) => {
+const Projects = ({ section, variant = 'home' }: Readonly<Props>) => {
     const locale = useLocale();
     const t = useTranslations('projects-section');
+    const courseT = useTranslations('design-course-sections.projects');
 
     const copy = {
         eyebrow: t('eyebrow'),
-        line1: t('line-1'),
-        line2: t('line-2'),
-        emphasis: t('emphasis'),
+        line1: variant === 'course' ? courseT('line-1') : t('line-1'),
+        line2: variant === 'course' ? courseT('line-2') : t('line-2'),
+        emphasis: variant === 'course' ? courseT('emphasis') : t('emphasis'),
         description: section?.description || '',
     };
 

@@ -43,9 +43,13 @@
     },
     "why-section": {
         "eyebrow": "Why Art House",
-        "line-1": "A rigorous studio",
-        "line-2": "inside an academy.",
-        "emphasis-word": "academy"
+        "line-1": "Why us,",
+        "line-2": "specifically?",
+        "emphasis-word": "specifically"
+    },
+    "about-page": {
+        "line-1": "About",
+        "line-2": "Art House."
     },
     "contact-page": {
         "eyebrow": "Contact",
@@ -168,19 +172,19 @@
         "eyebrow": "students works",
         "line-1": "Certificate",
         "line-2": "and",
-        "line-3": "Diploma"
+        "line-3": "Diploma."
     },
     "projects-section": {
         "eyebrow": "Selected Work",
-        "line-1": "Projects from",
-        "line-2": "the studio floor.",
-        "emphasis": "studio floor."
+        "line-1": "Students",
+        "line-2": "works.",
+        "emphasis": "works."
     },
     "design-blog-section": {
         "eyebrow": "Blog",
-        "line-1": "Blog",
-        "line-2": "and News.",
-        "emphasis": "and"
+        "line-1": "Blog and",
+        "line-2": "News.",
+        "emphasis": "News."
     },
     "voices-section": {
         "eyebrow": "Student voices",
@@ -246,19 +250,33 @@
         },
         "trainers": {
             "eyebrow": "Trainers",
+            "line-1": "Lead",
             "emphasis": "trainers."
+        },
+        "projects": {
+            "line-1": "Projects from",
+            "line-2": "the studio floor.",
+            "emphasis": "studio floor."
         }
+    },
+    "studio-section": {
+        "line-1": "Where",
+        "line-2": "creativity",
+        "line-3": "meets",
+        "emphasis": "professional",
+        "line-4": "design"
     },
     "staff-section": {
         "eyebrow": "our staff",
         "line-1": "Our",
         "line-2": "creative",
-        "line-3": "Staff",
+        "line-3": "Staff.",
         "experience-label": "Experience",
         "programs": "Programs",
         "skills": "Skills",
         "prev": "Previous team member",
         "next": "Next team member",
+        "list": "Team members",
         "view-behance": "View {name} on Behance"
     },
     "contact": {

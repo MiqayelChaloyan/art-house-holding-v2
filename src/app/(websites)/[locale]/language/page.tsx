@@ -1,5 +1,3 @@
-'use server'
-
 import { notFound } from 'next/navigation';
 import Home from '@/src/components/screens/language/home';
 import { getPartners } from '@/src/utils/data';

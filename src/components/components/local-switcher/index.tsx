@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect } from 'react';
+import React, { startTransition, useCallback, useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
@@ -11,6 +11,7 @@ import NextImage from '@/src/components/components/image';
 
 import { ImagePaths } from '@/src/constants';
 import { ArianAMU } from '@/src/constants/font';
+import { beginSoftLocaleNav } from '@/src/utils/soft-locale-nav';
 
 import colors from '@/src/themes';
 
@@ -57,6 +58,7 @@ export default function LocalSwitcher({
   const router = useRouter();
   const localActive = useLocale();
   const pathname = usePathname();
+  const [pendingLocale, setPendingLocale] = useState<string | null>(null);
 
   const hrefFor = useCallback((locale: string) => {
     const pathParts = pathname.replace(/^\/(am|en|ru)(?=\/|$)/, '') || '';
@@ -68,6 +70,25 @@ export default function LocalSwitcher({
     if (locale === localActive) return;
     router.prefetch(hrefFor(locale), { kind: PrefetchKind.FULL });
   }, [hrefFor, localActive, router]);
+
+  const switchLocale = useCallback((locale: string, event?: React.MouseEvent<HTMLAnchorElement>) => {
+    if (locale === localActive || pendingLocale) {
+      event?.preventDefault();
+      return;
+    }
+
+    event?.preventDefault();
+    const href = hrefFor(locale);
+    setPendingLocale(locale);
+    beginSoftLocaleNav();
+    startTransition(() => {
+      router.push(href, { scroll: false });
+    });
+  }, [hrefFor, localActive, pendingLocale, router]);
+
+  useEffect(() => {
+    setPendingLocale(null);
+  }, [localActive, pathname]);
 
   useEffect(() => {
     const run = () => localeCodes.forEach(({ key }) => prefetchLocale(key));
@@ -91,7 +112,7 @@ export default function LocalSwitcher({
 
   if (variant === 'codes') {
     return (
-      <div className={styles.codes} role="group" aria-label="Language">
+      <div className={styles.codes} role="group" aria-label="Language" aria-busy={Boolean(pendingLocale)}>
         {hiddenPrefetch}
         {localeCodes.map((locale, index) => (
           <React.Fragment key={locale.key}>
@@ -111,8 +132,10 @@ export default function LocalSwitcher({
                 scroll={false}
                 className={styles.code}
                 style={{ color }}
+                aria-disabled={pendingLocale === locale.key || undefined}
                 onPointerEnter={() => prefetchLocale(locale.key)}
                 onFocus={() => prefetchLocale(locale.key)}
+                onClick={(event) => switchLocale(locale.key, event)}
               >
                 {locale.label}
               </Link>
@@ -125,7 +148,7 @@ export default function LocalSwitcher({
 
   if (pathname.includes(keySwithcer)) {
     return (
-      <div className={styles.switcher}>
+      <div className={styles.switcher} aria-busy={Boolean(pendingLocale)}>
         {hiddenPrefetch}
         {Object.keys(localeImages).map((key) => (
           localActive === key ? (
@@ -151,6 +174,7 @@ export default function LocalSwitcher({
               className={cn(styles.language, ArianAMU.className)}
               onPointerEnter={() => prefetchLocale(key)}
               onFocus={() => prefetchLocale(key)}
+              onClick={(event) => switchLocale(key, event)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = activeColor
               }}
@@ -175,7 +199,7 @@ export default function LocalSwitcher({
   const keys = Object.keys(localeStrings);
 
   return (
-    <div className={styles.switcher}>
+    <div className={styles.switcher} aria-busy={Boolean(pendingLocale)}>
       {hiddenPrefetch}
       {keys.map((key, index) => (
         localActive === key ? (
@@ -204,6 +228,7 @@ export default function LocalSwitcher({
             }}
             onPointerEnter={() => prefetchLocale(key)}
             onFocus={() => prefetchLocale(key)}
+            onClick={(event) => switchLocale(key, event)}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = activeColor
             }}

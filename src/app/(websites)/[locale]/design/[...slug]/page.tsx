@@ -1,5 +1,3 @@
-'use server'
-
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next';
 

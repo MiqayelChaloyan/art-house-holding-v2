@@ -1,5 +1,3 @@
-'use server'
-
 import { notFound } from 'next/navigation';
 import { type Metadata } from 'next';
 
@@ -22,7 +20,7 @@ interface Props {
 export default async function Page({
     params: { locale }
 }: Readonly<Props>) {
-    const data = await getContacts('en');
+    const data = await getContacts(locale);
 
     if (!data) {
         notFound()

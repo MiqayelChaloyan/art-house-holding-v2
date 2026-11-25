@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { useLocale, useTranslations } from 'next-intl';
+
 import NextImage from '@/src/components/components/image';
 import Partners from '@/src/components/screens/design/home/Partners';
 
@@ -21,10 +23,12 @@ interface Props {
 };
 
 const About = ({ data, clients }: Readonly<Props>) => {
+    const locale = useLocale();
+    const t = useTranslations('about-page');
     const image = data.image?.asset ? urlForImage(data.image, 1040) : undefined;
     const sections = (data.sections || []).filter((item) => item?.heading && item?.body);
-    const line1 = data.line_1 || '';
-    const line2 = splitTitlePeriod(data.line_2 || '');
+    const line1 = locale === 'ru' ? t('line-1') : (data.line_1 || '');
+    const line2 = splitTitlePeriod(locale === 'ru' ? t('line-2') : (data.line_2 || ''));
 
     return (
         <>
@@ -39,7 +43,7 @@ const About = ({ data, clients }: Readonly<Props>) => {
                             <h1 className={cn(styles.headline, designFont.serif)}>
                                 <span>{keepWords(line1)}</span>
                                 <span className={styles.emphasis}>
-                                    {keepWords(line2.body)}
+                                    {locale === 'ru' ? line2.body : keepWords(line2.body)}
                                     <TitlePeriod mark={line2.period} />
                                 </span>
                             </h1>

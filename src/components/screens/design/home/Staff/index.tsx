@@ -298,7 +298,7 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
                     </article>
                 </div>
                 {count > 1 && (
-                    <div className={styles.dots} role="tablist" aria-label={t('next')}>
+                    <div className={styles.dots} role="tablist" aria-label={t('list')}>
                         {team.map((person, dotIndex) => (
                             <button
                                 key={person._key}
@@ -314,16 +314,24 @@ const Staff = ({ workers, labels, heading }: Readonly<Props>) => {
                 )}
             </div>
             <div className={styles.preload} aria-hidden>
-                {team.map((person) => {
-                    const large = urlForImage(person.worker_image, 960);
-                    const small = urlForImage(person.worker_image, 524);
-                    return (
-                        <React.Fragment key={person._key}>
-                            {large?.src && <img src={large.src} alt="" />}
-                            {small?.src && <img src={small.src} alt="" />}
-                        </React.Fragment>
-                    );
-                })}
+                {team
+                    .filter((_, index) => {
+                        const distance = Math.min(
+                            Math.abs(index - activeIndex),
+                            count - Math.abs(index - activeIndex),
+                        );
+                        return distance === 1;
+                    })
+                    .map((person) => {
+                        const large = urlForImage(person.worker_image, 960);
+                        const small = urlForImage(person.worker_image, 524);
+                        return (
+                            <React.Fragment key={person._key}>
+                                {large?.src && <img src={large.src} alt="" />}
+                                {small?.src && <img src={small.src} alt="" />}
+                            </React.Fragment>
+                        );
+                    })}
             </div>
         </section>
     );
